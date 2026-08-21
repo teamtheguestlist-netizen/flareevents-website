@@ -1,146 +1,100 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =====================================================
-     FLARE — INTERACTION ENGINE
-     ===================================================== */
-
-
-  /* =====================================================
+  /* =========================================
      MOBILE MENU
-     ===================================================== */
+  ========================================= */
 
-  const menuToggle = document.querySelector("#menuToggle");
-  const mobileMenu = document.querySelector("#mobileMenu");
+  const menuButton = document.querySelector(".menu-toggle");
+  const mobileMenu = document.querySelector(".mobile-menu");
   const mobileLinks = document.querySelectorAll(".mobile-link");
 
-  if (menuToggle && mobileMenu) {
+  if (menuButton && mobileMenu) {
 
-    menuToggle.addEventListener("click", () => {
+    menuButton.addEventListener("click", () => {
 
-      const isOpen = mobileMenu.classList.toggle("open");
+      const open = mobileMenu.classList.toggle("open");
 
-      menuToggle.classList.toggle("active", isOpen);
+      menuButton.classList.toggle("active", open);
+      document.body.classList.toggle("menu-open", open);
 
-      menuToggle.setAttribute(
+      menuButton.setAttribute(
         "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-
-      document.body.classList.toggle(
-        "menu-open",
-        isOpen
+        open ? "true" : "false"
       );
 
     });
-
 
     mobileLinks.forEach(link => {
 
       link.addEventListener("click", () => {
 
         mobileMenu.classList.remove("open");
+        menuButton.classList.remove("active");
+        document.body.classList.remove("menu-open");
 
-        menuToggle.classList.remove("active");
-
-        menuToggle.setAttribute(
+        menuButton.setAttribute(
           "aria-expanded",
           "false"
         );
-
-        document.body.classList.remove("menu-open");
 
       });
-
-    });
-
-
-    /*
-      Close menu when pressing Escape
-    */
-
-    document.addEventListener("keydown", event => {
-
-      if (event.key === "Escape") {
-
-        mobileMenu.classList.remove("open");
-
-        menuToggle.classList.remove("active");
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-        document.body.classList.remove("menu-open");
-
-      }
 
     });
 
   }
 
 
-  /* =====================================================
+  /* =========================================
+     ESCAPE CLOSE MENU
+  ========================================= */
+
+  document.addEventListener("keydown", event => {
+
+    if (event.key !== "Escape") return;
+
+    if (!menuButton || !mobileMenu) return;
+
+    mobileMenu.classList.remove("open");
+    menuButton.classList.remove("active");
+    document.body.classList.remove("menu-open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  });
+
+
+  /* =========================================
      DESKTOP CUSTOM CURSOR
-     ===================================================== */
+     DESKTOP ONLY
+  ========================================= */
 
   const cursor = document.querySelector(".cursor-dot");
 
-  const finePointer = window.matchMedia(
-    "(pointer: fine)"
-  );
-
-
-  if (cursor && finePointer.matches) {
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-
-    let currentX = mouseX;
-    let currentY = mouseY;
-
-
-    window.addEventListener(
-      "mousemove",
-      event => {
-
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-
-      },
-      { passive: true }
+  const desktop =
+    window.matchMedia(
+      "(min-width:1101px) and (pointer:fine)"
     );
 
+  if (cursor && desktop.matches) {
 
-    /*
-      Smooth cursor movement
-    */
+    window.addEventListener("mousemove", event => {
 
-    const animateCursor = () => {
+      cursor.style.left = `${event.clientX}px`;
+      cursor.style.top = `${event.clientY}px`;
 
-      currentX += (mouseX - currentX) * 0.18;
-      currentY += (mouseY - currentY) * 0.18;
-
-      cursor.style.left = `${currentX}px`;
-      cursor.style.top = `${currentY}px`;
-
-      requestAnimationFrame(animateCursor);
-
-    };
-
-    animateCursor();
+    }, { passive: true });
 
 
-    /*
-      Cursor grows over interactive elements
-    */
-
-    const interactiveElements = document.querySelectorAll(
-      "a, button, .service-card, .chapter-card, .magnetic"
-    );
+    const interactive =
+      document.querySelectorAll(
+        "a, button, .service-card, .chapter-card, .magnetic"
+      );
 
 
-    interactiveElements.forEach(element => {
+    interactive.forEach(element => {
 
       element.addEventListener("mouseenter", () => {
         cursor.classList.add("active");
@@ -159,27 +113,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =====================================================
-     DESKTOP MAGNETIC CIRCLE
-     ===================================================== */
+  /* =========================================
+     MAGNETIC CIRCLE
+     DESKTOP ONLY
+  ========================================= */
 
-  const magneticCircle =
+  const circle =
     document.querySelector(".magnetic-circle");
 
 
   if (
-    magneticCircle &&
-    window.matchMedia(
-      "(min-width:1101px) and (pointer:fine)"
-    ).matches
+    circle &&
+    desktop.matches
   ) {
 
-    magneticCircle.addEventListener(
+    circle.addEventListener(
       "mousemove",
       event => {
 
         const rect =
-          magneticCircle.getBoundingClientRect();
+          circle.getBoundingClientRect();
 
         const x =
           event.clientX -
@@ -191,18 +144,18 @@ document.addEventListener("DOMContentLoaded", () => {
           rect.top -
           rect.height / 2;
 
-        magneticCircle.style.transform =
-          `translate(${x * 0.18}px, ${y * 0.18}px) scale(1.05)`;
+        circle.style.transform =
+          `translate(${x * .18}px, ${y * .18}px) scale(1.05)`;
 
       }
     );
 
 
-    magneticCircle.addEventListener(
+    circle.addEventListener(
       "mouseleave",
       () => {
 
-        magneticCircle.style.transform =
+        circle.style.transform =
           "translate(0,0) scale(1)";
 
       }
@@ -211,59 +164,61 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =====================================================
+  /* =========================================
      MAGNETIC BUTTONS
-     ===================================================== */
+  ========================================= */
 
-  const magneticElements =
-    document.querySelectorAll(".magnetic");
+  if (desktop.matches) {
 
+    document
+      .querySelectorAll(".magnetic")
+      .forEach(element => {
 
-  if (finePointer.matches) {
+        element.addEventListener(
+          "mousemove",
+          event => {
 
-    magneticElements.forEach(element => {
+            const rect =
+              element.getBoundingClientRect();
 
-      element.addEventListener(
-        "mousemove",
-        event => {
+            const x =
+              event.clientX -
+              rect.left -
+              rect.width / 2;
 
-          const rect =
-            element.getBoundingClientRect();
+            const y =
+              event.clientY -
+              rect.top -
+              rect.height / 2;
 
-          const x =
-            event.clientX -
-            rect.left -
-            rect.width / 2;
+            element.style.transform =
+              `translate(${x * .06}px, ${y * .06}px)`;
 
-          const y =
-            event.clientY -
-            rect.top -
-            rect.height / 2;
-
-          element.style.transform =
-            `translate(${x * 0.08}px, ${y * 0.08}px)`;
-
-        }
-      );
+          }
+        );
 
 
-      element.addEventListener(
-        "mouseleave",
-        () => {
+        element.addEventListener(
+          "mouseleave",
+          () => {
 
-          element.style.transform = "";
+            element.style.transform = "";
 
-        }
-      );
+          }
+        );
 
-    });
+      });
 
   }
 
 
-  /* =====================================================
-     SCROLL REVEAL
-     ===================================================== */
+  /* =========================================
+     FIXED SCROLL REVEAL
+     
+     IMPORTANT:
+     Observe ALL .reveal elements.
+     This fixes the blank hero.
+  ========================================= */
 
   const revealElements =
     document.querySelectorAll(".reveal");
@@ -277,22 +232,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
           entries.forEach(entry => {
 
-            if (entry.isIntersecting) {
+            if (!entry.isIntersecting)
+              return;
 
-              entry.target.classList.add("visible");
+            entry.target.classList.add("visible");
 
-              revealObserver.unobserve(
-                entry.target
-              );
-
-            }
+            revealObserver.unobserve(
+              entry.target
+            );
 
           });
 
         },
         {
-          threshold: 0.12,
-          rootMargin: "0px 0px -50px 0px"
+          threshold: 0.08,
+          rootMargin: "0px 0px -40px 0px"
         }
       );
 
@@ -314,121 +268,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =====================================================
-     STAGGERED REVEAL
-     ===================================================== */
+  /* =========================================
+     FORCE HERO VISIBLE
+     
+     Hero should NEVER stay hidden.
+  ========================================= */
 
-  const staggerGroups = [
-    ".service-cards",
-    ".service-list",
-    ".chapter-grid",
-    ".values-list",
-    ".principle-list"
-  ];
+  setTimeout(() => {
 
+    document
+      .querySelectorAll(".hero .reveal")
+      .forEach(element => {
 
-  staggerGroups.forEach(selector => {
-
-    const container =
-      document.querySelector(selector);
-
-    if (!container) return;
-
-    const children =
-      container.children;
-
-
-    Array.from(children).forEach(
-      (child, index) => {
-
-        if (
-          child.classList.contains("reveal")
-        ) {
-
-          child.style.transitionDelay =
-            `${index * 90}ms`;
-
-        }
-
-      }
-    );
-
-  });
-
-
-  /* =====================================================
-     PARALLAX VISUALS
-     ===================================================== */
-
-  const visuals =
-    document.querySelectorAll(".visual");
-
-
-  if (
-    visuals.length &&
-    window.matchMedia(
-      "(min-width:769px) and (pointer:fine)"
-    ).matches
-  ) {
-
-    let ticking = false;
-
-
-    const updateParallax = () => {
-
-      visuals.forEach(visual => {
-
-        const rect =
-          visual.getBoundingClientRect();
-
-        if (
-          rect.top < window.innerHeight &&
-          rect.bottom > 0
-        ) {
-
-          const progress =
-            (window.innerHeight - rect.top) /
-            (window.innerHeight + rect.height);
-
-          const movement =
-            (progress - 0.5) * 20;
-
-          visual.style.backgroundPosition =
-            `center ${50 + movement}%`;
-
-        }
+        element.classList.add("visible");
 
       });
 
-      ticking = false;
-
-    };
+  }, 100);
 
 
-    window.addEventListener(
-      "scroll",
-      () => {
+  /* =========================================
+     MARQUEE
+     
+     Supports your actual HTML:
+     .marquee-section
+     .marquee-track
+  ========================================= */
 
-        if (!ticking) {
+  const marquee =
+    document.querySelector(".marquee-track");
 
-          requestAnimationFrame(
-            updateParallax
-          );
 
-          ticking = true;
+  if (marquee) {
 
-        }
+    const original =
+      marquee.innerHTML;
 
-      },
-      { passive: true }
-    );
+    marquee.innerHTML =
+      original + original;
 
   }
 
 
-  /* =====================================================
-     SMOOTH ANCHOR LINKS
-     ===================================================== */
+  /* =========================================
+     SMOOTH ANCHOR SCROLL
+  ========================================= */
 
   document
     .querySelectorAll('a[href^="#"]')
@@ -438,49 +322,38 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         event => {
 
-          const targetID =
+          const id =
             link.getAttribute("href");
 
-
-          if (
-            !targetID ||
-            targetID === "#"
-          ) {
+          if (!id || id === "#")
             return;
-          }
-
 
           const target =
-            document.querySelector(targetID);
+            document.querySelector(id);
 
-
-          if (!target) return;
-
+          if (!target)
+            return;
 
           event.preventDefault();
 
-
           const header =
-            document.querySelector(
-              ".site-header"
-            );
-
+            document.querySelector(".site-header");
 
           const offset =
             header
               ? header.offsetHeight
               : 0;
 
-
-          const targetPosition =
+          const position =
             target.getBoundingClientRect().top +
             window.scrollY -
             offset;
 
-
           window.scrollTo({
-            top: targetPosition,
+
+            top: position,
             behavior: "smooth"
+
           });
 
         }
@@ -489,14 +362,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  /* =====================================================
-     ACTIVE NAVIGATION
-     ===================================================== */
+  /* =========================================
+     ACTIVE NAV
+  ========================================= */
 
   const sections =
-    document.querySelectorAll(
-      "section[id]"
-    );
+    document.querySelectorAll("section[id]");
 
   const navLinks =
     document.querySelectorAll(
@@ -506,8 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (
     sections.length &&
-    navLinks.length &&
-    "IntersectionObserver" in window
+    navLinks.length
   ) {
 
     const navObserver =
@@ -519,22 +389,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!entry.isIntersecting)
               return;
 
-
             navLinks.forEach(link => {
 
-              link.classList.remove(
-                "active"
-              );
-
+              link.classList.remove("active");
 
               if (
                 link.getAttribute("href") ===
                 `#${entry.target.id}`
               ) {
 
-                link.classList.add(
-                  "active"
-                );
+                link.classList.add("active");
 
               }
 
@@ -544,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         },
         {
-          threshold: 0.35
+          threshold: 0.3
         }
       );
 
@@ -558,233 +422,47 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =====================================================
-     TICKER / MARQUEE
-     ===================================================== */
-
-  const ticker =
-    document.querySelector(".ticker-track");
-
-
-  if (ticker) {
-
-    /*
-      Make sure the ticker has enough content
-      to continuously loop.
-    */
-
-    const originalContent =
-      ticker.innerHTML;
-
-
-    /*
-      If the existing ticker is short,
-      duplicate it automatically.
-    */
-
-    if (ticker.scrollWidth <
-      window.innerWidth * 2) {
-
-      ticker.innerHTML +=
-        originalContent;
-
-    }
-
-  }
-
-
-  /* =====================================================
-     IMAGE / VISUAL HOVER TILT
-     ===================================================== */
-
-  const chapterCards =
-    document.querySelectorAll(
-      ".chapter-card"
-    );
-
-
-  if (finePointer.matches) {
-
-    chapterCards.forEach(card => {
-
-      const visual =
-        card.querySelector(".visual");
-
-
-      if (!visual) return;
-
-
-      card.addEventListener(
-        "mousemove",
-        event => {
-
-          const rect =
-            card.getBoundingClientRect();
-
-
-          const x =
-            event.clientX -
-            rect.left;
-
-
-          const y =
-            event.clientY -
-            rect.top;
-
-
-          const rotateX =
-            ((y / rect.height) - 0.5) * -3;
-
-
-          const rotateY =
-            ((x / rect.width) - 0.5) * 3;
-
-
-          visual.style.transform =
-            `perspective(900px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)
-             scale(.985)`;
-
-        }
-      );
-
-
-      card.addEventListener(
-        "mouseleave",
-        () => {
-
-          visual.style.transform =
-            "";
-
-        }
-      );
-
-    });
-
-  }
-
-
-  /* =====================================================
-     SERVICE CARD HOVER
-     ===================================================== */
-
-  const serviceCards =
-    document.querySelectorAll(
-      ".service-card"
-    );
-
-
-  serviceCards.forEach(card => {
-
-    card.addEventListener(
-      "mouseenter",
-      () => {
-
-        card.classList.add(
-          "is-hovered"
-        );
-
-      }
-    );
-
-
-    card.addEventListener(
-      "mouseleave",
-      () => {
-
-        card.classList.remove(
-          "is-hovered"
-        );
-
-      }
-    );
-
-  });
-
-
-  /* =====================================================
-     FORM
-     ===================================================== */
-
-  const form =
-    document.querySelector(
-      ".project-form"
-    );
-
-
-  if (form) {
-
-    form.addEventListener(
-      "submit",
-      event => {
-
-        const button =
-          form.querySelector(
-            ".form-submit"
-          );
-
-
-        if (!button) return;
-
-
-        button.textContent =
-          "SENDING...";
-
-        button.disabled = true;
-
-
-        /*
-          Don't fake a successful submission.
-          The actual form destination should be
-          configured separately.
-        */
-
-      }
-    );
-
-  }
-
-
-  /* =====================================================
-     HEADER SCROLL STATE
-     ===================================================== */
-
-  const header =
-    document.querySelector(
-      ".site-header"
-    );
-
-
-  if (header) {
-
-    let lastScroll = 0;
+  /* =========================================
+     PARALLAX
+  ========================================= */
+
+  if (
+    window.matchMedia(
+      "(min-width:769px) and (pointer:fine)"
+    ).matches
+  ) {
+
+    const visuals =
+      document.querySelectorAll(".visual");
 
 
     window.addEventListener(
       "scroll",
       () => {
 
-        const currentScroll =
-          window.scrollY;
+        visuals.forEach(visual => {
 
+          const rect =
+            visual.getBoundingClientRect();
 
-        if (currentScroll > 80) {
+          if (
+            rect.top < window.innerHeight &&
+            rect.bottom > 0
+          ) {
 
-          header.classList.add(
-            "scrolled"
-          );
+            const progress =
+              (window.innerHeight - rect.top) /
+              (window.innerHeight + rect.height);
 
-        } else {
+            const movement =
+              (progress - .5) * 20;
 
-          header.classList.remove(
-            "scrolled"
-          );
+            visual.style.backgroundPosition =
+              `center ${50 + movement}%`;
 
-        }
+          }
 
-
-        lastScroll = currentScroll;
+        });
 
       },
       { passive: true }
@@ -793,79 +471,94 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =====================================================
-     PAGE LOAD
-     ===================================================== */
+  /* =========================================
+     CHAPTER CARD TILT
+  ========================================= */
 
-  window.addEventListener(
-    "load",
-    () => {
-
-      document.body.classList.add(
-        "page-loaded"
-      );
-
-    }
-  );
-
-
-  /* =====================================================
-     RESIZE SAFETY
-     ===================================================== */
-
-  let resizeTimer;
-
-
-  window.addEventListener(
-    "resize",
-    () => {
-
-      clearTimeout(resizeTimer);
-
-
-      resizeTimer =
-        setTimeout(() => {
-
-          /*
-            Re-hide cursor on touch devices
-          */
-
-          if (
-            cursor &&
-            !window.matchMedia(
-              "(pointer:fine)"
-            ).matches
-          ) {
-
-            cursor.style.display =
-              "none";
-
-          }
-
-        }, 150);
-
-    }
-  );
-
-
-  /* =====================================================
-     INITIAL REVEAL FOR ABOVE-FOLD CONTENT
-     ===================================================== */
-
-  setTimeout(() => {
+  if (desktop.matches) {
 
     document
-      .querySelectorAll(
-        ".hero .reveal"
-      )
-      .forEach(element => {
+      .querySelectorAll(".chapter-card")
+      .forEach(card => {
 
-        element.classList.add(
-          "visible"
+        const visual =
+          card.querySelector(".visual");
+
+        if (!visual)
+          return;
+
+
+        card.addEventListener(
+          "mousemove",
+          event => {
+
+            const rect =
+              card.getBoundingClientRect();
+
+            const x =
+              event.clientX - rect.left;
+
+            const y =
+              event.clientY - rect.top;
+
+            const rotateX =
+              ((y / rect.height) - .5) * -3;
+
+            const rotateY =
+              ((x / rect.width) - .5) * 3;
+
+            visual.style.transform =
+              `perspective(900px)
+               rotateX(${rotateX}deg)
+               rotateY(${rotateY}deg)
+               scale(.985)`;
+
+          }
+        );
+
+
+        card.addEventListener(
+          "mouseleave",
+          () => {
+
+            visual.style.transform = "";
+
+          }
         );
 
       });
 
-  }, 150);
+  }
+
+
+  /* =========================================
+     FORM
+  ========================================= */
+
+  const form =
+    document.querySelector(".project-form");
+
+
+  if (form) {
+
+    form.addEventListener(
+      "submit",
+      () => {
+
+        const button =
+          form.querySelector(".form-submit");
+
+        if (!button)
+          return;
+
+        button.textContent =
+          "SENDING...";
+
+        button.disabled = true;
+
+      }
+    );
+
+  }
 
 });
