@@ -3139,3 +3139,12 @@ img {
   }
 
 }
+/* FACEBOOK ICON FIX */
+.social-icons a[aria-label="Facebook"] svg {
+  fill: currentColor;
+}
+
+.social-icons a[aria-label="Facebook"] svg path {
+  fill: currentColor;
+  stroke: none;
+}
