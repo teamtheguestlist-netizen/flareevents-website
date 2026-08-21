@@ -28,6 +28,68 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- FACEBOOK ICON FIX -->
+  <style>
+    .social-icons .facebook-social {
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      border: 1px solid rgba(0,0,0,.28) !important;
+      border-radius: 50% !important;
+      background: transparent !important;
+      color: #111 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      overflow: visible !important;
+      text-decoration: none !important;
+    }
+
+    .social-icons .facebook-social .facebook-f {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 22px !important;
+      height: 22px !important;
+      color: #111 !important;
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 700 !important;
+      line-height: 1 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(1px) !important;
+    }
+
+    .social-icons .facebook-social:hover {
+      background: #080808 !important;
+      color: #fff !important;
+      border-color: #080808 !important;
+      transform: translateY(-5px) !important;
+    }
+
+    .social-icons .facebook-social:hover .facebook-f {
+      color: #fff !important;
+    }
+
+    @media (max-width: 768px) {
+      .social-icons .facebook-social {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+      }
+
+      .social-icons .facebook-social .facebook-f {
+        font-size: 23px !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -984,21 +1046,9 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
+            class="facebook-social"
           >
-
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-
-              <path
-                d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v4h4v-4h3.2l.8-4H13V9c0-.7.3-1 1-1Z"
-                fill="currentColor"
-                stroke="none"
-              />
-
-            </svg>
-
+            <span class="facebook-f" aria-hidden="true">f</span>
           </a>
 
 
