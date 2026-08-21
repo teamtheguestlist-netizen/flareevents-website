@@ -2,58 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="FLARE — Events, Influence & Experiences. We create experiences people remember and influence people can't ignore."
+  >
 
   <title>FLARE — Where Moments Ignite.</title>
-  <meta name="description" content="FLARE creates experiences, creator partnerships and brand moments that move people.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+  <!-- DESKTOP CURSOR -->
   <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
 
-  <!-- NAV -->
+  <!-- HEADER -->
   <header class="site-header">
-    <a href="index.html" class="brand-logo">
+
+    <a href="index.html" class="brand-logo" aria-label="FLARE Home">
       <img src="flare-logo.png" alt="FLARE">
     </a>
 
     <nav class="desktop-nav">
-      <a href="#idea">About</a>
+      <a href="#idea">Idea</a>
       <a href="#services">Services</a>
       <a href="#work">Work</a>
-      <a href="contact.html">Start a Project <span>↗</span></a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <button class="menu-button" aria-label="Open menu">
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
       <span></span>
       <span></span>
     </button>
+
   </header>
 
   <!-- MOBILE MENU -->
-  <div class="mobile-menu">
+  <div class="mobile-menu" id="mobileMenu">
+
     <div class="mobile-menu-inner">
-      <div class="menu-label">FLARE / MENU</div>
 
-      <a href="#idea">About <span>01</span></a>
-      <a href="#services">Services <span>02</span></a>
-      <a href="#work">Work <span>03</span></a>
-      <a href="brand.html">For Brands <span>04</span></a>
-      <a href="creator.html">For Creators <span>05</span></a>
-      <a href="contact.html">Start a Project <span>↗</span></a>
+      <span class="menu-label">MENU / 001</span>
 
-      <div class="menu-socials">
-        <a href="https://www.instagram.com/weareflare.in" target="_blank">Instagram ↗</a>
-        <a href="https://www.facebook.com/share/17yEoZoNkn/" target="_blank">Facebook ↗</a>
-        <a href="https://www.linkedin.com/company/flare-events-india/" target="_blank">LinkedIn ↗</a>
+      <a href="#idea" class="mobile-link">THE IDEA</a>
+      <a href="#services" class="mobile-link">SERVICES</a>
+      <a href="#work" class="mobile-link">SELECTED WORK</a>
+      <a href="brand.html" class="mobile-link">FOR BRANDS</a>
+      <a href="creator.html" class="mobile-link">FOR CREATORS</a>
+      <a href="contact.html" class="mobile-link">START A PROJECT</a>
+
+      <div class="mobile-socials">
+        <a
+          href="https://www.instagram.com/weareflare.in?igsi=dnd4ZTA5c2hvcTVm"
+          target="_blank"
+          rel="noopener"
+        >
+          Instagram ↗
+        </a>
+
+        <a
+          href="https://www.facebook.com/share/17yEoZoNkn/?mibextid=wwXIfr"
+          target="_blank"
+          rel="noopener"
+        >
+          Facebook ↗
+        </a>
+
+        <a
+          href="https://www.linkedin.com/company/flare-events-india/"
+          target="_blank"
+          rel="noopener"
+        >
+          LinkedIn ↗
+        </a>
       </div>
+
     </div>
   </div>
 
@@ -63,40 +107,54 @@
 
     <section class="hero">
 
-      <div class="hero-meta">
+      <div class="hero-meta reveal">
         <span>FLARE</span>
         <span>/</span>
         <span>INDIA</span>
+        <span>/</span>
+        <span>2026</span>
       </div>
 
-      <div class="hero-content">
+      <div class="hero-title">
 
-        <h1>
-          WHERE<br>
-          <span>MOMENTS</span><br>
-          IGNITE<span class="period">.</span>
+        <h1 class="reveal">
+          WHERE
         </h1>
 
-        <p class="hero-description">
+        <h1 class="hero-muted reveal delay-1">
+          MOMENTS
+        </h1>
+
+        <h1 class="reveal delay-2">
+          IGNITE<span>.</span>
+        </h1>
+
+      </div>
+
+      <div class="hero-bottom">
+
+        <p class="hero-description reveal">
           We create experiences people remember
           and influence people can't ignore.
         </p>
 
-        <div class="hero-actions">
-          <a href="#idea" class="button button-light">
-            Explore FLARE
+        <div class="hero-actions reveal delay-1">
+
+          <a href="#idea" class="primary-button magnetic">
+            <span>EXPLORE FLARE</span>
             <span>↓</span>
           </a>
 
-          <a href="contact.html" class="text-link">
-            Start a Project
+          <a href="contact.html" class="text-button magnetic">
+            START A PROJECT
             <span>↗</span>
           </a>
+
         </div>
 
       </div>
 
-      <div class="hero-footer">
+      <div class="hero-footer reveal">
         <span>EVENTS</span>
         <i></i>
         <span>INFLUENCE</span>
@@ -104,78 +162,85 @@
         <span>EXPERIENCES</span>
       </div>
 
-      <!-- Desktop-only interactive circle -->
-      <div class="magnetic-circle">
-        <span>EXPLORE</span>
-        <span>↘</span>
-      </div>
-
     </section>
 
 
-    <!-- MOVING TICKER -->
-    <section class="ticker">
-      <div class="ticker-track">
+    <!-- MARQUEE -->
+    <section class="marquee-section">
 
-        <div>EXPERIENCES</div>
-        <span>×</span>
-        <div>CULTURE</div>
-        <span>×</span>
-        <div>CREATORS</div>
-        <span>×</span>
-        <div>BRANDS</div>
-        <span>×</span>
-        <div>EVENTS</div>
-        <span>×</span>
+      <div class="marquee-track">
 
-        <div>EXPERIENCES</div>
-        <span>×</span>
-        <div>CULTURE</div>
-        <span>×</span>
-        <div>CREATORS</div>
-        <span>×</span>
-        <div>BRANDS</div>
-        <span>×</span>
-        <div>EVENTS</div>
-        <span>×</span>
+        <span>EXPERIENCES</span>
+        <b>×</b>
+
+        <span>CULTURE</span>
+        <b>×</b>
+
+        <span>CREATORS</span>
+        <b>×</b>
+
+        <span>BRANDS</span>
+        <b>×</b>
+
+        <span>EXPERIENCES</span>
+        <b>×</b>
+
+        <span>CULTURE</span>
+        <b>×</b>
+
+        <span>CREATORS</span>
+        <b>×</b>
+
+        <span>BRANDS</span>
+        <b>×</b>
 
       </div>
+
     </section>
 
 
     <!-- IDEA -->
     <section class="idea section-dark" id="idea">
 
-      <div class="section-number">01 — THE IDEA</div>
+      <div class="section-number reveal">
+        01 — THE IDEA
+      </div>
 
       <div class="idea-grid">
 
         <div>
-          <div class="eyebrow">NOT JUST ANOTHER AGENCY.</div>
 
-          <h2>
+          <p class="eyebrow reveal">
+            NOT JUST ANOTHER AGENCY.
+          </p>
+
+          <h2 class="big-heading reveal">
             We build
             <span>moments</span>
             that move
             people.
           </h2>
+
         </div>
 
-        <div class="idea-copy">
+        <div class="idea-copy reveal">
+
           <p>
-            FLARE sits where experiences, creators, brands
-            and culture meet.
+            FLARE sits where experiences, creators,
+            brands and culture meet.
           </p>
 
           <p>
-            We turn ideas into moments worth talking about —
-            from intimate experiences to creator-led campaigns
-            and brand collaborations.
+            We turn ideas into moments worth talking
+            about — from intimate celebrations to
+            creator-led campaigns.
           </p>
 
-          <a href="brand.html" class="arrow-link">
-            Explore what we do <span>↗</span>
+          <a href="brand.html" class="outline-button magnetic">
+            SEE WHAT WE DO
+            <span>↗</span>
           </a>
+
         </div>
 
       </div>
@@ -186,260 +251,138 @@
     <!-- SERVICES -->
     <section class="services section-light" id="services">
 
-      <div class="section-number dark-number">02 — WHAT WE DO</div>
-
-      <div class="services-intro">
-        <p>
-          The right idea can change how a brand is seen.
-          The right experience can make people remember it.
-        </p>
+      <div class="section-number dark-text reveal">
+        02 — WHAT WE DO
       </div>
 
-      <div class="service-cards">
+      <div class="services-intro reveal">
 
-        <a href="brand.html" class="service-card">
-          <div class="card-top">
-            <span>01</span>
-            <span>↗</span>
+        <p>
+          The right idea changes everything.
+          The right people make it matter.
+        </p>
+
+      </div>
+
+      <div class="service-grid">
+
+        <a href="brand.html" class="service-card magnetic reveal">
+
+          <span class="service-index">01</span>
+
+          <div>
+            <h3>BRAND</h3>
+            <p>Your objective.</p>
           </div>
 
-          <h3>BRAND</h3>
+          <span class="service-arrow">↗</span>
 
-          <p>
-            Strategy, campaigns and experiences
-            designed around your objective.
-          </p>
-
-          <div class="card-bottom">
-            <span>Explore</span>
-            <span>→</span>
-          </div>
         </a>
 
 
-        <a href="creator.html" class="service-card">
-          <div class="card-top">
-            <span>02</span>
-            <span>↗</span>
+        <a href="brand.html" class="service-card magnetic reveal">
+
+          <span class="service-index">02</span>
+
+          <div>
+            <h3>FLARE</h3>
+            <p>Strategy + creative.</p>
           </div>
 
-          <h3>CREATOR</h3>
+          <span class="service-arrow">↗</span>
 
-          <p>
-            Creator discovery, partnerships and
-            campaigns that feel native.
-          </p>
-
-          <div class="card-bottom">
-            <span>Explore</span>
-            <span>→</span>
-          </div>
         </a>
 
 
-        <a href="contact.html" class="service-card">
-          <div class="card-top">
-            <span>03</span>
-            <span>↗</span>
+        <a href="creator.html" class="service-card magnetic reveal">
+
+          <span class="service-index">03</span>
+
+          <div>
+            <h3>CREATOR</h3>
+            <p>The right voice.</p>
           </div>
 
-          <h3>EXPERIENCE</h3>
+          <span class="service-arrow">↗</span>
 
-          <p>
-            Events and physical experiences built
-            to create genuine attention.
-          </p>
-
-          <div class="card-bottom">
-            <span>Start a conversation</span>
-            <span>→</span>
-          </div>
         </a>
+
+
+        <a href="creator.html" class="service-card magnetic reveal">
+
+          <span class="service-index">04</span>
+
+          <div>
+            <h3>AUDIENCE</h3>
+            <p>Real attention.</p>
+          </div>
+
+          <span class="service-arrow">↗</span>
+
+        </a>
+
+      </div>
+
+
+      <div class="service-list reveal">
+
+        <div>Creator Discovery <span>↗</span></div>
+        <div>Influencer Campaigns <span>↗</span></div>
+        <div>Creator Partnerships <span>↗</span></div>
+        <div>Brand Collaborations <span>↗</span></div>
+        <div>Campaign Strategy <span>↗</span></div>
+        <div>Content Campaigns <span>↗</span></div>
+        <div>Campaign Management <span>↗</span></div>
+        <div>Performance & Reporting <span>↗</span></div>
 
       </div>
 
     </section>
 
 
-    <!-- SERVICES LIST -->
-    <section class="service-list section-light">
+    <!-- VALUES -->
+    <section class="values section-dark">
 
-      <div class="list-intro">
-        <span>FLARE / CAPABILITIES</span>
+      <div class="section-number reveal">
+        03 — THE APPROACH
       </div>
 
-      <div class="capability-list">
-
-        <div>
-          <span>01</span>
-          <strong>Creator Discovery</strong>
-          <small>Finding the right voice.</small>
-        </div>
-
-        <div>
-          <span>02</span>
-          <strong>Influencer Campaigns</strong>
-          <small>Strategy-led creator campaigns.</small>
-        </div>
-
-        <div>
-          <span>03</span>
-          <strong>Creator Partnerships</strong>
-          <small>Long-term collaborations.</small>
-        </div>
-
-        <div>
-          <span>04</span>
-          <strong>Brand Collaborations</strong>
-          <small>Ideas built together.</small>
-        </div>
-
-        <div>
-          <span>05</span>
-          <strong>Campaign Strategy</strong>
-          <small>From thought to execution.</small>
-        </div>
-
-        <div>
-          <span>06</span>
-          <strong>Content Campaigns</strong>
-          <small>Content people actually notice.</small>
-        </div>
-
-        <div>
-          <span>07</span>
-          <strong>Event Experiences</strong>
-          <small>Physical moments with purpose.</small>
-        </div>
-
-        <div>
-          <span>08</span>
-          <strong>Performance & Reporting</strong>
-          <small>Learning from what happened.</small>
-        </div>
-
+      <div class="values-heading reveal">
+        We bring together
+        <span>events, creators, brands</span>
+        and ideas to create moments
+        that move people.
       </div>
 
-    </section>
+      <p class="values-copy reveal">
+        We're building from the ground up —
+        with a full launch planned for 2027.
+      </p>
 
+      <div class="values-list">
 
-    <!-- FIRST CHAPTER -->
-    <section class="chapter section-dark" id="work">
-
-      <div class="section-number">03 — THE FIRST CHAPTER</div>
-
-      <div class="chapter-heading">
-        <div>
-          <span class="eyebrow">BUILDING FROM ZERO</span>
-
-          <h2>
-            Nothing fake.<br>
-            <span>Nothing invented.</span>
-          </h2>
-        </div>
-
-        <div class="chapter-date">
-          THE FIRST CHAPTER<br>
-          <span>2026 / 2027</span>
-        </div>
-      </div>
-
-
-      <div class="chapter-grid">
-
-        <div class="chapter-card chapter-card-large">
-          <div class="visual visual-one">
-            <span>FLARE / 001</span>
-            <strong>IDEAS<br>IN MOTION.</strong>
-          </div>
-
-          <div class="chapter-card-info">
-            <span>01</span>
-            <p>Experiences</p>
-          </div>
-        </div>
-
-
-        <div class="chapter-card">
-          <div class="visual visual-two">
-            <span>FLARE / 002</span>
-            <strong>PEOPLE<br>MATTER.</strong>
-          </div>
-
-          <div class="chapter-card-info">
-            <span>02</span>
-            <p>Creators</p>
-          </div>
-        </div>
-
-
-        <div class="chapter-card">
-          <div class="visual visual-three">
-            <span>FLARE / 003</span>
-            <strong>CULTURE<br>MOVES.</strong>
-          </div>
-
-          <div class="chapter-card-info">
-            <span>03</span>
-            <p>Culture</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="chapter-note">
-        <p>
-          FLARE is building its first chapter from the ground up.
-          This space will evolve with every real collaboration,
-          experience and story we create.
-        </p>
-      </div>
-
-    </section>
-
-
-    <!-- PRINCIPLES -->
-    <section class="principles section-dark">
-
-      <div class="principles-heading">
-        <span class="eyebrow">HOW WE THINK</span>
-
-        <h2>
-          Around
-          <span>experiences</span>
-          and influence.
-        </h2>
-
-        <p>
-          We're building a company around ideas first,
-          people second and impact always.
-        </p>
-      </div>
-
-      <div class="principle-list">
-
-        <div>
+        <div class="value-item reveal">
           <span>01</span>
           <strong>IDEAS FIRST</strong>
-          <small>Good execution starts with a good thought.</small>
+          <small>Good work starts with a better idea.</small>
         </div>
 
-        <div>
+        <div class="value-item reveal">
           <span>02</span>
           <strong>PEOPLE MATTER</strong>
-          <small>Culture is built by people, not logos.</small>
+          <small>Relationships create real impact.</small>
         </div>
 
-        <div>
+        <div class="value-item reveal">
           <span>03</span>
           <strong>CULTURE MOVES</strong>
-          <small>We pay attention to what people care about.</small>
+          <small>Stay relevant. Stay curious.</small>
         </div>
 
-        <div>
+        <div class="value-item reveal">
           <span>04</span>
           <strong>IMPACT COUNTS</strong>
-          <small>Attention means nothing without purpose.</small>
+          <small>Attention means nothing without action.</small>
         </div>
 
       </div>
@@ -447,48 +390,177 @@
     </section>
 
 
-    <!-- CTA -->
-    <section class="big-cta">
+    <!-- SELECTED WORK -->
+    <section class="work section-dark" id="work">
 
-      <div class="cta-inner">
+      <div class="section-number reveal">
+        04 — SELECTED WORK
+      </div>
 
-        <span class="eyebrow">HAVE AN IDEA?</span>
+      <div class="work-heading reveal">
+
+        <span class="eyebrow">
+          BUILDING TOWARD 2027
+        </span>
 
         <h2>
-          LET'S<br>
-          MAKE<br>
-          <span>IT MATTER.</span>
+          Nothing fake.
+          <span>Nothing invented.</span>
         </h2>
 
-        <a href="contact.html" class="cta-button">
-          START A PROJECT
-          <span>↗</span>
-        </a>
+        <p>
+          FLARE is preparing for its full 2027 launch.
+          This space will become a home for our real work,
+          collaborations and experiences.
+        </p>
 
-        <a href="mailto:book.flareevents@gmail.com" class="email-link">
+      </div>
+
+
+      <!-- VISUAL CHAPTER -->
+      <div class="chapter-grid">
+
+        <article class="chapter-card chapter-one reveal">
+
+          <div class="chapter-image">
+            <div class="chapter-glow"></div>
+            <span>FLARE / 001</span>
+          </div>
+
+          <div class="chapter-meta">
+            <strong>THE FIRST CHAPTER</strong>
+            <span>COMING 2027</span>
+          </div>
+
+        </article>
+
+
+        <article class="chapter-card chapter-two reveal">
+
+          <div class="chapter-image">
+            <div class="chapter-glow"></div>
+            <span>FLARE / 002</span>
+          </div>
+
+          <div class="chapter-meta">
+            <strong>THE NEXT MOMENT</strong>
+            <span>IN DEVELOPMENT</span>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- MANIFESTO -->
+    <section class="manifesto section-light">
+
+      <div class="manifesto-title reveal">
+
+        <span>LET'S</span>
+        <span>MAKE</span>
+        <span>IT</span>
+        <span class="muted">MATTER.</span>
+
+      </div>
+
+      <a
+        href="contact.html"
+        class="manifesto-button magnetic reveal"
+      >
+        START A PROJECT
+        <span>↗</span>
+      </a>
+
+      <div class="contact-details reveal">
+
+        <a href="mailto:book.flareevents@gmail.com">
           book.flareevents@gmail.com
         </a>
 
+        <span>FLARE / WHERE MOMENTS IGNITE.</span>
+
         <div class="social-icons">
 
-          <a href="https://www.instagram.com/weareflare.in" target="_blank" aria-label="Instagram">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-              <circle cx="12" cy="12" r="4"></circle>
-              <circle cx="17.5" cy="6.5" r="1"></circle>
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/weareflare.in?igsi=dnd4ZTA5c2hvcTVm"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+              />
             </svg>
           </a>
 
-          <a href="https://www.facebook.com/share/17yEoZoNkn/" target="_blank" aria-label="Facebook">
-            <svg viewBox="0 0 24 24">
-              <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1z"></path>
+
+          <!-- Facebook -->
+          <a
+            href="https://www.facebook.com/share/17yEoZoNkn/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v4h4v-4h3.2l.8-4H13V9c0-.7.3-1 1-1Z"
+                fill="currentColor"
+              />
             </svg>
           </a>
 
-          <a href="https://www.linkedin.com/company/flare-events-india/" target="_blank" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-              <path d="M8 10v6M8 7.5v.1M12 16v-6M12 13c0-2 1-3 3-3s3 1.2 3 3v3"></path>
+
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/company/flare-events-india/"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect
+                x="4"
+                y="4"
+                width="16"
+                height="16"
+                rx="2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              />
+              <path
+                d="M8 10v7M8 7v.1M12 17v-4c0-2 1-3 2.5-3s2.5 1 2.5 3v4M12 10v7"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
             </svg>
           </a>
 
@@ -498,43 +570,44 @@
 
     </section>
 
+
+    <!-- FOOTER -->
+    <footer class="site-footer section-dark">
+
+      <div class="footer-top">
+
+        <img
+          src="flare-logo.png"
+          alt="FLARE"
+          class="footer-logo"
+        >
+
+        <a href="contact.html" class="footer-cta">
+          START A PROJECT ↗
+        </a>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <div>
+          © 2026 FLARE. ALL RIGHTS RESERVED.
+        </div>
+
+        <div>
+          EVENTS · INFLUENCE · EXPERIENCES
+        </div>
+
+        <div>
+          INDIA
+        </div>
+
+      </div>
+
+    </footer>
+
   </main>
-
-
-  <!-- FOOTER -->
-  <footer class="footer">
-
-    <img src="flare-logo.png" alt="FLARE">
-
-    <div class="footer-grid">
-
-      <div>
-        <span>FLARE</span>
-        <p>Where moments ignite.</p>
-      </div>
-
-      <div>
-        <span>EXPLORE</span>
-        <a href="#idea">About</a>
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-      </div>
-
-      <div>
-        <span>CONNECT</span>
-        <a href="mailto:book.flareevents@gmail.com">Email</a>
-        <a href="https://www.instagram.com/weareflare.in" target="_blank">Instagram</a>
-        <a href="https://www.linkedin.com/company/flare-events-india/" target="_blank">LinkedIn</a>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 FLARE</span>
-      <span>EVENTS · INFLUENCE · EXPERIENCES</span>
-    </div>
-
-  </footer>
 
 
   <script src="script.js"></script>
