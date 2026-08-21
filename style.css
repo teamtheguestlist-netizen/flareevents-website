@@ -3138,12 +3138,35 @@ img {
 
   }
 
-}
-/* FACEBOOK ICON FIX */
-.social-icons a[aria-label="Facebook"] svg {
-  fill: currentColor;
+/* =========================================
+   FACEBOOK SOCIAL ICON
+========================================= */
+
+.social-icons .facebook-social {
+  color: #111;
+  text-decoration: none;
 }
 
+.social-icons .facebook-f {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+
+  color: currentColor;
+}
+
+/* Hover */
+.social-icons .facebook-social:hover .facebook-f {
+  color: #fff;
+}
 .social-icons a[aria-label="Facebook"] svg path {
   fill: currentColor;
   stroke: none;
