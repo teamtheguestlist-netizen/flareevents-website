@@ -1,92 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* =========================================================
-     FLARE — GLOBAL SCRIPT
-     Loader / transitions / mobile menu / cursor / reveal
-  ========================================================= */
+  "use strict";
 
   const body = document.body;
+  const root = document.documentElement;
   const header = document.querySelector(".site-header");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer:fine)").matches;
 
   /* =========================================================
-     GLOBAL PAGE LOADER
+     FLARE — MOTION CONTROLLER
   ========================================================= */
 
-  let flareLoader =
-    document.querySelector(".flare-page-loader");
+  /* ---------- Loader ---------- */
 
-  if (!flareLoader) {
+  let loader = document.querySelector(".flare-page-loader");
 
-    flareLoader =
-      document.createElement("div");
+  if (!loader) {
+    loader = document.createElement("div");
+    loader.className = "flare-page-loader";
 
-    flareLoader.className =
-      "flare-page-loader";
-
-    flareLoader.innerHTML = `
+    loader.innerHTML = `
       <img src="flare-logo.png" alt="FLARE">
       <div class="flare-loader-line"></div>
     `;
 
-    body.prepend(flareLoader);
+    body.prepend(loader);
   }
 
-
-  body.classList.add("flare-loading");
-
-
-  let loaderFinished = false;
-
-
   const finishLoader = () => {
+    root.classList.add("flare-loaded");
 
-    if (loaderFinished) {
-      return;
-    }
-
-    loaderFinished = true;
-
-    body.classList.remove(
-      "flare-loading"
-    );
-
-    body.classList.add(
-      "flare-ready"
-    );
-
-
-    if (flareLoader) {
-
-      flareLoader.classList.add(
-        "is-hidden"
-      );
+    window.setTimeout(() => {
+      if (loader) {
+        loader.classList.add("is-hidden");
+      }
 
       window.setTimeout(() => {
-
-        if (
-          flareLoader &&
-          flareLoader.parentNode
-        ) {
-
-          flareLoader.remove();
-
+        if (loader && loader.parentNode) {
+          loader.remove();
         }
+      }, 700);
 
-      }, 850);
-
-    }
-
+    }, reduceMotion ? 0 : 850);
   };
 
-
-  if (
-    document.readyState ===
-    "complete"
-  ) {
+  if (document.readyState === "complete") {
 
     window.setTimeout(
       finishLoader,
-      950
+      reduceMotion ? 0 : 250
     );
 
   } else {
@@ -94,16 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener(
       "load",
       () => {
-
         window.setTimeout(
           finishLoader,
-          950
+          reduceMotion ? 0 : 250
         );
-
       },
-      {
-        once:true
-      }
+      { once: true }
     );
 
   }
@@ -111,582 +69,424 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      MOBILE MENU
-     SAME MENU ON EVERY PAGE
   ========================================================= */
 
-  const menuButton =
-    document.querySelector(
-      ".menu-button"
+  const menuButton = document.querySelector(".menu-button");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  const setMenu = (open) => {
+
+    if (!menuButton || !mobileMenu) return;
+
+    menuButton.classList.toggle("active", open);
+    mobileMenu.classList.toggle("open", open);
+    body.classList.toggle("menu-open", open);
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      String(open)
     );
 
-
-  let mobileMenu =
-    document.querySelector(
-      ".mobile-menu"
+    menuButton.setAttribute(
+      "aria-label",
+      open ? "Close menu" : "Open menu"
     );
 
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      String(!open)
+    );
+  };
 
-  /*
-    Get desktop navigation.
-    This allows the mobile menu to automatically
-    stay synchronized with every page.
-  */
 
-  const desktopLinks =
-    Array.from(
-      document.querySelectorAll(
-        ".desktop-nav a"
+  if (menuButton && mobileMenu) {
+
+    setMenu(false);
+
+    menuButton.addEventListener("click", (event) => {
+
+      event.preventDefault();
+
+      const isOpen =
+        mobileMenu.classList.contains("open");
+
+      setMenu(!isOpen);
+
+    });
+
+
+    mobileMenu
+      .querySelectorAll("a")
+      .forEach((link) => {
+
+        link.addEventListener("click", () => {
+          setMenu(false);
+        });
+
+      });
+
+
+    document.addEventListener("keydown", (event) => {
+
+      if (event.key === "Escape") {
+        setMenu(false);
+      }
+
+    });
+
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        if (window.innerWidth > 1100) {
+          setMenu(false);
+        }
+
+      },
+      { passive: true }
+    );
+
+  }
+
+
+  /* =========================================================
+     HERO
+  ========================================================= */
+
+  root.classList.add("flare-loaded");
+
+
+  /* =========================================================
+     SCROLL PROGRESS + HEADER
+  ========================================================= */
+
+  let scrollTicking = false;
+
+  const updateScroll = () => {
+
+    const doc = document.documentElement;
+
+    const maxScroll = Math.max(
+      1,
+      doc.scrollHeight - window.innerHeight
+    );
+
+    const progress = Math.min(
+      1,
+      Math.max(
+        0,
+        window.scrollY / maxScroll
       )
     );
 
-
-  /*
-    If a page does not have desktop navigation,
-    use the FLARE global navigation as fallback.
-  */
-
-  const fallbackLinks = [
-    {
-      label:"THE IDEA",
-      href:"index.html"
-    },
-    {
-      label:"WHAT WE DO",
-      href:"brand.html"
-    },
-    {
-      label:"SELECTED WORK",
-      href:"work.html"
-    },
-    {
-      label:"FOUNDER",
-      href:"founder.html"
-    },
-    {
-      label:"START A PROJECT",
-      href:"contact.html"
-    }
-  ];
+    root.style.setProperty(
+      "--flare-progress",
+      progress.toFixed(4)
+    );
 
 
-  const navigationData =
-    desktopLinks.length
-      ? desktopLinks.map(link => {
+    if (header) {
 
-          const href =
-            link.getAttribute(
-              "href"
-            ) || "#";
+      const scrolled =
+        window.scrollY > 40;
 
-          const label =
-            link.textContent
-              .replace("↗","")
-              .trim();
-
-          return {
-            label,
-            href
-          };
-
-        })
-      : fallbackLinks;
-
-
-  /*
-    Create menu if it doesn't already exist.
-  */
-
-  if (
-    menuButton &&
-    !mobileMenu
-  ) {
-
-    mobileMenu =
-      document.createElement(
-        "div"
+      header.classList.toggle(
+        "scrolled",
+        scrolled
       );
 
-    mobileMenu.className =
-      "mobile-menu";
+      header.classList.toggle(
+        "is-scrolled",
+        scrolled
+      );
 
-    mobileMenu.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-
-    const linksHTML =
-      navigationData
-        .map(
-          (item,index) => {
-
-            const number =
-              String(index + 1)
-                .padStart(2,"0");
-
-
-            return `
-              <a
-                href="${item.href}"
-                data-mobile-link
-              >
-                <span>${number}</span>
-
-                <strong>
-                  ${item.label}
-                </strong>
-
-                <i>↗</i>
-              </a>
-            `;
-
-          }
-        )
-        .join("");
-
-
-    mobileMenu.innerHTML = `
-
-      <div class="mobile-menu-inner">
-
-        <div class="mobile-menu-top">
-
-          <span>
-            MENU&nbsp;&nbsp;/&nbsp;&nbsp;001
-          </span>
-
-          <span>
-            EVENTS · INFLUENCE · EXPERIENCES
-          </span>
-
-        </div>
-
-
-        <nav
-          class="mobile-navigation"
-          aria-label="Mobile navigation"
-        >
-
-          ${linksHTML}
-
-        </nav>
-
-
-        <div class="mobile-menu-footer">
-
-          <span>
-            INSTAGRAM ↗
-          </span>
-
-          <span>
-            FLARE / 2026
-          </span>
-
-        </div>
-
-      </div>
-
-    `;
-
-
-    body.appendChild(
-      mobileMenu
-    );
-
-  }
-
-
-  /* =========================================================
-     MENU STATE
-  ========================================================= */
-
-  const getMobileLinks = () => {
-
-    if (!mobileMenu) {
-      return [];
     }
 
-    return mobileMenu.querySelectorAll(
-      "[data-mobile-link]"
+    scrollTicking = false;
+  };
+
+
+  const onScroll = () => {
+
+    if (scrollTicking) return;
+
+    scrollTicking = true;
+
+    window.requestAnimationFrame(
+      updateScroll
     );
 
   };
 
-
-  const closeMenu = () => {
-
-    if (
-      !menuButton ||
-      !mobileMenu
-    ) {
-      return;
-    }
-
-
-    menuButton.classList.remove(
-      "active"
-    );
-
-
-    mobileMenu.classList.remove(
-      "open"
-    );
-
-
-    body.classList.remove(
-      "menu-open"
-    );
-
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Open menu"
-    );
-
-
-    mobileMenu.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-  };
-
-
-  const openMenu = () => {
-
-    if (
-      !menuButton ||
-      !mobileMenu
-    ) {
-      return;
-    }
-
-
-    menuButton.classList.add(
-      "active"
-    );
-
-
-    mobileMenu.classList.add(
-      "open"
-    );
-
-
-    body.classList.add(
-      "menu-open"
-    );
-
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Close menu"
-    );
-
-
-    mobileMenu.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-  };
-
-
-  /* =========================================================
-     MENU BUTTON
-  ========================================================= */
-
-  if (
-    menuButton &&
-    mobileMenu
-  ) {
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Open menu"
-    );
-
-
-    menuButton.setAttribute(
-      "type",
-      "button"
-    );
-
-
-    menuButton.addEventListener(
-      "click",
-      event => {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-
-        const isOpen =
-          menuButton.classList.contains(
-            "active"
-          );
-
-
-        if (isOpen) {
-
-          closeMenu();
-
-        } else {
-
-          openMenu();
-
-        }
-
-      }
-    );
-
-
-    /*
-      Mobile navigation links
-    */
-
-    getMobileLinks().forEach(
-      link => {
-
-        link.addEventListener(
-          "click",
-          () => {
-
-            closeMenu();
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     ESCAPE CLOSE
-  ========================================================= */
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        event.key === "Escape"
-      ) {
-
-        closeMenu();
-
-      }
-
-    }
-  );
-
-
-  /* =========================================================
-     CLOSE MENU ON RESIZE
-  ========================================================= */
 
   window.addEventListener(
-    "resize",
-    () => {
-
-      if (
-        window.innerWidth > 1100
-      ) {
-
-        closeMenu();
-
-      }
-
-    },
-    {
-      passive:true
-    }
+    "scroll",
+    onScroll,
+    { passive: true }
   );
+
+  updateScroll();
 
 
   /* =========================================================
-     PAGE TO PAGE TRANSITIONS
+     SCROLL REVEAL
   ========================================================= */
 
-  const handlePageLink =
-    link => {
+  const revealSelector = [
+
+    ".idea-grid > div",
+
+    ".services-intro",
+
+    ".service-panel",
+
+    ".services-scroll-note",
+
+    ".principles-heading",
+
+    ".principle-list > div",
+
+    ".chapter-heading > div",
+
+    ".chapter-card",
+
+    ".chapter-note",
+
+    ".big-cta .cta-inner"
+
+  ].join(",");
+
+
+  const revealItems = Array.from(
+    document.querySelectorAll(
+      revealSelector
+    )
+  );
+
+
+  revealItems.forEach((item) => {
+
+    item.classList.add(
+      "motion-reveal"
+    );
+
+  });
+
+
+  if (
+    !reduceMotion &&
+    "IntersectionObserver" in window
+  ) {
+
+    const observer =
+      new IntersectionObserver(
+
+        (entries, obs) => {
+
+          entries.forEach((entry) => {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add(
+              "is-visible"
+            );
+
+            obs.unobserve(
+              entry.target
+            );
+
+          });
+
+        },
+
+        {
+          threshold:
+            window.matchMedia(
+              "(pointer:coarse)"
+            ).matches
+              ? 0.07
+              : 0.12,
+
+          rootMargin:
+            "0px 0px -8% 0px"
+        }
+
+      );
+
+
+    revealItems.forEach((item) => {
+
+      observer.observe(item);
+
+    });
+
+  } else {
+
+    revealItems.forEach((item) => {
+
+      item.classList.add(
+        "is-visible"
+      );
+
+    });
+
+  }
+
+
+  /* =========================================================
+     SMOOTH ANCHOR SCROLLING
+  ========================================================= */
+
+  document
+    .querySelectorAll(
+      'a[href^="#"]'
+    )
+    .forEach((link) => {
 
       link.addEventListener(
         "click",
-        event => {
+        (event) => {
 
-          const href =
+          const id =
             link.getAttribute(
               "href"
             );
 
-
-          /*
-            Ignore empty / special links.
-          */
-
           if (
-            !href ||
-            href === "#" ||
-            href.startsWith("#") ||
-            href.startsWith("mailto:") ||
-            href.startsWith("tel:") ||
-            href.startsWith("javascript:") ||
-            link.target === "_blank" ||
-            event.metaKey ||
-            event.ctrlKey ||
-            event.shiftKey ||
-            event.altKey
+            !id ||
+            id === "#"
           ) {
-
             return;
-
           }
 
 
-          let url;
+          const target =
+            document.querySelector(
+              id
+            );
 
-
-          try {
-
-            url =
-              new URL(
-                href,
-                window.location.href
-              );
-
-          } catch {
-
+          if (!target) {
             return;
-
-          }
-
-
-          /*
-            External links use normal browser behavior.
-          */
-
-          if (
-            url.origin !==
-            window.location.origin
-          ) {
-
-            return;
-
-          }
-
-
-          /*
-            Same page.
-          */
-
-          if (
-            url.pathname ===
-              window.location.pathname &&
-            url.search ===
-              window.location.search
-          ) {
-
-            return;
-
-          }
-
-
-          /*
-            Don't attempt transition if loader
-            no longer exists in the DOM.
-          */
-
-          if (
-            !flareLoader ||
-            !flareLoader.parentNode
-          ) {
-
-            window.location.href =
-              url.href;
-
-            return;
-
           }
 
 
           event.preventDefault();
 
-
-          closeMenu();
-
-
-          body.classList.remove(
-            "flare-ready"
-          );
+          setMenu(false);
 
 
-          body.classList.add(
-            "flare-loading"
-          );
+          const offset =
+            header
+              ? header.offsetHeight
+              : 0;
 
 
-          flareLoader.classList.remove(
-            "is-hidden"
-          );
+          const top =
+            target.getBoundingClientRect()
+              .top +
+            window.scrollY -
+            offset;
 
 
-          window.setTimeout(
-            () => {
+          window.scrollTo({
 
-              window.location.href =
-                url.href;
+            top,
 
-            },
-            500
+            behavior:
+              reduceMotion
+                ? "auto"
+                : "smooth"
+
+          });
+
+
+          history.replaceState(
+            null,
+            "",
+            id
           );
 
         }
       );
 
-    };
+    });
 
 
-  /*
-    Bind all existing links.
-  */
+  /* =========================================================
+     DESKTOP SERVICE TILT
+  ========================================================= */
 
-  document
-    .querySelectorAll(
-      "a[href]"
-    )
-    .forEach(
-      handlePageLink
-    );
+  if (
+    finePointer &&
+    !reduceMotion
+  ) {
+
+    document
+      .querySelectorAll(
+        ".service-panel"
+      )
+      .forEach((panel) => {
+
+        panel.addEventListener(
+          "pointermove",
+          (event) => {
+
+            const rect =
+              panel.getBoundingClientRect();
 
 
-  /*
-    IMPORTANT:
-    Bind dynamically-created mobile menu links too.
-  */
+            const x =
+              (event.clientX -
+                rect.left) /
+                rect.width -
+              0.5;
 
-  getMobileLinks().forEach(
-    handlePageLink
-  );
+
+            const y =
+              (event.clientY -
+                rect.top) /
+                rect.height -
+              0.5;
+
+
+            panel.style.setProperty(
+              "--mx",
+              `${x * 5}px`
+            );
+
+
+            panel.style.setProperty(
+              "--my",
+              `${y * 4}px`
+            );
+
+          }
+        );
+
+
+        panel.addEventListener(
+          "pointerleave",
+          () => {
+
+            panel.style.setProperty(
+              "--mx",
+              "0px"
+            );
+
+            panel.style.setProperty(
+              "--my",
+              "0px"
+            );
+
+          }
+        );
+
+      });
+
+  }
 
 
   /* =========================================================
@@ -699,27 +499,25 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  const finePointer =
-    window.matchMedia(
-      "(pointer:fine)"
-    );
-
-
   if (
     cursor &&
-    finePointer.matches
+    finePointer &&
+    !reduceMotion
   ) {
 
-    let mouseX = 0;
-    let mouseY = 0;
+    let mouseX =
+      window.innerWidth / 2;
 
-    let currentX = 0;
-    let currentY = 0;
+    let mouseY =
+      window.innerHeight / 2;
+
+    let currentX = mouseX;
+    let currentY = mouseY;
 
 
     window.addEventListener(
       "mousemove",
-      event => {
+      (event) => {
 
         mouseX =
           event.clientX;
@@ -728,51 +526,47 @@ document.addEventListener("DOMContentLoaded", () => {
           event.clientY;
 
       },
-      {
-        passive:true
-      }
+      { passive: true }
     );
 
 
-    const animateCursor =
-      () => {
+    const animateCursor = () => {
 
-        currentX +=
-          (mouseX - currentX) *
-          0.18;
-
-
-        currentY +=
-          (mouseY - currentY) *
-          0.18;
+      currentX +=
+        (mouseX - currentX) *
+        0.16;
 
 
-        cursor.style.left =
-          `${currentX}px`;
+      currentY +=
+        (mouseY - currentY) *
+        0.16;
 
 
-        cursor.style.top =
-          `${currentY}px`;
+      cursor.style.left =
+        `${currentX}px`;
 
 
-        requestAnimationFrame(
-          animateCursor
-        );
-
-      };
+      cursor.style.top =
+        `${currentY}px`;
 
 
-    animateCursor();
-
-
-    const interactiveElements =
-      document.querySelectorAll(
-        "a, button, .service-card, .magnetic-circle"
+      requestAnimationFrame(
+        animateCursor
       );
 
+    };
 
-    interactiveElements.forEach(
-      element => {
+
+    requestAnimationFrame(
+      animateCursor
+    );
+
+
+    document
+      .querySelectorAll(
+        "a, button, .service-panel, .chapter-card"
+      )
+      .forEach((element) => {
 
         element.addEventListener(
           "mouseenter",
@@ -797,298 +591,103 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         );
 
-      }
-    );
+      });
 
   }
 
 
   /* =========================================================
-     MAGNETIC ELEMENTS
+     PAGE-TO-PAGE FADE
   ========================================================= */
 
-  const magneticElements =
-    document.querySelectorAll(
-      ".magnetic"
-    );
-
-
-  if (
-    magneticElements.length &&
-    finePointer.matches
-  ) {
-
-    magneticElements.forEach(
-      element => {
-
-        element.addEventListener(
-          "mousemove",
-          event => {
-
-            const rect =
-              element.getBoundingClientRect();
-
-
-            const x =
-              event.clientX -
-              rect.left -
-              rect.width / 2;
-
-
-            const y =
-              event.clientY -
-              rect.top -
-              rect.height / 2;
-
-
-            element.style.transform =
-              `translate(
-                ${x * 0.08}px,
-                ${y * 0.08}px
-              )`;
-
-          }
-        );
-
-
-        element.addEventListener(
-          "mouseleave",
-          () => {
-
-            element.style.transform =
-              "";
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     MAGNETIC CIRCLE
-  ========================================================= */
-
-  const magneticCircle =
-    document.querySelector(
-      ".magnetic-circle"
-    );
-
-
-  if (
-    magneticCircle &&
-    window.matchMedia(
-      "(min-width:1101px) and (pointer:fine)"
-    ).matches
-  ) {
-
-    magneticCircle.addEventListener(
-      "mousemove",
-      event => {
-
-        const rect =
-          magneticCircle.getBoundingClientRect();
-
-
-        const x =
-          event.clientX -
-          rect.left -
-          rect.width / 2;
-
-
-        const y =
-          event.clientY -
-          rect.top -
-          rect.height / 2;
-
-
-        magneticCircle.style.transform =
-          `translate(
-            ${x * 0.18}px,
-            ${y * 0.18}px
-          ) scale(1.05)`;
-
-      }
-    );
-
-
-    magneticCircle.addEventListener(
-      "mouseleave",
-      () => {
-
-        magneticCircle.style.transform =
-          "";
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     SCROLL REVEAL
-  ========================================================= */
-
-  const revealElements =
-    document.querySelectorAll(
-      ".reveal"
-    );
-
-
-  if (
-    "IntersectionObserver" in window &&
-    revealElements.length
-  ) {
-
-    const observer =
-      new IntersectionObserver(
-        entries => {
-
-          entries.forEach(
-            entry => {
-
-              if (
-                !entry.isIntersecting
-              ) {
-
-                return;
-
-              }
-
-
-              entry.target.classList.add(
-                "visible"
-              );
-
-
-              observer.unobserve(
-                entry.target
-              );
-
-            }
-          );
-
-        },
-        {
-          threshold:0.12,
-          rootMargin:
-            "0px 0px -40px 0px"
-        }
-      );
-
-
-    revealElements.forEach(
-      element => {
-
-        observer.observe(
-          element
-        );
-
-      }
-    );
-
-  } else {
-
-    revealElements.forEach(
-      element => {
-
-        element.classList.add(
-          "visible"
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     SMOOTH ANCHOR LINKS
-  ========================================================= */
-
-  document
-    .querySelectorAll(
-      'a[href^="#"]'
-    )
-    .forEach(
-      link => {
+  if (!reduceMotion) {
+
+    document
+      .querySelectorAll(
+        'a[href$=".html"], a[href^="./"], a[href^="../"]'
+      )
+      .forEach((link) => {
 
         link.addEventListener(
           "click",
-          event => {
+          (event) => {
 
-            const targetID =
+            const href =
               link.getAttribute(
                 "href"
               );
 
 
             if (
-              !targetID ||
-              targetID === "#"
+              !href ||
+              link.target === "_blank" ||
+              event.ctrlKey ||
+              event.metaKey ||
+              event.shiftKey ||
+              event.altKey
             ) {
+              return;
+            }
+
+
+            let url;
+
+            try {
+
+              url = new URL(
+                href,
+                window.location.href
+              );
+
+            } catch {
 
               return;
 
             }
 
 
-            const target =
-              document.querySelector(
-                targetID
-              );
-
-
-            if (!target) {
-
+            if (
+              url.origin !==
+              window.location.origin
+            ) {
               return;
+            }
 
+
+            if (
+              url.pathname ===
+                window.location.pathname &&
+              !url.search
+            ) {
+              return;
             }
 
 
             event.preventDefault();
 
+            setMenu(false);
 
-            closeMenu();
-
-
-            const headerHeight =
-              header
-                ? header.offsetHeight
-                : 0;
+            body.classList.add(
+              "flare-leaving"
+            );
 
 
-            const targetPosition =
-              target.getBoundingClientRect()
-                .top +
-              window.scrollY -
-              headerHeight;
+            window.setTimeout(
+              () => {
 
+                window.location.href =
+                  url.href;
 
-            window.scrollTo({
-
-              top:
-                targetPosition,
-
-              behavior:
-                "smooth"
-
-            });
-
-
-            history.replaceState(
-              null,
-              "",
-              targetID
+              },
+              420
             );
 
           }
         );
 
-      }
-    );
+      });
+
+  }
 
 
   /* =========================================================
@@ -1113,42 +712,34 @@ document.addEventListener("DOMContentLoaded", () => {
     "IntersectionObserver" in window
   ) {
 
-    const sectionObserver =
+    const navObserver =
       new IntersectionObserver(
-        entries => {
+
+        (entries) => {
 
           entries.forEach(
-            entry => {
+            (entry) => {
 
               if (
                 !entry.isIntersecting
               ) {
-
                 return;
-
               }
 
 
               navLinks.forEach(
-                link => {
+                (link) => {
 
-                  link.classList.remove(
-                    "active"
-                  );
+                  link.classList.toggle(
 
+                    "active",
 
-                  if (
                     link.getAttribute(
                       "href"
                     ) ===
                     `#${entry.target.id}`
-                  ) {
 
-                    link.classList.add(
-                      "active"
-                    );
-
-                  }
+                  );
 
                 }
               );
@@ -1157,16 +748,26 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
         },
+
         {
-          threshold:0.35
+
+          threshold: 0.45,
+
+          rootMargin:
+            `-${
+              (header?.offsetHeight || 0) +
+              10
+            }px 0px -35% 0px`
+
         }
+
       );
 
 
     sections.forEach(
-      section => {
+      (section) => {
 
-        sectionObserver.observe(
+        navObserver.observe(
           section
         );
 
@@ -1174,215 +775,5 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
   }
-
-
-  /* =========================================================
-     PARALLAX WORK VISUALS
-  ========================================================= */
-
-  const visuals =
-    document.querySelectorAll(
-      ".visual"
-    );
-
-
-  if (
-    visuals.length &&
-    window.matchMedia(
-      "(min-width:769px)"
-    ).matches &&
-    !window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
-  ) {
-
-    let ticking = false;
-
-
-    const updateParallax =
-      () => {
-
-        visuals.forEach(
-          visual => {
-
-            const rect =
-              visual.getBoundingClientRect();
-
-
-            if (
-              rect.top <
-                window.innerHeight &&
-              rect.bottom >
-                0
-            ) {
-
-              const progress =
-                (
-                  window.innerHeight -
-                  rect.top
-                ) /
-                (
-                  window.innerHeight +
-                  rect.height
-                );
-
-
-              const movement =
-                (
-                  progress -
-                  0.5
-                ) * 12;
-
-
-              visual.style.backgroundPosition =
-                `center ${50 + movement}%`;
-
-            }
-
-          }
-        );
-
-
-        ticking = false;
-
-      };
-
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        if (!ticking) {
-
-          requestAnimationFrame(
-            updateParallax
-          );
-
-          ticking = true;
-
-        }
-
-      },
-      {
-        passive:true
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     HEADER SCROLL STATE
-  ========================================================= */
-
-  if (header) {
-
-    const updateHeader =
-      () => {
-
-        if (
-          window.scrollY > 40
-        ) {
-
-          header.classList.add(
-            "scrolled"
-          );
-
-        } else {
-
-          header.classList.remove(
-            "scrolled"
-          );
-
-        }
-
-      };
-
-
-    updateHeader();
-
-
-    window.addEventListener(
-      "scroll",
-      updateHeader,
-      {
-        passive:true
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     IMAGE FALLBACK
-  ========================================================= */
-
-  document
-    .querySelectorAll("img")
-    .forEach(
-      image => {
-
-        image.addEventListener(
-          "error",
-          () => {
-
-            image.style.visibility =
-              "hidden";
-
-          }
-        );
-
-      }
-    );
-
-
-  /* =========================================================
-     IMAGE REVEAL
-  ========================================================= */
-
-  document
-    .querySelectorAll(
-      ".image-reveal"
-    )
-    .forEach(
-      image => {
-
-        if (
-          image.complete
-        ) {
-
-          image.classList.add(
-            "loaded"
-          );
-
-          return;
-
-        }
-
-
-        image.addEventListener(
-          "load",
-          () => {
-
-            image.classList.add(
-              "loaded"
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-  /* =========================================================
-     FINAL STATE
-  ========================================================= */
-
-  /*
-    Make sure menu is closed when page first loads.
-  */
-
-  closeMenu();
 
 });
