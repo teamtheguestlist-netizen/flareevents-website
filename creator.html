@@ -205,7 +205,7 @@ button{font:inherit}
   display:flex;
   align-items:flex-end;
   overflow:hidden;
-  padding:0 0 70px;
+  padding:108px 0 70px;
 }
 .hero-grid{
   position:absolute;
@@ -243,10 +243,15 @@ button{font:inherit}
 }
 @keyframes orb{to{transform:rotate(360deg)}}
 @keyframes pulse{50%{transform:scale(1.7);opacity:.55}}
-.hero-content{position:relative;z-index:2}
-.hero-kicker{margin-bottom:28px}
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding-top:12px;
+}
+.hero-kicker{margin-bottom:32px}
 .hero-title{
-  font-size:clamp(58px,11.2vw,178px);
+  font-size:clamp(58px,9.4vw,150px);
   line-height:.82;
   letter-spacing:-.075em;
   font-weight:800;
@@ -482,6 +487,7 @@ button{font:inherit}
 
   .hero{
     min-height:100svh;
+    padding-top:92px;
     padding-bottom:45px;
   }
 
@@ -492,7 +498,7 @@ button{font:inherit}
   }
 
   .hero-title{
-    font-size:clamp(52px,14.5vw,92px);
+    font-size:clamp(50px,13.7vw,88px);
     max-width:100%;
   }
 
@@ -597,7 +603,7 @@ button{font:inherit}
   }
 
   .hero-title{
-    font-size:clamp(47px,14.2vw,65px);
+    font-size:clamp(45px,13.8vw,63px);
   }
 
   .hero-copy{
@@ -631,6 +637,66 @@ button{font:inherit}
     transform:none!important;
   }
 }
+
+/* ===== HERO TOP SPACING FINAL OVERRIDE ===== */
+
+.hero{
+  padding-top:112px !important;
+}
+
+.hero-content{
+  max-width:var(--max);
+  margin:0 auto;
+}
+
+.hero-title{
+  max-width:1160px;
+}
+
+@media (min-width:901px){
+  .hero{
+    min-height:100svh;
+  }
+
+  .hero-title{
+    font-size:clamp(56px,9vw,148px);
+    line-height:.84;
+  }
+
+  .hero-kicker{
+    margin-bottom:30px;
+  }
+
+  .hero-bottom{
+    margin-top:38px;
+  }
+}
+
+@media (max-width:900px){
+  .hero{
+    padding-top:92px !important;
+  }
+
+  .hero-title{
+    font-size:clamp(48px,13.7vw,88px);
+    line-height:.84;
+  }
+
+  .hero-bottom{
+    margin-top:34px;
+  }
+}
+
+@media (max-width:390px){
+  .hero{
+    padding-top:86px !important;
+  }
+
+  .hero-title{
+    font-size:clamp(43px,13.6vw,62px);
+  }
+}
+
 </style>
 </head>
 
