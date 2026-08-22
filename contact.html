@@ -1,294 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>FLARE — Start a Project</title>
+  <meta name="description" content="Contact FLARE for events, brand experiences, creator partnerships and collaborations.">
+  <link rel="canonical" href="https://flareevents.in/contact.html">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
-
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="canonical" href="https://flareevents.in/contact.html">
+  <style>
+    :root{
+      --black:#050505;
+      --black-2:#0b0b0b;
+      --white:#f7f7f5;
+      --muted:#a7a7a2;
+      --line:rgba(255,255,255,.14);
+      --gold:#c79a3b;
+      --gold-soft:#e0b85b;
+      --max:1380px;
+    }
 
-<meta name="description" content="Contact FLARE for events, brand experiences, creator partnerships and collaborations.">
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-width:320px;
+      background:var(--black);
+      color:var(--white);
+      font-family:"Manrope",sans-serif;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+
+    /* HEADER */
+    .site-header{
+      width:100%;
+      height:86px;
+      position:sticky;
+      top:0;
+      z-index:100;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 clamp(22px,5vw,72px);
+      background:rgba(5,5,5,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .brand-logo img{
+      width:112px;
+      height:auto;
+      display:block;
+    }
+
+    .desktop-nav{
+      display:flex;
+      align-items:center;
+      gap:clamp(22px,3vw,52px);
+    }
+
+    .desktop-nav a{
+      font-family:"DM Mono",monospace;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:#c9c9c4;
+      transition:color .25s ease;
+    }
+
+    .desktop-nav a:hover{color:#fff}
+
+    .menu-button{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      background:transparent;
+      cursor:pointer;
+      position:relative;
+    }
+
+    .menu-button span{
+      width:17px;
+      height:1px;
+      background:#fff;
+      position:absolute;
+      left:13px;
+      transition:.25s;
+    }
+    .menu-button span:first-child{top:17px}
+    .menu-button span:last-child{top:25px}
+
+    /* MAIN */
+    .inner-page{width:100%}
+
+    .contact-section{
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(circle at 80% 25%,rgba(199,154,59,.09),transparent 25%),
+        linear-gradient(135deg,#050505 0%,#090909 55%,#030303 100%);
+    }
+
+    .contact-section:after{
+      content:"FLARE";
+      position:absolute;
+      right:-3vw;
+      top:80px;
+      font-size:clamp(170px,24vw,390px);
+      line-height:.8;
+      font-weight:800;
+      letter-spacing:-.08em;
+      color:rgba(255,255,255,.018);
+      pointer-events:none;
+      user-select:none;
+    }
+
+    .contact-grid{
+      width:min(var(--max),calc(100% - 44px));
+      min-height:calc(100vh - 86px);
+      margin:auto;
+      padding:clamp(70px,9vw,125px) 0 clamp(80px,8vw,120px);
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(420px,.82fr);
+      gap:clamp(55px,9vw,150px);
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
+
+    .contact-heading{max-width:700px}
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      font-family:"DM Mono",monospace;
+      font-size:11px;
+      line-height:1.4;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--gold-soft);
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:32px;
+      height:1px;
+      background:var(--gold);
+      display:inline-block;
+    }
+
+    .contact-heading h1{
+      margin-top:25px;
+      font-size:clamp(70px,10vw,145px);
+      line-height:.84;
+      letter-spacing:-.075em;
+      font-weight:700;
+    }
+
+    .contact-heading h1 span{color:var(--gold)}
+
+    .intro{
+      margin-top:40px;
+      max-width:570px;
+      font-size:clamp(16px,1.4vw,20px);
+      line-height:1.75;
+      color:#bcbcb7;
+    }
+
+    .email-link{
+      display:inline-block;
+      margin-top:25px;
+      font-family:"DM Mono",monospace;
+      font-size:13px;
+      letter-spacing:.04em;
+      color:#fff;
+      border-bottom:1px solid var(--gold);
+      padding-bottom:7px;
+    }
+
+    /* FORM */
+    .project-form{
+      width:100%;
+      padding:clamp(28px,3vw,48px);
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.15);
+      box-shadow:0 25px 80px rgba(0,0,0,.3);
+    }
+
+    .form-title{
+      font-size:25px;
+      font-weight:600;
+      margin-bottom:30px;
+    }
+
+    .form-title span{color:var(--gold)}
+
+    .form-field{
+      position:relative;
+      margin-bottom:24px;
+    }
+
+    .form-field label{
+      display:block;
+      margin-bottom:9px;
+      font-family:"DM Mono",monospace;
+      font-size:10px;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:#b7b7b2;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea{
+      width:100%;
+      color:#fff;
+      background:#080808;
+      border:1px solid rgba(255,255,255,.17);
+      border-radius:0;
+      outline:none;
+      padding:15px 16px;
+      transition:border-color .2s,box-shadow .2s;
+    }
+
+    .form-field input,
+    .form-field select{height:52px}
+
+    .form-field textarea{
+      min-height:130px;
+      resize:vertical;
+      line-height:1.5;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder{color:#666660}
+
+    .form-field select{
+      appearance:none;
+      -webkit-appearance:none;
+      cursor:pointer;
+      color:#8e8e88;
+      background-image:
+        linear-gradient(45deg,transparent 50%,#aaa 50%),
+        linear-gradient(135deg,#aaa 50%,transparent 50%);
+      background-position:
+        calc(100% - 19px) 22px,
+        calc(100% - 14px) 22px;
+      background-size:5px 5px,5px 5px;
+      background-repeat:no-repeat;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus{
+      border-color:var(--gold);
+      box-shadow:0 0 0 3px rgba(199,154,59,.08);
+    }
+
+    .form-submit{
+      width:100%;
+      min-height:58px;
+      margin-top:6px;
+      border:1px solid var(--gold);
+      background:var(--gold);
+      color:#080808;
+      cursor:pointer;
+      font-family:"DM Mono",monospace;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      transition:background .25s,color .25s,transform .25s;
+    }
+
+    .form-submit:hover{
+      background:transparent;
+      color:#fff;
+      transform:translateY(-2px);
+    }
+
+    /* CONNECT */
+    .big-cta{
+      background:#f4f3ef;
+      color:#090909;
+      overflow:hidden;
+    }
+
+    .cta-inner{
+      width:min(var(--max),calc(100% - 44px));
+      margin:auto;
+      padding:clamp(80px,10vw,150px) 0;
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:end;
+      gap:60px;
+    }
+
+    .cta-inner .eyebrow{
+      color:#77736b;
+      margin-bottom:20px;
+    }
+    .cta-inner .eyebrow:before{background:var(--gold)}
+
+    .cta-inner h2{
+      font-size:clamp(75px,12vw,175px);
+      line-height:.8;
+      letter-spacing:-.08em;
+      font-weight:700;
+    }
+
+    .cta-inner h2 span{color:var(--gold)}
+
+    .social-icons{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .social-icons a{
+      width:58px;
+      height:58px;
+      border:1px solid rgba(0,0,0,.22);
+      display:grid;
+      place-items:center;
+      transition:.25s;
+    }
+
+    .social-icons a:hover{
+      background:#090909;
+      color:#fff;
+      border-color:#090909;
+      transform:translateY(-4px);
+    }
+
+    .social-icons svg{
+      width:21px;
+      height:21px;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:1.5;
+    }
+
+    .social-icons a:nth-child(2) svg path{fill:currentColor;stroke:none}
+
+    /* FOOTER */
+    .footer{
+      background:#050505;
+      padding:60px clamp(22px,5vw,72px) 35px;
+    }
+
+    .footer>img{
+      width:105px;
+      display:block;
+      margin-bottom:50px;
+    }
+
+    .footer-bottom{
+      padding-top:20px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:#777;
+      font-family:"DM Mono",monospace;
+      font-size:9px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    /* MOBILE NAV */
+    @media (max-width:900px){
+      .desktop-nav{display:none}
+      .menu-button{display:block}
+
+      .contact-grid{
+        min-height:auto;
+        grid-template-columns:1fr;
+        gap:60px;
+        padding-top:80px;
+      }
+
+      .contact-heading h1{font-size:clamp(72px,18vw,120px)}
+
+      .contact-section:after{top:300px;right:-12vw;font-size:42vw}
+
+      .cta-inner{
+        grid-template-columns:1fr;
+        align-items:start;
+      }
+    }
+
+    @media (max-width:600px){
+      .site-header{height:72px;padding:0 20px}
+      .brand-logo img{width:92px}
+
+      .contact-grid,
+      .cta-inner{
+        width:calc(100% - 36px);
+      }
+
+      .contact-grid{padding:62px 0 70px;gap:48px}
+
+      .contact-heading h1{
+        margin-top:22px;
+        font-size:clamp(64px,20vw,100px);
+      }
+
+      .intro{margin-top:28px;font-size:15px;line-height:1.65}
+
+      .project-form{
+        padding:24px 18px;
+      }
+
+      .form-field{margin-bottom:19px}
+
+      .form-field input,
+      .form-field select{height:50px}
+
+      .form-submit{min-height:55px}
+
+      .cta-inner{padding:72px 0}
+      .cta-inner h2{font-size:25vw}
+
+      .social-icons a{width:52px;height:52px}
+
+      .footer{padding:48px 20px 28px}
+      .footer-bottom{
+        flex-direction:column;
+        gap:9px;
+        line-height:1.6;
+      }
+    }
+
+    @media (max-width:380px){
+      .contact-heading h1{font-size:62px}
+      .eyebrow{font-size:9px}
+    }
+  </style>
 </head>
 
 <body>
 
 <header class="site-header">
-
-  <a href="index.html" class="brand-logo">
-    <img src="flare-logo.png" alt="FLARE">
+  <a href="index.html" class="brand-logo" aria-label="FLARE home">
+    <img src="flare-logo.png" alt="FLARE — Events, Influence, Experiences">
   </a>
 
-  <nav class="desktop-nav">
+  <nav class="desktop-nav" aria-label="Primary navigation">
     <a href="index.html#idea">About</a>
     <a href="index.html#services">Services</a>
     <a href="index.html#work">Work</a>
-    <a href="contact.html">Start a Project ↗</a>
+    <a href="contact.html" aria-current="page">Start a Project ↗</a>
   </nav>
 
-  <button class="menu-button">
+  <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
     <span></span>
     <span></span>
   </button>
-
 </header>
-
 
 <main class="inner-page">
 
   <section class="contact-section">
-
     <div class="contact-grid">
 
       <div class="contact-heading">
+        <span class="eyebrow">FLARE / START A PROJECT</span>
 
-        <span class="eyebrow">
-          FLARE / START A PROJECT
-        </span>
+        <h1>LET'S<br>TALK<span>.</span></h1>
 
-        <h1>
-          LET'S<br>
-          TALK.
-        </h1>
-
-        <p>
-          Tell us what you're building, what you're
-          thinking about or simply what you want to
-          make happen.
+        <p class="intro">
+          Tell us what you're building, what you're thinking about,
+          or simply what you want to make happen.
         </p>
 
-        <p>
-          <strong>book.flareevents@gmail.com</strong>
-        </p>
-
+        <a class="email-link" href="mailto:book.flareevents@gmail.com">
+          book.flareevents@gmail.com ↗
+        </a>
       </div>
-
 
       <form
         class="project-form"
         action="https://formsubmit.co/book.flareevents@gmail.com"
         method="POST"
       >
+        <input type="hidden" name="_subject" value="New FLARE Website Enquiry">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
 
-        <input
-          type="hidden"
-          name="_subject"
-          value="New FLARE Website Enquiry"
-        >
-
-        <input
-          type="hidden"
-          name="_captcha"
-          value="false"
-        >
-
-        <input
-          type="hidden"
-          name="_template"
-          value="table"
-        >
-
+        <div class="form-title">Tell us <span>what's next.</span></div>
 
         <div class="form-field">
-
-          <label for="name">
-            Your Name
-          </label>
-
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Enter your name"
-            required
-          >
-
+          <label for="name">Your Name</label>
+          <input id="name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required>
         </div>
 
-
         <div class="form-field">
-
-          <label for="email">
-            Email
-          </label>
-
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="you@email.com"
-            required
-          >
-
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required>
         </div>
 
-
         <div class="form-field">
-
-          <label for="company">
-            Company / Brand
-          </label>
-
-          <input
-            id="company"
-            name="company"
-            type="text"
-            placeholder="Company name"
-          >
-
+          <label for="company">Company / Brand</label>
+          <input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization">
         </div>
 
-
         <div class="form-field">
-
-          <label for="project">
-            What do you need?
-          </label>
-
-          <select
-            id="project"
-            name="project"
-            required
-          >
-
-            <option value="">
-              Select an option
-            </option>
-
-            <option value="Brand Campaign">
-              Brand Campaign
-            </option>
-
-            <option value="Creator Campaign">
-              Creator Campaign
-            </option>
-
-            <option value="Event / Experience">
-              Event / Experience
-            </option>
-
-            <option value="Brand Collaboration">
-              Brand Collaboration
-            </option>
-
-            <option value="Other">
-              Something else
-            </option>
-
+          <label for="project">What do you need?</label>
+          <select id="project" name="project" required>
+            <option value="" selected disabled>Select an option</option>
+            <option value="Brand Campaign">Brand Campaign</option>
+            <option value="Creator Campaign">Creator Campaign</option>
+            <option value="Event / Experience">Event / Experience</option>
+            <option value="Brand Collaboration">Brand Collaboration</option>
+            <option value="Other">Something else</option>
           </select>
-
         </div>
-
 
         <div class="form-field">
-
-          <label for="message">
-            Tell us about it
-          </label>
-
-          <textarea
-            id="message"
-            name="message"
-            placeholder="A little context goes a long way..."
-            required
-          ></textarea>
-
+          <label for="message">Tell us about it</label>
+          <textarea id="message" name="message" placeholder="A little context goes a long way..." required></textarea>
         </div>
 
-
-        <button
-          type="submit"
-          class="form-submit"
-        >
-          SEND ENQUIRY ↗
-        </button>
-
+        <button type="submit" class="form-submit">SEND ENQUIRY ↗</button>
       </form>
 
     </div>
-
   </section>
 
-
   <section class="big-cta">
-
     <div class="cta-inner">
+      <div>
+        <span class="eyebrow">OTHER WAYS TO CONNECT</span>
+        <h2>FIND<br><span>FLARE.</span></h2>
+      </div>
 
-      <span class="eyebrow">OTHER WAYS TO CONNECT</span>
-
-      <h2>
-        FIND<br>
-        <span>FLARE.</span>
-      </h2>
-
-      <div class="social-icons">
-
-        <a
-          href="https://www.instagram.com/weareflare.in"
-          target="_blank"
-          aria-label="Instagram"
-        >
-          <svg viewBox="0 0 24 24">
+      <div class="social-icons" aria-label="Social links">
+        <a href="https://www.instagram.com/weareflare.in" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5"></rect>
             <circle cx="12" cy="12" r="4"></circle>
             <circle cx="17.5" cy="6.5" r="1"></circle>
           </svg>
         </a>
 
-
-        <a
-          href="https://www.facebook.com/share/17yEoZoNkn/"
-          target="_blank"
-          aria-label="Facebook"
-        >
-          <svg viewBox="0 0 24 24">
+        <a href="https://www.facebook.com/share/17yEoZoNkn/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1z"></path>
           </svg>
         </a>
 
-
-        <a
-          href="https://www.linkedin.com/company/flare-events-india/"
-          target="_blank"
-          aria-label="LinkedIn"
-        >
-          <svg viewBox="0 0 24 24">
+        <a href="https://www.linkedin.com/company/flare-events-india/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="4" y="4" width="16" height="16" rx="2"></rect>
             <path d="M8 10v6M8 7.5v.1M12 16v-6M12 13c0-2 1-3 3-3s3 1.2 3 3v3"></path>
           </svg>
         </a>
-
       </div>
-
     </div>
-
   </section>
 
 </main>
 
-
 <footer class="footer">
-
   <img src="flare-logo.png" alt="FLARE">
 
   <div class="footer-bottom">
     <span>© 2026 FLARE</span>
     <span>EVENTS · INFLUENCE · EXPERIENCES</span>
   </div>
-
 </footer>
 
+<script>
+  const menuButton = document.querySelector('.menu-button');
 
-<script src="script.js"></script>
+  menuButton?.addEventListener('click', () => {
+    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!expanded));
+  });
+</script>
 
 </body>
 </html>
