@@ -3272,3 +3272,419 @@ body.flare-ready > *:not(.flare-page-loader){
   .flare-page-loader img{opacity:1;transform:none}
   .flare-loader-line::after{transform:none}
 }
+   /* =========================================================
+   GLOBAL FLARE MENU SYSTEM
+========================================================= */
+
+.menu-button {
+  position: relative;
+  z-index: 10002;
+
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(0,0,0,.18);
+
+  cursor: pointer;
+
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    transform .35s ease;
+}
+
+.menu-button span {
+  display: block;
+
+  width: 24px;
+  height: 1.5px;
+
+  background: #fff;
+
+  transition:
+    transform .45s cubic-bezier(.77,0,.18,1),
+    opacity .25s ease,
+    width .35s ease;
+}
+
+.menu-button:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.6);
+}
+
+
+/* OPEN STATE */
+
+.menu-button.active span:first-child {
+  transform: translateY(4.75px) rotate(45deg);
+}
+
+.menu-button.active span:last-child {
+  transform: translateY(-4.75px) rotate(-45deg);
+}
+
+.menu-button.active span {
+  width: 25px;
+}
+
+
+/* =========================================================
+   MOBILE FULLSCREEN MENU
+========================================================= */
+
+.mobile-menu {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  background: #080808;
+
+  visibility: hidden;
+  opacity: 0;
+
+  pointer-events: none;
+
+  clip-path: inset(0 0 100% 0);
+
+  transition:
+    opacity .45s ease,
+    clip-path .65s cubic-bezier(.77,0,.18,1),
+    visibility .65s;
+}
+
+
+.mobile-menu.open {
+  visibility: visible;
+  opacity: 1;
+
+  pointer-events: auto;
+
+  clip-path: inset(0 0 0 0);
+}
+
+
+.mobile-menu-inner {
+  min-height: 100svh;
+
+  padding:
+    120px
+    7vw
+    35px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.mobile-menu-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 22px;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.14);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 10px;
+
+  letter-spacing: .22em;
+
+  color: rgba(255,255,255,.45);
+}
+
+
+.mobile-navigation {
+  display: flex;
+  flex-direction: column;
+
+  margin: 45px 0;
+}
+
+
+.mobile-navigation a {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    45px
+    1fr
+    30px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    20px
+    0;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.12);
+
+  color: #fff;
+
+  text-decoration: none;
+
+  overflow: hidden;
+}
+
+
+.mobile-navigation a::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: #cda43b;
+
+  transform:
+    translateY(100%);
+
+  transition:
+    transform .45s cubic-bezier(.77,0,.18,1);
+
+  z-index: -1;
+}
+
+
+.mobile-navigation a:hover::before {
+  transform: translateY(0);
+}
+
+
+.mobile-navigation a span {
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 10px;
+
+  letter-spacing: .15em;
+
+  color: rgba(255,255,255,.4);
+}
+
+
+.mobile-navigation a strong {
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(28px, 7vw, 48px);
+
+  line-height: .95;
+
+  font-weight: 700;
+
+  letter-spacing: -.04em;
+}
+
+
+.mobile-navigation a i {
+  font-style: normal;
+
+  font-size: 20px;
+
+  color: #cda43b;
+
+  transition:
+    transform .35s ease,
+    color .35s ease;
+}
+
+
+.mobile-navigation a:hover i {
+  transform: translate(4px,-4px);
+
+  color: #fff;
+}
+
+
+.mobile-menu-footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 22px;
+
+  border-top:
+    1px solid rgba(255,255,255,.14);
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: .16em;
+
+  color: rgba(255,255,255,.42);
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 901px) {
+
+  .mobile-menu,
+  .menu-button {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE HEADER
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .site-header {
+    position: sticky;
+    top: 0;
+
+    z-index: 10001;
+
+    height: 86px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+      0 30px;
+
+    background:
+      rgba(8,8,8,.94);
+
+    backdrop-filter:
+      blur(18px);
+
+    border-bottom:
+      1px solid rgba(255,255,255,.12);
+  }
+
+
+  .brand-logo {
+    position: relative;
+    z-index: 10002;
+  }
+
+
+  .brand-logo img {
+    display: block;
+
+    width: 135px;
+    height: auto;
+  }
+
+
+  .desktop-nav {
+    display: none;
+  }
+
+
+  .menu-button {
+    display: flex;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .site-header {
+    height: 78px;
+
+    padding:
+      0 22px;
+  }
+
+
+  .brand-logo img {
+    width: 118px;
+  }
+
+
+  .menu-button {
+    width: 48px;
+    height: 48px;
+  }
+
+
+  .mobile-menu-inner {
+    padding:
+      105px
+      24px
+      25px;
+  }
+
+
+  .mobile-navigation {
+    margin:
+      30px 0;
+  }
+
+
+  .mobile-navigation a {
+    grid-template-columns:
+      35px
+      1fr
+      25px;
+
+    padding:
+      17px 0;
+  }
+
+
+  .mobile-navigation a strong {
+    font-size:
+      clamp(25px, 8vw, 38px);
+  }
+
+
+  .mobile-menu-footer {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =========================================================
+   PREVENT BACKGROUND SCROLL WHEN MENU OPEN
+========================================================= */
+
+body.menu-open {
+  overflow: hidden;
+  height: 100vh;
+}
