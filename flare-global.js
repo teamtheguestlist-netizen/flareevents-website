@@ -39,7 +39,7 @@
     const hideLoader = () => {
 
       loader.classList.add("is-hidden");
-
+document.body.classList.add("loader-finished");
       setTimeout(() => {
 
         loader.remove();
