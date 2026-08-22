@@ -4500,3 +4500,393 @@ body.menu-open{
 .hero-line:nth-child(1){--hero-delay:.10s}
 .hero-line:nth-child(2){--hero-delay:.22s}
 .hero-line:nth-child(3){--hero-delay:.34s}
+
+/* =========================================================
+   FLARE — FINAL MOTION SYSTEM v2
+   Premium editorial motion / one source of truth
+   Desktop + tablet + mobile safe
+========================================================= */
+
+:root{
+  --flare-ease:cubic-bezier(.16,1,.3,1);
+  --flare-ease-soft:cubic-bezier(.2,.8,.2,1);
+}
+
+/* ---------- GLOBAL PERFORMANCE ---------- */
+
+.hero-graphic,
+.hero-glow,
+.hero-title-main,
+.hero-description,
+.hero-actions,
+.hero-meta,
+.hero-footer,
+.services-intro,
+.service-panel,
+.idea-grid > div,
+.principles-heading,
+.principle-list > div,
+.chapter-heading > div,
+.chapter-card,
+.chapter-note,
+.big-cta .cta-inner,
+.social-icon,
+.cursor-dot{
+  will-change:auto;
+}
+
+/* ---------- PAGE PROGRESS ---------- */
+
+body::after{
+  content:"";
+  position:fixed;
+  z-index:1000001;
+  left:0;
+  top:0;
+  width:calc(var(--flare-progress,0) * 100%);
+  height:2px;
+  background:var(--gold);
+  box-shadow:0 0 16px rgba(199,154,59,.28);
+  transform-origin:left center;
+  pointer-events:none;
+}
+
+/* ---------- HERO LOAD ---------- */
+
+.hero .hero-meta,
+.hero .hero-description,
+.hero .hero-actions,
+.hero .hero-footer{
+  opacity:0 !important;
+  transform:translate3d(0,24px,0) !important;
+}
+
+.hero .hero-line{
+  opacity:0 !important;
+  transform:translate3d(0,48px,0) !important;
+  clip-path:inset(0 0 100% 0) !important;
+}
+
+.hero .hero-graphic{
+  opacity:0 !important;
+  transform:scale(1.025) !important;
+}
+
+.flare-loaded .hero .hero-meta{
+  opacity:1 !important;
+  transform:none !important;
+  transition:
+    opacity .7s ease .05s,
+    transform .85s var(--flare-ease) .05s !important;
+}
+
+.flare-loaded .hero .hero-line{
+  opacity:1 !important;
+  transform:none !important;
+  clip-path:inset(0 0 0 0) !important;
+  transition:
+    opacity .9s ease var(--hero-delay),
+    transform 1s var(--flare-ease) var(--hero-delay),
+    clip-path 1s var(--flare-ease) var(--hero-delay) !important;
+}
+
+.flare-loaded .hero .hero-description{
+  opacity:1 !important;
+  transform:none !important;
+  transition:
+    opacity .85s ease .62s,
+    transform .9s var(--flare-ease) .62s !important;
+}
+
+.flare-loaded .hero .hero-actions{
+  opacity:1 !important;
+  transform:none !important;
+  transition:
+    opacity .85s ease .78s,
+    transform .9s var(--flare-ease) .78s !important;
+}
+
+.flare-loaded .hero .hero-footer{
+  opacity:1 !important;
+  transform:none !important;
+  transition:
+    opacity .8s ease 1.02s,
+    transform .8s var(--flare-ease) 1.02s !important;
+}
+
+.flare-loaded .hero .hero-graphic{
+  opacity:.92 !important;
+  transform:none !important;
+  transition:
+    opacity 1.15s ease .12s,
+    transform 1.4s var(--flare-ease) .12s !important;
+}
+
+.hero-line:nth-child(1){--hero-delay:.12s}
+.hero-line:nth-child(2){--hero-delay:.24s}
+.hero-line:nth-child(3){--hero-delay:.36s}
+
+/* ---------- HERO GRAPHIC MOTION ---------- */
+
+.hero-graphic-orbit{
+  transform-origin:center;
+  animation:flareOrbitSlow 24s linear infinite;
+}
+
+.hero-graphic-orbit.orbit-two{
+  animation-duration:32s;
+  animation-direction:reverse;
+}
+
+.hero-graphic-dot{
+  animation:flareDotPulse 3.8s ease-in-out infinite;
+}
+
+.hero-graphic-cross.cross-one{
+  animation:flareCrossFloat 7s ease-in-out infinite;
+}
+
+.hero-glow-one{
+  animation:flareGlowDrift 11s ease-in-out infinite;
+}
+
+@keyframes flareOrbitSlow{
+  from{transform:rotate(-18deg)}
+  to{transform:rotate(342deg)}
+}
+
+@keyframes flareDotPulse{
+  0%,100%{transform:scale(1);opacity:.72}
+  50%{transform:scale(1.65);opacity:1}
+}
+
+@keyframes flareCrossFloat{
+  0%,100%{transform:rotate(45deg) translate3d(0,0,0);opacity:.55}
+  50%{transform:rotate(45deg) translate3d(0,-8px,0);opacity:.9}
+}
+
+@keyframes flareGlowDrift{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(-16px,10px,0) scale(1.06)}
+}
+
+/* ---------- SCROLL REVEALS ---------- */
+
+.motion-reveal{
+  opacity:0 !important;
+  transform:translate3d(0,42px,0) !important;
+  transition:
+    opacity .85s var(--flare-ease),
+    transform .95s var(--flare-ease) !important;
+  transition-delay:var(--motion-delay,0s) !important;
+}
+
+.motion-reveal.is-visible{
+  opacity:1 !important;
+  transform:none !important;
+}
+
+/* Editorial stagger */
+
+.services-intro.motion-reveal{--motion-delay:0s}
+
+.services-stage .service-panel:nth-child(1){--motion-delay:.02s}
+.services-stage .service-panel:nth-child(2){--motion-delay:.11s}
+.services-stage .service-panel:nth-child(3){--motion-delay:.20s}
+
+.principle-list > div:nth-child(1){--motion-delay:.02s}
+.principle-list > div:nth-child(2){--motion-delay:.09s}
+.principle-list > div:nth-child(3){--motion-delay:.16s}
+.principle-list > div:nth-child(4){--motion-delay:.23s}
+
+.chapter-grid .chapter-card:nth-child(1){--motion-delay:.02s}
+.chapter-grid .chapter-card:nth-child(2){--motion-delay:.11s}
+.chapter-grid .chapter-card:nth-child(3){--motion-delay:.20s}
+
+/* Text elements inside revealed blocks get a tiny secondary lift */
+.motion-reveal.is-visible .eyebrow,
+.motion-reveal.is-visible .services-kicker{
+  animation:flareMicroFade .65s ease both;
+}
+
+@keyframes flareMicroFade{
+  from{opacity:.35;transform:translateY(5px)}
+  to{opacity:1;transform:none}
+}
+
+/* ---------- SERVICE PANEL DEPTH ---------- */
+
+.service-panel{
+  transition:
+    opacity .85s var(--flare-ease),
+    transform .95s var(--flare-ease),
+    background .35s ease,
+    color .35s ease,
+    box-shadow .45s ease !important;
+}
+
+@media (pointer:fine) and (min-width:901px){
+  .service-panel.is-visible:hover{
+    box-shadow:0 24px 65px rgba(0,0,0,.12);
+  }
+
+  .service-panel.is-visible .service-panel-main{
+    transition:transform .45s var(--flare-ease);
+  }
+
+  .service-panel.is-visible:hover .service-panel-main{
+    transform:translate3d(0,-5px,0);
+  }
+}
+
+/* ---------- SELECTED WORK DEPTH ---------- */
+
+.chapter-card{
+  transition:
+    opacity .85s var(--flare-ease),
+    transform .95s var(--flare-ease),
+    box-shadow .5s ease !important;
+}
+
+.chapter-card .visual{
+  transform:scale(1);
+  transition:
+    transform 1s var(--flare-ease),
+    filter 1s ease !important;
+}
+
+.chapter-card.is-visible:hover .visual{
+  transform:scale(1.018);
+  filter:brightness(1.055);
+}
+
+/* ---------- CTA REVEAL ---------- */
+
+.big-cta .cta-inner.is-visible h2{
+  animation:flareCtaIn .95s var(--flare-ease) both;
+}
+
+@keyframes flareCtaIn{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:none}
+}
+
+/* ---------- BUTTONS / LINKS ---------- */
+
+.button,
+.cta-button,
+.cta-link,
+.service-explore,
+.arrow-link,
+.text-link,
+.email-link{
+  transition:
+    color .3s ease,
+    background .3s ease,
+    border-color .3s ease,
+    transform .35s var(--flare-ease),
+    gap .35s var(--flare-ease) !important;
+}
+
+.button:hover,
+.cta-button:hover,
+.cta-link:hover{
+  transform:translateY(-3px);
+}
+
+.service-explore:hover,
+.arrow-link:hover{
+  gap:22px;
+}
+
+/* ---------- SOCIAL ICONS ---------- */
+
+.social-icon{
+  transition:
+    color .3s ease,
+    background .3s ease,
+    border-color .3s ease,
+    box-shadow .35s ease,
+    transform .35s var(--flare-ease) !important;
+}
+
+.social-icon:hover{
+  transform:translateY(-5px) !important;
+}
+
+/* ---------- MOBILE SAFETY ---------- */
+
+@media (max-width:900px){
+  .hero-graphic-orbit{
+    animation-duration:34s;
+  }
+
+  .hero-graphic-orbit.orbit-two{
+    animation-duration:42s;
+  }
+
+  .hero-graphic-cross.cross-one{
+    animation-duration:9s;
+  }
+
+  .motion-reveal{
+    transform:translate3d(0,28px,0) !important;
+  }
+
+  .service-panel{
+    transform:none !important;
+  }
+
+  .service-panel.motion-reveal{
+    transform:translate3d(0,28px,0) !important;
+  }
+
+  .service-panel.motion-reveal.is-visible{
+    transform:none !important;
+  }
+}
+
+/* ---------- VERY SMALL PHONES ---------- */
+
+@media (max-width:380px){
+  .hero .hero-line{
+    clip-path:inset(0 0 100% 0) !important;
+  }
+
+  .hero-graphic-orbit.orbit-one{
+    opacity:.72;
+  }
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-meta,
+  .hero .hero-line,
+  .hero .hero-description,
+  .hero .hero-actions,
+  .hero .hero-footer,
+  .hero .hero-graphic,
+  .motion-reveal,
+  .motion-reveal.is-visible{
+    opacity:1 !important;
+    transform:none !important;
+    clip-path:none !important;
+    animation:none !important;
+    transition:none !important;
+  }
+
+  .hero-graphic-orbit,
+  .hero-graphic-dot,
+  .hero-graphic-cross.cross-one,
+  .hero-glow-one{
+    animation:none !important;
+  }
+}
+
+
+/* Page transition out */
+body.flare-leaving{
+  opacity:0;
+  transition:opacity .42s ease;
+}
