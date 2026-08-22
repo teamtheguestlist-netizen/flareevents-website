@@ -3566,3 +3566,612 @@ body::before{
     transition:none !important;
   }
 }
+
+
+/* =========================================================
+   FLARE — HERO GRAPHIC / STATIC EDITORIAL SYSTEM
+   No scroll-triggered animation. No floating text circle.
+========================================================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-graphic{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:.9;
+}
+
+.hero-graphic-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom, black 0%, rgba(0,0,0,.72) 48%, transparent 92%);
+}
+
+.hero-graphic::before{
+  content:"";
+  position:absolute;
+  width:min(62vw,760px);
+  height:min(62vw,760px);
+  right:-12vw;
+  top:8%;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(199,154,59,.12) 0%,
+    rgba(199,154,59,.045) 28%,
+    transparent 66%
+  );
+  filter:blur(10px);
+}
+
+.hero-graphic-orbit{
+  position:absolute;
+  border:1px solid rgba(199,154,59,.28);
+  border-radius:50%;
+  right:-9vw;
+  top:10%;
+  transform:rotate(-18deg);
+}
+
+.orbit-one{
+  width:min(48vw,600px);
+  height:min(48vw,600px);
+}
+
+.orbit-two{
+  width:min(34vw,430px);
+  height:min(34vw,430px);
+  right:2vw;
+  top:18%;
+  border-color:rgba(255,255,255,.11);
+}
+
+.hero-graphic-cross{
+  position:absolute;
+  width:34px;
+  height:34px;
+  opacity:.75;
+}
+
+.hero-graphic-cross::before,
+.hero-graphic-cross::after{
+  content:"";
+  position:absolute;
+  background:var(--gold);
+}
+
+.hero-graphic-cross::before{
+  width:34px;
+  height:1px;
+  top:16px;
+  left:0;
+}
+
+.hero-graphic-cross::after{
+  width:1px;
+  height:34px;
+  left:16px;
+  top:0;
+}
+
+.cross-one{
+  right:22%;
+  top:31%;
+  transform:rotate(45deg);
+}
+
+.cross-two{
+  right:13%;
+  bottom:27%;
+  transform:rotate(45deg) scale(.62);
+  opacity:.35;
+}
+
+.hero-graphic-dot{
+  position:absolute;
+  right:27%;
+  top:51%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 22px rgba(199,154,59,.45);
+}
+
+.hero-graphic-label{
+  position:absolute;
+  right:24px;
+  bottom:32px;
+  color:#696863;
+  font:500 9px/1 "DM Mono",monospace;
+  letter-spacing:.2em;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+/* Remove all previously added scroll-reveal motion. */
+.flare-reveal,
+.hero .hero-meta,
+.hero .hero-description,
+.hero .hero-actions,
+.hero .hero-footer,
+.hero .magnetic-circle,
+.hero .hero-line{
+  opacity:1 !important;
+  transform:none !important;
+  animation:none !important;
+  transition:none !important;
+}
+
+/* Keep only natural hover interactions. */
+.button,
+.cta-button,
+.cta-link,
+.social-icon{
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease,
+    transform .25s ease;
+}
+
+/* Hide any legacy circle if it survived in markup/CSS. */
+.magnetic-circle{
+  display:none !important;
+}
+
+/* Mobile hero graphic */
+@media (max-width:700px){
+  .hero-graphic-grid{
+    background-size:52px 52px;
+  }
+
+  .hero-graphic-orbit.orbit-one{
+    width:115vw;
+    height:115vw;
+    right:-62vw;
+    top:13%;
+  }
+
+  .hero-graphic-orbit.orbit-two{
+    width:78vw;
+    height:78vw;
+    right:-31vw;
+    top:23%;
+  }
+
+  .hero-graphic-cross.cross-one{
+    right:15%;
+    top:36%;
+  }
+
+  .hero-graphic-dot{
+    right:22%;
+    top:49%;
+  }
+
+  .hero-graphic-label{
+    right:16px;
+    bottom:22px;
+  }
+}
+
+
+/* =========================================================
+   FLARE — 02 / WHAT WE DO REDESIGN
+   Editorial panels + restrained scroll motion
+   Designed for desktop / tablet / mobile.
+========================================================= */
+
+:root{
+  --flare-progress:0;
+}
+
+/* Progress indicator is visual only; no heavy scroll animation. */
+body::after{
+  content:"";
+  position:fixed;
+  z-index:999998;
+  left:0;
+  top:0;
+  width:calc(var(--flare-progress) * 100%);
+  height:2px;
+  background:var(--gold);
+  transform-origin:left center;
+  pointer-events:none;
+  opacity:.9;
+}
+
+.services-redesign{
+  position:relative;
+  background:#f1f0eb;
+  color:#0a0a0a;
+  padding:clamp(90px,10vw,160px) max(22px,5vw) clamp(90px,9vw,140px);
+  overflow:hidden;
+}
+
+.services-redesign::before{
+  content:"02";
+  position:absolute;
+  right:-2vw;
+  top:5%;
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(180px,30vw,520px);
+  line-height:.75;
+  font-weight:800;
+  letter-spacing:-.08em;
+  color:rgba(0,0,0,.035);
+  pointer-events:none;
+}
+
+.services-head{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.services-redesign .section-number{
+  margin-bottom:clamp(48px,7vw,90px);
+}
+
+.services-intro{
+  max-width:800px;
+  margin-left:auto;
+  opacity:0;
+  transform:translate3d(0,34px,0);
+}
+
+.services-intro.motion-in{
+  opacity:1;
+  transform:none;
+  transition:
+    opacity .8s cubic-bezier(.2,.8,.2,1),
+    transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.services-kicker{
+  display:block;
+  margin-bottom:18px;
+  font-family:"DM Mono",monospace;
+  font-size:clamp(9px,1vw,11px);
+  letter-spacing:.18em;
+  color:#77756f;
+}
+
+.services-intro h2{
+  margin:0;
+  max-width:780px;
+  font-size:clamp(42px,7vw,100px);
+  line-height:.9;
+  letter-spacing:-.055em;
+  font-weight:700;
+}
+
+.services-intro h2 span{
+  color:#999791;
+}
+
+.services-intro p{
+  max-width:560px;
+  margin:28px 0 0;
+  font-size:clamp(15px,1.5vw,20px);
+  line-height:1.6;
+  color:#696762;
+}
+
+.services-stage{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:clamp(70px,8vw,120px) auto 0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  background:#c8c6c0;
+  border:1px solid #c8c6c0;
+}
+
+.service-panel{
+  --mx:0px;
+  --my:0px;
+  position:relative;
+  min-height:clamp(460px,45vw,650px);
+  padding:28px clamp(22px,3vw,42px) 32px;
+  background:#f7f6f2;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  opacity:0;
+  transform:translate3d(var(--mx),calc(34px + var(--my)),0);
+}
+
+.service-panel.motion-in{
+  opacity:1;
+  transform:translate3d(var(--mx),var(--my),0);
+  transition:
+    opacity .8s cubic-bezier(.2,.8,.2,1),
+    transform .55s cubic-bezier(.2,.8,.2,1);
+}
+
+.service-panel:nth-child(2){
+  background:#080808;
+  color:#f4f3ef;
+}
+
+.service-panel:nth-child(3){
+  background:#deddd8;
+}
+
+.service-panel-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.18em;
+  color:#77756f;
+}
+
+.service-panel:nth-child(2) .service-panel-top{
+  color:#85837d;
+}
+
+.service-panel-main{
+  position:relative;
+  z-index:2;
+  margin-top:auto;
+}
+
+.service-panel-index{
+  margin-bottom:10px;
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+  color:#999791;
+}
+
+.service-panel h3{
+  margin:0;
+  max-width:100%;
+  font-size:clamp(38px,4.3vw,68px);
+  line-height:.9;
+  letter-spacing:-.055em;
+  font-weight:700;
+  overflow-wrap:anywhere;
+  text-wrap:balance;
+}
+
+.service-panel p{
+  max-width:430px;
+  margin:24px 0 0;
+  color:#77756f;
+  font-size:clamp(14px,1.25vw,17px);
+  line-height:1.55;
+}
+
+.service-panel:nth-child(2) p{
+  color:#aaa8a2;
+}
+
+.service-explore{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:30px;
+  color:inherit;
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+  transition:gap .3s ease,color .3s ease;
+}
+
+.service-explore span{
+  color:var(--gold);
+  font-size:15px;
+}
+
+.service-explore:hover{
+  gap:16px;
+}
+
+.service-panel-line{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:4px;
+  background:transparent;
+  transition:background .35s ease;
+}
+
+.service-panel:nth-child(1):hover .service-panel-line{
+  background:#0a0a0a;
+}
+
+.service-panel:nth-child(2):hover .service-panel-line{
+  background:var(--gold);
+}
+
+.service-panel:nth-child(3):hover .service-panel-line{
+  background:#0a0a0a;
+}
+
+.service-panel::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-80px;
+  top:22%;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:50%;
+  transform:scale(.75);
+  transition:transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.service-panel:nth-child(2)::after{
+  border-color:rgba(255,255,255,.08);
+}
+
+.service-panel:hover::after{
+  transform:scale(1);
+}
+
+.services-scroll-note{
+  max-width:1200px;
+  margin:24px auto 0;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:14px;
+  color:#85837d;
+  font-family:"DM Mono",monospace;
+  font-size:8px;
+  letter-spacing:.18em;
+  opacity:0;
+  transform:translateY(15px);
+}
+
+.services-scroll-note.motion-in{
+  opacity:1;
+  transform:none;
+  transition:
+    opacity .7s ease .2s,
+    transform .7s ease .2s;
+}
+
+.services-scroll-note i{
+  display:block;
+  width:52px;
+  height:1px;
+  background:#a5a39c;
+}
+
+/* Tablet */
+@media (max-width:980px){
+  .services-stage{
+    grid-template-columns:1fr;
+  }
+
+  .service-panel{
+    min-height:440px;
+  }
+
+  .service-panel h3{
+    font-size:clamp(44px,8vw,78px);
+  }
+}
+
+/* Mobile */
+@media (max-width:640px){
+  .services-redesign{
+    padding:
+      78px
+      18px
+      82px;
+  }
+
+  .services-redesign::before{
+    right:-18vw;
+    top:7%;
+    font-size:54vw;
+  }
+
+  .services-redesign .section-number{
+    margin-bottom:54px;
+  }
+
+  .services-intro{
+    margin-left:0;
+  }
+
+  .services-intro h2{
+    font-size:clamp(42px,13vw,66px);
+    line-height:.92;
+  }
+
+  .services-intro p{
+    margin-top:22px;
+    font-size:16px;
+    line-height:1.6;
+  }
+
+  .services-stage{
+    margin-top:56px;
+  }
+
+  .service-panel{
+    min-height:420px;
+    padding:24px 22px 28px;
+  }
+
+  .service-panel h3{
+    font-size:clamp(42px,12vw,64px);
+  }
+
+  .service-panel p{
+    font-size:15px;
+    line-height:1.55;
+    max-width:95%;
+  }
+
+  .services-scroll-note{
+    justify-content:flex-start;
+    padding-left:2px;
+  }
+
+  /* On touch devices, keep the panels stable — no pointer transforms. */
+  .service-panel,
+  .service-panel.motion-in{
+    transform:none;
+  }
+}
+
+/* Very small phones */
+@media (max-width:380px){
+  .services-redesign{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .service-panel{
+    min-height:390px;
+  }
+
+  .service-panel h3{
+    font-size:40px;
+  }
+
+  .service-panel-top{
+    font-size:8px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion:reduce){
+  .services-intro,
+  .service-panel,
+  .services-scroll-note{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+}
