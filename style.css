@@ -3171,3 +3171,104 @@ img {
   fill: currentColor;
   stroke: none;
 }
+
+/* =========================================================
+   GLOBAL FLARE PAGE LOADER
+========================================================= */
+
+.flare-page-loader{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#070707;
+  pointer-events:none;
+  opacity:1;
+  visibility:visible;
+  transition:opacity .65s ease,visibility .65s ease;
+}
+
+.flare-page-loader.is-hidden{
+  opacity:0;
+  visibility:hidden;
+}
+
+.flare-page-loader::before{
+  content:"";
+  position:absolute;
+  width:min(70vw,760px);
+  aspect-ratio:1;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:50%;
+  animation:flareLoaderPulse 2.2s ease-in-out infinite;
+}
+
+.flare-page-loader img{
+  position:relative;
+  z-index:2;
+  width:min(46vw,420px);
+  max-width:75vw;
+  height:auto;
+  object-fit:contain;
+  opacity:0;
+  transform:scale(.94) translateY(12px);
+  animation:flareLogoEnter .8s .08s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.flare-loader-line{
+  position:absolute;
+  left:50%;
+  bottom:13vh;
+  width:min(250px,45vw);
+  height:1px;
+  overflow:hidden;
+  background:rgba(255,255,255,.12);
+  transform:translateX(-50%);
+}
+
+.flare-loader-line::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#f4f3ee;
+  transform:translateX(-101%);
+  animation:flareLoaderLine 1.25s .15s cubic-bezier(.77,0,.18,1) forwards;
+}
+
+@keyframes flareLogoEnter{
+  from{opacity:0;transform:scale(.94) translateY(12px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes flareLoaderLine{
+  to{transform:translateX(0)}
+}
+@keyframes flareLoaderPulse{
+  0%,100%{transform:scale(.92);opacity:.25}
+  50%{transform:scale(1);opacity:.65}
+}
+
+/* Keep first paint hidden just long enough for the brand reveal */
+body.flare-loading > *:not(.flare-page-loader){
+  opacity:0;
+  transform:translateY(8px);
+}
+body.flare-ready > *:not(.flare-page-loader){
+  opacity:1;
+  transform:none;
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+@media(max-width:600px){
+  .flare-page-loader img{width:min(68vw,340px)}
+  .flare-loader-line{bottom:11vh}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .flare-page-loader img,.flare-loader-line::after,.flare-page-loader::before{
+    animation:none;
+  }
+  .flare-page-loader img{opacity:1;transform:none}
+  .flare-loader-line::after{transform:none}
+}
