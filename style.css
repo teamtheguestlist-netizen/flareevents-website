@@ -4974,3 +4974,1273 @@ body::after{content:"";position:fixed;z-index:1000001;left:0;top:0;width:calc(va
 
 /* ---------------- REDUCED MOTION ---------------- */
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero .hero-meta,.hero .hero-line,.hero .hero-description,.hero .hero-actions,.hero .hero-footer,.hero .hero-graphic,.motion-reveal,.motion-reveal.is-visible{opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important;transition:none!important}.hero-graphic-orbit,.hero-graphic-dot,.hero-graphic-cross.cross-one{animation:none!important}}
+/* =========================================================
+   FLARE — FINAL MOTION + RESPONSIVE CSS
+========================================================= */
+
+:root {
+  --flare-ease: cubic-bezier(.16, 1, .3, 1);
+  --flare-soft: cubic-bezier(.2, .8, .2, 1);
+  --flare-progress: 0;
+}
+
+
+/* =========================================================
+   01 — HERO LOAD ANIMATION
+========================================================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Everything starts visible by default.
+   JS enables the animation state after loading. */
+
+.hero-load-item {
+  opacity: 1;
+  transform: none;
+}
+
+
+.hero-ready .hero-load-item,
+.hero-load-item.hero-visible {
+
+  opacity: 1 !important;
+
+  transform:
+    translate3d(0, 0, 0) !important;
+
+  transition:
+    opacity .8s ease var(--hero-delay, .2s),
+    transform .95s var(--flare-ease) var(--hero-delay, .2s) !important;
+}
+
+
+/* =========================================================
+   02 — HERO TITLE
+========================================================= */
+
+.hero-title-main {
+  overflow: visible;
+}
+
+
+.hero-title-line {
+
+  display: block;
+
+  overflow: hidden;
+
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1);
+
+  clip-path:
+    inset(0 0 0 0);
+
+}
+
+
+/* Only hide title after JS has confirmed motion support */
+
+.motion-enabled .hero-title-line {
+
+  opacity: 0 !important;
+
+  transform:
+    translate3d(0, 70px, 0)
+    scale(.985) !important;
+
+  clip-path:
+    inset(0 0 100% 0);
+
+}
+
+
+.motion-enabled .hero-ready .hero-title-line {
+
+  opacity: 1 !important;
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1) !important;
+
+  clip-path:
+    inset(0 0 0 0);
+
+  transition:
+    opacity .9s ease var(--hero-delay),
+    transform 1.05s var(--flare-ease) var(--hero-delay),
+    clip-path 1.05s var(--flare-ease) var(--hero-delay) !important;
+
+}
+
+
+.hero-title-line:nth-child(3) {
+
+  letter-spacing:
+    -.045em;
+
+}
+
+
+/* =========================================================
+   03 — HERO DESCRIPTION + BUTTONS
+========================================================= */
+
+.motion-enabled .hero .hero-description,
+.motion-enabled .hero .hero-actions,
+.motion-enabled .hero .hero-footer {
+
+  opacity: 0 !important;
+
+  transform:
+    translate3d(0, 28px, 0) !important;
+
+}
+
+
+.motion-enabled .hero-ready .hero-description {
+
+  opacity: 1 !important;
+
+  transform:
+    translate3d(0, 0, 0) !important;
+
+  transition:
+    opacity .8s ease .72s,
+    transform .9s var(--flare-ease) .72s !important;
+
+}
+
+
+.motion-enabled .hero-ready .hero-actions {
+
+  opacity: 1 !important;
+
+  transform:
+    translate3d(0, 0, 0) !important;
+
+  transition:
+    opacity .8s ease .9s,
+    transform .9s var(--flare-ease) .9s !important;
+
+}
+
+
+.motion-enabled .hero-ready .hero-footer {
+
+  opacity: 1 !important;
+
+  transform:
+    translate3d(0, 0, 0) !important;
+
+  transition:
+    opacity .8s ease 1.15s,
+    transform .8s var(--flare-ease) 1.15s !important;
+
+}
+
+
+/* =========================================================
+   04 — HERO GRAPHICS
+========================================================= */
+
+.hero-graphic {
+
+  opacity: 1;
+
+  transform:
+    scale(1);
+
+}
+
+
+.motion-enabled .hero .hero-graphic {
+
+  opacity: 0 !important;
+
+  transform:
+    scale(1.035) !important;
+
+}
+
+
+.motion-enabled .hero-ready .hero-graphic {
+
+  opacity: 1 !important;
+
+  transform:
+    scale(1) !important;
+
+  transition:
+    opacity 1.2s ease .1s,
+    transform 1.5s var(--flare-ease) .1s !important;
+
+}
+
+
+/* Orbit */
+
+.hero-graphic-orbit {
+
+  transform-origin:
+    center;
+
+  animation:
+    flare-orbit
+    26s
+    linear
+    infinite;
+
+}
+
+
+.hero-graphic-orbit.orbit-two {
+
+  animation-duration:
+    38s;
+
+  animation-direction:
+    reverse;
+
+}
+
+
+@keyframes flare-orbit {
+
+  from {
+    transform:
+      rotate(-18deg);
+  }
+
+  to {
+    transform:
+      rotate(342deg);
+  }
+
+}
+
+
+/* Gold dot */
+
+.hero-graphic-dot {
+
+  animation:
+    flare-dot
+    3.8s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes flare-dot {
+
+  0%,
+  100% {
+
+    transform:
+      scale(1);
+
+    opacity:
+      .65;
+
+  }
+
+  50% {
+
+    transform:
+      scale(1.55);
+
+    opacity:
+      1;
+
+  }
+
+}
+
+
+/* Cross */
+
+.hero-graphic-cross.cross-one {
+
+  animation:
+    flare-cross
+    7s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes flare-cross {
+
+  0%,
+  100% {
+
+    transform:
+      rotate(45deg)
+      translate3d(0,0,0);
+
+  }
+
+  50% {
+
+    transform:
+      rotate(45deg)
+      translate3d(0,-8px,0);
+
+  }
+
+}
+
+
+/* =========================================================
+   05 — SCROLL REVEAL
+========================================================= */
+
+
+/*
+  DEFAULT = VISIBLE.
+
+  This is intentional.
+  The website must never lose content because
+  JavaScript failed.
+*/
+
+.motion-reveal {
+
+  opacity: 1 !important;
+
+  transform:
+    translate3d(0,0,0) !important;
+
+  transition:
+    opacity .85s var(--flare-ease),
+    transform .95s var(--flare-ease) !important;
+
+  transition-delay:
+    var(--motion-delay,0s) !important;
+
+}
+
+
+/*
+  Only when JS confirms motion support
+  do we hide the element before reveal.
+*/
+
+.motion-enabled .motion-reveal {
+
+  opacity: 0 !important;
+
+  transform:
+    translate3d(0,42px,0) !important;
+
+}
+
+
+.motion-enabled .motion-reveal.is-visible {
+
+  opacity: 1 !important;
+
+  transform:
+    translate3d(0,0,0) !important;
+
+}
+
+
+/* =========================================================
+   06 — THE IDEA
+========================================================= */
+
+.idea,
+.idea-grid {
+
+  visibility:
+    visible !important;
+
+}
+
+
+.idea-grid > div {
+
+  transition:
+    opacity .85s var(--flare-ease),
+    transform .95s var(--flare-ease);
+
+}
+
+
+.idea-grid > div:nth-child(1) {
+
+  transition-delay:
+    .04s;
+
+}
+
+
+.idea-grid > div:nth-child(2) {
+
+  transition-delay:
+    .12s;
+
+}
+
+
+/* =========================================================
+   07 — WHAT WE DO
+========================================================= */
+
+.services-intro {
+
+  transition-delay:
+    .04s !important;
+
+}
+
+
+.services-stage .service-panel:nth-child(1) {
+
+  transition-delay:
+    .05s !important;
+
+}
+
+
+.services-stage .service-panel:nth-child(2) {
+
+  transition-delay:
+    .14s !important;
+
+}
+
+
+.services-stage .service-panel:nth-child(3) {
+
+  transition-delay:
+    .23s !important;
+
+}
+
+
+/* =========================================================
+   08 — PRINCIPLES
+========================================================= */
+
+.principles-heading {
+
+  transition-delay:
+    .04s !important;
+
+}
+
+
+.principle-list > div:nth-child(1) {
+
+  transition-delay:
+    .05s !important;
+
+}
+
+
+.principle-list > div:nth-child(2) {
+
+  transition-delay:
+    .12s !important;
+
+}
+
+
+.principle-list > div:nth-child(3) {
+
+  transition-delay:
+    .19s !important;
+
+}
+
+
+.principle-list > div:nth-child(4) {
+
+  transition-delay:
+    .26s !important;
+
+}
+
+
+/* =========================================================
+   09 — SELECTED WORK / MOMENTS IN MOTION
+========================================================= */
+
+.chapter,
+.chapter-grid,
+.chapter-heading {
+
+  visibility:
+    visible !important;
+
+}
+
+
+.chapter-card {
+
+  overflow:
+    hidden;
+
+  transition:
+    opacity .85s var(--flare-ease),
+    transform .95s var(--flare-ease),
+    box-shadow .45s ease !important;
+
+}
+
+
+.chapter-grid .chapter-card:nth-child(1) {
+
+  transition-delay:
+    .05s !important;
+
+}
+
+
+.chapter-grid .chapter-card:nth-child(2) {
+
+  transition-delay:
+    .14s !important;
+
+}
+
+
+.chapter-grid .chapter-card:nth-child(3) {
+
+  transition-delay:
+    .23s !important;
+
+}
+
+
+/* Visuals */
+
+.chapter-card .visual,
+.chapter-card .visual-two,
+.chapter-card .visual-three {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform 1.1s var(--flare-ease),
+    filter .8s ease !important;
+
+}
+
+
+.chapter-card .visual::after,
+.chapter-card .visual-two::after,
+.chapter-card .visual-three::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.04),
+      transparent 45%,
+      rgba(0,0,0,.16)
+    );
+
+  mix-blend-mode:
+    overlay;
+
+}
+
+
+@media (pointer:fine) {
+
+  .chapter-card:hover .visual,
+  .chapter-card:hover .visual-two,
+  .chapter-card:hover .visual-three {
+
+    transform:
+      scale(1.045);
+
+    filter:
+      brightness(1.04)
+      contrast(1.02);
+
+  }
+
+}
+
+
+/* =========================================================
+   10 — LET'S BUILD SOMETHING
+========================================================= */
+
+.big-cta {
+
+  width:
+    100%;
+
+  max-width:
+    100%;
+
+  overflow:
+    hidden;
+
+}
+
+
+.big-cta .cta-inner {
+
+  width:
+    100%;
+
+  max-width:
+    100%;
+
+  min-width:
+    0;
+
+}
+
+
+.big-cta h2 {
+
+  width:
+    100%;
+
+  max-width:
+    100%;
+
+  font-size:
+    clamp(
+      44px,
+      8.5vw,
+      120px
+    );
+
+  line-height:
+    .86;
+
+  letter-spacing:
+    -.055em;
+
+  overflow-wrap:
+    normal;
+
+  word-break:
+    normal;
+
+}
+
+
+/* =========================================================
+   11 — MOBILE CTA FIX
+========================================================= */
+
+@media (max-width:900px) {
+
+  .big-cta {
+
+    padding-left:
+      20px !important;
+
+    padding-right:
+      20px !important;
+
+    overflow:
+      hidden !important;
+
+  }
+
+
+  .big-cta .cta-inner {
+
+    width:
+      100% !important;
+
+    max-width:
+      100% !important;
+
+    min-width:
+      0 !important;
+
+    padding-left:
+      0 !important;
+
+    padding-right:
+      0 !important;
+
+  }
+
+
+  .big-cta h2 {
+
+    width:
+      100% !important;
+
+    max-width:
+      100% !important;
+
+    font-size:
+      clamp(
+        42px,
+        13vw,
+        78px
+      ) !important;
+
+    line-height:
+      .88 !important;
+
+    letter-spacing:
+      -.055em !important;
+
+    white-space:
+      normal !important;
+
+    overflow-wrap:
+      break-word !important;
+
+    word-break:
+      normal !important;
+
+  }
+
+
+  .big-cta .cta-button {
+
+    display:
+      inline-flex !important;
+
+    max-width:
+      100%;
+
+    min-height:
+      48px;
+
+    padding:
+      14px 18px !important;
+
+    white-space:
+      nowrap;
+
+    font-size:
+      10px;
+
+  }
+
+}
+
+
+/* Small phones */
+
+@media (max-width:390px) {
+
+  .big-cta {
+
+    padding-left:
+      16px !important;
+
+    padding-right:
+      16px !important;
+
+  }
+
+
+  .big-cta h2 {
+
+    font-size:
+      clamp(
+        38px,
+        12.5vw,
+        54px
+      ) !important;
+
+    line-height:
+      .9 !important;
+
+  }
+
+
+  .big-cta .cta-button {
+
+    width:
+      100%;
+
+    justify-content:
+      space-between;
+
+  }
+
+}
+
+
+/* =========================================================
+   12 — SERVICE PANEL HOVER
+========================================================= */
+
+@media (pointer:fine) and (min-width:901px) {
+
+  .service-panel.is-visible:hover {
+
+    box-shadow:
+      0 24px 65px
+      rgba(0,0,0,.12);
+
+  }
+
+
+  .service-panel.is-visible
+  .service-panel-main {
+
+    transition:
+      transform .45s var(--flare-ease);
+
+  }
+
+
+  .service-panel.is-visible:hover
+  .service-panel-main {
+
+    transform:
+      translateY(-5px);
+
+  }
+
+}
+
+
+/* =========================================================
+   13 — BUTTONS
+========================================================= */
+
+.button,
+.cta-button,
+.cta-link,
+.service-explore,
+.text-link {
+
+  transition:
+    transform .35s var(--flare-ease),
+    color .3s ease,
+    background .3s ease,
+    border-color .3s ease,
+    gap .35s var(--flare-ease) !important;
+
+}
+
+
+@media (pointer:fine) {
+
+  .button:hover,
+  .cta-button:hover,
+  .cta-link:hover {
+
+    transform:
+      translateY(-3px);
+
+  }
+
+
+  .service-explore:hover,
+  .text-link:hover {
+
+    gap:
+      18px;
+
+  }
+
+}
+
+
+/* =========================================================
+   14 — MOBILE MENU
+========================================================= */
+
+.menu-button {
+
+  z-index:
+    10001 !important;
+
+  touch-action:
+    manipulation;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+}
+
+
+.flare-mobile-menu {
+
+  z-index:
+    10000 !important;
+
+}
+
+
+/* Menu link stagger */
+
+.flare-mobile-menu.is-open
+.nav-link,
+.flare-mobile-menu.is-open
+.mobile-nav a {
+
+  animation:
+    flare-menu-in
+    .65s
+    var(--flare-ease)
+    both;
+
+}
+
+
+.flare-mobile-menu.is-open
+.nav-link:nth-child(1),
+.flare-mobile-menu.is-open
+.mobile-nav a:nth-child(1) {
+
+  animation-delay:
+    .05s;
+
+}
+
+
+.flare-mobile-menu.is-open
+.nav-link:nth-child(2),
+.flare-mobile-menu.is-open
+.mobile-nav a:nth-child(2) {
+
+  animation-delay:
+    .10s;
+
+}
+
+
+.flare-mobile-menu.is-open
+.nav-link:nth-child(3),
+.flare-mobile-menu.is-open
+.mobile-nav a:nth-child(3) {
+
+  animation-delay:
+    .15s;
+
+}
+
+
+.flare-mobile-menu.is-open
+.nav-link:nth-child(4),
+.flare-mobile-menu.is-open
+.mobile-nav a:nth-child(4) {
+
+  animation-delay:
+    .20s;
+
+}
+
+
+.flare-mobile-menu.is-open
+.nav-link:nth-child(5),
+.flare-mobile-menu.is-open
+.mobile-nav a:nth-child(5) {
+
+  animation-delay:
+    .25s;
+
+}
+
+
+@keyframes flare-menu-in {
+
+  from {
+
+    opacity:
+      0;
+
+    transform:
+      translate3d(
+        -20px,
+        0,
+        0
+      );
+
+  }
+
+  to {
+
+    opacity:
+      1;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   15 — SCROLL PROGRESS
+========================================================= */
+
+body::after {
+
+  content:
+    "";
+
+  position:
+    fixed;
+
+  left:
+    0;
+
+  top:
+    0;
+
+  z-index:
+    999999;
+
+  width:
+    calc(
+      var(--flare-progress) * 100%
+    );
+
+  height:
+    2px;
+
+  background:
+    var(--gold);
+
+  pointer-events:
+    none;
+
+  transform-origin:
+    left center;
+
+}
+
+
+/* =========================================================
+   16 — PAGE TRANSITION
+========================================================= */
+
+body.flare-leaving {
+
+  opacity:
+    0;
+
+  transition:
+    opacity .42s ease;
+
+}
+
+
+/* =========================================================
+   17 — CUSTOM CURSOR
+========================================================= */
+
+@media (pointer:fine) {
+
+  .cursor-dot {
+
+    transition:
+      width .25s ease,
+      height .25s ease,
+      background .25s ease,
+      border-color .25s ease;
+
+  }
+
+
+  .cursor-dot.active {
+
+    width:
+      18px;
+
+    height:
+      18px;
+
+    border-color:
+      var(--gold);
+
+    background:
+      rgba(
+        199,
+        154,
+        59,
+        .08
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   18 — MOBILE PERFORMANCE
+========================================================= */
+
+@media (max-width:900px) {
+
+  .hero-graphic-orbit {
+
+    animation-duration:
+      36s;
+
+  }
+
+
+  .hero-graphic-orbit.orbit-two {
+
+    animation-duration:
+      46s;
+
+  }
+
+
+  .hero-graphic-cross.cross-one {
+
+    animation-duration:
+      10s;
+
+  }
+
+
+  .chapter-card {
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      ) !important;
+
+  }
+
+
+  .chapter-card.is-visible {
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      ) !important;
+
+  }
+
+}
+
+
+/* =========================================================
+   19 — VERY SMALL PHONES
+========================================================= */
+
+@media (max-width:360px) {
+
+  .hero-title-main {
+
+    font-size:
+      clamp(
+        48px,
+        16vw,
+        62px
+      ) !important;
+
+  }
+
+
+  .hero-description {
+
+    font-size:
+      14px !important;
+
+  }
+
+
+  .big-cta h2 {
+
+    font-size:
+      38px !important;
+
+  }
+
+}
+
+
+/* =========================================================
+   20 — CONTENT SAFETY
+========================================================= */
+
+.idea,
+.idea-grid,
+.chapter,
+.chapter-grid,
+.chapter-heading,
+.chapter-card {
+
+  visibility:
+    visible !important;
+
+}
+
+
+/*
+  If JS doesn't load, content remains visible.
+  If JS loads, .motion-enabled activates animation.
+*/
+
+@media (prefers-reduced-motion:reduce) {
+
+  .motion-enabled .motion-reveal,
+  .motion-enabled .motion-reveal.is-visible,
+  .motion-enabled .hero-title-line,
+  .motion-enabled .hero .hero-description,
+  .motion-enabled .hero .hero-actions,
+  .motion-enabled .hero .hero-footer,
+  .motion-enabled .hero .hero-graphic {
+
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+
+    clip-path:
+      none !important;
+
+    transition:
+      none !important;
+
+    animation:
+      none !important;
+
+  }
+
+}
