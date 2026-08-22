@@ -1,107 +1,86 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================================
+   FLARE — FINAL SCRIPT.JS
+   Mobile menu + hero load + scroll reveal + interactions
+========================================================= */
+
+(() => {
   "use strict";
 
   const body = document.body;
-  const root = document.documentElement;
-  const header = document.querySelector(".site-header");
-
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  const finePointer = window.matchMedia(
-    "(pointer:fine)"
-  ).matches;
 
   /* =========================================================
-     FLARE — GLOBAL MOTION SYSTEM
+     HELPERS
   ========================================================= */
 
+  const $ = (selector, root = document) =>
+    root.querySelector(selector);
+
+  const $$ = (selector, root = document) =>
+    [...root.querySelectorAll(selector)];
+
+
   /* =========================================================
-     01 — PAGE LOADER
+     PAGE LOAD
   ========================================================= */
 
-  let loader = document.querySelector(".flare-page-loader");
+  window.addEventListener("load", () => {
 
-  if (!loader) {
-    loader = document.createElement("div");
-    loader.className = "flare-page-loader";
+    requestAnimationFrame(() => {
 
-    loader.innerHTML = `
-      <img src="flare-logo.png" alt="FLARE">
-      <div class="flare-loader-line"></div>
-    `;
+      body.classList.add("flare-loaded");
+      body.classList.add("hero-ready");
 
-    body.prepend(loader);
-  }
+    });
 
-  const finishLoader = () => {
-    root.classList.add("flare-loaded");
+  });
 
-    window.setTimeout(() => {
-      if (loader) {
-        loader.classList.add("is-hidden");
-      }
 
-      window.setTimeout(() => {
-        if (loader && loader.parentNode) {
-          loader.remove();
-        }
-      }, reduceMotion ? 0 : 700);
-    }, reduceMotion ? 0 : 500);
-  };
+  /* Fallback */
 
-  if (document.readyState === "complete") {
-    window.setTimeout(
-      finishLoader,
-      reduceMotion ? 0 : 180
-    );
-  } else {
-    window.addEventListener(
-      "load",
-      () => {
-        window.setTimeout(
-          finishLoader,
-          reduceMotion ? 0 : 180
-        );
-      },
-      { once: true }
-    );
-  }
+  setTimeout(() => {
+
+    body.classList.add("flare-loaded");
+    body.classList.add("hero-ready");
+
+  }, 1200);
+
 
 
   /* =========================================================
-     02 — MOBILE MENU
+     MOBILE MENU
   ========================================================= */
 
   const menuButton =
-    document.querySelector(".menu-button");
+    $(".menu-button");
 
-  const mobileMenu =
-    document.querySelector(".mobile-menu");
+  const flareMenu =
+    $(".flare-mobile-menu");
 
-  const setMenu = (open) => {
-    if (!menuButton || !mobileMenu) return;
+
+  function setMenu(open) {
+
+    if (!menuButton || !flareMenu) {
+      return;
+    }
+
+
+    menuButton.classList.toggle(
+      "is-open",
+      open
+    );
+
 
     menuButton.classList.toggle(
       "active",
       open
     );
 
-    mobileMenu.classList.toggle(
-      "open",
-      open
-    );
-
-    body.classList.toggle(
-      "menu-open",
-      open
-    );
 
     menuButton.setAttribute(
       "aria-expanded",
       String(open)
     );
+
 
     menuButton.setAttribute(
       "aria-label",
@@ -110,16 +89,31 @@ document.addEventListener("DOMContentLoaded", () => {
         : "Open menu"
     );
 
-    mobileMenu.setAttribute(
+
+    flareMenu.classList.toggle(
+      "is-open",
+      open
+    );
+
+
+    flareMenu.setAttribute(
       "aria-hidden",
       String(!open)
     );
-  };
 
 
-  if (menuButton && mobileMenu) {
+    body.classList.toggle(
+      "menu-open",
+      open
+    );
 
-    setMenu(false);
+  }
+
+
+  if (
+    menuButton &&
+    flareMenu
+  ) {
 
     menuButton.addEventListener(
       "click",
@@ -128,36 +122,46 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         event.stopPropagation();
 
+
         const isOpen =
-          mobileMenu.classList.contains(
-            "open"
+          flareMenu.classList.contains(
+            "is-open"
           );
 
+
         setMenu(!isOpen);
+
       }
     );
 
 
-    mobileMenu
-      .querySelectorAll("a")
-      .forEach((link) => {
+    $$(
+      "[data-menu-link]",
+      flareMenu
+    ).forEach((link) => {
 
-        link.addEventListener(
-          "click",
-          () => {
-            setMenu(false);
-          }
-        );
+      link.addEventListener(
+        "click",
+        () => {
 
-      });
+          setMenu(false);
+
+        }
+      );
+
+    });
 
 
     document.addEventListener(
       "keydown",
       (event) => {
 
-        if (event.key === "Escape") {
+        if (
+          event.key === "Escape"
+        ) {
+
           setMenu(false);
+
         }
 
       }
@@ -168,473 +172,152 @@ document.addEventListener("DOMContentLoaded", () => {
       "resize",
       () => {
 
-        if (window.innerWidth > 1100) {
+        if (
+          window.innerWidth > 1100
+        ) {
+
           setMenu(false);
+
         }
 
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
+
   }
 
 
-  /* =========================================================
-     03 — HERO LOAD ANIMATION
-     Homepage:
-     WHERE
-     MOMENTS
-     IGNITE
-  ========================================================= */
-
-  root.classList.add(
-    "flare-loaded"
-  );
-
-  const hero =
-    document.querySelector(
-      ".hero"
-    );
-
-  if (hero) {
-
-    const heroSelectors = [
-      ".hero-meta",
-      ".hero-title-main",
-      ".hero-title-main .hero-line",
-      ".hero-description",
-      ".hero-actions",
-      ".hero-actions .button",
-      ".hero-actions .text-link",
-      ".magnetic-circle",
-      ".hero-footer"
-    ];
-
-    const heroItems = [];
-
-    heroSelectors.forEach(
-      (selector) => {
-
-        hero.querySelectorAll(
-          selector
-        ).forEach(
-          (element) => {
-
-            if (
-              !heroItems.includes(
-                element
-              )
-            ) {
-              heroItems.push(
-                element
-              );
-            }
-
-          }
-        );
-
-      }
-    );
-
-
-    heroItems.forEach(
-      (element) => {
-
-        element.classList.add(
-          "hero-load-item"
-        );
-
-      }
-    );
-
-
-    /*
-      Add an extra class to the title so
-      CSS can animate each line separately.
-    */
-
-    const titleLines =
-      hero.querySelectorAll(
-        ".hero-title-main .hero-line"
-      );
-
-    titleLines.forEach(
-      (line, index) => {
-
-        line.classList.add(
-          "hero-title-line"
-        );
-
-        line.style.setProperty(
-          "--hero-delay",
-          `${0.28 + index * 0.12}s`
-        );
-
-      }
-    );
-
-
-    if (reduceMotion) {
-
-      heroItems.forEach(
-        (element) => {
-
-          element.classList.add(
-            "hero-visible"
-          );
-
-        }
-      );
-
-    } else {
-
-      window.setTimeout(
-        () => {
-
-          hero.classList.add(
-            "hero-ready"
-          );
-
-          heroItems.forEach(
-            (element, index) => {
-
-              /*
-                Keep the title lines controlled
-                by their own delay.
-              */
-
-              if (
-                element.classList.contains(
-                  "hero-title-line"
-                )
-              ) {
-                return;
-              }
-
-              element.style.setProperty(
-                "--hero-delay",
-                `${0.18 + index * 0.08}s`
-              );
-
-              element.classList.add(
-                "hero-visible"
-              );
-
-            }
-          );
-
-        },
-        120
-      );
-
-    }
-  }
-
 
   /* =========================================================
-     04 — SCROLL PROGRESS + HEADER
+     SCROLL PROGRESS
   ========================================================= */
 
-  let scrollTicking = false;
-
-  let lastScrollY =
-    window.scrollY || 0;
+  let ticking = false;
 
 
-  const updateScroll = () => {
+  function updateProgress() {
 
     const doc =
       document.documentElement;
 
+
     const maxScroll =
-      Math.max(
-        1,
-        doc.scrollHeight -
-          window.innerHeight
-      );
+      doc.scrollHeight -
+      window.innerHeight;
 
 
     const progress =
-      Math.min(
-        1,
-        Math.max(
-          0,
-          window.scrollY /
-            maxScroll
-        )
-      );
+      maxScroll > 0
+
+        ? Math.min(
+            1,
+            Math.max(
+              0,
+              window.scrollY /
+                maxScroll
+            )
+          )
+
+        : 0;
 
 
-    root.style.setProperty(
+    doc.style.setProperty(
       "--flare-progress",
       progress.toFixed(4)
     );
 
 
-    if (header) {
+    doc.style.setProperty(
+      "--flare-scroll",
+      `${(
+        progress * 100
+      ).toFixed(2)}%`
+    );
 
-      const scrolled =
-        window.scrollY > 40;
+
+    const header =
+      $(".site-header");
+
+
+    if (header) {
 
       header.classList.toggle(
         "scrolled",
-        scrolled
-      );
-
-      header.classList.toggle(
-        "is-scrolled",
-        scrolled
+        window.scrollY > 20
       );
 
     }
 
 
-    /*
-      Small scroll direction helper.
-      Useful for CSS if needed later.
-    */
-
-    const currentY =
-      window.scrollY || 0;
-
-    if (
-      currentY > lastScrollY &&
-      currentY > 80
-    ) {
-
-      root.classList.add(
-        "flare-scroll-down"
-      );
-
-      root.classList.remove(
-        "flare-scroll-up"
-      );
-
-    } else {
-
-      root.classList.add(
-        "flare-scroll-up"
-      );
-
-      root.classList.remove(
-        "flare-scroll-down"
-      );
-
-    }
-
-    lastScrollY = currentY;
-
-    scrollTicking = false;
-  };
-
-
-  const onScroll = () => {
-
-    if (scrollTicking) {
-      return;
-    }
-
-    scrollTicking = true;
-
-    window.requestAnimationFrame(
-      updateScroll
-    );
-
-  };
-
-
-  window.addEventListener(
-    "scroll",
-    onScroll,
-    { passive: true }
-  );
-
-  updateScroll();
-
-
-  /* =========================================================
-     05 — HERO SUBTLE PARALLAX
-  ========================================================= */
-
-  if (
-    hero &&
-    !reduceMotion
-  ) {
-
-    let heroParallaxTicking =
-      false;
-
-
-    const updateHeroParallax = () => {
-
-      if (
-        window.scrollY >
-        window.innerHeight * 1.1
-      ) {
-
-        hero.style.setProperty(
-          "--hero-scroll",
-          "0px"
-        );
-
-        heroParallaxTicking =
-          false;
-
-        return;
-      }
-
-
-      const offset =
-        Math.min(
-          window.scrollY * 0.12,
-          90
-        );
-
-
-      hero.style.setProperty(
-        "--hero-scroll",
-        `${offset}px`
-      );
-
-      heroParallaxTicking =
-        false;
-    };
-
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        if (
-          heroParallaxTicking
-        ) {
-          return;
-        }
-
-        heroParallaxTicking =
-          true;
-
-        window.requestAnimationFrame(
-          updateHeroParallax
-        );
-
-      },
-      { passive: true }
-    );
+    ticking = false;
 
   }
 
 
-  /* =========================================================
-     06 — SCROLL REVEAL
-  ========================================================= */
+  window.addEventListener(
+    "scroll",
+    () => {
 
-  const revealSelector = [
-    ".idea-grid > div",
-    ".services-intro",
-    ".service-panel",
-    ".services-scroll-note",
-    ".principles-heading",
-    ".principle-list > div",
-    ".chapter-heading > div",
-    ".chapter-card",
-    ".chapter-note",
-    ".big-cta .cta-inner",
-    ".visual",
-    ".visual-two",
-    ".visual-three",
-    ".contact-hero",
-    ".contact-form"
-  ].join(",");
+      if (!ticking) {
 
+        requestAnimationFrame(
+          updateProgress
+        );
 
-  const revealItems =
-    Array.from(
-      document.querySelectorAll(
-        revealSelector
-      )
-    );
+        ticking = true;
 
+      }
 
-  revealItems.forEach(
-    (item, index) => {
-
-      item.classList.add(
-        "motion-reveal"
-      );
-
-      item.style.setProperty(
-        "--reveal-index",
-        String(
-          Math.min(index, 5)
-        )
-      );
-
+    },
+    {
+      passive: true
     }
   );
 
 
+  updateProgress();
+
+
+
+  /* =========================================================
+     SCROLL REVEAL
+  ========================================================= */
+
+  const revealElements =
+    $$(
+      ".motion-reveal, .flare-reveal"
+    );
+
+
   if (
-    !reduceMotion &&
-    "IntersectionObserver" in window
+    "IntersectionObserver"
+    in window
   ) {
 
     const observer =
       new IntersectionObserver(
 
-        (entries, obs) => {
+        (entries) => {
 
           entries.forEach(
             (entry) => {
 
               if (
-                !entry.isIntersecting
+                entry.isIntersecting
               ) {
-                return;
-              }
 
-
-              entry.target.classList.add(
-                "is-visible"
-              );
-
-
-              /*
-                Small delay between nearby
-                elements without making the
-                page feel slow.
-              */
-
-              const siblings =
-                entry.target.parentElement
-                  ? Array.from(
-                      entry.target
-                        .parentElement
-                        .children
-                    )
-                  : [];
-
-
-              const siblingIndex =
-                siblings.indexOf(
-                  entry.target
+                entry.target.classList.add(
+                  "is-visible"
                 );
 
 
-              entry.target.style.setProperty(
-                "--reveal-delay",
-                `${Math.min(
-                  Math.max(
-                    siblingIndex,
-                    0
-                  ),
-                  5
-                ) * 0.045}s`
-              );
+                observer.unobserve(
+                  entry.target
+                );
 
-
-              obs.unobserve(
-                entry.target
-              );
+              }
 
             }
           );
@@ -642,32 +325,34 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-          threshold:
-            window.matchMedia(
-              "(pointer:coarse)"
-            ).matches
-              ? 0.055
-              : 0.12,
+
+          threshold: 0.12,
 
           rootMargin:
-            "0px 0px -8% 0px"
+            "0px 0px -7% 0px"
+
         }
 
       );
 
 
-    revealItems.forEach(
-      (item) => {
-        observer.observe(item);
+    revealElements.forEach(
+      (element) => {
+
+        observer.observe(
+          element
+        );
+
       }
     );
 
+
   } else {
 
-    revealItems.forEach(
-      (item) => {
+    revealElements.forEach(
+      (element) => {
 
-        item.classList.add(
+        element.classList.add(
           "is-visible"
         );
 
@@ -677,14 +362,85 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+
   /* =========================================================
-     07 — SMOOTH ANCHOR SCROLLING
+     SMOOTH ANCHOR LINKS
   ========================================================= */
 
-  document
-    .querySelectorAll(
-      'a[href^="#"]'
-    )
+  $$(
+    'a[href^="#"]'
+  ).forEach(
+    (link) => {
+
+      link.addEventListener(
+        "click",
+        (event) => {
+
+          const targetId =
+            link.getAttribute(
+              "href"
+            );
+
+
+          if (
+            !targetId ||
+            targetId === "#"
+          ) {
+
+            return;
+
+          }
+
+
+          const target =
+            document.querySelector(
+              targetId
+            );
+
+
+          if (!target) {
+
+            return;
+
+          }
+
+
+          event.preventDefault();
+
+
+          setMenu(false);
+
+
+          const reducedMotion =
+            window.matchMedia(
+              "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+
+          target.scrollIntoView({
+
+            behavior:
+              reducedMotion
+                ? "auto"
+                : "smooth",
+
+            block: "start"
+
+          });
+
+        }
+      );
+
+    }
+  );
+
+
+
+  /* =========================================================
+     SERVICE LINKS
+  ========================================================= */
+
+  $$(".service-explore")
     .forEach(
       (link) => {
 
@@ -692,66 +448,29 @@ document.addEventListener("DOMContentLoaded", () => {
           "click",
           (event) => {
 
-            const id =
+            const href =
               link.getAttribute(
                 "href"
               );
 
 
+            if (!href) {
+
+              return;
+
+            }
+
+
             if (
-              !id ||
-              id === "#"
+              href.startsWith("#")
             ) {
+
               return;
+
             }
 
 
-            const target =
-              document.querySelector(
-                id
-              );
-
-
-            if (!target) {
-              return;
-            }
-
-
-            event.preventDefault();
-
-            setMenu(false);
-
-
-            const offset =
-              header
-                ? header.offsetHeight
-                : 0;
-
-
-            const top =
-              target.getBoundingClientRect()
-                .top +
-              window.scrollY -
-              offset;
-
-
-            window.scrollTo({
-
-              top,
-
-              behavior:
-                reduceMotion
-                  ? "auto"
-                  : "smooth"
-
-            });
-
-
-            history.replaceState(
-              null,
-              "",
-              id
-            );
+            event.stopPropagation();
 
           }
         );
@@ -760,179 +479,102 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  /* =========================================================
-     08 — DESKTOP SERVICE TILT
-  ========================================================= */
-
-  if (
-    finePointer &&
-    !reduceMotion
-  ) {
-
-    document
-      .querySelectorAll(
-        ".service-panel"
-      )
-      .forEach(
-        (panel) => {
-
-          panel.addEventListener(
-            "pointermove",
-            (event) => {
-
-              const rect =
-                panel.getBoundingClientRect();
-
-
-              const x =
-                (event.clientX -
-                  rect.left) /
-                  rect.width -
-                0.5;
-
-
-              const y =
-                (event.clientY -
-                  rect.top) /
-                  rect.height -
-                0.5;
-
-
-              panel.style.setProperty(
-                "--mx",
-                `${x * 5}px`
-              );
-
-
-              panel.style.setProperty(
-                "--my",
-                `${y * 4}px`
-              );
-
-            }
-          );
-
-
-          panel.addEventListener(
-            "pointerleave",
-            () => {
-
-              panel.style.setProperty(
-                "--mx",
-                "0px"
-              );
-
-              panel.style.setProperty(
-                "--my",
-                "0px"
-              );
-
-            }
-          );
-
-        }
-      );
-
-  }
-
 
   /* =========================================================
-     09 — CHAPTER CARD MOUSE PARALLAX
+     MAGNETIC BUTTONS
+     DESKTOP ONLY
   ========================================================= */
 
-  if (
-    finePointer &&
-    !reduceMotion
-  ) {
-
-    document
-      .querySelectorAll(
-        ".chapter-card"
-      )
-      .forEach(
-        (card) => {
-
-          card.addEventListener(
-            "pointermove",
-            (event) => {
-
-              const rect =
-                card.getBoundingClientRect();
-
-
-              const x =
-                (event.clientX -
-                  rect.left) /
-                  rect.width -
-                0.5;
-
-
-              const y =
-                (event.clientY -
-                  rect.top) /
-                  rect.height -
-                0.5;
-
-
-              card.style.setProperty(
-                "--card-x",
-                `${x * 10}px`
-              );
-
-
-              card.style.setProperty(
-                "--card-y",
-                `${y * 8}px`
-              );
-
-            }
-          );
-
-
-          card.addEventListener(
-            "pointerleave",
-            () => {
-
-              card.style.setProperty(
-                "--card-x",
-                "0px"
-              );
-
-              card.style.setProperty(
-                "--card-y",
-                "0px"
-              );
-
-            }
-          );
-
-        }
-      );
-
-  }
-
-
-  /* =========================================================
-     10 — CUSTOM CURSOR
-  ========================================================= */
-
-  const cursor =
-    document.querySelector(
-      ".cursor-dot"
+  const finePointer =
+    window.matchMedia(
+      "(pointer: fine)"
     );
 
 
   if (
-    cursor &&
-    finePointer &&
-    !reduceMotion
+    finePointer.matches
   ) {
 
-    let mouseX =
-      window.innerWidth / 2;
+    $$(
+      ".button, .cta-button, .cta-link, .service-explore"
+    ).forEach(
+      (element) => {
 
-    let mouseY =
-      window.innerHeight / 2;
+        element.addEventListener(
+          "pointermove",
+          (event) => {
+
+            const rect =
+              element.getBoundingClientRect();
+
+
+            const x =
+              event.clientX -
+              (
+                rect.left +
+                rect.width / 2
+              );
+
+
+            const y =
+              event.clientY -
+              (
+                rect.top +
+                rect.height / 2
+              );
+
+
+            const strength =
+              0.10;
+
+
+            element.style.transform =
+              `translate3d(${
+                (
+                  x * strength
+                ).toFixed(2)
+              }px, ${
+                (
+                  y * strength
+                ).toFixed(2)
+              }px, 0)`;
+
+          }
+        );
+
+
+        element.addEventListener(
+          "pointerleave",
+          () => {
+
+            element.style.transform =
+              "";
+
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+
+  /* =========================================================
+     CUSTOM CURSOR
+  ========================================================= */
+
+  const cursor =
+    $(".cursor-dot");
+
+
+  if (
+    cursor &&
+    finePointer.matches
+  ) {
+
+    let mouseX = -100;
+    let mouseY = -100;
 
     let currentX =
       mouseX;
@@ -942,7 +584,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     window.addEventListener(
-      "mousemove",
+      "pointermove",
       (event) => {
 
         mouseX =
@@ -952,23 +594,27 @@ document.addEventListener("DOMContentLoaded", () => {
           event.clientY;
 
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
 
-    const animateCursor =
+    const renderCursor =
       () => {
 
         currentX +=
-          (mouseX -
-            currentX) *
-          0.16;
+          (
+            mouseX -
+            currentX
+          ) * 0.18;
 
 
         currentY +=
-          (mouseY -
-            currentY) *
-          0.16;
+          (
+            mouseY -
+            currentY
+          ) * 0.18;
 
 
         cursor.style.left =
@@ -980,231 +626,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         requestAnimationFrame(
-          animateCursor
+          renderCursor
         );
 
       };
 
 
-    requestAnimationFrame(
-      animateCursor
-    );
+    renderCursor();
 
 
-    document
-      .querySelectorAll(
-        "a, button, .service-panel, .chapter-card"
-      )
-      .forEach(
-        (element) => {
+    $$(
+      "a, button, .service-panel, .chapter-card"
+    ).forEach(
+      (element) => {
 
-          element.addEventListener(
-            "mouseenter",
-            () => {
+        element.addEventListener(
+          "mouseenter",
+          () => {
 
-              cursor.classList.add(
-                "active"
-              );
+            cursor.classList.add(
+              "active"
+            );
 
-            }
-          );
+          }
+        );
 
 
-          element.addEventListener(
-            "mouseleave",
-            () => {
+        element.addEventListener(
+          "mouseleave",
+          () => {
 
-              cursor.classList.remove(
-                "active"
-              );
+            cursor.classList.remove(
+              "active"
+            );
 
-            }
-          );
-
-        }
-      );
-
-  }
-
-
-  /* =========================================================
-     11 — PAGE TO PAGE FADE
-  ========================================================= */
-
-  if (!reduceMotion) {
-
-    document
-      .querySelectorAll(
-        'a[href$=".html"], a[href^="./"], a[href^="../"]'
-      )
-      .forEach(
-        (link) => {
-
-          link.addEventListener(
-            "click",
-            (event) => {
-
-              const href =
-                link.getAttribute(
-                  "href"
-                );
-
-
-              if (
-                !href ||
-                link.target === "_blank" ||
-                event.ctrlKey ||
-                event.metaKey ||
-                event.shiftKey ||
-                event.altKey
-              ) {
-                return;
-              }
-
-
-              let url;
-
-
-              try {
-
-                url =
-                  new URL(
-                    href,
-                    window.location.href
-                  );
-
-              } catch {
-
-                return;
-
-              }
-
-
-              if (
-                url.origin !==
-                window.location.origin
-              ) {
-                return;
-              }
-
-
-              if (
-                url.pathname ===
-                  window.location.pathname &&
-                !url.search
-              ) {
-                return;
-              }
-
-
-              event.preventDefault();
-
-              setMenu(false);
-
-
-              body.classList.add(
-                "flare-leaving"
-              );
-
-
-              window.setTimeout(
-                () => {
-
-                  window.location.href =
-                    url.href;
-
-                },
-                420
-              );
-
-            }
-          );
-
-        }
-      );
-
-  }
-
-
-  /* =========================================================
-     12 — ACTIVE DESKTOP NAV
-  ========================================================= */
-
-  const sections =
-    document.querySelectorAll(
-      "section[id]"
-    );
-
-
-  const navLinks =
-    document.querySelectorAll(
-      '.desktop-nav a[href^="#"]'
-    );
-
-
-  if (
-    sections.length &&
-    navLinks.length &&
-    "IntersectionObserver" in window
-  ) {
-
-    const navObserver =
-      new IntersectionObserver(
-
-        (entries) => {
-
-          entries.forEach(
-            (entry) => {
-
-              if (
-                !entry.isIntersecting
-              ) {
-                return;
-              }
-
-
-              navLinks.forEach(
-                (link) => {
-
-                  link.classList.toggle(
-
-                    "active",
-
-                    link.getAttribute(
-                      "href"
-                    ) ===
-                    `#${entry.target.id}`
-
-                  );
-
-                }
-              );
-
-            }
-          );
-
-        },
-
-        {
-
-          threshold: 0.45,
-
-          rootMargin:
-            `-${
-              (header?.offsetHeight || 0) +
-              10
-            }px 0px -35% 0px`
-
-        }
-
-      );
-
-
-    sections.forEach(
-      (section) => {
-
-        navObserver.observe(
-          section
+          }
         );
 
       }
@@ -1213,27 +669,163 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+
   /* =========================================================
-     13 — CONTACT / CTA BUTTON SAFETY
+     SERVICE PANEL POINTER DEPTH
+     DESKTOP ONLY
   ========================================================= */
 
-  document
-    .querySelectorAll(
-      ".big-cta a, .contact-hero a"
-    )
+  if (
+    finePointer.matches
+  ) {
+
+    $$(".service-panel")
+      .forEach(
+        (panel) => {
+
+          panel.addEventListener(
+            "pointermove",
+            (event) => {
+
+              if (
+                window.innerWidth <= 900
+              ) {
+
+                return;
+
+              }
+
+
+              const rect =
+                panel.getBoundingClientRect();
+
+
+              const x =
+                (
+                  event.clientX -
+                  rect.left
+                ) /
+                  rect.width -
+                0.5;
+
+
+              const y =
+                (
+                  event.clientY -
+                  rect.top
+                ) /
+                  rect.height -
+                0.5;
+
+
+              panel.style.setProperty(
+                "--mx",
+                `${(
+                  x * 4
+                ).toFixed(2)}px`
+              );
+
+
+              panel.style.setProperty(
+                "--my",
+                `${(
+                  y * 4
+                ).toFixed(2)}px`
+              );
+
+            }
+          );
+
+
+          panel.addEventListener(
+            "pointerleave",
+            () => {
+
+              panel.style.setProperty(
+                "--mx",
+                "0px"
+              );
+
+
+              panel.style.setProperty(
+                "--my",
+                "0px"
+              );
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+
+  /* =========================================================
+     INTERNAL PAGE TRANSITIONS
+  ========================================================= */
+
+  $$(
+    'a[href$=".html"]'
+  ).forEach(
+    (link) => {
+
+      link.addEventListener(
+        "click",
+        (event) => {
+
+          if (
+            event.defaultPrevented ||
+            link.target === "_blank" ||
+            link.hasAttribute(
+              "download"
+            )
+          ) {
+
+            return;
+
+          }
+
+
+          const href =
+            link.getAttribute(
+              "href"
+            );
+
+
+          if (!href) {
+
+            return;
+
+          }
+
+
+          body.classList.add(
+            "flare-leaving"
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+
+  /* =========================================================
+     SOCIAL LINKS
+  ========================================================= */
+
+  $$(".social-icon")
     .forEach(
       (link) => {
 
         link.addEventListener(
           "click",
-          () => {
+          (event) => {
 
-            /*
-              Prevent menu state from surviving
-              when CTA navigation happens.
-            */
-
-            setMenu(false);
+            event.stopPropagation();
 
           }
         );
@@ -1242,36 +834,110 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+
   /* =========================================================
-     14 — MOBILE TOUCH SAFETY
+     HERO PARALLAX
+     VERY SUBTLE
   ========================================================= */
 
+  const hero =
+    $("[data-hero]");
+
+
   if (
-    "ontouchstart" in window
+    hero &&
+    !window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
   ) {
 
-    root.classList.add(
-      "touch-device"
+    let heroTicking =
+      false;
+
+
+    function updateHeroParallax() {
+
+      const scroll =
+        window.scrollY;
+
+
+      if (
+        scroll >
+        window.innerHeight * 1.1
+      ) {
+
+        hero.style.setProperty(
+          "--hero-scroll",
+          "0px"
+        );
+
+        heroTicking = false;
+
+        return;
+
+      }
+
+
+      const offset =
+        Math.min(
+          scroll * 0.10,
+          80
+        );
+
+
+      hero.style.setProperty(
+        "--hero-scroll",
+        `${offset}px`
+      );
+
+
+      heroTicking = false;
+
+    }
+
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        if (heroTicking) {
+
+          return;
+
+        }
+
+
+        heroTicking =
+          true;
+
+
+        requestAnimationFrame(
+          updateHeroParallax
+        );
+
+      },
+      {
+        passive: true
+      }
     );
 
   }
 
 
+
   /* =========================================================
-     15 — FINAL READY STATE
+     FINAL READY STATE
   ========================================================= */
 
-  window.setTimeout(
+  setTimeout(
     () => {
 
-      root.classList.add(
+      body.classList.add(
         "flare-motion-ready"
       );
 
     },
-    reduceMotion
-      ? 0
-      : 100
+    100
   );
 
-});
+})();
