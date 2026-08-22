@@ -19,15 +19,9 @@
 
   <meta name="author" content="FLARE Events India">
 
-  <meta
-    name="robots"
-    content="index, follow"
-  >
+  <meta name="robots" content="index, follow">
 
-  <meta
-    name="theme-color"
-    content="#050505"
-  >
+  <meta name="theme-color" content="#050505">
 
   <link
     rel="canonical"
@@ -41,9 +35,7 @@
   >
 
 
-  <!-- =========================
-       OPEN GRAPH
-  ========================== -->
+  <!-- OPEN GRAPH -->
 
   <meta property="og:type" content="website">
 
@@ -67,25 +59,12 @@
     content="https://flareevents.in/social-share.jpeg"
   >
 
-  <meta
-    property="og:image:width"
-    content="1200"
-  >
-
-  <meta
-    property="og:image:height"
-    content="630"
-  >
-
-  <meta
-    property="og:site_name"
-    content="FLARE"
-  >
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="FLARE">
 
 
-  <!-- =========================
-       TWITTER / X
-  ========================== -->
+  <!-- TWITTER -->
 
   <meta
     name="twitter:card"
@@ -108,14 +87,9 @@
   >
 
 
-  <!-- =========================
-       FONTS
-  ========================== -->
+  <!-- FONTS -->
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
     rel="preconnect"
@@ -129,9 +103,7 @@
   >
 
 
-  <!-- =========================
-       MAIN CSS
-  ========================== -->
+  <!-- MASTER CSS -->
 
   <link
     rel="stylesheet"
@@ -139,1036 +111,7 @@
   >
 
 
-  <!-- =========================
-       FLARE LOADER
-  ========================== -->
-
-  <style>
-
-    .flare-page-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 999999;
-      display: grid;
-      place-items: center;
-      background: #050505;
-      pointer-events: none;
-      animation:
-        flareLoaderOut
-        1s
-        1.25s
-        cubic-bezier(.77,0,.18,1)
-        forwards;
-    }
-
-    .flare-page-loader img {
-      width: min(430px,58vw);
-      height: auto;
-      display: block;
-      opacity: 0;
-      transform: translateY(24px) scale(.96);
-      animation:
-        flareLogoIn
-        .8s
-        .12s
-        cubic-bezier(.2,.75,.2,1)
-        forwards;
-    }
-
-    .flare-loader-line {
-      position: absolute;
-      left: 50%;
-      bottom: 13%;
-      width: min(260px,42vw);
-      height: 1px;
-      background: rgba(255,255,255,.12);
-      overflow: hidden;
-      transform: translateX(-50%);
-    }
-
-    .flare-loader-line::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: #c79a3b;
-      transform: translateX(-100%);
-      animation:
-        flareLoaderLine
-        1s
-        .2s
-        cubic-bezier(.7,0,.2,1)
-        forwards;
-    }
-
-    @keyframes flareLogoIn {
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @keyframes flareLoaderLine {
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes flareLoaderOut {
-      to {
-        transform: translateY(-100%);
-        visibility: hidden;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .flare-page-loader,
-      .flare-page-loader img,
-      .flare-loader-line::after {
-        animation: none;
-      }
-
-      .flare-page-loader {
-        visibility: hidden;
-      }
-
-    }
-
-  </style>
-
-
-  <!-- =========================
-       FACEBOOK FIX
-  ========================== -->
-
-  <style>
-
-    .social-icons .facebook-social {
-
-      width: 44px !important;
-      height: 44px !important;
-
-      min-width: 44px !important;
-      min-height: 44px !important;
-
-      display: inline-flex !important;
-
-      align-items: center !important;
-      justify-content: center !important;
-
-      box-sizing: border-box !important;
-
-      border: 1px solid rgba(0,0,0,.28) !important;
-
-      border-radius: 50% !important;
-
-      background: transparent !important;
-
-      color: #111 !important;
-
-      opacity: 1 !important;
-      visibility: visible !important;
-
-      overflow: visible !important;
-
-      text-decoration: none !important;
-
-    }
-
-    .social-icons .facebook-social .facebook-f {
-
-      display: flex !important;
-
-      align-items: center !important;
-      justify-content: center !important;
-
-      width: 22px !important;
-      height: 22px !important;
-
-      color: #111 !important;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif !important;
-
-      font-size: 24px !important;
-
-      font-weight: 700 !important;
-
-      line-height: 1 !important;
-
-      opacity: 1 !important;
-      visibility: visible !important;
-
-      transform: translateY(1px) !important;
-
-    }
-
-    .social-icons .facebook-social:hover {
-
-      background: #080808 !important;
-
-      color: #fff !important;
-
-      border-color: #080808 !important;
-
-      transform: translateY(-5px) !important;
-
-    }
-
-    .social-icons .facebook-social:hover .facebook-f {
-
-      color: #fff !important;
-
-    }
-
-    @media (max-width:768px) {
-
-      .social-icons .facebook-social {
-
-        width: 42px !important;
-        height: 42px !important;
-
-        min-width: 42px !important;
-        min-height: 42px !important;
-
-      }
-
-      .social-icons .facebook-social .facebook-f {
-
-        font-size: 23px !important;
-
-      }
-
-    }
-
-  </style>
-
-
-  <!-- =========================
-       REVEAL ANIMATION
-  ========================== -->
-
-  <style>
-
-    .reveal {
-
-      opacity: 0;
-
-      transform: translateY(28px);
-
-      transition:
-        opacity .8s cubic-bezier(.2,.7,.2,1),
-        transform .8s cubic-bezier(.2,.7,.2,1);
-
-    }
-
-    .reveal.visible {
-
-      opacity: 1;
-
-      transform: none;
-
-    }
-
-    .delay-1 {
-      transition-delay: .08s;
-    }
-
-    .delay-2 {
-      transition-delay: .16s;
-    }
-
-    .delay-3 {
-      transition-delay: .24s;
-    }
-
-    .delay-4 {
-      transition-delay: .32s;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .reveal {
-
-        opacity: 1;
-
-        transform: none;
-
-        transition: none;
-
-      }
-
-    }
-
-  </style>
-
-
-  <!-- ==================================================
-       MOBILE MENU — FLARE MASTER DESIGN
-       This intentionally overrides old menu CSS.
-  =================================================== -->
-
-  <style>
-
-    /* -----------------------------------------------
-       MOBILE HEADER
-    ------------------------------------------------ */
-
-    @media (max-width: 900px) {
-
-      .site-header {
-
-        height: 86px !important;
-
-        padding:
-          0
-          30px
-          0
-          30px !important;
-
-        background:
-          rgba(5,5,5,.96) !important;
-
-        border-bottom:
-          1px solid rgba(255,255,255,.14) !important;
-
-        z-index: 10000 !important;
-
-      }
-
-
-      .brand-logo {
-
-        position: relative;
-
-        z-index: 10002;
-
-      }
-
-
-      .brand-logo img {
-
-        width: 124px !important;
-
-        height: auto !important;
-
-        display: block;
-
-      }
-
-
-      /* ---------------------------------------------
-         ROUND MENU BUTTON
-      --------------------------------------------- */
-
-      .menu-button {
-
-        position: relative !important;
-
-        display: flex !important;
-
-        width: 58px !important;
-
-        height: 58px !important;
-
-        min-width: 58px !important;
-
-        min-height: 58px !important;
-
-        padding: 0 !important;
-
-        align-items: center !important;
-
-        justify-content: center !important;
-
-        border:
-          1px solid rgba(255,255,255,.38) !important;
-
-        border-radius: 50% !important;
-
-        background: transparent !important;
-
-        cursor: pointer;
-
-        z-index: 10003 !important;
-
-        overflow: visible !important;
-
-        transition:
-          border-color .35s ease,
-          background .35s ease,
-          transform .35s ease;
-
-      }
-
-
-      .menu-button:hover {
-
-        border-color: rgba(255,255,255,.8) !important;
-
-      }
-
-
-      .menu-button span {
-
-        position: absolute !important;
-
-        left: 50% !important;
-
-        top: 50% !important;
-
-        width: 24px !important;
-
-        height: 1px !important;
-
-        margin: 0 !important;
-
-        background: #f7f7f5 !important;
-
-        transform:
-          translate(-50%, -50%) !important;
-
-        transform-origin: center !important;
-
-        transition:
-          transform .4s cubic-bezier(.77,0,.18,1),
-          opacity .25s ease;
-
-      }
-
-
-      .menu-button span:first-child {
-
-        margin-top: -4px !important;
-
-      }
-
-
-      .menu-button span:last-child {
-
-        margin-top: 4px !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         BUTTON → X
-      --------------------------------------------- */
-
-      .menu-button.active span:first-child {
-
-        margin-top: 0 !important;
-
-        transform:
-          translate(-50%, -50%)
-          rotate(45deg) !important;
-
-      }
-
-
-      .menu-button.active span:last-child {
-
-        margin-top: 0 !important;
-
-        transform:
-          translate(-50%, -50%)
-          rotate(-45deg) !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         FULL MOBILE MENU
-      --------------------------------------------- */
-
-      .mobile-menu {
-
-        position: fixed !important;
-
-        inset: 0 !important;
-
-        width: 100% !important;
-
-        height: 100dvh !important;
-
-        min-height: 100vh !important;
-
-        display: block !important;
-
-        visibility: hidden !important;
-
-        opacity: 0 !important;
-
-        background: #050505 !important;
-
-        z-index: 9999 !important;
-
-        overflow-y: auto !important;
-
-        overflow-x: hidden !important;
-
-        pointer-events: none !important;
-
-        transform:
-          translateY(-18px) !important;
-
-        transition:
-          opacity .45s ease,
-          transform .55s cubic-bezier(.77,0,.18,1),
-          visibility .45s ease !important;
-
-      }
-
-
-      .mobile-menu.active {
-
-        visibility: visible !important;
-
-        opacity: 1 !important;
-
-        pointer-events: auto !important;
-
-        transform: translateY(0) !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         MENU INNER
-      --------------------------------------------- */
-
-      .mobile-menu-inner {
-
-        position: relative !important;
-
-        width: 100% !important;
-
-        min-height: 100dvh !important;
-
-        padding:
-          155px
-          30px
-          36px !important;
-
-        display: flex !important;
-
-        flex-direction: column !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         MENU LABEL
-      --------------------------------------------- */
-
-      .menu-label {
-
-        display: block !important;
-
-        margin-bottom: 52px !important;
-
-        font-family:
-          "DM Mono",
-          monospace !important;
-
-        font-size: 12px !important;
-
-        font-weight: 400 !important;
-
-        letter-spacing: .25em !important;
-
-        text-transform: uppercase !important;
-
-        color: #6e6e6b !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         NAVIGATION
-      --------------------------------------------- */
-
-      .mobile-navigation {
-
-        display: flex !important;
-
-        flex-direction: column !important;
-
-        width: 100% !important;
-
-        margin: 0 !important;
-
-        padding: 0 !important;
-
-      }
-
-
-      .mobile-navigation a {
-
-        position: relative !important;
-
-        width: 100% !important;
-
-        min-height: 104px !important;
-
-        padding:
-          18px
-          0 !important;
-
-        display: flex !important;
-
-        align-items: center !important;
-
-        justify-content: space-between !important;
-
-        border-top:
-          1px solid rgba(255,255,255,.12) !important;
-
-        color: #f7f7f5 !important;
-
-        text-decoration: none !important;
-
-        overflow: hidden !important;
-
-        transition:
-          color .3s ease,
-          padding-left .3s ease;
-
-      }
-
-
-      .mobile-navigation a:last-child {
-
-        border-bottom:
-          1px solid rgba(255,255,255,.12) !important;
-
-      }
-
-
-      .mobile-navigation a span {
-
-        display: block !important;
-
-        max-width: calc(100% - 55px) !important;
-
-        font-family:
-          "Manrope",
-          sans-serif !important;
-
-        font-size:
-          clamp(34px, 9.5vw, 54px) !important;
-
-        line-height: .98 !important;
-
-        font-weight: 500 !important;
-
-        letter-spacing: -.055em !important;
-
-        white-space: nowrap !important;
-
-        color: #f4f4f2 !important;
-
-        transition:
-          transform .3s ease,
-          color .3s ease;
-
-      }
-
-
-      .mobile-navigation a small {
-
-        display: block !important;
-
-        flex-shrink: 0 !important;
-
-        margin-left: 15px !important;
-
-        font-family:
-          "DM Mono",
-          monospace !important;
-
-        font-size: 12px !important;
-
-        letter-spacing: .12em !important;
-
-        color: #656562 !important;
-
-        transition: color .3s ease;
-
-      }
-
-
-      .mobile-navigation a:hover span {
-
-        transform: translateX(8px);
-
-      }
-
-
-      .mobile-navigation a:hover small {
-
-        color: #c79a3b !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         GOLD ACTIVE / TOUCH FEEDBACK
-      --------------------------------------------- */
-
-      .mobile-navigation a:active span {
-
-        color: #c79a3b !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         SOCIAL LINKS
-      --------------------------------------------- */
-
-      .menu-socials {
-
-        margin-top: auto !important;
-
-        padding-top: 48px !important;
-
-        display: flex !important;
-
-        flex-wrap: wrap !important;
-
-        gap:
-          28px !important;
-
-      }
-
-
-      .menu-socials a {
-
-        font-family:
-          "DM Mono",
-          monospace !important;
-
-        font-size: 11px !important;
-
-        line-height: 1 !important;
-
-        letter-spacing: .18em !important;
-
-        text-transform: uppercase !important;
-
-        color: #777773 !important;
-
-        text-decoration: none !important;
-
-        transition:
-          color .25s ease;
-
-      }
-
-
-      .menu-socials a:hover {
-
-        color: #f7f7f5 !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         WHEN MENU OPEN
-      --------------------------------------------- */
-
-      body.menu-open {
-
-        overflow: hidden !important;
-
-        touch-action: none !important;
-
-      }
-
-
-      /* ---------------------------------------------
-         STAGGERED MENU ANIMATION
-      --------------------------------------------- */
-
-      .mobile-navigation a {
-
-        opacity: 0;
-
-        transform: translateY(25px);
-
-      }
-
-
-      .mobile-menu.active .mobile-navigation a {
-
-        opacity: 1;
-
-        transform: none;
-
-      }
-
-
-      .mobile-menu.active
-      .mobile-navigation a:nth-child(1) {
-
-        transition:
-          opacity .45s .08s ease,
-          transform .55s .08s cubic-bezier(.2,.8,.2,1);
-
-      }
-
-
-      .mobile-menu.active
-      .mobile-navigation a:nth-child(2) {
-
-        transition:
-          opacity .45s .13s ease,
-          transform .55s .13s cubic-bezier(.2,.8,.2,1);
-
-      }
-
-
-      .mobile-menu.active
-      .mobile-navigation a:nth-child(3) {
-
-        transition:
-          opacity .45s .18s ease,
-          transform .55s .18s cubic-bezier(.2,.8,.2,1);
-
-      }
-
-
-      .mobile-menu.active
-      .mobile-navigation a:nth-child(4) {
-
-        transition:
-          opacity .45s .23s ease,
-          transform .55s .23s cubic-bezier(.2,.8,.2,1);
-
-      }
-
-
-      .mobile-menu.active
-      .mobile-navigation a:nth-child(5) {
-
-        transition:
-          opacity .45s .28s ease,
-          transform .55s .28s cubic-bezier(.2,.8,.2,1);
-
-      }
-
-
-      .mobile-menu.active .menu-socials {
-
-        animation:
-          menuSocialIn
-          .6s
-          .38s
-          cubic-bezier(.2,.8,.2,1)
-          both;
-
-      }
-
-
-      @keyframes menuSocialIn {
-
-        from {
-
-          opacity: 0;
-
-          transform: translateY(15px);
-
-        }
-
-        to {
-
-          opacity: 1;
-
-          transform: none;
-
-        }
-
-      }
-
-    }
-
-
-    /* -----------------------------------------------
-       SMALL PHONES
-    ------------------------------------------------ */
-
-    @media (max-width: 600px) {
-
-      .site-header {
-
-        height: 82px !important;
-
-        padding:
-          0
-          22px
-          0
-          22px !important;
-
-      }
-
-
-      .brand-logo img {
-
-        width: 112px !important;
-
-      }
-
-
-      .menu-button {
-
-        width: 54px !important;
-
-        height: 54px !important;
-
-        min-width: 54px !important;
-
-        min-height: 54px !important;
-
-      }
-
-
-      .mobile-menu-inner {
-
-        padding:
-          137px
-          22px
-          28px !important;
-
-      }
-
-
-      .menu-label {
-
-        margin-bottom: 38px !important;
-
-        font-size: 10px !important;
-
-        letter-spacing: .22em !important;
-
-      }
-
-
-      .mobile-navigation a {
-
-        min-height: 91px !important;
-
-        padding:
-          15px
-          0 !important;
-
-      }
-
-
-      .mobile-navigation a span {
-
-        font-size:
-          clamp(30px, 8.9vw, 43px) !important;
-
-        letter-spacing: -.06em !important;
-
-      }
-
-
-      .mobile-navigation a small {
-
-        font-size: 10px !important;
-
-      }
-
-
-      .menu-socials {
-
-        gap: 20px !important;
-
-        padding-top: 36px !important;
-
-      }
-
-
-      .menu-socials a {
-
-        font-size: 9px !important;
-
-        letter-spacing: .14em !important;
-
-      }
-
-    }
-
-
-    /* -----------------------------------------------
-       VERY SMALL PHONES
-    ------------------------------------------------ */
-
-    @media (max-width: 380px) {
-
-      .mobile-menu-inner {
-
-        padding-top: 125px !important;
-
-      }
-
-
-      .menu-label {
-
-        margin-bottom: 28px !important;
-
-      }
-
-
-      .mobile-navigation a {
-
-        min-height: 80px !important;
-
-      }
-
-
-      .mobile-navigation a span {
-
-        font-size: 29px !important;
-
-      }
-
-    }
-
-
-    /* -----------------------------------------------
-       REDUCED MOTION
-    ------------------------------------------------ */
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .mobile-menu,
-      .menu-button span,
-      .mobile-navigation a {
-
-        transition: none !important;
-
-      }
-
-      .mobile-menu.active .menu-socials {
-
-        animation: none !important;
-
-      }
-
-    }
-
-  </style>
-
-
-  <!-- =========================
-       ORGANIZATION SCHEMA
-  ========================== -->
+  <!-- ORGANIZATION SCHEMA -->
 
   <script type="application/ld+json">
 
@@ -1194,9 +137,9 @@
 <body>
 
 
-  <!-- =========================
-       LOADER
-  ========================== -->
+  <!-- ==================================================
+       GLOBAL FLARE LOADER
+  ================================================== -->
 
   <div
     class="flare-page-loader"
@@ -1213,9 +156,9 @@
   </div>
 
 
-  <!-- =========================
+  <!-- ==================================================
        CUSTOM CURSOR
-  ========================== -->
+  ================================================== -->
 
   <div
     class="cursor-dot"
@@ -1223,9 +166,9 @@
   ></div>
 
 
-  <!-- =========================
+  <!-- ==================================================
        HEADER
-  ========================== -->
+  ================================================== -->
 
   <header class="site-header">
 
@@ -1246,7 +189,7 @@
 
     <nav
       class="desktop-nav"
-      aria-label="Main navigation"
+      aria-label="Primary navigation"
     >
 
       <a
@@ -1275,8 +218,6 @@
     </nav>
 
 
-    <!-- MOBILE MENU BUTTON -->
-
     <button
       class="menu-button"
       id="menuToggle"
@@ -1294,9 +235,9 @@
   </header>
 
 
-  <!-- =========================
+  <!-- ==================================================
        MOBILE MENU
-  ========================== -->
+  ================================================== -->
 
   <div
     class="mobile-menu"
@@ -1317,11 +258,7 @@
         aria-label="Mobile navigation"
       >
 
-
-        <a
-          href="index.html#idea"
-          aria-current="page"
-        >
+        <a href="index.html#idea">
 
           <span>
             THE IDEA
@@ -1385,12 +322,10 @@
 
         </a>
 
-
       </nav>
 
 
       <div class="menu-socials">
-
 
         <a
           href="https://www.instagram.com/weareflare.in/"
@@ -1400,7 +335,6 @@
           INSTAGRAM ↗
         </a>
 
-
         <a
           href="https://www.facebook.com/share/17yEoZoNkn/"
           target="_blank"
@@ -1408,7 +342,6 @@
         >
           FACEBOOK ↗
         </a>
-
 
         <a
           href="https://www.linkedin.com/company/flare-events-india/"
@@ -1418,7 +351,6 @@
           LINKEDIN ↗
         </a>
 
-
       </div>
 
 
@@ -1427,16 +359,16 @@
   </div>
 
 
-  <!-- =========================
+  <!-- ==================================================
        MAIN
-  ========================== -->
+  ================================================== -->
 
   <main>
 
 
-    <!-- =========================
+    <!-- ==================================================
          HERO
-    ========================== -->
+    ================================================== -->
 
     <section class="hero">
 
@@ -1583,9 +515,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          TICKER
-    ========================== -->
+    ================================================== -->
 
     <section
       class="ticker"
@@ -1623,20 +555,17 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          IDEA
-    ========================== -->
+    ================================================== -->
 
     <section
       class="idea section-dark"
       id="idea"
     >
 
-
       <div class="section-number reveal">
-
         01 — THE IDEA
-
       </div>
 
 
@@ -1646,9 +575,7 @@
         <div>
 
           <p class="eyebrow reveal">
-
             NOT JUST ANOTHER AGENCY.
-
           </p>
 
 
@@ -1666,21 +593,16 @@
 
         <div class="idea-copy reveal">
 
-
           <p>
-
             FLARE sits where experiences,
             creators, brands and culture meet.
-
           </p>
 
 
           <p>
-
             We turn ideas into moments worth
             talking about — from intimate
             celebrations to creator-led campaigns.
-
           </p>
 
 
@@ -1697,7 +619,6 @@
 
           </a>
 
-
         </div>
 
 
@@ -1706,9 +627,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          WHAT WE DO
-    ========================== -->
+    ================================================== -->
 
     <section
       class="services section-light"
@@ -1717,19 +638,15 @@
 
 
       <div class="section-number dark-number reveal">
-
         02 — WHAT WE DO
-
       </div>
 
 
       <div class="services-intro reveal">
 
         <p>
-
           The right idea changes everything.
           The right people make it matter.
-
         </p>
 
       </div>
@@ -1738,6 +655,8 @@
       <div class="service-cards">
 
 
+        <!-- BRAND -->
+
         <a
           href="brand.html"
           class="service-card reveal magnetic"
@@ -1745,13 +664,9 @@
 
           <div class="card-top">
 
-            <span>
-              01
-            </span>
+            <span>01</span>
 
-            <span>
-              BRAND
-            </span>
+            <span>BRAND</span>
 
           </div>
 
@@ -1762,10 +677,8 @@
 
 
           <p>
-
             Strategy, partnerships and
             experiences built around your objective.
-
           </p>
 
 
@@ -1784,6 +697,8 @@
         </a>
 
 
+        <!-- FLARE -->
+
         <a
           href="brand.html"
           class="service-card reveal magnetic"
@@ -1791,13 +706,9 @@
 
           <div class="card-top">
 
-            <span>
-              02
-            </span>
+            <span>02</span>
 
-            <span>
-              FLARE
-            </span>
+            <span>FLARE</span>
 
           </div>
 
@@ -1808,10 +719,8 @@
 
 
           <p>
-
             Creative direction and strategy
             designed to make ideas matter.
-
           </p>
 
 
@@ -1830,6 +739,8 @@
         </a>
 
 
+        <!-- CREATOR -->
+
         <a
           href="creator.html"
           class="service-card reveal magnetic"
@@ -1837,13 +748,9 @@
 
           <div class="card-top">
 
-            <span>
-              03
-            </span>
+            <span>03</span>
 
-            <span>
-              CREATOR
-            </span>
+            <span>CREATOR</span>
 
           </div>
 
@@ -1854,10 +761,8 @@
 
 
           <p>
-
             The right voices, partnerships
             and people for your story.
-
           </p>
 
 
@@ -1876,6 +781,8 @@
         </a>
 
 
+        <!-- AUDIENCE -->
+
         <a
           href="creator.html"
           class="service-card reveal magnetic"
@@ -1883,13 +790,9 @@
 
           <div class="card-top">
 
-            <span>
-              04
-            </span>
+            <span>04</span>
 
-            <span>
-              AUDIENCE
-            </span>
+            <span>AUDIENCE</span>
 
           </div>
 
@@ -1900,10 +803,8 @@
 
 
           <p>
-
             Attention that becomes connection,
             action and influence.
-
           </p>
 
 
@@ -1931,9 +832,7 @@
 
 
         <div class="list-intro">
-
           CAPABILITIES
-
         </div>
 
 
@@ -2068,17 +967,15 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          APPROACH
-    ========================== -->
+    ================================================== -->
 
     <section class="principles section-dark">
 
 
       <div class="section-number reveal">
-
         03 — THE APPROACH
-
       </div>
 
 
@@ -2100,10 +997,8 @@
 
 
         <p>
-
           We're building from the ground up —
           with a full launch planned for 2027.
-
         </p>
 
 
@@ -2178,9 +1073,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          WORK
-    ========================== -->
+    ================================================== -->
 
     <section
       class="chapter section-dark"
@@ -2189,9 +1084,7 @@
 
 
       <div class="section-number reveal">
-
         04 — SELECTED WORK
-
       </div>
 
 
@@ -2201,9 +1094,7 @@
         <div>
 
           <span class="eyebrow">
-
             BUILDING TOWARD 2027
-
           </span>
 
 
@@ -2250,11 +1141,9 @@
             </span>
 
             <strong>
-
               THE FIRST
               <br>
               CHAPTER
-
             </strong>
 
           </div>
@@ -2286,11 +1175,9 @@
             </span>
 
             <strong>
-
               THE NEXT
               <br>
               MOMENT
-
             </strong>
 
           </div>
@@ -2322,11 +1209,9 @@
             </span>
 
             <strong>
-
               MORE
               <br>
               TO COME
-
             </strong>
 
           </div>
@@ -2353,11 +1238,9 @@
       <div class="chapter-note reveal">
 
         <p>
-
           FLARE is preparing for its full 2027 launch.
           This space will become a home for our real
           work, collaborations and experiences.
-
         </p>
 
       </div>
@@ -2366,9 +1249,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          CTA
-    ========================== -->
+    ================================================== -->
 
     <section class="big-cta">
 
@@ -2376,147 +1259,154 @@
       <div class="cta-inner">
 
 
-        <span class="eyebrow">
+        <div>
 
-          LET'S MAKE SOMETHING MATTER.
-
-        </span>
-
-
-        <h2 class="reveal">
-
-          MAKE
-          <br>
-
-          IT
-
-          <span>
-            MATTER.
+          <span class="eyebrow">
+            LET'S MAKE SOMETHING MATTER.
           </span>
 
-        </h2>
+
+          <h2 class="reveal">
+
+            MAKE
+            <br>
+
+            IT
+
+            <span>
+              MATTER.
+            </span>
+
+          </h2>
+
+        </div>
 
 
-        <a
-          href="contact.html"
-          class="cta-button magnetic reveal"
-        >
-
-          <span>
-            START A PROJECT
-          </span>
-
-          <span>
-            ↗
-          </span>
-
-        </a>
-
-
-        <a
-          href="mailto:book.flareevents@gmail.com"
-          class="email-link"
-        >
-
-          book.flareevents@gmail.com
-
-        </a>
-
-
-        <div class="social-icons">
+        <div>
 
 
           <a
-            href="https://www.instagram.com/weareflare.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
+            href="contact.html"
+            class="cta-button magnetic reveal"
           >
 
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
+            <span>
+              START A PROJECT
+            </span>
 
-              <rect
-                x="3"
-                y="3"
-                width="18"
-                height="18"
-                rx="5"
-              ></rect>
-
-              <circle
-                cx="12"
-                cy="12"
-                r="4"
-              ></circle>
-
-              <circle
-                cx="17.5"
-                cy="6.5"
-                r="1"
-                fill="currentColor"
-                stroke="none"
-              ></circle>
-
-            </svg>
-
-          </a>
-
-
-          <a
-            href="https://www.facebook.com/share/17yEoZoNkn/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            class="facebook-social"
-          >
-
-            <span
-              class="facebook-f"
-              aria-hidden="true"
-            >
-              f
+            <span>
+              ↗
             </span>
 
           </a>
 
 
           <a
-            href="https://www.linkedin.com/company/flare-events-india/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
+            href="mailto:book.flareevents@gmail.com"
+            class="email-link"
           >
-
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-
-              <rect
-                x="4"
-                y="4"
-                width="16"
-                height="16"
-                rx="2"
-              ></rect>
-
-              <path
-                d="M8 10v7M8 7v.1M12 17v-4c0-2 1-3 2.5-3s2.5 1 2.5 3v4M12 10v7"
-              ></path>
-
-            </svg>
-
+            book.flareevents@gmail.com
           </a>
 
+
+          <div
+            class="social-icons"
+            aria-label="Social links"
+          >
+
+
+            <a
+              href="https://www.instagram.com/weareflare.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                ></rect>
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                ></circle>
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                ></circle>
+
+              </svg>
+
+            </a>
+
+
+            <a
+              href="https://www.facebook.com/share/17yEoZoNkn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              class="facebook-social"
+            >
+
+              <span
+                class="facebook-f"
+                aria-hidden="true"
+              >
+                f
+              </span>
+
+            </a>
+
+
+            <a
+              href="https://www.linkedin.com/company/flare-events-india/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+
+                <rect
+                  x="4"
+                  y="4"
+                  width="16"
+                  height="16"
+                  rx="2"
+                ></rect>
+
+                <path
+                  d="M8 10v7M8 7v.1M12 17v-4c0-2 1-3 2.5-3s2.5 1 2.5 3v4M12 10v7"
+                ></path>
+
+              </svg>
+
+            </a>
+
+
+          </div>
 
         </div>
 
 
       </div>
-
 
     </section>
 
@@ -2524,9 +1414,9 @@
   </main>
 
 
-  <!-- =========================
+  <!-- ==================================================
        FOOTER
-  ========================== -->
+  ================================================== -->
 
   <footer class="footer">
 
@@ -2617,21 +1507,17 @@
 
     <div class="footer-bottom">
 
-
       <span>
         © 2026 FLARE. ALL RIGHTS RESERVED.
       </span>
-
 
       <span>
         EVENTS · INFLUENCE · EXPERIENCES
       </span>
 
-
       <span>
         INDIA
       </span>
-
 
     </div>
 
@@ -2639,89 +1525,20 @@
   </footer>
 
 
-  <!-- =========================
-       MENU + REVEAL JS
-  ========================== -->
+  <!-- ==================================================
+       SITE JS
+  ================================================== -->
+
+  <script src="script.js"></script>
+
+
+  <!-- HOMEPAGE MENU FALLBACK / SYNC -->
 
   <script>
 
     document.addEventListener(
       "DOMContentLoaded",
-      function () {
-
-
-        /* =========================================
-           REVEAL ANIMATIONS
-        ========================================= */
-
-        const revealItems =
-          document.querySelectorAll(".reveal");
-
-
-        if (
-          !("IntersectionObserver" in window)
-        ) {
-
-          revealItems.forEach(
-            function (item) {
-
-              item.classList.add("visible");
-
-            }
-          );
-
-        } else {
-
-          const revealObserver =
-            new IntersectionObserver(
-              function (
-                entries,
-                observer
-              ) {
-
-                entries.forEach(
-                  function (entry) {
-
-                    if (
-                      entry.isIntersecting
-                    ) {
-
-                      entry.target.classList.add(
-                        "visible"
-                      );
-
-                      observer.unobserve(
-                        entry.target
-                      );
-
-                    }
-
-                  }
-                );
-
-              },
-              {
-                threshold: .12,
-                rootMargin:
-                  "0px 0px -40px 0px"
-              }
-            );
-
-
-          revealItems.forEach(
-            function (item) {
-
-              revealObserver.observe(item);
-
-            }
-          );
-
-        }
-
-
-        /* =========================================
-           MOBILE MENU
-        ========================================= */
+      () => {
 
         const menuToggle =
           document.getElementById("menuToggle");
@@ -2729,213 +1546,103 @@
         const mobileMenu =
           document.getElementById("mobileMenu");
 
-
-        if (
-          !menuToggle ||
-          !mobileMenu
-        ) {
-
-          return;
-
-        }
+        if (!menuToggle || !mobileMenu) return;
 
 
-        const mobileLinks =
-          mobileMenu.querySelectorAll(
-            "a"
+        function syncMenuState(open) {
+
+          menuToggle.classList.toggle(
+            "active",
+            open
           );
 
+          mobileMenu.classList.toggle(
+            "active",
+            open
+          );
 
-        /* -----------------------------------------
-           OPEN
-        ----------------------------------------- */
-
-        function openMenu() {
-
-          mobileMenu.classList.add("active");
-
-          menuToggle.classList.add("active");
-
-          document.body.classList.add("menu-open");
-
-          mobileMenu.setAttribute(
-            "aria-hidden",
-            "false"
+          document.body.classList.toggle(
+            "menu-open",
+            open
           );
 
           menuToggle.setAttribute(
             "aria-expanded",
-            "true"
+            String(open)
           );
 
           menuToggle.setAttribute(
             "aria-label",
-            "Close menu"
+            open
+              ? "Close menu"
+              : "Open menu"
           );
-
-        }
-
-
-        /* -----------------------------------------
-           CLOSE
-        ----------------------------------------- */
-
-        function closeMenu() {
-
-          mobileMenu.classList.remove("active");
-
-          menuToggle.classList.remove("active");
-
-          document.body.classList.remove("menu-open");
 
           mobileMenu.setAttribute(
             "aria-hidden",
-            "true"
-          );
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-          menuToggle.setAttribute(
-            "aria-label",
-            "Open menu"
+            String(!open)
           );
 
         }
 
-
-        /* -----------------------------------------
-           TOGGLE
-        ----------------------------------------- */
 
         menuToggle.addEventListener(
           "click",
-          function () {
+          () => {
 
-            const isOpen =
-              mobileMenu.classList.contains(
+            syncMenuState(
+              !mobileMenu.classList.contains(
                 "active"
-              );
-
-
-            if (isOpen) {
-
-              closeMenu();
-
-            } else {
-
-              openMenu();
-
-            }
-
-          }
-        );
-
-
-        /* -----------------------------------------
-           CLOSE AFTER LINK CLICK
-        ----------------------------------------- */
-
-        mobileLinks.forEach(
-          function (link) {
-
-            link.addEventListener(
-              "click",
-              function () {
-
-                closeMenu();
-
-              }
+              )
             );
 
           }
         );
 
 
-        /* -----------------------------------------
-           ESCAPE KEY
-        ----------------------------------------- */
+        mobileMenu
+          .querySelectorAll("a")
+          .forEach(link => {
+
+            link.addEventListener(
+              "click",
+              () => syncMenuState(false)
+            );
+
+          });
+
 
         document.addEventListener(
           "keydown",
-          function (event) {
+          event => {
 
-            if (
-              event.key === "Escape"
-            ) {
+            if (event.key === "Escape") {
 
-              closeMenu();
+              syncMenuState(false);
 
             }
 
           }
         );
 
-
-        /* -----------------------------------------
-           RESIZE
-        ----------------------------------------- */
 
         window.addEventListener(
           "resize",
-          function () {
+          () => {
 
-            if (
-              window.innerWidth > 900
-            ) {
+            if (window.innerWidth > 900) {
 
-              closeMenu();
+              syncMenuState(false);
 
             }
 
           }
         );
-
-
-        /* -----------------------------------------
-           PREVENT BACKGROUND SCROLL
-        ----------------------------------------- */
-
-        document.addEventListener(
-          "touchmove",
-          function (event) {
-
-            if (
-              document.body.classList.contains(
-                "menu-open"
-              )
-            ) {
-
-              if (
-                !event.target.closest(
-                  ".mobile-menu"
-                )
-              ) {
-
-                event.preventDefault();
-
-              }
-
-            }
-
-          },
-          {
-            passive: false
-          }
-        );
-
 
       }
     );
 
   </script>
-
-
-  <!-- Existing site JS -->
-
-  <script src="script.js"></script>
 
 
 </body>
