@@ -122,15 +122,15 @@
     >
 
       <a href="#idea">
-        About
+        The Idea
       </a>
 
       <a href="#services">
-        Services
+        What We Do
       </a>
 
       <a href="#work">
-        Work
+        Selected Work
       </a>
 
       <a href="founder.html">
@@ -138,7 +138,7 @@
       </a>
 
       <a href="contact.html">
-        Start a Project ↗
+        Start a Project ↗︎
       </a>
 
     </nav>
@@ -157,6 +157,60 @@
     </button>
 
   </header>
+  <!-- =====================================================
+       MOBILE MENU
+  ====================================================== -->
+
+  <div class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+
+      <div class="mobile-menu-top">
+        <span>MENU / 001</span>
+        <span>FLARE / 2026</span>
+      </div>
+
+      <nav class="mobile-navigation" aria-label="Mobile navigation">
+
+        <a href="#idea">
+          <span>01</span>
+          <strong>The Idea</strong>
+          <i>↗︎</i>
+        </a>
+
+        <a href="#services">
+          <span>02</span>
+          <strong>What We Do</strong>
+          <i>↗︎</i>
+        </a>
+
+        <a href="#work">
+          <span>03</span>
+          <strong>Selected Work</strong>
+          <i>↗︎</i>
+        </a>
+
+        <a href="founder.html">
+          <span>04</span>
+          <strong>Founder</strong>
+          <i>↗︎</i>
+        </a>
+
+        <a href="contact.html">
+          <span>05</span>
+          <strong>Start a Project</strong>
+          <i>↗︎</i>
+        </a>
+
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <span>INSTAGRAM ↗︎</span>
+        <span>FLARE / 2026</span>
+      </div>
+
+    </div>
+  </div>
+
 
 
 
@@ -226,7 +280,7 @@
             class="button button-light"
           >
             EXPLORE FLARE
-            <span>↗</span>
+            <span>↗︎</span>
           </a>
 
 
@@ -234,7 +288,7 @@
             href="contact.html"
             class="text-link"
           >
-            START A PROJECT ↗
+            START A PROJECT ↗︎
           </a>
 
         </div>
@@ -400,7 +454,7 @@
 
             DISCOVER THE STORY
 
-            <span>↗</span>
+            <span>↗︎</span>
 
           </a>
 
@@ -483,7 +537,7 @@
             </span>
 
             <span>
-              ↗
+              ↗︎
             </span>
 
           </div>
@@ -533,7 +587,7 @@
             </span>
 
             <span>
-              ↗
+              ↗︎
             </span>
 
           </div>
@@ -583,7 +637,7 @@
             </span>
 
             <span>
-              ↗
+              ↗︎
             </span>
 
           </div>
@@ -633,7 +687,7 @@
             </span>
 
             <span>
-              ↗
+              ↗︎
             </span>
 
           </div>
@@ -1037,7 +1091,7 @@
             href="mailto:book.flareevents@gmail.com"
             class="email-link"
           >
-            book.flareevents@gmail.com ↗
+            book.flareevents@gmail.com ↗︎
           </a>
 
         </div>
@@ -1051,7 +1105,7 @@
           START A PROJECT
 
           <span>
-            ↗
+            ↗︎
           </span>
 
         </a>
@@ -1104,15 +1158,15 @@
         </span>
 
         <a href="#idea">
-          About
+          The Idea
         </a>
 
         <a href="#services">
-          Services
+          What We Do
         </a>
 
         <a href="#work">
-          Work
+          Selected Work
         </a>
 
         <a href="founder.html">
@@ -1129,7 +1183,7 @@
         </span>
 
         <a href="contact.html">
-          Start a Project ↗
+          Start a Project ↗︎
         </a>
 
         <a
@@ -1137,7 +1191,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          Instagram ↗
+          Instagram ↗︎
         </a>
 
         <a
@@ -1145,7 +1199,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          LinkedIn ↗
+          LinkedIn ↗︎
         </a>
 
       </div>
@@ -1185,6 +1239,40 @@
   ====================================================== -->
 
   <script src="script.js"></script>
+
+
+  <script>
+    (() => {
+      const button = document.querySelector('.menu-button');
+      const menu = document.querySelector('.mobile-menu');
+
+      if (!button || !menu) return;
+
+      const closeMenu = () => {
+        button.classList.remove('active');
+        button.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('menu-open');
+      };
+
+      button.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        button.classList.toggle('active', isOpen);
+        button.setAttribute('aria-expanded', String(isOpen));
+        menu.setAttribute('aria-hidden', String(!isOpen));
+        document.body.classList.toggle('menu-open', isOpen);
+      });
+
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
 
 </body>
 </html>
