@@ -8,20 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const header = document.querySelector(".site-header");
 
-
   /* =========================================================
      GLOBAL PAGE LOADER
-     Creates the loader automatically if a page doesn't
-     contain loader HTML.
   ========================================================= */
 
-  let flareLoader = document.querySelector(".flare-page-loader");
+  let flareLoader =
+    document.querySelector(".flare-page-loader");
 
   if (!flareLoader) {
 
-    flareLoader = document.createElement("div");
+    flareLoader =
+      document.createElement("div");
 
-    flareLoader.className = "flare-page-loader";
+    flareLoader.className =
+      "flare-page-loader";
 
     flareLoader.innerHTML = `
       <img src="flare-logo.png" alt="FLARE">
@@ -31,31 +31,58 @@ document.addEventListener("DOMContentLoaded", () => {
     body.prepend(flareLoader);
   }
 
+
   body.classList.add("flare-loading");
+
+
+  let loaderFinished = false;
 
 
   const finishLoader = () => {
 
-    body.classList.remove("flare-loading");
+    if (loaderFinished) {
+      return;
+    }
 
-    body.classList.add("flare-ready");
+    loaderFinished = true;
+
+    body.classList.remove(
+      "flare-loading"
+    );
+
+    body.classList.add(
+      "flare-ready"
+    );
+
 
     if (flareLoader) {
 
-      flareLoader.classList.add("is-hidden");
+      flareLoader.classList.add(
+        "is-hidden"
+      );
 
       window.setTimeout(() => {
 
-        if (flareLoader) {
+        if (
+          flareLoader &&
+          flareLoader.parentNode
+        ) {
+
           flareLoader.remove();
+
         }
 
       }, 850);
+
     }
+
   };
 
 
-  if (document.readyState === "complete") {
+  if (
+    document.readyState ===
+    "complete"
+  ) {
 
     window.setTimeout(
       finishLoader,
@@ -74,22 +101,100 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
       },
-      { once: true }
+      {
+        once:true
+      }
     );
+
   }
 
 
   /* =========================================================
      MOBILE MENU
-     Automatically creates the same menu on every page.
+     SAME MENU ON EVERY PAGE
   ========================================================= */
 
   const menuButton =
-    document.querySelector(".menu-button");
+    document.querySelector(
+      ".menu-button"
+    );
+
 
   let mobileMenu =
-    document.querySelector(".mobile-menu");
+    document.querySelector(
+      ".mobile-menu"
+    );
 
+
+  /*
+    Get desktop navigation.
+    This allows the mobile menu to automatically
+    stay synchronized with every page.
+  */
+
+  const desktopLinks =
+    Array.from(
+      document.querySelectorAll(
+        ".desktop-nav a"
+      )
+    );
+
+
+  /*
+    If a page does not have desktop navigation,
+    use the FLARE global navigation as fallback.
+  */
+
+  const fallbackLinks = [
+    {
+      label:"THE IDEA",
+      href:"index.html"
+    },
+    {
+      label:"WHAT WE DO",
+      href:"brand.html"
+    },
+    {
+      label:"SELECTED WORK",
+      href:"work.html"
+    },
+    {
+      label:"FOUNDER",
+      href:"founder.html"
+    },
+    {
+      label:"START A PROJECT",
+      href:"contact.html"
+    }
+  ];
+
+
+  const navigationData =
+    desktopLinks.length
+      ? desktopLinks.map(link => {
+
+          const href =
+            link.getAttribute(
+              "href"
+            ) || "#";
+
+          const label =
+            link.textContent
+              .replace("↗","")
+              .trim();
+
+          return {
+            label,
+            href
+          };
+
+        })
+      : fallbackLinks;
+
+
+  /*
+    Create menu if it doesn't already exist.
+  */
 
   if (
     menuButton &&
@@ -97,7 +202,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
 
     mobileMenu =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     mobileMenu.className =
       "mobile-menu";
@@ -108,37 +215,33 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    const desktopLinks =
-      Array.from(
-        document.querySelectorAll(
-          ".desktop-nav a"
-        )
-      );
-
-
     const linksHTML =
-      desktopLinks
-        .map((link, index) => {
+      navigationData
+        .map(
+          (item,index) => {
 
-          const href =
-            link.getAttribute("href") || "#";
-
-          const label =
-            link.textContent
-              .trim()
-              .replace("↗", "")
-              .trim();
+            const number =
+              String(index + 1)
+                .padStart(2,"0");
 
 
-          return `
-            <a href="${href}">
-              <span>0${index + 1}</span>
-              <strong>${label}</strong>
-              <i>↗</i>
-            </a>
-          `;
+            return `
+              <a
+                href="${item.href}"
+                data-mobile-link
+              >
+                <span>${number}</span>
 
-        })
+                <strong>
+                  ${item.label}
+                </strong>
+
+                <i>↗</i>
+              </a>
+            `;
+
+          }
+        )
         .join("");
 
 
@@ -148,7 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="mobile-menu-top">
 
-          <span>FLARE / MENU</span>
+          <span>
+            MENU&nbsp;&nbsp;/&nbsp;&nbsp;001
+          </span>
 
           <span>
             EVENTS · INFLUENCE · EXPERIENCES
@@ -169,9 +274,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="mobile-menu-footer">
 
-          <span>FLARE</span>
+          <span>
+            INSTAGRAM ↗
+          </span>
 
-          <span>© 2026</span>
+          <span>
+            FLARE / 2026
+          </span>
 
         </div>
 
@@ -183,20 +292,26 @@ document.addEventListener("DOMContentLoaded", () => {
     body.appendChild(
       mobileMenu
     );
+
   }
 
 
-  const mobileLinks =
-    mobileMenu
-      ? mobileMenu.querySelectorAll(
-          ".mobile-navigation a"
-        )
-      : [];
-
-
   /* =========================================================
-     CLOSE MENU
+     MENU STATE
   ========================================================= */
+
+  const getMobileLinks = () => {
+
+    if (!mobileMenu) {
+      return [];
+    }
+
+    return mobileMenu.querySelectorAll(
+      "[data-mobile-link]"
+    );
+
+  };
+
 
   const closeMenu = () => {
 
@@ -239,12 +354,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "aria-hidden",
       "true"
     );
+
   };
 
-
-  /* =========================================================
-     OPEN MENU
-  ========================================================= */
 
   const openMenu = () => {
 
@@ -287,6 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "aria-hidden",
       "false"
     );
+
   };
 
 
@@ -311,9 +424,19 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+    menuButton.setAttribute(
+      "type",
+      "button"
+    );
+
+
     menuButton.addEventListener(
       "click",
-      () => {
+      event => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
 
         const isOpen =
           menuButton.classList.contains(
@@ -335,7 +458,11 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    mobileLinks.forEach(
+    /*
+      Mobile navigation links
+    */
+
+    getMobileLinks().forEach(
       link => {
 
         link.addEventListener(
@@ -349,6 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
   }
 
 
@@ -373,12 +501,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================================
+     CLOSE MENU ON RESIZE
+  ========================================================= */
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      if (
+        window.innerWidth > 1100
+      ) {
+
+        closeMenu();
+
+      }
+
+    },
+    {
+      passive:true
+    }
+  );
+
+
+  /* =========================================================
      PAGE TO PAGE TRANSITIONS
   ========================================================= */
 
-  document
-    .querySelectorAll("a[href]")
-    .forEach(link => {
+  const handlePageLink =
+    link => {
 
       link.addEventListener(
         "click",
@@ -390,11 +540,17 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
+          /*
+            Ignore empty / special links.
+          */
+
           if (
             !href ||
+            href === "#" ||
             href.startsWith("#") ||
             href.startsWith("mailto:") ||
             href.startsWith("tel:") ||
+            href.startsWith("javascript:") ||
             link.target === "_blank" ||
             event.metaKey ||
             event.ctrlKey ||
@@ -425,6 +581,10 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
 
+          /*
+            External links use normal browser behavior.
+          */
+
           if (
             url.origin !==
             window.location.origin
@@ -434,6 +594,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           }
 
+
+          /*
+            Same page.
+          */
 
           if (
             url.pathname ===
@@ -447,7 +611,18 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
 
-          if (!flareLoader) {
+          /*
+            Don't attempt transition if loader
+            no longer exists in the DOM.
+          */
+
+          if (
+            !flareLoader ||
+            !flareLoader.parentNode
+          ) {
+
+            window.location.href =
+              url.href;
 
             return;
 
@@ -488,7 +663,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       );
 
-    });
+    };
+
+
+  /*
+    Bind all existing links.
+  */
+
+  document
+    .querySelectorAll(
+      "a[href]"
+    )
+    .forEach(
+      handlePageLink
+    );
+
+
+  /*
+    IMPORTANT:
+    Bind dynamically-created mobile menu links too.
+  */
+
+  getMobileLinks().forEach(
+    handlePageLink
+  );
 
 
   /* =========================================================
@@ -531,7 +729,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       },
       {
-        passive: true
+        passive:true
       }
     );
 
@@ -601,6 +799,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
   }
 
 
@@ -664,6 +863,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
   }
 
 
@@ -723,6 +923,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
   }
 
 
@@ -771,7 +972,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         },
         {
-          threshold: 0.12,
+          threshold:0.12,
           rootMargin:
             "0px 0px -40px 0px"
         }
@@ -799,6 +1000,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
   }
 
 
@@ -849,6 +1051,9 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
 
+            closeMenu();
+
+
             const headerHeight =
               header
                 ? header.offsetHeight
@@ -856,7 +1061,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             const targetPosition =
-              target.getBoundingClientRect().top +
+              target.getBoundingClientRect()
+                .top +
               window.scrollY -
               headerHeight;
 
@@ -952,7 +1158,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         },
         {
-          threshold: 0.35
+          threshold:0.35
         }
       );
 
@@ -966,6 +1172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
   }
 
 
@@ -989,8 +1196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ).matches
   ) {
 
-    let ticking =
-      false;
+    let ticking = false;
 
 
     const updateParallax =
@@ -1037,8 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        ticking =
-          false;
+        ticking = false;
 
       };
 
@@ -1053,14 +1258,13 @@ document.addEventListener("DOMContentLoaded", () => {
             updateParallax
           );
 
-          ticking =
-            true;
+          ticking = true;
 
         }
 
       },
       {
-        passive: true
+        passive:true
       }
     );
 
@@ -1102,7 +1306,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "scroll",
       updateHeader,
       {
-        passive: true
+        passive:true
       }
     );
 
@@ -1143,7 +1347,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .forEach(
       image => {
 
-        if (image.complete) {
+        if (
+          image.complete
+        ) {
 
           image.classList.add(
             "loaded"
@@ -1167,5 +1373,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
+
+  /* =========================================================
+     FINAL STATE
+  ========================================================= */
+
+  /*
+    Make sure menu is closed when page first loads.
+  */
+
+  closeMenu();
 
 });
