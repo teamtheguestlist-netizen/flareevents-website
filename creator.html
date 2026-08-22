@@ -1,482 +1,1660 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
   <title>FLARE — Creators & Audience</title>
-  <meta name="description" content="FLARE connects creators, audiences and brands through partnerships, campaigns and experiences built around real voices.">
+
+  <meta
+    name="description"
+    content="FLARE connects creators, audiences and brands through partnerships, campaigns and experiences built around real voices."
+  >
+
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080808">
-  <link rel="canonical" href="https://flareevents.in/creator.html">
-  <link rel="icon" type="image/png" href="favicon.png">
+
+  <link
+    rel="canonical"
+    href="https://flareevents.in/creator.html"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+  <!-- FONTS -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="style.css">
 
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://flareevents.in/creator.html">
-  <meta property="og:title" content="FLARE — Creators & Audience">
-  <meta property="og:description" content="FLARE connects creators, audiences and brands through partnerships, campaigns and experiences built around real voices.">
-  <meta property="og:image" content="https://flareevents.in/social-share.jpeg">
-  <meta property="og:site_name" content="FLARE">
+
+  <!-- SOCIAL -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://flareevents.in/creator.html"
+  >
+
+  <meta
+    property="og:title"
+    content="FLARE — Creators & Audience"
+  >
+
+  <meta
+    property="og:description"
+    content="FLARE connects creators, audiences and brands through partnerships, campaigns and experiences built around real voices."
+  >
+
+  <meta
+    property="og:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+  <meta
+    property="og:site_name"
+    content="FLARE"
+  >
+
+
+  <!-- =====================================================
+       GLOBAL LOADER
+  ====================================================== -->
 
   <style>
-    /* =========================================================
-       FLARE — CREATORS + AUDIENCE
-       This page intentionally has a different visual language
-       from the Brand page: network / signal / community.
-    ========================================================= */
+
+    .flare-page-loader {
+
+      position: fixed;
+      inset: 0;
+
+      z-index: 999999;
+
+      display: grid;
+      place-items: center;
+
+      background: #050505;
+
+      pointer-events: none;
+
+      animation:
+        flareLoaderOut
+        1s
+        1.25s
+        cubic-bezier(.77,0,.18,1)
+        forwards;
+
+    }
+
+
+    .flare-page-loader img {
+
+      width: min(430px,58vw);
+
+      height: auto;
+
+      opacity: 0;
+
+      transform:
+        translateY(24px)
+        scale(.96);
+
+      animation:
+        flareLogoIn
+        .8s
+        .12s
+        cubic-bezier(.2,.75,.2,1)
+        forwards;
+
+    }
+
+
+    .flare-loader-line {
+
+      position: absolute;
+
+      left: 50%;
+      bottom: 13%;
+
+      width: min(260px,42vw);
+
+      height: 1px;
+
+      background:
+        rgba(255,255,255,.12);
+
+      overflow: hidden;
+
+      transform:
+        translateX(-50%);
+
+    }
+
+
+    .flare-loader-line::after {
+
+      content: "";
+
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      background: #c79a3b;
+
+      transform:
+        translateX(-100%);
+
+      animation:
+        flareLoaderLine
+        1s
+        .2s
+        cubic-bezier(.7,0,.2,1)
+        forwards;
+
+    }
+
+
+    @keyframes flareLogoIn {
+
+      to {
+
+        opacity: 1;
+
+        transform: none;
+
+      }
+
+    }
+
+
+    @keyframes flareLoaderLine {
+
+      to {
+
+        transform:
+          translateX(0);
+
+      }
+
+    }
+
+
+    @keyframes flareLoaderOut {
+
+      to {
+
+        transform:
+          translateY(-100%);
+
+        visibility: hidden;
+
+      }
+
+    }
+
+  </style>
+
+
+  <!-- =====================================================
+       MOBILE MENU — MASTER VERSION
+  ====================================================== -->
+
+  <style>
+
+    @media (max-width:900px) {
+
+
+      .site-header {
+
+        height:86px !important;
+
+        padding:
+          0 30px !important;
+
+        background:
+          rgba(5,5,5,.97) !important;
+
+        border-bottom:
+          1px solid rgba(255,255,255,.14) !important;
+
+        z-index:10000 !important;
+
+      }
+
+
+      .brand-logo {
+
+        position:relative !important;
+
+        z-index:10002 !important;
+
+      }
+
+
+      .brand-logo img {
+
+        width:124px !important;
+
+        height:auto !important;
+
+        display:block !important;
+
+      }
+
+
+      /* MENU BUTTON */
+
+      .menu-button {
+
+        position:relative !important;
+
+        display:flex !important;
+
+        width:58px !important;
+
+        height:58px !important;
+
+        min-width:58px !important;
+
+        min-height:58px !important;
+
+        padding:0 !important;
+
+        align-items:center !important;
+
+        justify-content:center !important;
+
+        border:
+          1px solid rgba(255,255,255,.38) !important;
+
+        border-radius:50% !important;
+
+        background:transparent !important;
+
+        cursor:pointer !important;
+
+        z-index:10003 !important;
+
+      }
+
+
+      .menu-button span {
+
+        position:absolute !important;
+
+        left:50% !important;
+
+        top:50% !important;
+
+        width:24px !important;
+
+        height:1px !important;
+
+        margin:0 !important;
+
+        background:#fff !important;
+
+        transform:
+          translate(-50%,-50%) !important;
+
+        transition:
+          transform .4s cubic-bezier(.77,0,.18,1),
+          opacity .25s ease !important;
+
+      }
+
+
+      .menu-button span:first-child {
+
+        margin-top:-4px !important;
+
+      }
+
+
+      .menu-button span:last-child {
+
+        margin-top:4px !important;
+
+      }
+
+
+      .menu-button.active span:first-child {
+
+        margin-top:0 !important;
+
+        transform:
+          translate(-50%,-50%)
+          rotate(45deg) !important;
+
+      }
+
+
+      .menu-button.active span:last-child {
+
+        margin-top:0 !important;
+
+        transform:
+          translate(-50%,-50%)
+          rotate(-45deg) !important;
+
+      }
+
+
+      /* FULL SCREEN MENU */
+
+      .mobile-menu {
+
+        position:fixed !important;
+
+        inset:0 !important;
+
+        width:100% !important;
+
+        height:100dvh !important;
+
+        min-height:100vh !important;
+
+        display:block !important;
+
+        visibility:hidden !important;
+
+        opacity:0 !important;
+
+        pointer-events:none !important;
+
+        background:#050505 !important;
+
+        z-index:9999 !important;
+
+        overflow-y:auto !important;
+
+        overflow-x:hidden !important;
+
+        transform:
+          translateY(-18px) !important;
+
+        transition:
+          opacity .45s ease,
+          transform .55s cubic-bezier(.77,0,.18,1),
+          visibility .45s ease !important;
+
+      }
+
+
+      .mobile-menu.active {
+
+        visibility:visible !important;
+
+        opacity:1 !important;
+
+        pointer-events:auto !important;
+
+        transform:
+          translateY(0) !important;
+
+      }
+
+
+      .mobile-menu-inner {
+
+        position:relative !important;
+
+        width:100% !important;
+
+        min-height:100dvh !important;
+
+        padding:
+          155px
+          30px
+          36px !important;
+
+        display:flex !important;
+
+        flex-direction:column !important;
+
+        box-sizing:border-box !important;
+
+      }
+
+
+      .menu-label {
+
+        display:block !important;
+
+        margin-bottom:52px !important;
+
+        font-family:
+          "DM Mono",
+          monospace !important;
+
+        font-size:12px !important;
+
+        letter-spacing:.25em !important;
+
+        text-transform:uppercase !important;
+
+        color:#6e6e6b !important;
+
+      }
+
+
+      .mobile-navigation {
+
+        display:flex !important;
+
+        flex-direction:column !important;
+
+        width:100% !important;
+
+      }
+
+
+      .mobile-navigation a {
+
+        position:relative !important;
+
+        width:100% !important;
+
+        min-height:104px !important;
+
+        padding:18px 0 !important;
+
+        display:flex !important;
+
+        align-items:center !important;
+
+        justify-content:space-between !important;
+
+        border-top:
+          1px solid rgba(255,255,255,.12) !important;
+
+        color:#f7f7f5 !important;
+
+        text-decoration:none !important;
+
+        overflow:hidden !important;
+
+        opacity:0;
+
+        transform:
+          translateY(25px);
+
+      }
+
+
+      .mobile-navigation a:last-child {
+
+        border-bottom:
+          1px solid rgba(255,255,255,.12) !important;
+
+      }
+
+
+      .mobile-navigation a span {
+
+        display:block !important;
+
+        max-width:
+          calc(100% - 55px) !important;
+
+        font-family:
+          "Manrope",
+          sans-serif !important;
+
+        font-size:
+          clamp(34px,9.5vw,54px) !important;
+
+        line-height:.98 !important;
+
+        font-weight:500 !important;
+
+        letter-spacing:-.055em !important;
+
+        color:#f4f4f2 !important;
+
+        transition:
+          transform .3s ease,
+          color .3s ease !important;
+
+      }
+
+
+      .mobile-navigation a small {
+
+        flex-shrink:0 !important;
+
+        margin-left:15px !important;
+
+        font-family:
+          "DM Mono",
+          monospace !important;
+
+        font-size:12px !important;
+
+        color:#656562 !important;
+
+      }
+
+
+      .mobile-navigation a:hover span {
+
+        transform:
+          translateX(8px);
+
+      }
+
+
+      .mobile-navigation a:hover small {
+
+        color:#c79a3b !important;
+
+      }
+
+
+      /* STAGGER */
+
+      .mobile-menu.active
+      .mobile-navigation a {
+
+        opacity:1;
+
+        transform:none;
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(1) {
+
+        transition:
+          opacity .45s .08s ease,
+          transform .55s .08s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(2) {
+
+        transition:
+          opacity .45s .13s ease,
+          transform .55s .13s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(3) {
+
+        transition:
+          opacity .45s .18s ease,
+          transform .55s .18s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(4) {
+
+        transition:
+          opacity .45s .23s ease,
+          transform .55s .23s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(5) {
+
+        transition:
+          opacity .45s .28s ease,
+          transform .55s .28s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .menu-socials {
+
+        margin-top:auto !important;
+
+        padding-top:48px !important;
+
+        display:flex !important;
+
+        flex-wrap:wrap !important;
+
+        gap:28px !important;
+
+      }
+
+
+      .menu-socials a {
+
+        font-family:
+          "DM Mono",
+          monospace !important;
+
+        font-size:11px !important;
+
+        letter-spacing:.18em !important;
+
+        text-transform:uppercase !important;
+
+        color:#777773 !important;
+
+      }
+
+
+      .menu-socials a:hover {
+
+        color:#fff !important;
+
+      }
+
+
+      body.menu-open {
+
+        overflow:hidden !important;
+
+        touch-action:none !important;
+
+      }
+
+    }
+
+
+    @media (max-width:600px) {
+
+      .site-header {
+
+        height:82px !important;
+
+        padding:
+          0 22px !important;
+
+      }
+
+
+      .brand-logo img {
+
+        width:112px !important;
+
+      }
+
+
+      .menu-button {
+
+        width:54px !important;
+
+        height:54px !important;
+
+        min-width:54px !important;
+
+        min-height:54px !important;
+
+      }
+
+
+      .mobile-menu-inner {
+
+        padding:
+          137px
+          22px
+          28px !important;
+
+      }
+
+
+      .menu-label {
+
+        margin-bottom:38px !important;
+
+        font-size:10px !important;
+
+      }
+
+
+      .mobile-navigation a {
+
+        min-height:91px !important;
+
+      }
+
+
+      .mobile-navigation a span {
+
+        font-size:
+          clamp(30px,8.9vw,43px) !important;
+
+      }
+
+
+      .mobile-navigation a small {
+
+        font-size:10px !important;
+
+      }
+
+
+      .menu-socials {
+
+        gap:20px !important;
+
+        padding-top:36px !important;
+
+      }
+
+
+      .menu-socials a {
+
+        font-size:9px !important;
+
+      }
+
+    }
+
+
+    @media (max-width:380px) {
+
+      .mobile-menu-inner {
+
+        padding-top:125px !important;
+
+      }
+
+
+      .mobile-navigation a {
+
+        min-height:80px !important;
+
+      }
+
+
+      .mobile-navigation a span {
+
+        font-size:29px !important;
+
+      }
+
+    }
+
+  </style>
+
+
+  <!-- =====================================================
+       CREATOR PAGE DESIGN
+  ====================================================== -->
+
+  <style>
 
     .creator-page {
-      --creator-gold: #c79a3b;
-      --creator-paper: #f3f2ee;
+
+      --creator-gold:#c79a3b;
+
     }
 
-    /* HERO — signal / network */
+
+    /* HERO */
+
     .creator-page .page-hero {
-      position: relative;
-      min-height: min(760px, calc(100vh - 92px));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-      isolation: isolate;
+
+      position:relative;
+
+      min-height:
+        min(760px,calc(100vh - 92px));
+
+      display:flex;
+
+      flex-direction:column;
+
+      justify-content:center;
+
+      overflow:hidden;
+
+      isolation:isolate;
+
     }
+
 
     .creator-page .page-hero::before {
-      content: "";
-      position: absolute;
-      width: min(58vw, 720px);
-      aspect-ratio: 1;
-      right: -10%;
-      top: 8%;
-      border: 1px solid rgba(199,154,59,.22);
-      border-radius: 50%;
+
+      content:"";
+
+      position:absolute;
+
+      width:min(58vw,720px);
+
+      aspect-ratio:1;
+
+      right:-10%;
+
+      top:8%;
+
+      border:
+        1px solid rgba(199,154,59,.22);
+
+      border-radius:50%;
+
       box-shadow:
         inset 0 0 0 55px rgba(199,154,59,.018),
         inset 0 0 0 110px rgba(255,255,255,.012);
-      animation: creatorSpin 18s linear infinite;
-      z-index: -2;
+
+      animation:
+        creatorSpin
+        18s
+        linear
+        infinite;
+
+      z-index:-2;
+
     }
+
 
     .creator-page .page-hero::after {
-      content: "";
-      position: absolute;
-      width: 50vw;
-      height: 50vw;
-      right: -3%;
-      top: 13%;
+
+      content:"";
+
+      position:absolute;
+
+      width:50vw;
+
+      height:50vw;
+
+      right:-3%;
+
+      top:13%;
+
       background:
-        radial-gradient(circle at 50% 50%, rgba(199,154,59,.15) 0 2px, transparent 3px),
-        radial-gradient(circle at 50% 50%, transparent 0 31%, rgba(255,255,255,.035) 31.2% 31.4%, transparent 31.6% 48%, rgba(255,255,255,.025) 48.2% 48.4%, transparent 48.6%);
-      opacity: .75;
-      z-index: -3;
-      animation: creatorPulse 5s ease-in-out infinite;
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(199,154,59,.15) 0 2px,
+          transparent 3px
+        ),
+        radial-gradient(
+          circle at 50% 50%,
+          transparent 0 31%,
+          rgba(255,255,255,.035) 31.2% 31.4%,
+          transparent 31.6% 48%,
+          rgba(255,255,255,.025) 48.2% 48.4%,
+          transparent 48.6%
+        );
+
+      opacity:.75;
+
+      z-index:-3;
+
+      animation:
+        creatorPulse
+        5s
+        ease-in-out
+        infinite;
+
     }
 
-    .creator-signal {
-      position: absolute;
-      right: clamp(40px, 9vw, 150px);
-      bottom: clamp(60px, 10vw, 130px);
-      width: clamp(180px, 20vw, 280px);
-      height: clamp(120px, 14vw, 190px);
-      color: rgba(255,255,255,.5);
-    }
-
-    .creator-signal svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .creator-signal .signal-line {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .creator-signal .signal-dot {
-      fill: var(--creator-gold);
-      animation: signalDot 2.5s ease-in-out infinite;
-    }
 
     .creator-page .page-hero h1 {
-      max-width: 12ch;
+
+      max-width:12ch;
+
     }
 
-    /* NETWORK SECTION */
-    .creator-page .page-copy {
-      position: relative;
-      overflow: hidden;
+
+    .creator-signal {
+
+      position:absolute;
+
+      right:
+        clamp(40px,9vw,150px);
+
+      bottom:
+        clamp(60px,10vw,130px);
+
+      width:
+        clamp(180px,20vw,280px);
+
+      height:
+        clamp(120px,14vw,190px);
+
+      color:
+        rgba(255,255,255,.5);
+
     }
+
+
+    .creator-signal svg {
+
+      width:100%;
+      height:100%;
+
+    }
+
+
+    .creator-signal .signal-line {
+
+      fill:none;
+
+      stroke:currentColor;
+
+      stroke-width:1;
+
+    }
+
+
+    .creator-signal .signal-dot {
+
+      fill:
+        var(--creator-gold);
+
+      animation:
+        signalDot
+        2.5s
+        ease-in-out
+        infinite;
+
+    }
+
+
+    /* NETWORK */
+
+    .creator-page .page-copy {
+
+      position:relative;
+
+      overflow:hidden;
+
+    }
+
 
     .creator-page .page-copy::before {
-      content: "VOICE / AUDIENCE / CULTURE";
-      position: absolute;
-      right: -2%;
-      bottom: 12%;
-      font-family: "DM Mono", monospace;
-      font-size: clamp(10px, 1vw, 13px);
-      letter-spacing: .28em;
-      color: rgba(255,255,255,.13);
-      transform: rotate(-90deg);
-      transform-origin: right bottom;
-      pointer-events: none;
+
+      content:
+        "VOICE / AUDIENCE / CULTURE";
+
+      position:absolute;
+
+      right:-2%;
+
+      bottom:12%;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size:
+        clamp(10px,1vw,13px);
+
+      letter-spacing:.28em;
+
+      color:
+        rgba(255,255,255,.13);
+
+      transform:
+        rotate(-90deg);
+
+      pointer-events:none;
+
     }
+
 
     .creator-page .page-copy::after {
-      content: "";
-      position: absolute;
-      right: 7%;
-      top: 22%;
-      width: 160px;
-      height: 160px;
-      border: 1px solid rgba(199,154,59,.18);
-      border-radius: 50%;
-      box-shadow:
-        42px 0 0 -41px #c79a3b,
-        -42px 0 0 -41px #c79a3b,
-        0 42px 0 -41px #c79a3b,
-        0 -42px 0 -41px #c79a3b;
-      animation: creatorFloat 5s ease-in-out infinite;
+
+      content:"";
+
+      position:absolute;
+
+      right:7%;
+
+      top:22%;
+
+      width:160px;
+
+      height:160px;
+
+      border:
+        1px solid rgba(199,154,59,.18);
+
+      border-radius:50%;
+
+      animation:
+        creatorFloat
+        5s
+        ease-in-out
+        infinite;
+
     }
 
-    /* SERVICE AREA */
+
+    /* SERVICES */
+
     .creator-page .creator-services {
-      position: relative;
-      overflow: hidden;
+
+      position:relative;
+
+      overflow:hidden;
+
     }
+
 
     .creator-page .creator-services::before {
-      content: "";
-      position: absolute;
-      left: -10vw;
-      bottom: -18vw;
-      width: 45vw;
-      aspect-ratio: 1;
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 50%;
-      box-shadow:
-        0 0 0 55px rgba(0,0,0,.018),
-        0 0 0 110px rgba(0,0,0,.012);
-      pointer-events: none;
+
+      content:"";
+
+      position:absolute;
+
+      left:-10vw;
+
+      bottom:-18vw;
+
+      width:45vw;
+
+      aspect-ratio:1;
+
+      border:
+        1px solid rgba(0,0,0,.08);
+
+      border-radius:50%;
+
+      pointer-events:none;
+
     }
+
 
     .creator-page .service-cards {
-      align-items: stretch;
-      container-type: inline-size;
+
+      align-items:stretch;
+
     }
+
 
     .creator-page .service-card {
-      min-width: 0;
-      min-height: 540px;
-      overflow: hidden;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      isolation: isolate;
+
+      min-width:0;
+
+      min-height:540px;
+
+      overflow:hidden;
+
+      position:relative;
+
+      display:flex;
+
+      flex-direction:column;
+
+      isolation:isolate;
+
       transition:
         transform .55s cubic-bezier(.2,.75,.2,1),
-        box-shadow .55s ease,
-        background .35s ease;
+        box-shadow .55s ease;
+
     }
+
 
     .creator-page .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 65px rgba(0,0,0,.08);
+
+      transform:
+        translateY(-8px);
+
+      box-shadow:
+        0 25px 65px rgba(0,0,0,.08);
+
     }
 
-    .creator-page .service-card:nth-child(2):hover {
-      background: #e9e7e1;
+
+    /* =====================================================
+       SERVICE HEADINGS — FIXED
+       Discovery / Partnerships / Campaigns
+    ====================================================== */
+
+    .creator-page .service-card h3 {
+
+      margin-top:auto;
+
+      margin-bottom:14px;
+
+      font-weight:700;
+
+      /*
+        Important:
+        Don't use cqw here.
+        It was causing inconsistent sizing
+        between the three cards.
+      */
+
+      font-size:
+        clamp(2.15rem,3.65vw,3.8rem);
+
+      line-height:.88;
+
+      letter-spacing:-.055em;
+
+      white-space:nowrap;
+
+      max-width:100%;
+
+      overflow:visible;
+
     }
 
- /* =========================================================
-   SERVICE TITLE — RESPONSIVE FIX
-   DISCOVERY / PARTNERSHIPS / CAMPAIGNS
-========================================================= */
 
-.creator-page .service-card h3 {
-  margin-top: auto;
-  margin-bottom: 14px;
+    /* DESKTOP */
 
-  /* controlled responsive size */
-  font-size: clamp(2rem, 4.2vw, 4rem);
+    @media (min-width:901px) {
 
-  line-height: .88;
+      .creator-page .service-card h3 {
 
-  letter-spacing: -.055em;
+        font-size:
+          clamp(2.15rem,3.45vw,3.7rem);
 
-  font-weight: 700;
+      }
 
-  white-space: nowrap;
-
-  max-width: 100%;
-
-  overflow: visible;
-}
+    }
 
 
-/* Desktop / laptop */
-@media (min-width: 901px) {
+    /* TABLET */
 
-  .creator-page .service-card h3 {
-    font-size: clamp(2.15rem, 3.65vw, 3.8rem);
-  }
+    @media (max-width:900px) {
 
-}
+      .creator-page .service-card h3 {
 
+        font-size:
+          clamp(2rem,8vw,3.4rem);
 
-/* Tablet */
-@media (max-width: 900px) {
+        line-height:.9;
 
-  .creator-page .service-card h3 {
-    font-size: clamp(2rem, 8vw, 3.4rem);
-    line-height: .9;
-    letter-spacing: -.055em;
-  }
+      }
 
-}
+    }
 
 
-/* Mobile */
-@media (max-width: 600px) {
+    /* MOBILE */
 
-  .creator-page .service-card h3 {
-    font-size: clamp(2rem, 10.5vw, 3rem);
-    line-height: .92;
-    letter-spacing: -.05em;
-  }
+    @media (max-width:600px) {
 
-}
+      .creator-page .service-card h3 {
+
+        font-size:
+          clamp(2rem,10.5vw,3rem);
+
+        line-height:.92;
+
+        letter-spacing:-.05em;
+
+      }
+
+    }
 
 
-/* Small phones */
-@media (max-width: 380px) {
+    /* SMALL PHONE */
 
-  .creator-page .service-card h3 {
-    font-size: 1.85rem;
-    line-height: .94;
-    letter-spacing: -.045em;
-  }
+    @media (max-width:380px) {
 
-}
+      .creator-page .service-card h3 {
+
+        font-size:1.85rem;
+
+        line-height:.94;
+
+      }
+
+    }
+
 
     .creator-page .service-card p {
-      max-width: 31rem;
+
+      max-width:31rem;
+
     }
+
+
+    /* GRAPHICS */
 
     .creator-art {
-      height: 175px;
-      margin: 28px 0 22px;
-      display: grid;
-      place-items: center;
-      color: #111;
-      transition: transform .6s cubic-bezier(.2,.75,.2,1);
+
+      height:175px;
+
+      margin:28px 0 22px;
+
+      display:grid;
+
+      place-items:center;
+
+      color:#111;
+
+      transition:
+        transform .6s cubic-bezier(.2,.75,.2,1);
+
     }
+
 
     .service-card:hover .creator-art {
-      transform: scale(1.035);
+
+      transform:
+        scale(1.035);
+
     }
+
 
     .creator-art svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
+
+      width:100%;
+
+      height:100%;
+
+      overflow:visible;
+
     }
 
-    /* Discovery = constellation */
+
+    /* DISCOVERY */
+
     .discovery-art line,
     .discovery-art circle {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.2;
+
+      fill:none;
+
+      stroke:currentColor;
+
+      stroke-width:1.2;
+
     }
+
 
     .discovery-art .node {
-      fill: var(--creator-gold);
-      stroke: none;
+
+      fill:
+        var(--creator-gold);
+
+      stroke:none;
+
     }
+
 
     .discovery-art .ring {
-      stroke: rgba(0,0,0,.16);
-      stroke-dasharray: 3 7;
-      animation: constellationSpin 12s linear infinite;
-      transform-origin: 200px 87px;
+
+      stroke:
+        rgba(0,0,0,.16);
+
+      stroke-dasharray:
+        3 7;
+
+      animation:
+        constellationSpin
+        12s
+        linear
+        infinite;
+
+      transform-origin:
+        200px 87px;
+
     }
 
-    /* Partnerships = bridge */
+
+    /* PARTNERSHIPS */
+
     .partnership-art path,
     .partnership-art line {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.2;
+
+      fill:none;
+
+      stroke:currentColor;
+
+      stroke-width:1.2;
+
     }
+
 
     .partnership-art .bridge {
-      stroke: var(--creator-gold);
-      stroke-width: 2;
+
+      stroke:
+        var(--creator-gold);
+
+      stroke-width:2;
+
     }
+
 
     .partnership-art .person {
-      fill: currentColor;
-      stroke: none;
+
+      fill:currentColor;
+
+      stroke:none;
+
     }
 
-    /* Campaigns = content frame / signal */
+
+    /* CAMPAIGNS */
+
     .campaign-art rect,
     .campaign-art line {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.2;
+
+      fill:none;
+
+      stroke:currentColor;
+
+      stroke-width:1.2;
+
     }
+
 
     .campaign-art .screen {
-      fill: rgba(199,154,59,.11);
-      stroke: var(--creator-gold);
+
+      fill:
+        rgba(199,154,59,.11);
+
+      stroke:
+        var(--creator-gold);
+
     }
+
 
     .campaign-art .wave {
-      stroke: var(--creator-gold);
-      stroke-width: 2;
-      stroke-dasharray: 5 8;
-      animation: waveMove 4s linear infinite;
+
+      stroke:
+        var(--creator-gold);
+
+      stroke-width:2;
+
+      stroke-dasharray:
+        5 8;
+
+      animation:
+        waveMove
+        4s
+        linear
+        infinite;
+
     }
 
-    /* Philosophy */
+
+    /* PHILOSOPHY */
+
     .creator-page .creator-philosophy {
-      position: relative;
-      overflow: hidden;
+
+      position:relative;
+
+      overflow:hidden;
+
     }
+
 
     .creator-page .creator-philosophy::after {
-      content: "◎";
-      position: absolute;
-      right: 4%;
-      top: 10%;
-      font-size: clamp(160px, 24vw, 360px);
-      line-height: .7;
-      font-weight: 200;
-      color: rgba(255,255,255,.025);
-      animation: creatorSpin 24s linear infinite;
-      pointer-events: none;
+
+      content:"◎";
+
+      position:absolute;
+
+      right:4%;
+
+      top:10%;
+
+      font-size:
+        clamp(160px,24vw,360px);
+
+      color:
+        rgba(255,255,255,.025);
+
+      animation:
+        creatorSpin
+        24s
+        linear
+        infinite;
+
+      pointer-events:none;
+
     }
+
 
     .creator-page .principles-heading {
-      position: relative;
-      z-index: 2;
+
+      position:relative;
+
+      z-index:2;
+
     }
+
 
     /* CTA */
+
     .creator-page .big-cta {
-      position: relative;
-      overflow: hidden;
+
+      position:relative;
+
+      overflow:hidden;
+
     }
+
 
     .creator-page .big-cta::after {
-      content: "CREATE / CONNECT / MATTER";
-      position: absolute;
-      left: 4%;
-      bottom: 7%;
-      font-family: "DM Mono", monospace;
-      font-size: 9px;
-      letter-spacing: .25em;
-      color: rgba(0,0,0,.32);
+
+      content:
+        "CREATE / CONNECT / MATTER";
+
+      position:absolute;
+
+      left:4%;
+
+      bottom:7%;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size:9px;
+
+      letter-spacing:.25em;
+
+      color:
+        rgba(0,0,0,.32);
+
     }
 
-    /* animations */
+
+    /* ANIMATIONS */
+
     @keyframes creatorSpin {
-      to { transform: rotate(360deg); }
+
+      to {
+        transform:rotate(360deg);
+      }
+
     }
+
 
     @keyframes constellationSpin {
-      to { transform: rotate(360deg); }
+
+      to {
+        transform:rotate(360deg);
+      }
+
     }
+
 
     @keyframes creatorPulse {
-      0%,100% { transform: scale(.98); opacity: .55; }
-      50% { transform: scale(1.03); opacity: .9; }
+
+      0%,100% {
+
+        transform:scale(.98);
+
+        opacity:.55;
+
+      }
+
+      50% {
+
+        transform:scale(1.03);
+
+        opacity:.9;
+
+      }
+
     }
+
 
     @keyframes creatorFloat {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+
+      0%,100% {
+
+        transform:translateY(0);
+
+      }
+
+      50% {
+
+        transform:translateY(-12px);
+
+      }
+
     }
+
 
     @keyframes signalDot {
-      0%,100% { opacity: .65; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.45); }
+
+      0%,100% {
+
+        opacity:.65;
+
+        transform:scale(1);
+
+      }
+
+      50% {
+
+        opacity:1;
+
+        transform:scale(1.45);
+
+      }
+
     }
+
 
     @keyframes waveMove {
-      to { stroke-dashoffset: -52; }
+
+      to {
+
+        stroke-dashoffset:-52;
+
+      }
+
     }
 
-    @media (max-width: 900px) {
+
+    /* MOBILE GRAPHICS */
+
+    @media (max-width:900px) {
+
       .creator-page .page-hero {
-        min-height: 620px;
+
+        min-height:620px;
+
       }
+
 
       .creator-signal {
-        right: 5vw;
-        bottom: 7vw;
-        width: 190px;
+
+        right:5vw;
+
+        bottom:7vw;
+
+        width:190px;
+
       }
+
 
       .creator-page .service-card {
-        min-height: 440px;
+
+        min-height:440px;
+
       }
 
-      .creator-page .service-card h3 {
-        font-size: clamp(2.15rem, 10vw, 3.6rem);
-        line-height: .92;
-        letter-spacing: -.055em;
-      }
     }
 
-    @media (max-width: 600px) {
+
+    @media (max-width:600px) {
+
       .creator-page .page-hero {
-        min-height: 560px;
+
+        min-height:560px;
+
       }
+
 
       .creator-page .page-hero h1 {
-        max-width: 10ch;
+
+        max-width:10ch;
+
       }
+
 
       .creator-signal {
-        width: 150px;
-        height: 100px;
-        right: 18px;
-        bottom: 34px;
+
+        width:150px;
+
+        height:100px;
+
+        right:18px;
+
+        bottom:34px;
+
       }
+
 
       .creator-page .service-card {
-        min-height: 390px;
+
+        min-height:390px;
+
       }
+
 
       .creator-art {
-        height: 125px;
-        margin: 20px 0 15px;
+
+        height:125px;
+
+        margin:20px 0 15px;
+
       }
 
-      .creator-page .service-card h3 {
-        font-size: clamp(2.15rem, 11vw, 3.25rem);
-        line-height: .94;
-      }
 
       .creator-page .page-copy::after {
-        width: 100px;
-        height: 100px;
-        right: 8%;
+
+        width:100px;
+
+        height:100px;
+
+        right:8%;
+
       }
+
     }
 
-    @media (prefers-reduced-motion: reduce) {
+
+    @media (prefers-reduced-motion:reduce) {
+
       .creator-page .page-hero::before,
       .creator-page .page-hero::after,
       .creator-signal .signal-dot,
@@ -484,34 +1662,88 @@
       .discovery-art .ring,
       .campaign-art .wave,
       .creator-page .creator-philosophy::after {
-        animation: none;
+
+        animation:none;
+
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <!-- GLOBAL FLARE LOADER -->
-  <div class="flare-page-loader" aria-hidden="true">
-    <img src="flare-logo.png" alt="">
+
+  <!-- =====================================================
+       LOADER
+  ====================================================== -->
+
+  <div
+    class="flare-page-loader"
+    aria-hidden="true"
+  >
+
+    <img
+      src="flare-logo.png"
+      alt=""
+    >
+
     <div class="flare-loader-line"></div>
+
   </div>
 
-  <!-- HEADER -->
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
   <header class="site-header">
 
-    <a href="index.html" class="brand-logo" aria-label="FLARE Home">
-      <img src="flare-logo.png" alt="FLARE">
+
+    <a
+      href="index.html"
+      class="brand-logo"
+      aria-label="FLARE Home"
+    >
+
+      <img
+        src="flare-logo.png"
+        alt="FLARE"
+      >
+
     </a>
 
-    <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="index.html#idea">IDEA</a>
-      <a href="index.html#services">WHAT WE DO</a>
-      <a href="index.html#work">WORK</a>
-      <a href="founder.html">FOUNDER</a>
-      <a href="contact.html">START A PROJECT ↗</a>
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <a href="index.html#idea">
+        IDEA
+      </a>
+
+      <a href="index.html#services">
+        WHAT WE DO
+      </a>
+
+      <a href="index.html#work">
+        WORK
+      </a>
+
+      <a href="founder.html">
+        FOUNDER
+      </a>
+
+      <a href="contact.html">
+        START A PROJECT ↗
+      </a>
+
     </nav>
+
 
     <button
       class="menu-button"
@@ -521,254 +1753,1048 @@
       aria-expanded="false"
       aria-controls="mobileMenu"
     >
+
       <span></span>
+
       <span></span>
+
     </button>
+
 
   </header>
 
+
+  <!-- =====================================================
+       MOBILE MENU
+  ====================================================== -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+    aria-hidden="true"
+  >
+
+    <div class="mobile-menu-inner">
+
+
+      <div class="menu-label">
+        MENU / 001
+      </div>
+
+
+      <nav
+        class="mobile-navigation"
+        aria-label="Mobile navigation"
+      >
+
+
+        <a href="index.html#idea">
+
+          <span>
+            THE IDEA
+          </span>
+
+          <small>
+            01
+          </small>
+
+        </a>
+
+
+        <a href="index.html#services">
+
+          <span>
+            WHAT WE DO
+          </span>
+
+          <small>
+            02
+          </small>
+
+        </a>
+
+
+        <a href="index.html#work">
+
+          <span>
+            SELECTED WORK
+          </span>
+
+          <small>
+            03
+          </small>
+
+        </a>
+
+
+        <a href="founder.html">
+
+          <span>
+            FOUNDER
+          </span>
+
+          <small>
+            04
+          </small>
+
+        </a>
+
+
+        <a href="contact.html">
+
+          <span>
+            START A PROJECT
+          </span>
+
+          <small>
+            05
+          </small>
+
+        </a>
+
+
+      </nav>
+
+
+      <div class="menu-socials">
+
+
+        <a
+          href="https://www.instagram.com/weareflare.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          INSTAGRAM ↗
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/17yEoZoNkn/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          FACEBOOK ↗
+        </a>
+
+
+        <a
+          href="https://www.linkedin.com/company/flare-events-india/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LINKEDIN ↗
+        </a>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
   <main class="inner-page creator-page">
 
+
     <!-- HERO -->
+
     <section class="page-hero">
 
+
       <span class="eyebrow reveal">
+
         FLARE / CREATORS + AUDIENCE
+
       </span>
 
+
       <h1 class="reveal delay-1">
+
         YOUR VOICE.
+
         <br>
-        <span>YOUR AUDIENCE.</span>
+
+        <span>
+          YOUR AUDIENCE.
+        </span>
+
       </h1>
 
-      <div class="creator-signal" aria-hidden="true">
+
+      <div
+        class="creator-signal"
+        aria-hidden="true"
+      >
+
         <svg viewBox="0 0 280 180">
-          <path class="signal-line" d="M12 142 C55 142 58 110 91 110 S130 144 161 98 S204 55 268 40"/>
-          <path class="signal-line" d="M12 160 C52 160 67 137 99 137 S146 157 179 119 S217 76 268 67" opacity=".35"/>
-          <circle class="signal-dot" cx="268" cy="40" r="5"/>
-          <circle cx="91" cy="110" r="3" fill="#fff"/>
-          <circle cx="161" cy="98" r="3" fill="#fff"/>
+
+          <path
+            class="signal-line"
+            d="M12 142 C55 142 58 110 91 110 S130 144 161 98 S204 55 268 40"
+          />
+
+          <path
+            class="signal-line"
+            d="M12 160 C52 160 67 137 99 137 S146 157 179 119 S217 76 268 67"
+            opacity=".35"
+          />
+
+          <circle
+            class="signal-dot"
+            cx="268"
+            cy="40"
+            r="5"
+          />
+
+          <circle
+            cx="91"
+            cy="110"
+            r="3"
+            fill="#fff"
+          />
+
+          <circle
+            cx="161"
+            cy="98"
+            r="3"
+            fill="#fff"
+          />
+
         </svg>
+
       </div>
+
 
     </section>
 
+
     <!-- NETWORK -->
+
     <section class="page-copy">
+
 
       <div class="page-copy-inner">
 
+
         <span class="eyebrow reveal">
+
           01 — CREATOR NETWORK
+
         </span>
 
+
         <h2 class="reveal delay-1">
+
           We don't just
+
           <br>
+
           find reach.
+
         </h2>
 
+
         <p class="reveal delay-2">
+
           We look for creators with a point of view.
-          People who understand their audience, know their
-          culture and can make brands feel native rather than forced.
+          People who understand their audience,
+          know their culture and can make brands feel
+          native rather than forced.
+
         </p>
 
+
       </div>
+
 
     </section>
 
+
     <!-- SERVICES -->
-    <section class="services section-light creator-services">
+
+    <section
+      class="services section-light creator-services"
+      id="creator-services"
+    >
+
 
       <div class="section-number dark-number reveal">
+
         02 — CREATOR + AUDIENCE SERVICES
+
       </div>
+
 
       <div class="service-cards">
 
+
+        <!-- DISCOVERY -->
+
         <article class="service-card reveal">
 
+
           <div class="card-top">
-            <span>01</span>
-            <span>DISCOVER</span>
+
+            <span>
+              01
+            </span>
+
+            <span>
+              DISCOVER
+            </span>
+
           </div>
 
-          <div class="creator-art discovery-art" aria-hidden="true">
+
+          <div
+            class="creator-art discovery-art"
+            aria-hidden="true"
+          >
+
             <svg viewBox="0 0 400 175">
-              <circle class="ring" cx="200" cy="87" r="62"/>
-              <circle cx="200" cy="87" r="34"/>
-              <line x1="200" y1="25" x2="200" y2="149"/>
-              <line x1="138" y1="87" x2="262" y2="87"/>
-              <line x1="157" y1="44" x2="243" y2="130"/>
-              <line x1="243" y1="44" x2="157" y2="130"/>
-              <circle class="node" cx="200" cy="25" r="5"/>
-              <circle class="node" cx="262" cy="87" r="5"/>
-              <circle class="node" cx="200" cy="149" r="5"/>
-              <circle class="node" cx="138" cy="87" r="5"/>
-              <circle cx="200" cy="87" r="8"/>
+
+              <circle
+                class="ring"
+                cx="200"
+                cy="87"
+                r="62"
+              />
+
+              <circle
+                cx="200"
+                cy="87"
+                r="34"
+              />
+
+              <line
+                x1="200"
+                y1="25"
+                x2="200"
+                y2="149"
+              />
+
+              <line
+                x1="138"
+                y1="87"
+                x2="262"
+                y2="87"
+              />
+
+              <line
+                x1="157"
+                y1="44"
+                x2="243"
+                y2="130"
+              />
+
+              <line
+                x1="243"
+                y1="44"
+                x2="157"
+                y2="130"
+              />
+
+              <circle
+                class="node"
+                cx="200"
+                cy="25"
+                r="5"
+              />
+
+              <circle
+                class="node"
+                cx="262"
+                cy="87"
+                r="5"
+              />
+
+              <circle
+                class="node"
+                cx="200"
+                cy="149"
+                r="5"
+              />
+
+              <circle
+                class="node"
+                cx="138"
+                cy="87"
+                r="5"
+              />
+
+              <circle
+                cx="200"
+                cy="87"
+                r="8"
+              />
+
             </svg>
+
           </div>
 
-          <h3>DISCOVERY</h3>
+
+          <h3>
+            DISCOVERY
+          </h3>
+
 
           <p>
-            Finding creators with the right voice, audience
-            and cultural relevance for the idea.
+
+            Finding creators with the right voice,
+            audience and cultural relevance for the idea.
+
           </p>
+
 
         </article>
 
-        <article class="service-card reveal delay-1">
+
+        <!-- PARTNERSHIPS -->
+
+        <article
+          class="service-card reveal delay-1"
+        >
+
 
           <div class="card-top">
-            <span>02</span>
-            <span>CONNECT</span>
+
+            <span>
+              02
+            </span>
+
+            <span>
+              CONNECT
+            </span>
+
           </div>
 
-          <div class="creator-art partnership-art" aria-hidden="true">
+
+          <div
+            class="creator-art partnership-art"
+            aria-hidden="true"
+          >
+
             <svg viewBox="0 0 400 175">
-              <circle class="person" cx="80" cy="78" r="17"/>
-              <circle class="person" cx="320" cy="78" r="17"/>
-              <path d="M66 111 C100 91 122 91 148 108"/>
-              <path d="M252 108 C278 91 300 91 334 111"/>
-              <path class="bridge" d="M102 76 C145 42 170 42 200 76 C230 110 255 110 298 76"/>
-              <circle cx="200" cy="76" r="10"/>
-              <line x1="185" y1="76" x2="215" y2="76"/>
+
+              <circle
+                class="person"
+                cx="80"
+                cy="78"
+                r="17"
+              />
+
+              <circle
+                class="person"
+                cx="320"
+                cy="78"
+                r="17"
+              />
+
+              <path
+                d="M66 111 C100 91 122 91 148 108"
+              />
+
+              <path
+                d="M252 108 C278 91 300 91 334 111"
+              />
+
+              <path
+                class="bridge"
+                d="M102 76 C145 42 170 42 200 76 C230 110 255 110 298 76"
+              />
+
+              <circle
+                cx="200"
+                cy="76"
+                r="10"
+              />
+
+              <line
+                x1="185"
+                y1="76"
+                x2="215"
+                y2="76"
+              />
+
             </svg>
+
           </div>
 
-          <h3>PARTNERSHIPS</h3>
+
+          <h3>
+            PARTNERSHIPS
+          </h3>
+
 
           <p>
-            Building creator-brand collaborations where
-            the idea and the voice belong together.
+
+            Building creator-brand collaborations
+            where the idea and the voice belong together.
+
           </p>
+
 
         </article>
 
-        <article class="service-card reveal delay-2">
+
+        <!-- CAMPAIGNS -->
+
+        <article
+          class="service-card reveal delay-2"
+        >
+
 
           <div class="card-top">
-            <span>03</span>
-            <span>AMPLIFY</span>
+
+            <span>
+              03
+            </span>
+
+            <span>
+              AMPLIFY
+            </span>
+
           </div>
 
-          <div class="creator-art campaign-art" aria-hidden="true">
+
+          <div
+            class="creator-art campaign-art"
+            aria-hidden="true"
+          >
+
             <svg viewBox="0 0 400 175">
-              <rect x="65" y="25" width="270" height="125" rx="2"/>
-              <rect class="screen" x="88" y="45" width="224" height="85" rx="1"/>
-              <path class="wave" d="M105 88 C120 88 122 58 138 58 S155 113 171 113 S190 72 205 72 S222 97 238 97 S254 52 271 52 S288 88 305 88"/>
-              <line x1="88" y1="140" x2="150" y2="140"/>
-              <line x1="160" y1="140" x2="215" y2="140"/>
+
+              <rect
+                x="65"
+                y="25"
+                width="270"
+                height="125"
+                rx="2"
+              />
+
+              <rect
+                class="screen"
+                x="88"
+                y="45"
+                width="224"
+                height="85"
+                rx="1"
+              />
+
+              <path
+                class="wave"
+                d="M105 88 C120 88 122 58 138 58 S155 113 171 113 S190 72 205 72 S222 97 238 97 S254 52 271 52 S288 88 305 88"
+              />
+
+              <line
+                x1="88"
+                y1="140"
+                x2="150"
+                y2="140"
+              />
+
+              <line
+                x1="160"
+                y1="140"
+                x2="215"
+                y2="140"
+              />
+
             </svg>
+
           </div>
 
-          <h3>CAMPAIGNS</h3>
+
+          <h3>
+            CAMPAIGNS
+          </h3>
+
 
           <p>
-            Campaigns that give creators room to be themselves
-            while giving brands something people remember.
+
+            Campaigns that give creators room
+            to be themselves while giving brands
+            something people remember.
+
           </p>
 
+
         </article>
+
 
       </div>
+
+
     </section>
 
+
     <!-- PHILOSOPHY -->
-    <section class="section-dark creator-philosophy">
+
+    <section
+      class="section-dark creator-philosophy"
+    >
+
 
       <div class="section-number reveal">
+
         03 — THE APPROACH
+
       </div>
+
 
       <div class="principles-heading reveal">
 
+
         <h2>
+
           Influence works
-          <span>better</span>
+
+          <span>
+            better
+          </span>
+
           when it feels real.
+
         </h2>
 
+
         <p>
-          We believe creators should never have to lose their
-          voice to work with a brand. The strongest partnerships
-          happen when the creator, audience and idea naturally belong together.
+
+          We believe creators should never have to lose
+          their voice to work with a brand. The strongest
+          partnerships happen when the creator, audience
+          and idea naturally belong together.
+
         </p>
 
+
       </div>
+
 
       <div class="principle-list">
 
-        <div class="reveal">
-          <span>01</span>
-          <strong>VOICE</strong>
-          <small>Your perspective comes first.</small>
-        </div>
 
         <div class="reveal">
-          <span>02</span>
-          <strong>FIT</strong>
-          <small>The right brands for the right audience.</small>
+
+          <span>
+            01
+          </span>
+
+          <strong>
+            VOICE
+          </strong>
+
+          <small>
+            Your perspective comes first.
+          </small>
+
         </div>
 
-        <div class="reveal">
-          <span>03</span>
-          <strong>FREEDOM</strong>
-          <small>Space to create without sounding scripted.</small>
-        </div>
 
         <div class="reveal">
-          <span>04</span>
-          <strong>IMPACT</strong>
-          <small>Partnerships people actually remember.</small>
+
+          <span>
+            02
+          </span>
+
+          <strong>
+            FIT
+          </strong>
+
+          <small>
+            The right brands for the right audience.
+          </small>
+
         </div>
+
+
+        <div class="reveal">
+
+          <span>
+            03
+          </span>
+
+          <strong>
+            FREEDOM
+          </strong>
+
+          <small>
+            Space to create without sounding scripted.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            04
+          </span>
+
+          <strong>
+            IMPACT
+          </strong>
+
+          <small>
+            Partnerships people actually remember.
+          </small>
+
+        </div>
+
 
       </div>
+
+
     </section>
 
+
     <!-- CTA -->
+
     <section class="big-cta">
+
 
       <div class="cta-inner">
 
+
         <div>
-          <span class="eyebrow reveal">CREATOR?</span>
+
+
+          <span class="eyebrow reveal">
+
+            CREATOR?
+
+          </span>
+
 
           <h2 class="reveal delay-1">
+
             LET'S
+
             <br>
+
             CREATE
+
             <br>
-            <span>TOGETHER.</span>
+
+            <span>
+              TOGETHER.
+            </span>
+
           </h2>
+
+
         </div>
 
-        <a href="contact.html" class="cta-button reveal delay-2">
+
+        <a
+          href="contact.html"
+          class="cta-button reveal delay-2"
+        >
+
           GET IN TOUCH
-          <span>↗</span>
+
+          <span>
+            ↗
+          </span>
+
         </a>
+
 
       </div>
 
+
     </section>
+
 
   </main>
 
+
+  <!-- FOOTER -->
+
   <footer class="footer">
 
-    <img src="flare-logo.png" alt="FLARE">
+
+    <img
+      src="flare-logo.png"
+      alt="FLARE"
+    >
+
 
     <div class="footer-bottom">
-      <span>© 2026 FLARE</span>
-      <span>EVENTS · INFLUENCE · EXPERIENCES</span>
+
+
+      <span>
+        © 2026 FLARE
+      </span>
+
+
+      <span>
+        EVENTS · INFLUENCE · EXPERIENCES
+      </span>
+
+
     </div>
+
 
   </footer>
 
+
+  <!-- =====================================================
+       MOBILE MENU JS
+  ====================================================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        /* =========================================
+           REVEAL ANIMATIONS
+        ========================================= */
+
+        const revealItems =
+          document.querySelectorAll(".reveal");
+
+
+        if (
+          !("IntersectionObserver" in window)
+        ) {
+
+          revealItems.forEach(
+            item => {
+              item.classList.add("visible");
+            }
+          );
+
+        } else {
+
+
+          const revealObserver =
+            new IntersectionObserver(
+
+              entries => {
+
+                entries.forEach(
+                  entry => {
+
+                    if (
+                      entry.isIntersecting
+                    ) {
+
+                      entry.target.classList.add(
+                        "visible"
+                      );
+
+                      revealObserver.unobserve(
+                        entry.target
+                      );
+
+                    }
+
+                  }
+                );
+
+              },
+
+              {
+                threshold:.12,
+
+                rootMargin:
+                  "0px 0px -40px 0px"
+              }
+
+            );
+
+
+          revealItems.forEach(
+            item => {
+
+              revealObserver.observe(
+                item
+              );
+
+            }
+          );
+
+        }
+
+
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
+
+        const menuToggle =
+          document.getElementById(
+            "menuToggle"
+          );
+
+
+        const mobileMenu =
+          document.getElementById(
+            "mobileMenu"
+          );
+
+
+        if (
+          !menuToggle ||
+          !mobileMenu
+        ) {
+
+          return;
+
+        }
+
+
+        const mobileLinks =
+          mobileMenu.querySelectorAll("a");
+
+
+        function openMenu() {
+
+          mobileMenu.classList.add(
+            "active"
+          );
+
+          menuToggle.classList.add(
+            "active"
+          );
+
+          document.body.classList.add(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Close menu"
+          );
+
+        }
+
+
+        function closeMenu() {
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+          menuToggle.classList.remove(
+            "active"
+          );
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        }
+
+
+        menuToggle.addEventListener(
+          "click",
+          function () {
+
+            if (
+              mobileMenu.classList.contains(
+                "active"
+              )
+            ) {
+
+              closeMenu();
+
+            } else {
+
+              openMenu();
+
+            }
+
+          }
+        );
+
+
+        mobileLinks.forEach(
+          link => {
+
+            link.addEventListener(
+              "click",
+              closeMenu
+            );
+
+          }
+        );
+
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (
+              event.key === "Escape"
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        window.addEventListener(
+          "resize",
+          function () {
+
+            if (
+              window.innerWidth > 900
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+      }
+    );
+
+  </script>
+
+
   <script src="script.js"></script>
 
+
 </body>
+
 </html>
