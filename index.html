@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -8,227 +10,475 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
+  <title>FLARE — Where Moments Ignite.</title>
+
   <meta
     name="description"
     content="FLARE — Events, Influence & Experiences. We create experiences people remember and influence people can't ignore."
   >
 
-  <meta name="theme-color" content="#080808">
+  <meta
+    name="author"
+    content="FLARE Events India"
+  >
 
-  <title>FLARE — Where Moments Ignite.</title>
-  <link rel="canonical" href="https://flareevents.in/">
+  <meta
+    name="robots"
+    content="index, follow"
+  >
 
-<!-- Open Graph / Social Share -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://flareevents.in/">
-<meta property="og:title" content="FLARE — Where Moments Ignite.">
-<meta property="og:description" content="FLARE creates experiences, events and creator-led brand moments that people remember.">
-<meta property="og:image" content="https://flareevents.in/social-share.jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="FLARE">
+  <meta
+    name="theme-color"
+    content="#080808"
+  >
 
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FLARE — Where Moments Ignite.">
-<meta name="twitter:description" content="FLARE creates experiences, events and creator-led brand moments that people remember.">
-<meta name="twitter:image" content="https://flareevents.in/social-share.jpeg">
-<link rel="icon" type="image/png" href="favicon.png">
+  <link
+    rel="canonical"
+    href="https://flareevents.in/"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+  <!-- =========================
+       OPEN GRAPH
+  ========================== -->
+
   <meta property="og:type" content="website">
-<meta property="og:url" content="https://flareevents.in/">
-<meta property="og:title" content="FLARE — Where Moments Ignite.">
-<meta property="og:description" content="FLARE creates experiences, creator partnerships and brand moments that move people.">
-<meta property="og:image" content="https://flareevents.in/social-share.jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FLARE — Where Moments Ignite.">
-<meta name="twitter:description" content="FLARE creates experiences, creator partnerships and brand moments that move people.">
-<meta name="twitter:image" content="https://flareevents.in/social-share.jpeg">
-  <meta name="robots" content="index, follow">
-<meta name="author" content="FLARE Events India">
-<meta name="keywords" content="FLARE Events India, events, influencer marketing, creator partnerships, brand collaborations">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta
+    property="og:url"
+    content="https://flareevents.in/"
+  >
+
+  <meta
+    property="og:title"
+    content="FLARE — Where Moments Ignite."
+  >
+
+  <meta
+    property="og:description"
+    content="FLARE creates experiences, events and creator-led brand moments that people remember."
+  >
+
+  <meta
+    property="og:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:site_name"
+    content="FLARE"
+  >
+
+
+  <!-- =========================
+       TWITTER / X
+  ========================== -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="FLARE — Where Moments Ignite."
+  >
+
+  <meta
+    name="twitter:description"
+    content="FLARE creates experiences, events and creator-led brand moments that people remember."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+
+  <!-- =========================
+       FONTS
+  ========================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+
+  <!-- =========================
+       MAIN CSS
+  ========================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 
 
-  <!-- GLOBAL FLARE PAGE LOADER -->
+  <!-- =========================
+       GLOBAL FLARE LOADER
+  ========================== -->
+
   <style>
-    .flare-page-loader{
-      position:fixed;
-      inset:0;
-      z-index:99999;
-      display:grid;
-      place-items:center;
-      background:#050505;
-      pointer-events:none;
-      animation:flareLoaderOut 1s 1.15s cubic-bezier(.77,0,.18,1) forwards;
+
+    .flare-page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: grid;
+      place-items: center;
+      background: #050505;
+      pointer-events: none;
+      animation:
+        flareLoaderOut
+        1s
+        1.25s
+        cubic-bezier(.77,0,.18,1)
+        forwards;
     }
-    .flare-page-loader img{
-      width:min(430px,58vw);
-      height:auto;
-      display:block;
-      opacity:0;
-      transform:translateY(24px) scale(.96);
-      animation:flareLogoIn .8s .12s cubic-bezier(.2,.75,.2,1) forwards;
+
+    .flare-page-loader img {
+      width: min(430px, 58vw);
+      height: auto;
+      display: block;
+      opacity: 0;
+      transform: translateY(24px) scale(.96);
+
+      animation:
+        flareLogoIn
+        .8s
+        .12s
+        cubic-bezier(.2,.75,.2,1)
+        forwards;
     }
-    .flare-loader-line{
-      position:absolute;
-      left:50%;
-      bottom:13%;
-      width:min(260px,42vw);
-      height:1px;
-      background:rgba(255,255,255,.12);
-      overflow:hidden;
+
+    .flare-loader-line {
+      position: absolute;
+      left: 50%;
+      bottom: 13%;
+
+      width: min(260px, 42vw);
+      height: 1px;
+
+      background: rgba(255,255,255,.12);
+
+      overflow: hidden;
+
+      transform: translateX(-50%);
     }
-    .flare-loader-line::after{
-      content:"";
-      display:block;
-      width:100%;
-      height:100%;
-      background:#c79a3b;
-      transform:translateX(-100%);
-      animation:flareLoaderLine 1s .2s cubic-bezier(.7,0,.2,1) forwards;
+
+    .flare-loader-line::after {
+      content: "";
+
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      background: #c79a3b;
+
+      transform: translateX(-100%);
+
+      animation:
+        flareLoaderLine
+        1s
+        .2s
+        cubic-bezier(.7,0,.2,1)
+        forwards;
     }
-    @keyframes flareLogoIn{
-      to{opacity:1;transform:none}
+
+    @keyframes flareLogoIn {
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+
     }
-    @keyframes flareLoaderLine{
-      to{transform:translateX(0)}
+
+    @keyframes flareLoaderLine {
+
+      to {
+        transform: translateX(0);
+      }
+
     }
-    @keyframes flareLoaderOut{
-      to{transform:translateY(-100%);visibility:hidden}
+
+    @keyframes flareLoaderOut {
+
+      to {
+        transform: translateY(-100%);
+        visibility: hidden;
+      }
+
     }
-    @media (prefers-reduced-motion:reduce){
+
+    @media (prefers-reduced-motion: reduce) {
+
       .flare-page-loader,
       .flare-page-loader img,
-      .flare-loader-line::after{
-        animation:none;
+      .flare-loader-line::after {
+        animation: none;
       }
-      .flare-page-loader{visibility:hidden}
+
+      .flare-page-loader {
+        visibility: hidden;
+      }
+
     }
+
   </style>
 
-  <!-- FACEBOOK ICON FIX -->
+
+  <!-- =========================
+       FACEBOOK ICON FIX
+  ========================== -->
+
   <style>
+
     .social-icons .facebook-social {
+
       width: 44px !important;
       height: 44px !important;
+
       min-width: 44px !important;
       min-height: 44px !important;
+
       display: inline-flex !important;
+
       align-items: center !important;
       justify-content: center !important;
+
       box-sizing: border-box !important;
+
       border: 1px solid rgba(0,0,0,.28) !important;
+
       border-radius: 50% !important;
+
       background: transparent !important;
+
       color: #111 !important;
+
       opacity: 1 !important;
       visibility: visible !important;
+
       overflow: visible !important;
+
       text-decoration: none !important;
+
     }
 
     .social-icons .facebook-social .facebook-f {
+
       display: flex !important;
+
       align-items: center !important;
       justify-content: center !important;
+
       width: 22px !important;
       height: 22px !important;
+
       color: #111 !important;
-      font-family: Arial, Helvetica, sans-serif !important;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif !important;
+
       font-size: 24px !important;
+
       font-weight: 700 !important;
+
       line-height: 1 !important;
+
       opacity: 1 !important;
       visibility: visible !important;
+
       transform: translateY(1px) !important;
+
     }
 
     .social-icons .facebook-social:hover {
+
       background: #080808 !important;
+
       color: #fff !important;
+
       border-color: #080808 !important;
+
       transform: translateY(-5px) !important;
+
     }
 
     .social-icons .facebook-social:hover .facebook-f {
+
       color: #fff !important;
+
     }
 
     @media (max-width: 768px) {
+
       .social-icons .facebook-social {
+
         width: 42px !important;
         height: 42px !important;
+
         min-width: 42px !important;
         min-height: 42px !important;
+
       }
 
       .social-icons .facebook-social .facebook-f {
+
         font-size: 23px !important;
+
       }
+
     }
+
   </style>
-<!-- FLARE Organization Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "FLARE",
-  "url": "https://flareevents.in/",
-  "logo": "https://flareevents.in/flare-logo.png",
-  "description": "FLARE creates experiences, events and creator-led brand moments that people remember.",
-  "sameAs": [
-    "https://www.instagram.com/weareflare.in/",
-    "https://www.linkedin.com/company/flare-events-india/",
-    "https://www.facebook.com/share/17yEoZoNkn/"
-  ]
-}
-</script>
+
+
+  <!-- =========================
+       MOTION POLISH
+  ========================== -->
 
   <style>
-    /* GLOBAL MOTION POLISH — keeps existing classes intact */
-    .reveal{
-      opacity:0;
-      transform:translateY(28px);
-      transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);
+
+    .reveal {
+
+      opacity: 0;
+
+      transform: translateY(28px);
+
+      transition:
+        opacity .8s cubic-bezier(.2,.7,.2,1),
+        transform .8s cubic-bezier(.2,.7,.2,1);
+
     }
-    .reveal.visible{opacity:1;transform:none}
-    .delay-1{transition-delay:.08s}
-    .delay-2{transition-delay:.16s}
-    .delay-3{transition-delay:.24s}
-    .delay-4{transition-delay:.32s}
-    @media (prefers-reduced-motion:reduce){
-      .reveal{opacity:1;transform:none;transition:none}
+
+    .reveal.visible {
+
+      opacity: 1;
+
+      transform: none;
+
     }
+
+    .delay-1 {
+      transition-delay: .08s;
+    }
+
+    .delay-2 {
+      transition-delay: .16s;
+    }
+
+    .delay-3 {
+      transition-delay: .24s;
+    }
+
+    .delay-4 {
+      transition-delay: .32s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .reveal {
+
+        opacity: 1;
+
+        transform: none;
+
+        transition: none;
+
+      }
+
+    }
+
   </style>
+
+
+  <!-- =========================
+       ORGANIZATION SCHEMA
+  ========================== -->
+
+  <script type="application/ld+json">
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FLARE",
+    "url": "https://flareevents.in/",
+    "logo": "https://flareevents.in/flare-logo.png",
+    "description": "FLARE creates experiences, events and creator-led brand moments that people remember.",
+    "sameAs": [
+      "https://www.instagram.com/weareflare.in/",
+      "https://www.linkedin.com/company/flare-events-india/",
+      "https://www.facebook.com/share/17yEoZoNkn/"
+    ]
+  }
+
+  </script>
 
 </head>
 
+
 <body>
 
-  <!-- GLOBAL FLARE PAGE LOADER -->
-  <div class="flare-page-loader" aria-hidden="true">
-    <img src="flare-logo.png" alt="">
-    <div class="flare-loader-line"></div>
-  </div>
 
   <!-- =========================
-       CURSOR
+       GLOBAL PAGE LOADER
   ========================== -->
 
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div
+    class="flare-page-loader"
+    aria-hidden="true"
+  >
+
+    <img
+      src="flare-logo.png"
+      alt=""
+    >
+
+    <div class="flare-loader-line"></div>
+
+  </div>
+
+
+  <!-- =========================
+       CUSTOM CURSOR
+  ========================== -->
+
+  <div
+    class="cursor-dot"
+    aria-hidden="true"
+  ></div>
 
 
   <!-- =========================
@@ -237,36 +487,58 @@
 
   <header class="site-header">
 
+
+    <!-- LOGO -->
+
     <a
       href="index.html"
       class="brand-logo"
       aria-label="FLARE Home"
     >
+
       <img
         src="flare-logo.png"
         alt="FLARE"
       >
+
     </a>
 
 
-    <!-- DESKTOP NAV -->
+    <!-- =========================
+         DESKTOP NAVIGATION
+    ========================== -->
 
-    <nav class="desktop-nav" aria-label="Main navigation">
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
 
-      <a href="#idea">IDEA</a>
+      <a href="index.html#idea">
+        IDEA
+      </a>
 
-      <a href="#services">SERVICES</a>
+      <a href="index.html#services">
+        WHAT WE DO
+      </a>
 
-      <a href="#work">WORK</a>
+      <a href="index.html#work">
+        WORK
+      </a>
 
-      <a href="founder.html">FOUNDER</a>
+      <a href="founder.html">
+        FOUNDER
+      </a>
 
-      <a href="contact.html">CONTACT</a>
+      <a href="contact.html">
+        START A PROJECT ↗
+      </a>
 
     </nav>
 
 
-    <!-- MOBILE MENU BUTTON -->
+    <!-- =========================
+         MOBILE MENU BUTTON
+    ========================== -->
 
     <button
       class="menu-button"
@@ -297,6 +569,7 @@
 
     <div class="mobile-menu-inner">
 
+
       <div class="menu-label">
         MENU / 001
       </div>
@@ -304,64 +577,103 @@
 
       <nav class="mobile-navigation">
 
-        <a href="#idea">
-          <span>THE IDEA</span>
-          <small>01</small>
+
+        <a href="index.html#idea">
+
+          <span>
+            THE IDEA
+          </span>
+
+          <small>
+            01
+          </small>
+
         </a>
 
-        <a href="#services">
-          <span>SERVICES</span>
-          <small>02</small>
+
+        <a href="index.html#services">
+
+          <span>
+            WHAT WE DO
+          </span>
+
+          <small>
+            02
+          </small>
+
         </a>
 
-        <a href="#work">
-          <span>SELECTED WORK</span>
-          <small>03</small>
+
+        <a href="index.html#work">
+
+          <span>
+            SELECTED WORK
+          </span>
+
+          <small>
+            03
+          </small>
+
         </a>
 
-        <a href="brand.html">
-          <span>FOR BRANDS</span>
-          <small>04</small>
-        </a>
-
-        <a href="creator.html">
-          <span>FOR CREATORS</span>
-          <small>05</small>
-        </a>
 
         <a href="founder.html">
-          <span>FOUNDER</span>
-          <small>06</small>
+
+          <span>
+            FOUNDER
+          </span>
+
+          <small>
+            04
+          </small>
+
         </a>
 
+
         <a href="contact.html">
-          <span>START A PROJECT</span>
-          <small>07</small>
+
+          <span>
+            START A PROJECT
+          </span>
+
+          <small>
+            05
+          </small>
+
         </a>
+
 
       </nav>
 
 
+      <!-- SOCIAL LINKS -->
+
       <div class="menu-socials">
 
+
         <a
-          href="https://www.instagram.com/weareflare.in?igsi=dnd4ZTA5c2hvcTVm"
+          href="https://www.instagram.com/weareflare.in/"
           target="_blank"
           rel="noopener noreferrer"
         >
           Instagram ↗
         </a>
 
-<!-- Facebook -->
-<a
-  href="https://www.facebook.com/share/17yEoZoNkn/?mibextid=wwXIfr"
-  target="_blank"
-  rel="noopener"
-  aria-label="Facebook"
-  class="facebook-social"
->
-  <span class="facebook-f">f</span>
-</a>
+
+        <a
+          href="https://www.facebook.com/share/17yEoZoNkn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          class="facebook-social"
+        >
+
+          <span class="facebook-f">
+            f
+          </span>
+
+        </a>
+
 
         <a
           href="https://www.linkedin.com/company/flare-events-india/"
@@ -371,25 +683,40 @@
           LinkedIn ↗
         </a>
 
+
       </div>
+
 
     </div>
 
   </div>
 
 
+  <!-- =========================
+       HERO TITLE FIX
+  ========================== -->
+
   <style>
+
     .hero-title-main {
+
       margin: 0;
       padding: 0;
+
       font: inherit;
+
       font-weight: inherit;
+
     }
 
     .hero-title-main .hero-line {
+
       display: block;
+
     }
+
   </style>
+
 
   <!-- =========================
        MAIN
@@ -404,40 +731,65 @@
 
     <section class="hero">
 
-      <!-- Background decoration -->
 
-      <div class="hero-grid" aria-hidden="true"></div>
-
-      <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
-
-      <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+      <div
+        class="hero-grid"
+        aria-hidden="true"
+      ></div>
 
 
-      <!-- Meta -->
+      <div
+        class="hero-glow hero-glow-one"
+        aria-hidden="true"
+      ></div>
+
+
+      <div
+        class="hero-glow hero-glow-two"
+        aria-hidden="true"
+      ></div>
+
 
       <div class="hero-meta reveal">
 
         <span>FLARE</span>
+
         <span>/</span>
+
         <span>INDIA</span>
+
         <span>/</span>
+
         <span>2026</span>
 
       </div>
 
 
-      <!-- Hero title -->
-
       <div class="hero-content">
+
 
         <div class="hero-title">
 
           <h1 class="hero-title-main">
-            <span class="hero-line reveal">WHERE</span>
-            <span class="hero-line hero-muted reveal delay-1">MOMENTS</span>
-            <span class="hero-line reveal delay-2">
-              IGNITE<span class="hero-period">.</span>
+
+
+            <span class="hero-line reveal">
+              WHERE
             </span>
+
+
+            <span class="hero-line hero-muted reveal delay-1">
+              MOMENTS
+            </span>
+
+
+            <span class="hero-line reveal delay-2">
+
+              IGNITE<span class="hero-period">.</span>
+
+            </span>
+
+
           </h1>
 
         </div>
@@ -453,12 +805,20 @@
 
         <div class="hero-actions reveal delay-4">
 
+
           <a
-            href="#idea"
+            href="index.html#idea"
             class="button button-light magnetic"
           >
-            <span>EXPLORE FLARE</span>
-            <span>↓</span>
+
+            <span>
+              EXPLORE FLARE
+            </span>
+
+            <span>
+              ↓
+            </span>
+
           </a>
 
 
@@ -466,42 +826,54 @@
             href="contact.html"
             class="text-link magnetic"
           >
+
             START A PROJECT ↗
+
           </a>
+
 
         </div>
 
+
       </div>
 
-
-      <!-- Floating circle -->
 
       <div
         class="magnetic-circle"
         aria-hidden="true"
       >
 
-        <span>SCROLL</span>
-        <strong>↓</strong>
+        <span>
+          SCROLL
+        </span>
+
+        <strong>
+          ↓
+        </strong>
 
       </div>
 
-
-      <!-- Hero footer -->
 
       <div class="hero-footer reveal delay-4">
 
-        <span>EVENTS</span>
+        <span>
+          EVENTS
+        </span>
 
         <i></i>
 
-        <span>INFLUENCE</span>
+        <span>
+          INFLUENCE
+        </span>
 
         <i></i>
 
-        <span>EXPERIENCES</span>
+        <span>
+          EXPERIENCES
+        </span>
 
       </div>
+
 
     </section>
 
@@ -555,17 +927,23 @@
       id="idea"
     >
 
+
       <div class="section-number reveal">
+
         01 — THE IDEA
+
       </div>
 
 
       <div class="idea-grid">
 
+
         <div>
 
           <p class="eyebrow reveal">
+
             NOT JUST ANOTHER AGENCY.
+
           </p>
 
 
@@ -583,15 +961,21 @@
 
         <div class="idea-copy reveal">
 
-          <p>
-            FLARE sits where experiences,
-            creators, brands and culture meet.
-          </p>
 
           <p>
+
+            FLARE sits where experiences,
+            creators, brands and culture meet.
+
+          </p>
+
+
+          <p>
+
             We turn ideas into moments worth
             talking about — from intimate
             celebrations to creator-led campaigns.
+
           </p>
 
 
@@ -599,11 +983,18 @@
             href="brand.html"
             class="arrow-link magnetic"
           >
+
             SEE WHAT WE DO
-            <span>↗</span>
+
+            <span>
+              ↗
+            </span>
+
           </a>
 
+
         </div>
+
 
       </div>
 
@@ -611,7 +1002,7 @@
 
 
     <!-- =========================
-         SERVICES
+         SERVICES / WHAT WE DO
     ========================== -->
 
     <section
@@ -619,16 +1010,21 @@
       id="services"
     >
 
+
       <div class="section-number dark-number reveal">
+
         02 — WHAT WE DO
+
       </div>
 
 
       <div class="services-intro reveal">
 
         <p>
+
           The right idea changes everything.
           The right people make it matter.
+
         </p>
 
       </div>
@@ -637,7 +1033,7 @@
       <div class="service-cards">
 
 
-        <!-- CARD 1 -->
+        <!-- BRAND -->
 
         <a
           href="brand.html"
@@ -646,9 +1042,13 @@
 
           <div class="card-top">
 
-            <span>01</span>
+            <span>
+              01
+            </span>
 
-            <span>BRAND</span>
+            <span>
+              BRAND
+            </span>
 
           </div>
 
@@ -659,23 +1059,29 @@
 
 
           <p>
+
             Strategy, partnerships and
             experiences built around your objective.
+
           </p>
 
 
           <div class="card-bottom">
 
-            <span>DISCOVER</span>
+            <span>
+              DISCOVER
+            </span>
 
-            <span>↗</span>
+            <span>
+              ↗
+            </span>
 
           </div>
 
         </a>
 
 
-        <!-- CARD 2 -->
+        <!-- FLARE -->
 
         <a
           href="brand.html"
@@ -684,9 +1090,13 @@
 
           <div class="card-top">
 
-            <span>02</span>
+            <span>
+              02
+            </span>
 
-            <span>FLARE</span>
+            <span>
+              FLARE
+            </span>
 
           </div>
 
@@ -697,23 +1107,29 @@
 
 
           <p>
+
             Creative direction and strategy
             designed to make ideas matter.
+
           </p>
 
 
           <div class="card-bottom">
 
-            <span>DISCOVER</span>
+            <span>
+              DISCOVER
+            </span>
 
-            <span>↗</span>
+            <span>
+              ↗
+            </span>
 
           </div>
 
         </a>
 
 
-        <!-- CARD 3 -->
+        <!-- CREATOR -->
 
         <a
           href="creator.html"
@@ -722,9 +1138,13 @@
 
           <div class="card-top">
 
-            <span>03</span>
+            <span>
+              03
+            </span>
 
-            <span>CREATOR</span>
+            <span>
+              CREATOR
+            </span>
 
           </div>
 
@@ -735,23 +1155,29 @@
 
 
           <p>
+
             The right voices, partnerships
             and people for your story.
+
           </p>
 
 
           <div class="card-bottom">
 
-            <span>DISCOVER</span>
+            <span>
+              DISCOVER
+            </span>
 
-            <span>↗</span>
+            <span>
+              ↗
+            </span>
 
           </div>
 
         </a>
 
 
-        <!-- CARD 4 -->
+        <!-- AUDIENCE -->
 
         <a
           href="creator.html"
@@ -760,9 +1186,13 @@
 
           <div class="card-top">
 
-            <span>04</span>
+            <span>
+              04
+            </span>
 
-            <span>AUDIENCE</span>
+            <span>
+              AUDIENCE
+            </span>
 
           </div>
 
@@ -773,86 +1203,172 @@
 
 
           <p>
+
             Attention that becomes connection,
             action and influence.
+
           </p>
 
 
           <div class="card-bottom">
 
-            <span>DISCOVER</span>
+            <span>
+              DISCOVER
+            </span>
 
-            <span>↗</span>
+            <span>
+              ↗
+            </span>
 
           </div>
 
         </a>
 
+
       </div>
 
 
-      <!-- CAPABILITIES -->
+      <!-- =========================
+           CAPABILITIES
+      ========================== -->
 
       <div class="service-list">
 
+
         <div class="list-intro">
+
           CAPABILITIES
+
         </div>
 
 
         <div class="capability-list">
 
+
           <div class="reveal">
+
             <span>01</span>
-            <strong>Creator Discovery</strong>
-            <small>Finding the right people.</small>
+
+            <strong>
+              Creator Discovery
+            </strong>
+
+            <small>
+              Finding the right people.
+            </small>
+
           </div>
 
+
           <div class="reveal">
+
             <span>02</span>
-            <strong>Influencer Campaigns</strong>
-            <small>Campaigns with purpose.</small>
+
+            <strong>
+              Influencer Campaigns
+            </strong>
+
+            <small>
+              Campaigns with purpose.
+            </small>
+
           </div>
 
+
           <div class="reveal">
+
             <span>03</span>
-            <strong>Creator Partnerships</strong>
-            <small>Long-term relationships.</small>
+
+            <strong>
+              Creator Partnerships
+            </strong>
+
+            <small>
+              Long-term relationships.
+            </small>
+
           </div>
 
+
           <div class="reveal">
+
             <span>04</span>
-            <strong>Brand Collaborations</strong>
-            <small>Brands meeting culture.</small>
+
+            <strong>
+              Brand Collaborations
+            </strong>
+
+            <small>
+              Brands meeting culture.
+            </small>
+
           </div>
 
+
           <div class="reveal">
+
             <span>05</span>
-            <strong>Campaign Strategy</strong>
-            <small>Ideas before execution.</small>
+
+            <strong>
+              Campaign Strategy
+            </strong>
+
+            <small>
+              Ideas before execution.
+            </small>
+
           </div>
 
+
           <div class="reveal">
+
             <span>06</span>
-            <strong>Content Campaigns</strong>
-            <small>Stories people notice.</small>
+
+            <strong>
+              Content Campaigns
+            </strong>
+
+            <small>
+              Stories people notice.
+            </small>
+
           </div>
 
+
           <div class="reveal">
+
             <span>07</span>
-            <strong>Campaign Management</strong>
-            <small>From idea to delivery.</small>
+
+            <strong>
+              Campaign Management
+            </strong>
+
+            <small>
+              From idea to delivery.
+            </small>
+
           </div>
 
+
           <div class="reveal">
+
             <span>08</span>
-            <strong>Performance & Reporting</strong>
-            <small>Impact you can measure.</small>
+
+            <strong>
+              Performance & Reporting
+            </strong>
+
+            <small>
+              Impact you can measure.
+            </small>
+
           </div>
+
 
         </div>
 
       </div>
+
 
     </section>
 
@@ -863,35 +1379,54 @@
 
     <section class="principles section-dark">
 
+
       <div class="section-number reveal">
+
         03 — THE APPROACH
+
       </div>
 
 
       <div class="principles-heading reveal">
 
+
         <h2>
+
           We bring together
-          <span>events, creators,
-          brands</span> and ideas.
+
+          <span>
+            events, creators,
+            brands
+          </span>
+
+          and ideas.
+
         </h2>
 
 
         <p>
+
           We're building from the ground up —
           with a full launch planned for 2027.
+
         </p>
+
 
       </div>
 
 
       <div class="principle-list">
 
+
         <div class="reveal">
 
-          <span>01</span>
+          <span>
+            01
+          </span>
 
-          <strong>IDEAS FIRST</strong>
+          <strong>
+            IDEAS FIRST
+          </strong>
 
           <small>
             Good work starts with a better idea.
@@ -902,9 +1437,13 @@
 
         <div class="reveal">
 
-          <span>02</span>
+          <span>
+            02
+          </span>
 
-          <strong>PEOPLE MATTER</strong>
+          <strong>
+            PEOPLE MATTER
+          </strong>
 
           <small>
             Relationships create real impact.
@@ -915,9 +1454,13 @@
 
         <div class="reveal">
 
-          <span>03</span>
+          <span>
+            03
+          </span>
 
-          <strong>CULTURE MOVES</strong>
+          <strong>
+            CULTURE MOVES
+          </strong>
 
           <small>
             Stay relevant. Stay curious.
@@ -928,15 +1471,20 @@
 
         <div class="reveal">
 
-          <span>04</span>
+          <span>
+            04
+          </span>
 
-          <strong>IMPACT COUNTS</strong>
+          <strong>
+            IMPACT COUNTS
+          </strong>
 
           <small>
             Attention means nothing without action.
           </small>
 
         </div>
+
 
       </div>
 
@@ -952,22 +1500,34 @@
       id="work"
     >
 
+
       <div class="section-number reveal">
+
         04 — SELECTED WORK
+
       </div>
 
 
       <div class="chapter-heading reveal">
 
+
         <div>
 
           <span class="eyebrow">
+
             BUILDING TOWARD 2027
+
           </span>
 
+
           <h2>
+
             Nothing fake.
-            <span>Nothing invented.</span>
+
+            <span>
+              Nothing invented.
+            </span>
+
           </h2>
 
         </div>
@@ -975,11 +1535,16 @@
 
         <div class="chapter-date">
 
-          FLARE / INDIA<br>
+          FLARE / INDIA
 
-          <span>COMING 2027</span>
+          <br>
+
+          <span>
+            COMING 2027
+          </span>
 
         </div>
+
 
       </div>
 
@@ -987,17 +1552,22 @@
       <div class="chapter-grid">
 
 
-        <!-- MAIN WORK -->
-
-        <article class="chapter-card chapter-card-large reveal">
+        <article
+          class="chapter-card chapter-card-large reveal"
+        >
 
           <div class="visual">
 
-            <span>FLARE / 001</span>
+            <span>
+              FLARE / 001
+            </span>
 
             <strong>
-              THE FIRST<br>
+
+              THE FIRST
+              <br>
               CHAPTER
+
             </strong>
 
           </div>
@@ -1018,17 +1588,22 @@
         </article>
 
 
-        <!-- SECOND -->
-
-        <article class="chapter-card reveal">
+        <article
+          class="chapter-card reveal"
+        >
 
           <div class="visual visual-two">
 
-            <span>FLARE / 002</span>
+            <span>
+              FLARE / 002
+            </span>
 
             <strong>
-              THE NEXT<br>
+
+              THE NEXT
+              <br>
               MOMENT
+
             </strong>
 
           </div>
@@ -1049,17 +1624,22 @@
         </article>
 
 
-        <!-- THIRD -->
-
-        <article class="chapter-card reveal">
+        <article
+          class="chapter-card reveal"
+        >
 
           <div class="visual visual-three">
 
-            <span>FLARE / 003</span>
+            <span>
+              FLARE / 003
+            </span>
 
             <strong>
-              MORE<br>
+
+              MORE
+              <br>
               TO COME
+
             </strong>
 
           </div>
@@ -1079,18 +1659,22 @@
 
         </article>
 
+
       </div>
 
 
       <div class="chapter-note reveal">
 
         <p>
+
           FLARE is preparing for its full 2027 launch.
           This space will become a home for our real
           work, collaborations and experiences.
+
         </p>
 
       </div>
+
 
     </section>
 
@@ -1101,18 +1685,27 @@
 
     <section class="big-cta">
 
+
       <div class="cta-inner">
 
+
         <span class="eyebrow">
+
           LET'S MAKE SOMETHING MATTER.
+
         </span>
 
 
         <h2 class="reveal">
 
-          MAKE<br>
+          MAKE
+          <br>
+
           IT
-          <span>MATTER.</span>
+
+          <span>
+            MATTER.
+          </span>
 
         </h2>
 
@@ -1137,7 +1730,9 @@
           href="mailto:book.flareevents@gmail.com"
           class="email-link"
         >
+
           book.flareevents@gmail.com
+
         </a>
 
 
@@ -1147,7 +1742,7 @@
           <!-- INSTAGRAM -->
 
           <a
-            href="https://www.instagram.com/weareflare.in?igsi=dnd4ZTA5c2hvcTVm"
+            href="https://www.instagram.com/weareflare.in/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -1188,13 +1783,20 @@
           <!-- FACEBOOK -->
 
           <a
-            href="https://www.facebook.com/share/17yEoZoNkn/?mibextid=wwXIfr"
+            href="https://www.facebook.com/share/17yEoZoNkn/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
             class="facebook-social"
           >
-            <span class="facebook-f" aria-hidden="true">f</span>
+
+            <span
+              class="facebook-f"
+              aria-hidden="true"
+            >
+              f
+            </span>
+
           </a>
 
 
@@ -1228,9 +1830,12 @@
 
           </a>
 
+
         </div>
 
+
       </div>
+
 
     </section>
 
@@ -1241,6 +1846,7 @@
 
     <footer class="footer">
 
+
       <img
         src="flare-logo.png"
         alt="FLARE"
@@ -1250,9 +1856,12 @@
 
       <div class="footer-grid">
 
+
         <div>
 
-          <span>FLARE</span>
+          <span>
+            FLARE
+          </span>
 
           <p>
             Where moments ignite.
@@ -1263,34 +1872,55 @@
 
         <div>
 
-          <span>NAVIGATION</span>
+          <span>
+            NAVIGATION
+          </span>
 
-          <a href="#idea">Idea</a>
+          <a href="index.html#idea">
+            Idea
+          </a>
 
-          <a href="#services">Services</a>
+          <a href="index.html#services">
+            What We Do
+          </a>
 
-          <a href="#work">Work</a>
+          <a href="index.html#work">
+            Work
+          </a>
 
-          <a href="contact.html">Contact</a>
+          <a href="founder.html">
+            Founder
+          </a>
+
+          <a href="contact.html">
+            Contact
+          </a>
 
         </div>
 
 
         <div>
 
-          <span>CONNECT</span>
+          <span>
+            CONNECT
+          </span>
 
-          <a href="mailto:book.flareevents@gmail.com">
+
+          <a
+            href="mailto:book.flareevents@gmail.com"
+          >
             Email
           </a>
 
+
           <a
-            href="https://www.instagram.com/weareflare.in?igsi=dnd4ZTA5c2hvcTVm"
+            href="https://www.instagram.com/weareflare.in/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Instagram ↗
           </a>
+
 
           <a
             href="https://www.linkedin.com/company/flare-events-india/"
@@ -1300,28 +1930,36 @@
             LinkedIn ↗
           </a>
 
+
         </div>
+
 
       </div>
 
 
       <div class="footer-bottom">
 
+
         <span>
           © 2026 FLARE. ALL RIGHTS RESERVED.
         </span>
+
 
         <span>
           EVENTS · INFLUENCE · EXPERIENCES
         </span>
 
+
         <span>
           INDIA
         </span>
 
+
       </div>
 
+
     </footer>
+
 
   </main>
 
@@ -1330,27 +1968,286 @@
        JAVASCRIPT
   ========================== -->
 
-
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const revealItems = document.querySelectorAll(".reveal");
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach(el => el.classList.add("visible"));
-        return;
-      }
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            obs.unobserve(entry.target);
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        /* =========================
+           REVEAL ANIMATIONS
+        ========================== */
+
+        const revealItems =
+          document.querySelectorAll(".reveal");
+
+
+        if (
+          !("IntersectionObserver" in window)
+        ) {
+
+          revealItems.forEach(
+            function (el) {
+
+              el.classList.add("visible");
+
+            }
+          );
+
+        } else {
+
+          const revealObserver =
+            new IntersectionObserver(
+              function (entries, observer) {
+
+                entries.forEach(
+                  function (entry) {
+
+                    if (
+                      entry.isIntersecting
+                    ) {
+
+                      entry.target.classList.add(
+                        "visible"
+                      );
+
+                      observer.unobserve(
+                        entry.target
+                      );
+
+                    }
+
+                  }
+                );
+
+              },
+              {
+                threshold: 0.12,
+                rootMargin:
+                  "0px 0px -40px 0px"
+              }
+            );
+
+
+          revealItems.forEach(
+            function (el) {
+
+              revealObserver.observe(el);
+
+            }
+          );
+
+        }
+
+
+        /* =========================
+           MOBILE MENU
+        ========================== */
+
+        const menuToggle =
+          document.getElementById(
+            "menuToggle"
+          );
+
+        const mobileMenu =
+          document.getElementById(
+            "mobileMenu"
+          );
+
+
+        if (
+          !menuToggle ||
+          !mobileMenu
+        ) {
+          return;
+        }
+
+
+        const mobileLinks =
+          mobileMenu.querySelectorAll(
+            "a"
+          );
+
+
+        function openMenu() {
+
+          mobileMenu.classList.add(
+            "active"
+          );
+
+          document.body.classList.add(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Close menu"
+          );
+
+        }
+
+
+        function closeMenu() {
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        }
+
+
+        function toggleMenu() {
+
+          if (
+            mobileMenu.classList.contains(
+              "active"
+            )
+          ) {
+
+            closeMenu();
+
+          } else {
+
+            openMenu();
+
           }
-        });
-      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-      revealItems.forEach(el => observer.observe(el));
-    });
+
+        }
+
+
+        menuToggle.addEventListener(
+          "click",
+          toggleMenu
+        );
+
+
+        mobileLinks.forEach(
+          function (link) {
+
+            link.addEventListener(
+              "click",
+              function () {
+
+                closeMenu();
+
+              }
+            );
+
+          }
+        );
+
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (
+              event.key === "Escape"
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        /* =========================
+           CLOSE MENU ON RESIZE
+        ========================== */
+
+        window.addEventListener(
+          "resize",
+          function () {
+
+            if (
+              window.innerWidth > 900
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        /* =========================
+           PREVENT BODY SCROLL
+           WHILE MENU IS OPEN
+        ========================== */
+
+        document.addEventListener(
+          "touchmove",
+          function (event) {
+
+            if (
+              mobileMenu.classList.contains(
+                "active"
+              )
+            ) {
+
+              if (
+                !mobileMenu.contains(
+                  event.target
+                )
+              ) {
+
+                event.preventDefault();
+
+              }
+
+            }
+
+          },
+          {
+            passive: false
+          }
+        );
+
+
+      }
+    );
+
   </script>
+
+
+  <!-- EXISTING GLOBAL SCRIPT -->
 
   <script src="script.js"></script>
 
+
 </body>
+
 </html>
