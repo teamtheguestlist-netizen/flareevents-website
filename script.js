@@ -1,70 +1,383 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
-     GLOBAL FLARE PAGE LOADER
+     FLARE — GLOBAL SCRIPT
+     Loader / transitions / mobile menu / cursor / reveal
   ========================================================= */
 
-  const flareLoader =
-    document.querySelector(".flare-page-loader");
+  const body = document.body;
+  const header = document.querySelector(".site-header");
 
-  document.body.classList.add("flare-loading");
 
-  if (flareLoader) {
+  /* =========================================================
+     GLOBAL PAGE LOADER
+     Creates the loader automatically if a page doesn't
+     contain loader HTML.
+  ========================================================= */
 
-    const finishLoader = () => {
+  let flareLoader = document.querySelector(".flare-page-loader");
 
-      document.body.classList.remove("flare-loading");
-      document.body.classList.add("flare-ready");
+  if (!flareLoader) {
+
+    flareLoader = document.createElement("div");
+
+    flareLoader.className = "flare-page-loader";
+
+    flareLoader.innerHTML = `
+      <img src="flare-logo.png" alt="FLARE">
+      <div class="flare-loader-line"></div>
+    `;
+
+    body.prepend(flareLoader);
+  }
+
+  body.classList.add("flare-loading");
+
+
+  const finishLoader = () => {
+
+    body.classList.remove("flare-loading");
+
+    body.classList.add("flare-ready");
+
+    if (flareLoader) {
 
       flareLoader.classList.add("is-hidden");
 
       window.setTimeout(() => {
-        flareLoader.remove();
+
+        if (flareLoader) {
+          flareLoader.remove();
+        }
+
       }, 850);
-
-    };
-
-    if (document.readyState === "complete") {
-
-      window.setTimeout(
-        finishLoader,
-        950
-      );
-
-    } else {
-
-      window.addEventListener(
-        "load",
-        () => {
-
-          window.setTimeout(
-            finishLoader,
-            950
-          );
-
-        },
-        { once: true }
-      );
-
     }
+  };
+
+
+  if (document.readyState === "complete") {
+
+    window.setTimeout(
+      finishLoader,
+      950
+    );
 
   } else {
 
-    document.body.classList.add(
-      "flare-ready"
-    );
+    window.addEventListener(
+      "load",
+      () => {
 
+        window.setTimeout(
+          finishLoader,
+          950
+        );
+
+      },
+      { once: true }
+    );
   }
 
 
   /* =========================================================
-     PAGE TO PAGE TRANSITION
+     MOBILE MENU
+     Automatically creates the same menu on every page.
+  ========================================================= */
+
+  const menuButton =
+    document.querySelector(".menu-button");
+
+  let mobileMenu =
+    document.querySelector(".mobile-menu");
+
+
+  if (
+    menuButton &&
+    !mobileMenu
+  ) {
+
+    mobileMenu =
+      document.createElement("div");
+
+    mobileMenu.className =
+      "mobile-menu";
+
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+
+    const desktopLinks =
+      Array.from(
+        document.querySelectorAll(
+          ".desktop-nav a"
+        )
+      );
+
+
+    const linksHTML =
+      desktopLinks
+        .map((link, index) => {
+
+          const href =
+            link.getAttribute("href") || "#";
+
+          const label =
+            link.textContent
+              .trim()
+              .replace("↗", "")
+              .trim();
+
+
+          return `
+            <a href="${href}">
+              <span>0${index + 1}</span>
+              <strong>${label}</strong>
+              <i>↗</i>
+            </a>
+          `;
+
+        })
+        .join("");
+
+
+    mobileMenu.innerHTML = `
+
+      <div class="mobile-menu-inner">
+
+        <div class="mobile-menu-top">
+
+          <span>FLARE / MENU</span>
+
+          <span>
+            EVENTS · INFLUENCE · EXPERIENCES
+          </span>
+
+        </div>
+
+
+        <nav
+          class="mobile-navigation"
+          aria-label="Mobile navigation"
+        >
+
+          ${linksHTML}
+
+        </nav>
+
+
+        <div class="mobile-menu-footer">
+
+          <span>FLARE</span>
+
+          <span>© 2026</span>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    body.appendChild(
+      mobileMenu
+    );
+  }
+
+
+  const mobileLinks =
+    mobileMenu
+      ? mobileMenu.querySelectorAll(
+          ".mobile-navigation a"
+        )
+      : [];
+
+
+  /* =========================================================
+     CLOSE MENU
+  ========================================================= */
+
+  const closeMenu = () => {
+
+    if (
+      !menuButton ||
+      !mobileMenu
+    ) {
+      return;
+    }
+
+
+    menuButton.classList.remove(
+      "active"
+    );
+
+
+    mobileMenu.classList.remove(
+      "open"
+    );
+
+
+    body.classList.remove(
+      "menu-open"
+    );
+
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+
+    menuButton.setAttribute(
+      "aria-label",
+      "Open menu"
+    );
+
+
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+  };
+
+
+  /* =========================================================
+     OPEN MENU
+  ========================================================= */
+
+  const openMenu = () => {
+
+    if (
+      !menuButton ||
+      !mobileMenu
+    ) {
+      return;
+    }
+
+
+    menuButton.classList.add(
+      "active"
+    );
+
+
+    mobileMenu.classList.add(
+      "open"
+    );
+
+
+    body.classList.add(
+      "menu-open"
+    );
+
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+
+    menuButton.setAttribute(
+      "aria-label",
+      "Close menu"
+    );
+
+
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+  };
+
+
+  /* =========================================================
+     MENU BUTTON
+  ========================================================= */
+
+  if (
+    menuButton &&
+    mobileMenu
+  ) {
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+
+    menuButton.setAttribute(
+      "aria-label",
+      "Open menu"
+    );
+
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        const isOpen =
+          menuButton.classList.contains(
+            "active"
+          );
+
+
+        if (isOpen) {
+
+          closeMenu();
+
+        } else {
+
+          openMenu();
+
+        }
+
+      }
+    );
+
+
+    mobileLinks.forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            closeMenu();
+
+          }
+        );
+
+      }
+    );
+  }
+
+
+  /* =========================================================
+     ESCAPE CLOSE
+  ========================================================= */
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        closeMenu();
+
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     PAGE TO PAGE TRANSITIONS
   ========================================================= */
 
   document
-    .querySelectorAll(
-      'a[href$=".html"], a[href^="/"], a[href^="./"]'
-    )
+    .querySelectorAll("a[href]")
     .forEach(link => {
 
       link.addEventListener(
@@ -72,12 +385,16 @@ document.addEventListener("DOMContentLoaded", () => {
         event => {
 
           const href =
-            link.getAttribute("href");
+            link.getAttribute(
+              "href"
+            );
 
 
           if (
             !href ||
             href.startsWith("#") ||
+            href.startsWith("mailto:") ||
+            href.startsWith("tel:") ||
             link.target === "_blank" ||
             event.metaKey ||
             event.ctrlKey ||
@@ -90,11 +407,22 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
 
-          const url =
-            new URL(
-              href,
-              window.location.href
-            );
+          let url;
+
+
+          try {
+
+            url =
+              new URL(
+                href,
+                window.location.href
+              );
+
+          } catch {
+
+            return;
+
+          }
 
 
           if (
@@ -109,7 +437,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (
             url.pathname ===
-            window.location.pathname
+              window.location.pathname &&
+            url.search ===
+              window.location.search
           ) {
 
             return;
@@ -117,27 +447,30 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
 
-          const loader =
-            document.querySelector(
-              ".flare-page-loader"
-            );
+          if (!flareLoader) {
 
+            return;
 
-          if (!loader) return;
+          }
 
 
           event.preventDefault();
 
 
-          document.body.classList.remove(
+          closeMenu();
+
+
+          body.classList.remove(
             "flare-ready"
           );
 
-          document.body.classList.add(
+
+          body.classList.add(
             "flare-loading"
           );
 
-          loader.classList.remove(
+
+          flareLoader.classList.remove(
             "is-hidden"
           );
 
@@ -149,179 +482,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 url.href;
 
             },
-            550
+            500
           );
 
         }
       );
 
     });
-
-
-  /* =========================================================
-     MOBILE MENU
-  ========================================================= */
-
-  const menuButton =
-    document.querySelector(
-      ".menu-button"
-    );
-
-  const mobileMenu =
-    document.querySelector(
-      ".mobile-menu"
-    );
-
-  const mobileLinks =
-    document.querySelectorAll(
-      ".mobile-navigation a"
-    );
-
-
-  if (
-    menuButton &&
-    mobileMenu
-  ) {
-
-    menuButton.addEventListener(
-      "click",
-      () => {
-
-        const isOpen =
-          menuButton.classList.toggle(
-            "active"
-          );
-
-        mobileMenu.classList.toggle(
-          "open"
-        );
-
-        document.body.classList.toggle(
-          "menu-open",
-          isOpen
-        );
-
-        menuButton.setAttribute(
-          "aria-expanded",
-          String(isOpen)
-        );
-
-        menuButton.setAttribute(
-          "aria-label",
-          isOpen
-            ? "Close menu"
-            : "Open menu"
-        );
-
-        mobileMenu.setAttribute(
-          "aria-hidden",
-          String(!isOpen)
-        );
-
-      }
-    );
-
-
-    mobileLinks.forEach(
-      link => {
-
-        link.addEventListener(
-          "click",
-          () => {
-
-            menuButton.classList.remove(
-              "active"
-            );
-
-            mobileMenu.classList.remove(
-              "open"
-            );
-
-            document.body.classList.remove(
-              "menu-open"
-            );
-
-            menuButton.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-            menuButton.setAttribute(
-              "aria-label",
-              "Open menu"
-            );
-
-            mobileMenu.setAttribute(
-              "aria-hidden",
-              "true"
-            );
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     ESCAPE CLOSE MENU
-  ========================================================= */
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        event.key !==
-        "Escape"
-      ) {
-
-        return;
-
-      }
-
-
-      if (
-        !mobileMenu ||
-        !menuButton
-      ) {
-
-        return;
-
-      }
-
-
-      menuButton.classList.remove(
-        "active"
-      );
-
-      mobileMenu.classList.remove(
-        "open"
-      );
-
-      document.body.classList.remove(
-        "menu-open"
-      );
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
-      menuButton.setAttribute(
-        "aria-label",
-        "Open menu"
-      );
-
-      mobileMenu.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-    }
-  );
 
 
   /* =========================================================
@@ -332,6 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(
       ".cursor-dot"
     );
+
 
   const finePointer =
     window.matchMedia(
@@ -368,29 +536,32 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    const animateCursor = () => {
+    const animateCursor =
+      () => {
 
-      currentX +=
-        (mouseX - currentX) *
-        0.18;
-
-      currentY +=
-        (mouseY - currentY) *
-        0.18;
+        currentX +=
+          (mouseX - currentX) *
+          0.18;
 
 
-      cursor.style.left =
-        `${currentX}px`;
-
-      cursor.style.top =
-        `${currentY}px`;
+        currentY +=
+          (mouseY - currentY) *
+          0.18;
 
 
-      requestAnimationFrame(
-        animateCursor
-      );
+        cursor.style.left =
+          `${currentX}px`;
 
-    };
+
+        cursor.style.top =
+          `${currentY}px`;
+
+
+        requestAnimationFrame(
+          animateCursor
+        );
+
+      };
 
 
     animateCursor();
@@ -430,7 +601,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
-
   }
 
 
@@ -494,7 +664,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
-
   }
 
 
@@ -554,7 +723,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
-
   }
 
 
@@ -631,7 +799,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
-
   }
 
 
@@ -672,16 +839,14 @@ document.addEventListener("DOMContentLoaded", () => {
               );
 
 
-            if (!target) return;
+            if (!target) {
+
+              return;
+
+            }
 
 
             event.preventDefault();
-
-
-            const header =
-              document.querySelector(
-                ".site-header"
-              );
 
 
             const headerHeight =
@@ -706,6 +871,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             });
 
+
+            history.replaceState(
+              null,
+              "",
+              targetID
+            );
+
           }
         );
 
@@ -721,6 +893,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(
       "section[id]"
     );
+
 
   const navLinks =
     document.querySelectorAll(
@@ -779,7 +952,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         },
         {
-          threshold:0.35
+          threshold: 0.35
         }
       );
 
@@ -793,7 +966,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
-
   }
 
 
@@ -888,7 +1060,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       },
       {
-        passive:true
+        passive: true
       }
     );
 
@@ -899,29 +1071,13 @@ document.addEventListener("DOMContentLoaded", () => {
      HEADER SCROLL STATE
   ========================================================= */
 
-  const header =
-    document.querySelector(
-      ".site-header"
-    );
-
-
   if (header) {
 
-    let lastScroll =
-      0;
-
-
-    window.addEventListener(
-      "scroll",
+    const updateHeader =
       () => {
 
-        const currentScroll =
-          window.scrollY;
-
-
         if (
-          currentScroll >
-          40
+          window.scrollY > 40
         ) {
 
           header.classList.add(
@@ -936,13 +1092,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
+      };
 
-        lastScroll =
-          currentScroll;
 
-      },
+    updateHeader();
+
+
+    window.addEventListener(
+      "scroll",
+      updateHeader,
       {
-        passive:true
+        passive: true
       }
     );
 
@@ -953,55 +1113,59 @@ document.addEventListener("DOMContentLoaded", () => {
      IMAGE FALLBACK
   ========================================================= */
 
-  const images =
-    document.querySelectorAll(
-      "img"
+  document
+    .querySelectorAll("img")
+    .forEach(
+      image => {
+
+        image.addEventListener(
+          "error",
+          () => {
+
+            image.style.visibility =
+              "hidden";
+
+          }
+        );
+
+      }
     );
-
-
-  images.forEach(
-    image => {
-
-      image.addEventListener(
-        "error",
-        () => {
-
-          image.style.visibility =
-            "hidden";
-
-        }
-      );
-
-    }
-  );
 
 
   /* =========================================================
      IMAGE REVEAL
   ========================================================= */
 
-  const revealImages =
-    document.querySelectorAll(
+  document
+    .querySelectorAll(
       ".image-reveal"
-    );
+    )
+    .forEach(
+      image => {
 
-
-  revealImages.forEach(
-    image => {
-
-      image.addEventListener(
-        "load",
-        () => {
+        if (image.complete) {
 
           image.classList.add(
             "loaded"
           );
 
+          return;
+
         }
-      );
 
-    }
-  );
 
+        image.addEventListener(
+          "load",
+          () => {
+
+            image.classList.add(
+              "loaded"
+            );
+
+          }
+        );
+
+      }
+    );
 
 });
