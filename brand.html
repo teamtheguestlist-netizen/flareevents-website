@@ -4,195 +4,1277 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
   <title>FLARE for Brands — Brand Experiences & Partnerships</title>
-  <meta name="description" content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture.">
-<link rel="canonical" href="https://flareevents.in/brand.html">
-<link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta
+    name="description"
+    content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+  >
 
-  <link rel="stylesheet" href="style.css">
-<!-- Open Graph / Social Share -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://flareevents.in/brand.html">
-<meta property="og:title" content="FLARE for Brands — Brand Experiences & Partnerships">
-<meta property="og:description" content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture.">
-<meta property="og:image" content="https://flareevents.in/social-share.jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="FLARE">
+  <meta
+    name="robots"
+    content="index, follow"
+  >
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FLARE for Brands — Brand Experiences & Partnerships">
-<meta name="twitter:description" content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture.">
-<meta name="twitter:image" content="https://flareevents.in/social-share.jpeg">
+  <meta
+    name="theme-color"
+    content="#080808"
+  >
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "FLARE for Brands — Brand Experiences & Partnerships",
-  "url": "https://flareevents.in/brand.html",
-  "description": "FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
-}
-</script>
+  <link
+    rel="canonical"
+    href="https://flareevents.in/brand.html"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+
+  <!-- =========================
+       FONTS
+  ========================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+
+  <!-- =========================
+       OPEN GRAPH
+  ========================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://flareevents.in/brand.html"
+  >
+
+  <meta
+    property="og:title"
+    content="FLARE for Brands — Brand Experiences & Partnerships"
+  >
+
+  <meta
+    property="og:description"
+    content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+  >
+
+  <meta
+    property="og:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:site_name"
+    content="FLARE"
+  >
+
+
+  <!-- =========================
+       TWITTER
+  ========================== -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="FLARE for Brands — Brand Experiences & Partnerships"
+  >
+
+  <meta
+    name="twitter:description"
+    content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+
+  <!-- =========================
+       PAGE SCHEMA
+  ========================== -->
+
+  <script type="application/ld+json">
+
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "FLARE for Brands — Brand Experiences & Partnerships",
+    "url": "https://flareevents.in/brand.html",
+    "description": "FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+  }
+
+  </script>
+
+
+  <!-- =========================
+       FLARE PAGE LOADER
+  ========================== -->
+
+  <style>
+
+    .flare-page-loader {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 999999;
+
+      display: grid;
+
+      place-items: center;
+
+      background: #050505;
+
+      pointer-events: none;
+
+      animation:
+        flareLoaderOut
+        1s
+        1.25s
+        cubic-bezier(.77,0,.18,1)
+        forwards;
+
+    }
+
+
+    .flare-page-loader img {
+
+      width: min(430px, 58vw);
+
+      height: auto;
+
+      display: block;
+
+      opacity: 0;
+
+      transform:
+        translateY(24px)
+        scale(.96);
+
+      animation:
+        flareLogoIn
+        .8s
+        .12s
+        cubic-bezier(.2,.75,.2,1)
+        forwards;
+
+    }
+
+
+    .flare-loader-line {
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 13%;
+
+      width: min(260px, 42vw);
+
+      height: 1px;
+
+      background: rgba(255,255,255,.12);
+
+      overflow: hidden;
+
+      transform: translateX(-50%);
+
+    }
+
+
+    .flare-loader-line::after {
+
+      content: "";
+
+      display: block;
+
+      width: 100%;
+
+      height: 100%;
+
+      background: #c79a3b;
+
+      transform: translateX(-100%);
+
+      animation:
+        flareLoaderLine
+        1s
+        .2s
+        cubic-bezier(.7,0,.2,1)
+        forwards;
+
+    }
+
+
+    @keyframes flareLogoIn {
+
+      to {
+
+        opacity: 1;
+
+        transform: none;
+
+      }
+
+    }
+
+
+    @keyframes flareLoaderLine {
+
+      to {
+
+        transform: translateX(0);
+
+      }
+
+    }
+
+
+    @keyframes flareLoaderOut {
+
+      to {
+
+        transform: translateY(-100%);
+
+        visibility: hidden;
+
+      }
+
+    }
+
+
+    /* =========================
+       PAGE REVEALS
+    ========================== */
+
+    .reveal {
+
+      opacity: 0;
+
+      transform: translateY(30px);
+
+      transition:
+        opacity .8s cubic-bezier(.2,.7,.2,1),
+        transform .8s cubic-bezier(.2,.7,.2,1);
+
+    }
+
+
+    .reveal.visible {
+
+      opacity: 1;
+
+      transform: none;
+
+    }
+
+
+    .delay-1 {
+      transition-delay: .08s;
+    }
+
+    .delay-2 {
+      transition-delay: .16s;
+    }
+
+    .delay-3 {
+      transition-delay: .24s;
+    }
+
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    .mobile-menu {
+
+      visibility: hidden;
+
+    }
+
+
+    .mobile-menu.active {
+
+      visibility: visible;
+
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .flare-page-loader,
+      .flare-page-loader img,
+      .flare-loader-line::after {
+
+        animation: none;
+
+      }
+
+
+      .flare-page-loader {
+
+        visibility: hidden;
+
+      }
+
+
+      .reveal {
+
+        opacity: 1;
+
+        transform: none;
+
+        transition: none;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-<header class="site-header">
 
-  <a href="index.html" class="brand-logo">
-    <img src="flare-logo.png" alt="FLARE">
-  </a>
+  <!-- =========================
+       GLOBAL FLARE LOADER
+  ========================== -->
 
-  <nav class="desktop-nav">
-    <a href="index.html#idea">About</a>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#work">Work</a>
-    <a href="contact.html">Start a Project ↗</a>
-  </nav>
+  <div
+    class="flare-page-loader"
+    aria-hidden="true"
+  >
 
-  <button class="menu-button">
-    <span></span>
-    <span></span>
-  </button>
+    <img
+      src="flare-logo.png"
+      alt=""
+    >
 
-</header>
+    <div class="flare-loader-line"></div>
 
-
-<main class="inner-page">
-
-  <section class="page-hero">
-
-    <span class="eyebrow">FLARE / FOR BRANDS</span>
-
-    <h1>
-      MAKE YOUR<br>
-      <span>BRAND MATTER.</span>
-    </h1>
-
-  </section>
-
-
-  <section class="page-copy">
-
-    <div class="page-copy-inner">
-
-      <span class="eyebrow">01 — THE APPROACH</span>
-
-      <h2>
-        Strategy first.<br>
-        Culture always.
-      </h2>
-
-      <p>
-        We work with brands to turn objectives into
-        ideas people actually want to engage with.
-        From creator-led campaigns to experiences,
-        FLARE connects strategy, culture and execution.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <section class="services section-light">
-
-    <div class="section-number dark-number">
-      02 — BRAND SERVICES
-    </div>
-
-    <div class="service-cards">
-
-      <div class="service-card">
-        <div class="card-top">
-          <span>01</span>
-        </div>
-
-        <h3>STRATEGY</h3>
-
-        <p>
-          Campaign thinking, audience understanding
-          and ideas built around the objective.
-        </p>
-      </div>
-
-
-      <div class="service-card">
-        <div class="card-top">
-          <span>02</span>
-        </div>
-
-        <h3>CREATORS</h3>
-
-        <p>
-          Finding creators whose voice actually
-          fits the brand and the audience.
-        </p>
-      </div>
-
-
-      <div class="service-card">
-        <div class="card-top">
-          <span>03</span>
-        </div>
-
-        <h3>EXPERIENCES</h3>
-
-        <p>
-          Physical and digital experiences designed
-          to give people something worth remembering.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="big-cta">
-
-    <div class="cta-inner">
-
-      <span class="eyebrow">READY?</span>
-
-      <h2>
-        LET'S<br>
-        BUILD<br>
-        <span>SOMETHING.</span>
-      </h2>
-
-      <a href="contact.html" class="cta-button">
-        START A PROJECT
-        <span>↗</span>
-      </a>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-<footer class="footer">
-
-  <img src="flare-logo.png" alt="FLARE">
-
-  <div class="footer-bottom">
-    <span>© 2026 FLARE</span>
-    <span>EVENTS · INFLUENCE · EXPERIENCES</span>
   </div>
 
-</footer>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="site-header">
 
 
-<script src="script.js"></script>
+    <a
+      href="index.html"
+      class="brand-logo"
+      aria-label="FLARE Home"
+    >
+
+      <img
+        src="flare-logo.png"
+        alt="FLARE"
+      >
+
+    </a>
+
+
+    <!-- DESKTOP -->
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <a href="index.html#idea">
+        IDEA
+      </a>
+
+      <a href="index.html#services">
+        WHAT WE DO
+      </a>
+
+      <a href="index.html#work">
+        WORK
+      </a>
+
+      <a href="founder.html">
+        FOUNDER
+      </a>
+
+      <a href="contact.html">
+        START A PROJECT ↗
+      </a>
+
+    </nav>
+
+
+    <!-- MOBILE BUTTON -->
+
+    <button
+      class="menu-button"
+      id="menuToggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+
+      <span></span>
+
+      <span></span>
+
+    </button>
+
+
+  </header>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================== -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+    aria-hidden="true"
+  >
+
+    <div class="mobile-menu-inner">
+
+
+      <div class="menu-label">
+        MENU / 001
+      </div>
+
+
+      <nav class="mobile-navigation">
+
+
+        <a href="index.html#idea">
+
+          <span>
+            THE IDEA
+          </span>
+
+          <small>
+            01
+          </small>
+
+        </a>
+
+
+        <a href="index.html#services">
+
+          <span>
+            WHAT WE DO
+          </span>
+
+          <small>
+            02
+          </small>
+
+        </a>
+
+
+        <a href="index.html#work">
+
+          <span>
+            SELECTED WORK
+          </span>
+
+          <small>
+            03
+          </small>
+
+        </a>
+
+
+        <a href="founder.html">
+
+          <span>
+            FOUNDER
+          </span>
+
+          <small>
+            04
+          </small>
+
+        </a>
+
+
+        <a href="contact.html">
+
+          <span>
+            START A PROJECT
+          </span>
+
+          <small>
+            05
+          </small>
+
+        </a>
+
+
+      </nav>
+
+
+      <div class="menu-socials">
+
+
+        <a
+          href="https://www.instagram.com/weareflare.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/17yEoZoNkn/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook ↗
+        </a>
+
+
+        <a
+          href="https://www.linkedin.com/company/flare-events-india/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="inner-page">
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="page-hero">
+
+
+      <span class="eyebrow reveal">
+        FLARE / FOR BRANDS
+      </span>
+
+
+      <h1 class="reveal delay-1">
+
+        MAKE YOUR
+        <br>
+
+        <span>
+          BRAND MATTER.
+        </span>
+
+      </h1>
+
+
+    </section>
+
+
+    <!-- =========================
+         APPROACH
+    ========================== -->
+
+    <section class="page-copy">
+
+
+      <div class="page-copy-inner">
+
+
+        <span class="eyebrow reveal">
+
+          01 — THE APPROACH
+
+        </span>
+
+
+        <h2 class="reveal delay-1">
+
+          Strategy first.
+          <br>
+
+          Culture always.
+
+        </h2>
+
+
+        <p class="reveal delay-2">
+
+          We work with brands to turn objectives
+          into ideas people actually want to engage
+          with. From creator-led campaigns to
+          experiences, FLARE connects strategy,
+          culture and execution.
+
+        </p>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         BRAND SERVICES
+    ========================== -->
+
+    <section
+      class="services section-light"
+      id="brand-services"
+    >
+
+
+      <div class="section-number dark-number reveal">
+
+        02 — BRAND SERVICES
+
+      </div>
+
+
+      <div class="service-cards">
+
+
+        <!-- 01 -->
+
+        <article class="service-card reveal">
+
+
+          <div class="card-top">
+
+            <span>
+              01
+            </span>
+
+          </div>
+
+
+          <h3>
+            STRATEGY
+          </h3>
+
+
+          <p>
+
+            Campaign thinking, audience
+            understanding and ideas built
+            around the objective.
+
+          </p>
+
+
+        </article>
+
+
+        <!-- 02 -->
+
+        <article class="service-card reveal">
+
+
+          <div class="card-top">
+
+            <span>
+              02
+            </span>
+
+          </div>
+
+
+          <h3>
+            CREATORS
+          </h3>
+
+
+          <p>
+
+            Finding creators whose voice
+            actually fits the brand and
+            the audience.
+
+          </p>
+
+
+        </article>
+
+
+        <!-- 03 -->
+
+        <article class="service-card reveal">
+
+
+          <div class="card-top">
+
+            <span>
+              03
+            </span>
+
+          </div>
+
+
+          <h3>
+            EXPERIENCES
+          </h3>
+
+
+          <p>
+
+            Physical and digital experiences
+            designed to give people something
+            worth remembering.
+
+          </p>
+
+
+        </article>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         BRAND PHILOSOPHY
+    ========================== -->
+
+    <section class="section-dark brand-philosophy">
+
+
+      <div class="section-number reveal">
+
+        03 — BRAND THINKING
+
+      </div>
+
+
+      <div class="principles-heading reveal">
+
+
+        <h2>
+
+          Don't just
+          <span>
+            get attention.
+          </span>
+
+          Create
+          something people
+          remember.
+
+        </h2>
+
+
+        <p>
+
+          The strongest brand moments aren't
+          forced into culture. They understand it,
+          participate in it and give people a reason
+          to care.
+
+        </p>
+
+
+      </div>
+
+
+      <div class="principle-list">
+
+
+        <div class="reveal">
+
+          <span>
+            01
+          </span>
+
+          <strong>
+            CLARITY
+          </strong>
+
+          <small>
+            Know what the brand needs to achieve.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            02
+          </span>
+
+          <strong>
+            CULTURE
+          </strong>
+
+          <small>
+            Understand where people actually are.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            03
+          </span>
+
+          <strong>
+            CREATIVITY
+          </strong>
+
+          <small>
+            Turn strategy into something people feel.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            04
+          </span>
+
+          <strong>
+            IMPACT
+          </strong>
+
+          <small>
+            Make the attention mean something.
+          </small>
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="big-cta">
+
+
+      <div class="cta-inner">
+
+
+        <span class="eyebrow reveal">
+
+          READY?
+
+        </span>
+
+
+        <h2 class="reveal delay-1">
+
+          LET'S
+          <br>
+
+          BUILD
+          <br>
+
+          <span>
+            SOMETHING.
+          </span>
+
+        </h2>
+
+
+        <a
+          href="contact.html"
+          class="cta-button reveal delay-2"
+        >
+
+          START A PROJECT
+
+          <span>
+            ↗
+          </span>
+
+        </a>
+
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+
+    <img
+      src="flare-logo.png"
+      alt="FLARE"
+    >
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 FLARE
+      </span>
+
+      <span>
+        EVENTS · INFLUENCE · EXPERIENCES
+      </span>
+
+    </div>
+
+
+  </footer>
+
+
+  <!-- =========================
+       MENU + REVEAL JS
+  ========================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        /* =========================
+           REVEAL
+        ========================== */
+
+        const revealItems =
+          document.querySelectorAll(
+            ".reveal"
+          );
+
+
+        if (
+          "IntersectionObserver"
+          in window
+        ) {
+
+
+          const observer =
+            new IntersectionObserver(
+              function (
+                entries,
+                obs
+              ) {
+
+                entries.forEach(
+                  function (entry) {
+
+                    if (
+                      entry.isIntersecting
+                    ) {
+
+                      entry.target.classList.add(
+                        "visible"
+                      );
+
+                      obs.unobserve(
+                        entry.target
+                      );
+
+                    }
+
+                  }
+                );
+
+              },
+              {
+                threshold: .12,
+                rootMargin:
+                  "0px 0px -40px 0px"
+              }
+            );
+
+
+          revealItems.forEach(
+            function (item) {
+
+              observer.observe(item);
+
+            }
+          );
+
+
+        } else {
+
+
+          revealItems.forEach(
+            function (item) {
+
+              item.classList.add(
+                "visible"
+              );
+
+            }
+          );
+
+        }
+
+
+        /* =========================
+           MOBILE MENU
+        ========================== */
+
+        const menuToggle =
+          document.getElementById(
+            "menuToggle"
+          );
+
+
+        const mobileMenu =
+          document.getElementById(
+            "mobileMenu"
+          );
+
+
+        if (
+          !menuToggle ||
+          !mobileMenu
+        ) {
+
+          return;
+
+        }
+
+
+        function openMenu() {
+
+          mobileMenu.classList.add(
+            "active"
+          );
+
+
+          document.body.classList.add(
+            "menu-open"
+          );
+
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Close menu"
+          );
+
+        }
+
+
+        function closeMenu() {
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        }
+
+
+        menuToggle.addEventListener(
+          "click",
+          function () {
+
+            if (
+              mobileMenu.classList.contains(
+                "active"
+              )
+            ) {
+
+              closeMenu();
+
+            } else {
+
+              openMenu();
+
+            }
+
+          }
+        );
+
+
+        /* =========================
+           CLOSE AFTER LINK CLICK
+        ========================== */
+
+        mobileMenu
+          .querySelectorAll("a")
+          .forEach(
+            function (link) {
+
+              link.addEventListener(
+                "click",
+                closeMenu
+              );
+
+            }
+          );
+
+
+        /* =========================
+           ESC CLOSE
+        ========================== */
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (
+              event.key === "Escape"
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        /* =========================
+           CLOSE ON DESKTOP
+        ========================== */
+
+        window.addEventListener(
+          "resize",
+          function () {
+
+            if (
+              window.innerWidth > 900
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+      }
+    );
+
+  </script>
+
+
+  <!-- EXISTING GLOBAL SCRIPT -->
+
+  <script src="script.js"></script>
+
 
 </body>
+
 </html>
