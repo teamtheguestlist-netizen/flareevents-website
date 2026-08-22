@@ -4640,3 +4640,70 @@ button{
   }
 
 }
+/* =========================================================
+   HOME HERO — POST LOADER INTRO
+   Starts only after FLARE loader disappears
+========================================================= */
+
+.page-home .home-title .reveal{
+  opacity:0;
+  transform:translateY(55px);
+}
+
+.page-home.loader-finished .home-title .reveal{
+  animation:
+    flareHeroTextIn
+    1s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+.page-home.loader-finished .home-title .delay-1{
+  animation-delay:.14s;
+}
+
+.page-home.loader-finished .home-title .delay-2{
+  animation-delay:.28s;
+}
+
+@keyframes flareHeroTextIn{
+
+  0%{
+    opacity:0;
+    transform:translateY(55px);
+    filter:blur(8px);
+  }
+
+  100%{
+    opacity:1;
+    transform:translateY(0);
+    filter:blur(0);
+  }
+
+}
+
+
+/* Mobile */
+
+@media(max-width:600px){
+
+  .page-home .home-title .reveal{
+    transform:translateY(35px);
+  }
+
+}
+
+
+/* Accessibility */
+
+@media(prefers-reduced-motion:reduce){
+
+  .page-home .home-title .reveal,
+  .page-home.loader-finished .home-title .reveal{
+    opacity:1;
+    transform:none;
+    filter:none;
+    animation:none;
+  }
+
+}
