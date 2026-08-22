@@ -10,11 +10,11 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <title>FLARE for Brands — Brand Experiences & Partnerships</title>
+  <title>FLARE — Brand & FLARE Experiences</title>
 
   <meta
     name="description"
-    content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+    content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
   >
 
   <meta
@@ -64,6 +64,53 @@
     rel="stylesheet"
     href="style.css"
   >
+  <style>
+    /* BRAND PAGE — controlled typography so headings never clip */
+    .brand-page .service-card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .brand-page .service-card h3 {
+      margin: 0;
+      max-width: 100%;
+      font-size: clamp(2.15rem, 4.2vw, 4.25rem);
+      line-height: .9;
+      letter-spacing: -.065em;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .brand-page .service-card p {
+      max-width: 34rem;
+    }
+
+    .brand-page .page-hero h1 {
+      max-width: 12ch;
+    }
+
+    .brand-page .brand-philosophy {
+      padding-top: clamp(80px, 10vw, 140px);
+      padding-bottom: clamp(80px, 10vw, 140px);
+    }
+
+    @media (max-width: 900px) {
+      .brand-page .service-card h3 {
+        font-size: clamp(2.1rem, 9vw, 3.5rem);
+        line-height: .92;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .brand-page .service-card h3 {
+        font-size: clamp(2.25rem, 12vw, 3.35rem);
+      }
+
+      .brand-page .page-hero h1 {
+        max-width: 10ch;
+      }
+    }
+  </style>
 
 
   <!-- =========================
@@ -82,12 +129,12 @@
 
   <meta
     property="og:title"
-    content="FLARE for Brands — Brand Experiences & Partnerships"
+    content="FLARE — Brand & FLARE Experiences"
   >
 
   <meta
     property="og:description"
-    content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+    content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
   >
 
   <meta
@@ -122,12 +169,12 @@
 
   <meta
     name="twitter:title"
-    content="FLARE for Brands — Brand Experiences & Partnerships"
+    content="FLARE — Brand & FLARE Experiences"
   >
 
   <meta
     name="twitter:description"
-    content="FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+    content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
   >
 
   <meta
@@ -145,9 +192,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "FLARE for Brands — Brand Experiences & Partnerships",
+    "name": "FLARE — Brand & FLARE Experiences",
     "url": "https://flareevents.in/brand.html",
-    "description": "FLARE creates bold brand experiences, event activations and creator-led partnerships that connect brands with people and culture."
+    "description": "FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
   }
 
   </script>
@@ -157,228 +204,6 @@
        FLARE PAGE LOADER
   ========================== -->
 
-  <style>
-
-    .flare-page-loader {
-
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 999999;
-
-      display: grid;
-
-      place-items: center;
-
-      background: #050505;
-
-      pointer-events: none;
-
-      animation:
-        flareLoaderOut
-        1s
-        1.25s
-        cubic-bezier(.77,0,.18,1)
-        forwards;
-
-    }
-
-
-    .flare-page-loader img {
-
-      width: min(430px, 58vw);
-
-      height: auto;
-
-      display: block;
-
-      opacity: 0;
-
-      transform:
-        translateY(24px)
-        scale(.96);
-
-      animation:
-        flareLogoIn
-        .8s
-        .12s
-        cubic-bezier(.2,.75,.2,1)
-        forwards;
-
-    }
-
-
-    .flare-loader-line {
-
-      position: absolute;
-
-      left: 50%;
-
-      bottom: 13%;
-
-      width: min(260px, 42vw);
-
-      height: 1px;
-
-      background: rgba(255,255,255,.12);
-
-      overflow: hidden;
-
-      transform: translateX(-50%);
-
-    }
-
-
-    .flare-loader-line::after {
-
-      content: "";
-
-      display: block;
-
-      width: 100%;
-
-      height: 100%;
-
-      background: #c79a3b;
-
-      transform: translateX(-100%);
-
-      animation:
-        flareLoaderLine
-        1s
-        .2s
-        cubic-bezier(.7,0,.2,1)
-        forwards;
-
-    }
-
-
-    @keyframes flareLogoIn {
-
-      to {
-
-        opacity: 1;
-
-        transform: none;
-
-      }
-
-    }
-
-
-    @keyframes flareLoaderLine {
-
-      to {
-
-        transform: translateX(0);
-
-      }
-
-    }
-
-
-    @keyframes flareLoaderOut {
-
-      to {
-
-        transform: translateY(-100%);
-
-        visibility: hidden;
-
-      }
-
-    }
-
-
-    /* =========================
-       PAGE REVEALS
-    ========================== */
-
-    .reveal {
-
-      opacity: 0;
-
-      transform: translateY(30px);
-
-      transition:
-        opacity .8s cubic-bezier(.2,.7,.2,1),
-        transform .8s cubic-bezier(.2,.7,.2,1);
-
-    }
-
-
-    .reveal.visible {
-
-      opacity: 1;
-
-      transform: none;
-
-    }
-
-
-    .delay-1 {
-      transition-delay: .08s;
-    }
-
-    .delay-2 {
-      transition-delay: .16s;
-    }
-
-    .delay-3 {
-      transition-delay: .24s;
-    }
-
-
-    /* =========================
-       MOBILE MENU
-    ========================== */
-
-    .mobile-menu {
-
-      visibility: hidden;
-
-    }
-
-
-    .mobile-menu.active {
-
-      visibility: visible;
-
-    }
-
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .flare-page-loader,
-      .flare-page-loader img,
-      .flare-loader-line::after {
-
-        animation: none;
-
-      }
-
-
-      .flare-page-loader {
-
-        visibility: hidden;
-
-      }
-
-
-      .reveal {
-
-        opacity: 1;
-
-        transform: none;
-
-        transition: none;
-
-      }
-
-    }
-
-  </style>
 
 </head>
 
@@ -477,138 +302,12 @@
   </header>
 
 
-  <!-- =========================
-       MOBILE MENU
-  ========================== -->
-
-  <div
-    class="mobile-menu"
-    id="mobileMenu"
-    aria-hidden="true"
-  >
-
-    <div class="mobile-menu-inner">
-
-
-      <div class="menu-label">
-        MENU / 001
-      </div>
-
-
-      <nav class="mobile-navigation">
-
-
-        <a href="index.html#idea">
-
-          <span>
-            THE IDEA
-          </span>
-
-          <small>
-            01
-          </small>
-
-        </a>
-
-
-        <a href="index.html#services">
-
-          <span>
-            WHAT WE DO
-          </span>
-
-          <small>
-            02
-          </small>
-
-        </a>
-
-
-        <a href="index.html#work">
-
-          <span>
-            SELECTED WORK
-          </span>
-
-          <small>
-            03
-          </small>
-
-        </a>
-
-
-        <a href="founder.html">
-
-          <span>
-            FOUNDER
-          </span>
-
-          <small>
-            04
-          </small>
-
-        </a>
-
-
-        <a href="contact.html">
-
-          <span>
-            START A PROJECT
-          </span>
-
-          <small>
-            05
-          </small>
-
-        </a>
-
-
-      </nav>
-
-
-      <div class="menu-socials">
-
-
-        <a
-          href="https://www.instagram.com/weareflare.in/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Instagram ↗
-        </a>
-
-
-        <a
-          href="https://www.facebook.com/share/17yEoZoNkn/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Facebook ↗
-        </a>
-
-
-        <a
-          href="https://www.linkedin.com/company/flare-events-india/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn ↗
-        </a>
-
-
-      </div>
-
-
-    </div>
-
-  </div>
-
 
   <!-- =========================
        MAIN
   ========================== -->
 
-  <main class="inner-page">
+  <main class="inner-page brand-page">
 
 
     <!-- =========================
@@ -619,7 +318,7 @@
 
 
       <span class="eyebrow reveal">
-        FLARE / FOR BRANDS
+        FLARE / BRAND & FLARE
       </span>
 
 
@@ -694,7 +393,7 @@
 
       <div class="section-number dark-number reveal">
 
-        02 — BRAND SERVICES
+        02 — BRAND & FLARE SERVICES
 
       </div>
 
@@ -1004,270 +703,6 @@
 
 
   </footer>
-
-
-  <!-- =========================
-       MENU + REVEAL JS
-  ========================== -->
-
-  <script>
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      function () {
-
-
-        /* =========================
-           REVEAL
-        ========================== */
-
-        const revealItems =
-          document.querySelectorAll(
-            ".reveal"
-          );
-
-
-        if (
-          "IntersectionObserver"
-          in window
-        ) {
-
-
-          const observer =
-            new IntersectionObserver(
-              function (
-                entries,
-                obs
-              ) {
-
-                entries.forEach(
-                  function (entry) {
-
-                    if (
-                      entry.isIntersecting
-                    ) {
-
-                      entry.target.classList.add(
-                        "visible"
-                      );
-
-                      obs.unobserve(
-                        entry.target
-                      );
-
-                    }
-
-                  }
-                );
-
-              },
-              {
-                threshold: .12,
-                rootMargin:
-                  "0px 0px -40px 0px"
-              }
-            );
-
-
-          revealItems.forEach(
-            function (item) {
-
-              observer.observe(item);
-
-            }
-          );
-
-
-        } else {
-
-
-          revealItems.forEach(
-            function (item) {
-
-              item.classList.add(
-                "visible"
-              );
-
-            }
-          );
-
-        }
-
-
-        /* =========================
-           MOBILE MENU
-        ========================== */
-
-        const menuToggle =
-          document.getElementById(
-            "menuToggle"
-          );
-
-
-        const mobileMenu =
-          document.getElementById(
-            "mobileMenu"
-          );
-
-
-        if (
-          !menuToggle ||
-          !mobileMenu
-        ) {
-
-          return;
-
-        }
-
-
-        function openMenu() {
-
-          mobileMenu.classList.add(
-            "active"
-          );
-
-
-          document.body.classList.add(
-            "menu-open"
-          );
-
-
-          mobileMenu.setAttribute(
-            "aria-hidden",
-            "false"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "true"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-label",
-            "Close menu"
-          );
-
-        }
-
-
-        function closeMenu() {
-
-          mobileMenu.classList.remove(
-            "active"
-          );
-
-
-          document.body.classList.remove(
-            "menu-open"
-          );
-
-
-          mobileMenu.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-label",
-            "Open menu"
-          );
-
-        }
-
-
-        menuToggle.addEventListener(
-          "click",
-          function () {
-
-            if (
-              mobileMenu.classList.contains(
-                "active"
-              )
-            ) {
-
-              closeMenu();
-
-            } else {
-
-              openMenu();
-
-            }
-
-          }
-        );
-
-
-        /* =========================
-           CLOSE AFTER LINK CLICK
-        ========================== */
-
-        mobileMenu
-          .querySelectorAll("a")
-          .forEach(
-            function (link) {
-
-              link.addEventListener(
-                "click",
-                closeMenu
-              );
-
-            }
-          );
-
-
-        /* =========================
-           ESC CLOSE
-        ========================== */
-
-        document.addEventListener(
-          "keydown",
-          function (event) {
-
-            if (
-              event.key === "Escape"
-            ) {
-
-              closeMenu();
-
-            }
-
-          }
-        );
-
-
-        /* =========================
-           CLOSE ON DESKTOP
-        ========================== */
-
-        window.addEventListener(
-          "resize",
-          function () {
-
-            if (
-              window.innerWidth > 900
-            ) {
-
-              closeMenu();
-
-            }
-
-          }
-        );
-
-
-      }
-    );
-
-  </script>
 
 
   <!-- EXISTING GLOBAL SCRIPT -->
