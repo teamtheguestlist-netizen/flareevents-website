@@ -1,401 +1,1629 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
   <title>FLARE — Brand & FLARE Experiences</title>
-  <meta name="description" content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture.">
+
+  <meta
+    name="description"
+    content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
+  >
+
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#080808">
-  <link rel="canonical" href="https://flareevents.in/brand.html">
-  <link rel="icon" type="image/png" href="favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta
+    name="theme-color"
+    content="#080808"
+  >
 
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://flareevents.in/brand.html">
-  <meta property="og:title" content="FLARE — Brand & FLARE Experiences">
-  <meta property="og:description" content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture.">
-  <meta property="og:image" content="https://flareevents.in/social-share.jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="FLARE">
+  <link
+    rel="canonical"
+    href="https://flareevents.in/brand.html"
+  >
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FLARE — Brand & FLARE Experiences">
-  <meta name="twitter:description" content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture.">
-  <meta name="twitter:image" content="https://flareevents.in/social-share.jpeg">
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+
+  <!-- =========================
+       FONTS
+  ========================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+
+  <!-- =========================
+       SEO / SOCIAL
+  ========================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://flareevents.in/brand.html"
+  >
+
+  <meta
+    property="og:title"
+    content="FLARE — Brand & FLARE Experiences"
+  >
+
+  <meta
+    property="og:description"
+    content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
+  >
+
+  <meta
+    property="og:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:site_name"
+    content="FLARE"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="FLARE — Brand & FLARE Experiences"
+  >
+
+  <meta
+    name="twitter:description"
+    content="FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+
+  <!-- =========================
+       LOADER
+  ========================== -->
 
   <style>
-    /* =========================================================
-       BRAND + FLARE PAGE POLISH
-       Graphics are CSS/SVG, so no extra image files are needed.
-    ========================================================= */
+
+    .flare-page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: grid;
+      place-items: center;
+      background: #050505;
+      pointer-events: none;
+      animation:
+        flareLoaderOut
+        1s
+        1.25s
+        cubic-bezier(.77,0,.18,1)
+        forwards;
+    }
+
+    .flare-page-loader img {
+      width: min(430px,58vw);
+      height: auto;
+      display: block;
+      opacity: 0;
+      transform: translateY(24px) scale(.96);
+      animation:
+        flareLogoIn
+        .8s
+        .12s
+        cubic-bezier(.2,.75,.2,1)
+        forwards;
+    }
+
+    .flare-loader-line {
+      position: absolute;
+      left: 50%;
+      bottom: 13%;
+      width: min(260px,42vw);
+      height: 1px;
+      background: rgba(255,255,255,.12);
+      overflow: hidden;
+      transform: translateX(-50%);
+    }
+
+    .flare-loader-line::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #c79a3b;
+      transform: translateX(-100%);
+      animation:
+        flareLoaderLine
+        1s
+        .2s
+        cubic-bezier(.7,0,.2,1)
+        forwards;
+    }
+
+    @keyframes flareLogoIn {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes flareLoaderLine {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes flareLoaderOut {
+      to {
+        transform: translateY(-100%);
+        visibility: hidden;
+      }
+    }
+
+  </style>
+
+
+  <!-- =========================================================
+       FLARE MASTER MOBILE MENU
+       Same system as index.html
+  ========================================================== -->
+
+  <style>
+
+    @media (max-width: 900px) {
+
+
+      /* =========================
+         HEADER
+      ========================== */
+
+      .site-header {
+
+        height: 86px !important;
+
+        padding:
+          0 30px !important;
+
+        background:
+          rgba(5,5,5,.97) !important;
+
+        border-bottom:
+          1px solid rgba(255,255,255,.14) !important;
+
+        z-index: 10000 !important;
+
+      }
+
+
+      .brand-logo {
+
+        position: relative !important;
+
+        z-index: 10002 !important;
+
+      }
+
+
+      .brand-logo img {
+
+        width: 124px !important;
+
+        height: auto !important;
+
+        display: block !important;
+
+      }
+
+
+      /* =========================
+         ROUND MENU BUTTON
+      ========================== */
+
+      .menu-button {
+
+        position: relative !important;
+
+        display: flex !important;
+
+        width: 58px !important;
+
+        height: 58px !important;
+
+        min-width: 58px !important;
+
+        min-height: 58px !important;
+
+        padding: 0 !important;
+
+        align-items: center !important;
+
+        justify-content: center !important;
+
+        border:
+          1px solid rgba(255,255,255,.38) !important;
+
+        border-radius: 50% !important;
+
+        background: transparent !important;
+
+        color: #fff !important;
+
+        cursor: pointer !important;
+
+        z-index: 10003 !important;
+
+      }
+
+
+      .menu-button span {
+
+        position: absolute !important;
+
+        left: 50% !important;
+
+        top: 50% !important;
+
+        width: 24px !important;
+
+        height: 1px !important;
+
+        margin: 0 !important;
+
+        background: #f7f7f5 !important;
+
+        transform:
+          translate(-50%,-50%) !important;
+
+        transition:
+          transform .4s cubic-bezier(.77,0,.18,1),
+          opacity .25s ease !important;
+
+      }
+
+
+      .menu-button span:first-child {
+
+        margin-top: -4px !important;
+
+      }
+
+
+      .menu-button span:last-child {
+
+        margin-top: 4px !important;
+
+      }
+
+
+      /* =========================
+         MENU → X
+      ========================== */
+
+      .menu-button.active span:first-child {
+
+        margin-top: 0 !important;
+
+        transform:
+          translate(-50%,-50%)
+          rotate(45deg) !important;
+
+      }
+
+
+      .menu-button.active span:last-child {
+
+        margin-top: 0 !important;
+
+        transform:
+          translate(-50%,-50%)
+          rotate(-45deg) !important;
+
+      }
+
+
+      /* =========================
+         FULL SCREEN MENU
+      ========================== */
+
+      .mobile-menu {
+
+        position: fixed !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+
+        height: 100dvh !important;
+
+        min-height: 100vh !important;
+
+        display: block !important;
+
+        visibility: hidden !important;
+
+        opacity: 0 !important;
+
+        pointer-events: none !important;
+
+        background: #050505 !important;
+
+        z-index: 9999 !important;
+
+        overflow-y: auto !important;
+
+        overflow-x: hidden !important;
+
+        transform:
+          translateY(-18px) !important;
+
+        transition:
+          opacity .45s ease,
+          transform .55s cubic-bezier(.77,0,.18,1),
+          visibility .45s ease !important;
+
+      }
+
+
+      .mobile-menu.active {
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        pointer-events: auto !important;
+
+        transform: translateY(0) !important;
+
+      }
+
+
+      /* =========================
+         MENU INNER
+      ========================== */
+
+      .mobile-menu-inner {
+
+        position: relative !important;
+
+        width: 100% !important;
+
+        min-height: 100dvh !important;
+
+        padding:
+          155px
+          30px
+          36px !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        box-sizing: border-box !important;
+
+      }
+
+
+      /* =========================
+         MENU LABEL
+      ========================== */
+
+      .menu-label {
+
+        display: block !important;
+
+        margin-bottom: 52px !important;
+
+        font-family:
+          "DM Mono",
+          monospace !important;
+
+        font-size: 12px !important;
+
+        font-weight: 400 !important;
+
+        letter-spacing: .25em !important;
+
+        text-transform: uppercase !important;
+
+        color: #6e6e6b !important;
+
+      }
+
+
+      /* =========================
+         MENU LINKS
+      ========================== */
+
+      .mobile-navigation {
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        width: 100% !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+      }
+
+
+      .mobile-navigation a {
+
+        position: relative !important;
+
+        width: 100% !important;
+
+        min-height: 104px !important;
+
+        padding:
+          18px 0 !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        justify-content: space-between !important;
+
+        box-sizing: border-box !important;
+
+        border-top:
+          1px solid rgba(255,255,255,.12) !important;
+
+        color: #f7f7f5 !important;
+
+        text-decoration: none !important;
+
+        overflow: hidden !important;
+
+        opacity: 0;
+
+        transform: translateY(25px);
+
+      }
+
+
+      .mobile-navigation a:last-child {
+
+        border-bottom:
+          1px solid rgba(255,255,255,.12) !important;
+
+      }
+
+
+      .mobile-navigation a span {
+
+        display: block !important;
+
+        max-width:
+          calc(100% - 55px) !important;
+
+        font-family:
+          "Manrope",
+          sans-serif !important;
+
+        font-size:
+          clamp(34px,9.5vw,54px) !important;
+
+        line-height: .98 !important;
+
+        font-weight: 500 !important;
+
+        letter-spacing: -.055em !important;
+
+        white-space: nowrap !important;
+
+        color: #f4f4f2 !important;
+
+        transition:
+          transform .3s ease,
+          color .3s ease !important;
+
+      }
+
+
+      .mobile-navigation a small {
+
+        display: block !important;
+
+        flex-shrink: 0 !important;
+
+        margin-left: 15px !important;
+
+        font-family:
+          "DM Mono",
+          monospace !important;
+
+        font-size: 12px !important;
+
+        letter-spacing: .12em !important;
+
+        color: #656562 !important;
+
+        transition:
+          color .3s ease !important;
+
+      }
+
+
+      .mobile-navigation a:hover span {
+
+        transform: translateX(8px);
+
+      }
+
+
+      .mobile-navigation a:hover small {
+
+        color: #c79a3b !important;
+
+      }
+
+
+      /* =========================
+         STAGGER
+      ========================== */
+
+      .mobile-menu.active
+      .mobile-navigation a {
+
+        opacity: 1;
+
+        transform: none;
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(1) {
+
+        transition:
+          opacity .45s .08s ease,
+          transform .55s .08s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(2) {
+
+        transition:
+          opacity .45s .13s ease,
+          transform .55s .13s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(3) {
+
+        transition:
+          opacity .45s .18s ease,
+          transform .55s .18s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(4) {
+
+        transition:
+          opacity .45s .23s ease,
+          transform .55s .23s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      .mobile-menu.active
+      .mobile-navigation a:nth-child(5) {
+
+        transition:
+          opacity .45s .28s ease,
+          transform .55s .28s cubic-bezier(.2,.8,.2,1);
+
+      }
+
+
+      /* =========================
+         SOCIALS
+      ========================== */
+
+      .menu-socials {
+
+        margin-top: auto !important;
+
+        padding-top: 48px !important;
+
+        display: flex !important;
+
+        flex-wrap: wrap !important;
+
+        gap: 28px !important;
+
+        animation: none;
+
+      }
+
+
+      .mobile-menu.active .menu-socials {
+
+        animation:
+          menuSocialIn
+          .6s
+          .38s
+          cubic-bezier(.2,.8,.2,1)
+          both;
+
+      }
+
+
+      .menu-socials a {
+
+        font-family:
+          "DM Mono",
+          monospace !important;
+
+        font-size: 11px !important;
+
+        line-height: 1 !important;
+
+        letter-spacing: .18em !important;
+
+        text-transform: uppercase !important;
+
+        color: #777773 !important;
+
+        text-decoration: none !important;
+
+      }
+
+
+      .menu-socials a:hover {
+
+        color: #f7f7f5 !important;
+
+      }
+
+
+      /* =========================
+         BODY LOCK
+      ========================== */
+
+      body.menu-open {
+
+        overflow: hidden !important;
+
+        touch-action: none !important;
+
+      }
+
+
+      @keyframes menuSocialIn {
+
+        from {
+
+          opacity: 0;
+
+          transform: translateY(15px);
+
+        }
+
+        to {
+
+          opacity: 1;
+
+          transform: none;
+
+        }
+
+      }
+
+    }
+
+
+    /* =========================
+       SMALL PHONES
+    ========================== */
+
+    @media (max-width: 600px) {
+
+      .site-header {
+
+        height: 82px !important;
+
+        padding:
+          0 22px !important;
+
+      }
+
+
+      .brand-logo img {
+
+        width: 112px !important;
+
+      }
+
+
+      .menu-button {
+
+        width: 54px !important;
+
+        height: 54px !important;
+
+        min-width: 54px !important;
+
+        min-height: 54px !important;
+
+      }
+
+
+      .mobile-menu-inner {
+
+        padding:
+          137px
+          22px
+          28px !important;
+
+      }
+
+
+      .menu-label {
+
+        margin-bottom: 38px !important;
+
+        font-size: 10px !important;
+
+        letter-spacing: .22em !important;
+
+      }
+
+
+      .mobile-navigation a {
+
+        min-height: 91px !important;
+
+        padding:
+          15px 0 !important;
+
+      }
+
+
+      .mobile-navigation a span {
+
+        font-size:
+          clamp(30px,8.9vw,43px) !important;
+
+        letter-spacing: -.06em !important;
+
+      }
+
+
+      .mobile-navigation a small {
+
+        font-size: 10px !important;
+
+      }
+
+
+      .menu-socials {
+
+        gap: 20px !important;
+
+        padding-top: 36px !important;
+
+      }
+
+
+      .menu-socials a {
+
+        font-size: 9px !important;
+
+        letter-spacing: .14em !important;
+
+      }
+
+    }
+
+
+    /* =========================
+       VERY SMALL PHONES
+    ========================== */
+
+    @media (max-width: 380px) {
+
+      .mobile-menu-inner {
+
+        padding-top: 125px !important;
+
+      }
+
+
+      .menu-label {
+
+        margin-bottom: 28px !important;
+
+      }
+
+
+      .mobile-navigation a {
+
+        min-height: 80px !important;
+
+      }
+
+
+      .mobile-navigation a span {
+
+        font-size: 29px !important;
+
+      }
+
+    }
+
+  </style>
+
+
+  <!-- =========================
+       BRAND PAGE GRAPHICS
+  ========================== -->
+
+  <style>
 
     .brand-page {
+
       --brand-gold: #c79a3b;
       --brand-paper: #f3f2ee;
       --brand-ink: #080808;
+
     }
 
-    /* HERO */
+
     .brand-page .page-hero {
+
       position: relative;
-      min-height: min(760px, calc(100vh - 92px));
+
+      min-height:
+        min(760px,calc(100vh - 92px));
+
       display: flex;
+
       flex-direction: column;
+
       justify-content: center;
+
       overflow: hidden;
+
       isolation: isolate;
+
     }
+
 
     .brand-page .page-hero::before {
+
       content: "";
+
       position: absolute;
-      width: min(62vw, 760px);
-      height: min(62vw, 760px);
+
+      width:
+        min(62vw,760px);
+
+      height:
+        min(62vw,760px);
+
       right: -18%;
+
       top: 4%;
-      border: 1px solid rgba(199,154,59,.18);
+
+      border:
+        1px solid rgba(199,154,59,.18);
+
       border-radius: 50%;
+
       box-shadow:
         0 0 0 80px rgba(199,154,59,.025),
         0 0 0 160px rgba(199,154,59,.018);
-      animation: brandOrbit 14s linear infinite;
+
+      animation:
+        brandOrbit
+        14s
+        linear
+        infinite;
+
       z-index: -2;
+
     }
 
+
     .brand-page .page-hero::after {
+
       content: "";
+
       position: absolute;
+
       width: 42vw;
+
       height: 42vw;
+
       right: 7%;
+
       top: 18%;
+
       background:
-        radial-gradient(circle at 50% 50%, rgba(199,154,59,.14), transparent 48%),
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(199,154,59,.14),
+          transparent 48%
+        ),
         repeating-linear-gradient(
           90deg,
           transparent 0 38px,
           rgba(255,255,255,.025) 39px 40px
         );
+
       opacity: .7;
+
       transform: rotate(18deg);
+
       z-index: -3;
+
     }
+
 
     .brand-page .page-hero h1 {
+
       position: relative;
+
       z-index: 2;
+
       max-width: 12ch;
+
     }
 
+
     .brand-hero-mark {
+
       position: absolute;
-      right: clamp(35px, 9vw, 150px);
-      bottom: clamp(55px, 10vw, 130px);
-      width: clamp(110px, 13vw, 190px);
+
+      right:
+        clamp(35px,9vw,150px);
+
+      bottom:
+        clamp(55px,10vw,130px);
+
+      width:
+        clamp(110px,13vw,190px);
+
       aspect-ratio: 1;
+
       display: grid;
+
       place-items: center;
-      border: 1px solid rgba(255,255,255,.13);
+
+      border:
+        1px solid rgba(255,255,255,.13);
+
       border-radius: 50%;
-      color: rgba(255,255,255,.48);
-      font-family: "DM Mono", monospace;
+
+      color:
+        rgba(255,255,255,.48);
+
+      font-family:
+        "DM Mono",
+        monospace;
+
       font-size: 9px;
+
       letter-spacing: .2em;
+
       text-transform: uppercase;
-      animation: brandFloat 5s ease-in-out infinite;
+
+      animation:
+        brandFloat
+        5s
+        ease-in-out
+        infinite;
+
     }
+
 
     .brand-hero-mark::before,
     .brand-hero-mark::after {
+
       content: "";
+
       position: absolute;
-      border: 1px solid rgba(199,154,59,.42);
+
+      border:
+        1px solid rgba(199,154,59,.42);
+
       border-radius: 50%;
+
     }
+
 
     .brand-hero-mark::before {
+
       inset: 18%;
+
     }
+
 
     .brand-hero-mark::after {
+
       inset: 37%;
-      background: var(--brand-gold);
+
+      background:
+        var(--brand-gold);
+
       border: 0;
-      box-shadow: 0 0 35px rgba(199,154,59,.25);
+
+      box-shadow:
+        0 0 35px rgba(199,154,59,.25);
+
     }
 
-    /* APPROACH VISUAL */
+
     .brand-page .page-copy {
+
       position: relative;
+
       overflow: hidden;
+
     }
+
 
     .brand-page .page-copy::after {
+
       content: "01";
+
       position: absolute;
+
       right: -2vw;
+
       bottom: -7vw;
-      font-size: clamp(180px, 28vw, 430px);
+
+      font-size:
+        clamp(180px,28vw,430px);
+
       line-height: .7;
+
       font-weight: 800;
+
       letter-spacing: -.09em;
-      color: rgba(255,255,255,.025);
+
+      color:
+        rgba(255,255,255,.025);
+
       pointer-events: none;
+
     }
 
-    /* SERVICE CARDS */
+
     .brand-page .service-cards {
+
       align-items: stretch;
+
     }
+
 
     .brand-page .service-card {
+
       min-width: 0;
+
       min-height: 520px;
+
       overflow: hidden;
+
       container-type: inline-size;
+
       isolation: isolate;
+
       transition:
         transform .55s cubic-bezier(.2,.75,.2,1),
         box-shadow .55s ease;
+
     }
+
 
     .brand-page .service-card:hover {
-      box-shadow: 0 24px 60px rgba(0,0,0,.08);
+
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.08);
+
     }
+
 
     .brand-page .service-card h3 {
+
       margin-top: auto;
+
       margin-bottom: 15px;
+
       max-width: 100%;
-      font-size: clamp(2rem, 13cqw, 3.6rem);
+
+      font-size:
+        clamp(2rem,13cqw,3.6rem);
+
       line-height: .9;
+
       letter-spacing: -.065em;
+
       white-space: nowrap;
+
     }
+
 
     .brand-page .service-card p {
+
       max-width: 34rem;
+
     }
+
 
     .service-art {
+
       position: relative;
+
       height: 150px;
+
       margin: 30px 0 20px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       opacity: .92;
-      transition: transform .6s cubic-bezier(.2,.75,.2,1);
+
+      transition:
+        transform .6s cubic-bezier(.2,.75,.2,1);
+
     }
+
 
     .service-card:hover .service-art {
-      transform: translateY(-7px) scale(1.03);
+
+      transform:
+        translateY(-7px)
+        scale(1.03);
+
     }
+
 
     .service-art svg {
+
       width: 100%;
+
       height: 100%;
+
       overflow: visible;
+
     }
 
-    /* Strategy graphic */
+
     .strategy-graphic .line {
+
       fill: none;
+
       stroke: currentColor;
+
       stroke-width: 1.2;
-      vector-effect: non-scaling-stroke;
+
+      vector-effect:
+        non-scaling-stroke;
+
     }
+
 
     .strategy-graphic .accent {
-      fill: var(--brand-gold);
+
+      fill:
+        var(--brand-gold);
+
       stroke: none;
+
     }
+
 
     .strategy-graphic .grid {
-      stroke: rgba(0,0,0,.14);
+
+      stroke:
+        rgba(0,0,0,.14);
+
       stroke-width: 1;
+
     }
 
-    /* Creators graphic */
+
     .creator-graphic circle,
     .creator-graphic line {
+
       fill: none;
+
       stroke: currentColor;
+
       stroke-width: 1.2;
+
     }
+
 
     .creator-graphic .node {
-      fill: var(--brand-gold);
+
+      fill:
+        var(--brand-gold);
+
       stroke: none;
+
     }
+
 
     .creator-graphic .pulse {
-      animation: nodePulse 2.8s ease-in-out infinite;
+
+      animation:
+        nodePulse
+        2.8s
+        ease-in-out
+        infinite;
+
       transform-origin: center;
+
     }
 
-    /* Experience graphic */
+
     .experience-graphic rect {
+
       fill: none;
+
       stroke: currentColor;
+
       stroke-width: 1.2;
+
     }
+
 
     .experience-graphic .fill {
-      fill: rgba(199,154,59,.16);
-      stroke: var(--brand-gold);
+
+      fill:
+        rgba(199,154,59,.16);
+
+      stroke:
+        var(--brand-gold);
+
     }
+
 
     .experience-graphic .center {
-      fill: var(--brand-gold);
+
+      fill:
+        var(--brand-gold);
+
       stroke: none;
-      animation: experiencePulse 2.6s ease-in-out infinite;
+
+      animation:
+        experiencePulse
+        2.6s
+        ease-in-out
+        infinite;
+
       transform-origin: center;
+
     }
 
-    /* Philosophy */
+
     .brand-page .brand-philosophy {
+
       position: relative;
+
       overflow: hidden;
-      padding-top: clamp(100px, 11vw, 160px);
-      padding-bottom: clamp(100px, 11vw, 160px);
+
+      padding-top:
+        clamp(100px,11vw,160px);
+
+      padding-bottom:
+        clamp(100px,11vw,160px);
+
     }
+
 
     .brand-page .brand-philosophy::before {
+
       content: "";
+
       position: absolute;
+
       width: 52vw;
+
       height: 52vw;
+
       max-width: 720px;
+
       max-height: 720px;
+
       right: -20%;
+
       top: 18%;
-      border: 1px solid rgba(199,154,59,.16);
+
+      border:
+        1px solid rgba(199,154,59,.16);
+
       border-radius: 50%;
-      animation: brandOrbitReverse 18s linear infinite;
+
+      animation:
+        brandOrbitReverse
+        18s
+        linear
+        infinite;
+
       pointer-events: none;
+
     }
+
 
     .brand-page .brand-philosophy::after {
+
       content: "FLARE";
+
       position: absolute;
+
       right: -5vw;
+
       bottom: -5vw;
-      font-size: clamp(130px, 23vw, 340px);
+
+      font-size:
+        clamp(130px,23vw,340px);
+
       font-weight: 800;
+
       letter-spacing: -.09em;
-      color: rgba(255,255,255,.025);
+
+      color:
+        rgba(255,255,255,.025);
+
       pointer-events: none;
+
     }
 
-    /* CTA graphic */
+
     .brand-page .big-cta {
+
       position: relative;
+
       overflow: hidden;
+
     }
+
 
     .brand-page .big-cta::before {
+
       content: "✦";
+
       position: absolute;
+
       right: 8%;
+
       top: 14%;
-      font-size: clamp(70px, 9vw, 130px);
-      color: var(--brand-gold);
+
+      font-size:
+        clamp(70px,9vw,130px);
+
+      color:
+        var(--brand-gold);
+
       opacity: .35;
-      animation: brandFloat 4s ease-in-out infinite;
+
+      animation:
+        brandFloat
+        4s
+        ease-in-out
+        infinite;
+
     }
+
 
     @keyframes brandOrbit {
-      to { transform: rotate(360deg); }
+
+      to {
+        transform: rotate(360deg);
+      }
+
     }
+
 
     @keyframes brandOrbitReverse {
-      to { transform: rotate(-360deg); }
+
+      to {
+        transform: rotate(-360deg);
+      }
+
     }
+
 
     @keyframes brandFloat {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+
     }
+
 
     @keyframes nodePulse {
-      0%,100% { transform: scale(1); opacity: .8; }
-      50% { transform: scale(1.35); opacity: 1; }
+
+      0%,100% {
+        transform: scale(1);
+        opacity: .8;
+      }
+
+      50% {
+        transform: scale(1.35);
+        opacity: 1;
+      }
+
     }
+
 
     @keyframes experiencePulse {
-      0%,100% { transform: scale(1); opacity: .75; }
-      50% { transform: scale(1.2); opacity: 1; }
+
+      0%,100% {
+        transform: scale(1);
+        opacity: .75;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+
     }
+
 
     @media (max-width: 900px) {
+
       .brand-page .page-hero {
+
         min-height: 620px;
+
       }
+
 
       .brand-hero-mark {
+
         right: 7vw;
+
         bottom: 8vw;
+
       }
+
 
       .brand-page .service-card {
+
         min-height: 440px;
+
       }
 
+
       .brand-page .service-card h3 {
-        font-size: clamp(2.15rem, 12cqw, 3.3rem);
+
+        font-size:
+          clamp(2.15rem,12cqw,3.3rem);
+
       }
+
     }
+
 
     @media (max-width: 600px) {
+
       .brand-page .page-hero {
+
         min-height: 560px;
+
       }
+
 
       .brand-page .page-hero h1 {
+
         max-width: 10ch;
+
       }
+
 
       .brand-hero-mark {
+
         width: 105px;
+
         right: 20px;
+
         bottom: 42px;
+
       }
+
 
       .service-art {
+
         height: 120px;
+
         margin: 20px 0 15px;
+
       }
+
 
       .brand-page .service-card {
+
         min-height: 390px;
+
       }
+
 
       .brand-page .service-card h3 {
-        font-size: clamp(2.3rem, 15cqw, 3.2rem);
+
+        font-size:
+          clamp(2.3rem,15cqw,3.2rem);
+
       }
+
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .brand-page .page-hero::before,
-      .brand-hero-mark,
-      .creator-graphic .pulse,
-      .experience-graphic .center,
-      .brand-page .brand-philosophy::before,
-      .brand-page .big-cta::before {
-        animation: none;
-      }
-    }
   </style>
 
+
   <script type="application/ld+json">
+
   {
     "@context":"https://schema.org",
     "@type":"WebPage",
@@ -403,28 +1631,84 @@
     "url":"https://flareevents.in/brand.html",
     "description":"FLARE creates brand strategy, creator partnerships and experiences that connect brands with people and culture."
   }
+
   </script>
+
 </head>
+
 
 <body>
 
-  <div class="flare-page-loader" aria-hidden="true">
-    <img src="flare-logo.png" alt="">
+
+  <!-- =========================
+       LOADER
+  ========================== -->
+
+  <div
+    class="flare-page-loader"
+    aria-hidden="true"
+  >
+
+    <img
+      src="flare-logo.png"
+      alt=""
+    >
+
     <div class="flare-loader-line"></div>
+
   </div>
 
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header class="site-header">
-    <a href="index.html" class="brand-logo" aria-label="FLARE Home">
-      <img src="flare-logo.png" alt="FLARE">
+
+
+    <a
+      href="index.html"
+      class="brand-logo"
+      aria-label="FLARE Home"
+    >
+
+      <img
+        src="flare-logo.png"
+        alt="FLARE"
+      >
+
     </a>
 
-    <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="index.html#idea">IDEA</a>
-      <a href="index.html#services">WHAT WE DO</a>
-      <a href="index.html#work">WORK</a>
-      <a href="founder.html">FOUNDER</a>
-      <a href="contact.html">START A PROJECT ↗</a>
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <a href="index.html#idea">
+        IDEA
+      </a>
+
+      <a href="index.html#services">
+        WHAT WE DO
+      </a>
+
+      <a href="index.html#work">
+        WORK
+      </a>
+
+      <a href="founder.html">
+        FOUNDER
+      </a>
+
+      <a href="contact.html">
+        START A PROJECT ↗
+      </a>
+
     </nav>
+
+
+    <!-- MOBILE BUTTON -->
 
     <button
       class="menu-button"
@@ -434,199 +1718,1029 @@
       aria-expanded="false"
       aria-controls="mobileMenu"
     >
+
       <span></span>
       <span></span>
+
     </button>
+
   </header>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================== -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+    aria-hidden="true"
+  >
+
+    <div class="mobile-menu-inner">
+
+
+      <div class="menu-label">
+        MENU / 001
+      </div>
+
+
+      <nav
+        class="mobile-navigation"
+        aria-label="Mobile navigation"
+      >
+
+
+        <a href="index.html#idea">
+
+          <span>
+            THE IDEA
+          </span>
+
+          <small>
+            01
+          </small>
+
+        </a>
+
+
+        <a href="index.html#services">
+
+          <span>
+            WHAT WE DO
+          </span>
+
+          <small>
+            02
+          </small>
+
+        </a>
+
+
+        <a href="index.html#work">
+
+          <span>
+            SELECTED WORK
+          </span>
+
+          <small>
+            03
+          </small>
+
+        </a>
+
+
+        <a href="founder.html">
+
+          <span>
+            FOUNDER
+          </span>
+
+          <small>
+            04
+          </small>
+
+        </a>
+
+
+        <a href="contact.html">
+
+          <span>
+            START A PROJECT
+          </span>
+
+          <small>
+            05
+          </small>
+
+        </a>
+
+
+      </nav>
+
+
+      <div class="menu-socials">
+
+
+        <a
+          href="https://www.instagram.com/weareflare.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          INSTAGRAM ↗
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/17yEoZoNkn/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          FACEBOOK ↗
+        </a>
+
+
+        <a
+          href="https://www.linkedin.com/company/flare-events-india/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LINKEDIN ↗
+        </a>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
 
   <main class="inner-page brand-page">
 
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
     <section class="page-hero">
-      <span class="eyebrow reveal">FLARE / BRAND & FLARE</span>
+
+      <span class="eyebrow reveal">
+        FLARE / BRAND & FLARE
+      </span>
+
 
       <h1 class="reveal delay-1">
+
         MAKE YOUR
+
         <br>
-        <span>BRAND MATTER.</span>
+
+        <span>
+          BRAND MATTER.
+        </span>
+
       </h1>
 
-      <div class="brand-hero-mark" aria-hidden="true">
-        <span>IDEA → IMPACT</span>
+
+      <div
+        class="brand-hero-mark"
+        aria-hidden="true"
+      >
+
+        <span>
+          IDEA → IMPACT
+        </span>
+
       </div>
+
     </section>
 
+
+    <!-- =========================
+         APPROACH
+    ========================== -->
+
     <section class="page-copy">
+
+
       <div class="page-copy-inner">
-        <span class="eyebrow reveal">01 — THE APPROACH</span>
+
+
+        <span class="eyebrow reveal">
+
+          01 — THE APPROACH
+
+        </span>
+
 
         <h2 class="reveal delay-1">
+
           Strategy first.
+
           <br>
+
           Culture always.
+
         </h2>
 
+
         <p class="reveal delay-2">
+
           We work with brands to turn objectives into ideas people
           actually want to engage with. From creator-led campaigns
           to experiences, FLARE connects strategy, culture and execution.
+
         </p>
+
+
       </div>
+
     </section>
 
-    <section class="services section-light" id="brand-services">
+
+    <!-- =========================
+         SERVICES
+    ========================== -->
+
+    <section
+      class="services section-light"
+      id="brand-services"
+    >
+
 
       <div class="section-number dark-number reveal">
+
         02 — BRAND & FLARE SERVICES
+
       </div>
+
 
       <div class="service-cards">
 
-        <article class="service-card reveal">
-          <div class="card-top"><span>01</span><span>THINK</span></div>
 
-          <div class="service-art strategy-graphic" aria-hidden="true">
-            <svg viewBox="0 0 400 150">
-              <path class="grid" d="M20 120H380M20 90H380M20 60H380M20 30H380"/>
-              <path class="grid" d="M60 15V135M120 15V135M180 15V135M240 15V135M300 15V135M360 15V135"/>
-              <path class="line" d="M25 112 C75 108, 82 72, 125 80 S175 116, 215 76 S270 42, 310 55 S345 45, 375 22"/>
-              <circle class="accent" cx="310" cy="55" r="5"/>
-            </svg>
+        <!-- STRATEGY -->
+
+        <article class="service-card reveal">
+
+
+          <div class="card-top">
+
+            <span>
+              01
+            </span>
+
+            <span>
+              THINK
+            </span>
+
           </div>
 
-          <h3>STRATEGY</h3>
+
+          <div
+            class="service-art strategy-graphic"
+            aria-hidden="true"
+          >
+
+            <svg viewBox="0 0 400 150">
+
+              <path
+                class="grid"
+                d="M20 120H380M20 90H380M20 60H380M20 30H380"
+              />
+
+              <path
+                class="grid"
+                d="M60 15V135M120 15V135M180 15V135M240 15V135M300 15V135M360 15V135"
+              />
+
+              <path
+                class="line"
+                d="M25 112 C75 108, 82 72, 125 80 S175 116, 215 76 S270 42, 310 55 S345 45, 375 22"
+              />
+
+              <circle
+                class="accent"
+                cx="310"
+                cy="55"
+                r="5"
+              />
+
+            </svg>
+
+          </div>
+
+
+          <h3>
+            STRATEGY
+          </h3>
+
 
           <p>
+
             Campaign thinking, audience understanding and ideas
             built around the objective.
+
           </p>
+
+
         </article>
+
+
+        <!-- CREATORS -->
 
         <article class="service-card reveal delay-1">
-          <div class="card-top"><span>02</span><span>CONNECT</span></div>
 
-          <div class="service-art creator-graphic" aria-hidden="true">
-            <svg viewBox="0 0 400 150">
-              <line x1="95" y1="75" x2="195" y2="38"/>
-              <line x1="95" y1="75" x2="195" y2="112"/>
-              <line x1="195" y1="38" x2="305" y2="75"/>
-              <line x1="195" y1="112" x2="305" y2="75"/>
-              <circle cx="95" cy="75" r="16"/>
-              <circle cx="195" cy="38" r="13"/>
-              <circle cx="195" cy="112" r="13"/>
-              <circle class="node pulse" cx="305" cy="75" r="18"/>
-              <circle cx="305" cy="75" r="28" opacity=".18"/>
-            </svg>
+
+          <div class="card-top">
+
+            <span>
+              02
+            </span>
+
+            <span>
+              CONNECT
+            </span>
+
           </div>
 
-          <h3>CREATORS</h3>
+
+          <div
+            class="service-art creator-graphic"
+            aria-hidden="true"
+          >
+
+            <svg viewBox="0 0 400 150">
+
+              <line
+                x1="95"
+                y1="75"
+                x2="195"
+                y2="38"
+              />
+
+              <line
+                x1="95"
+                y1="75"
+                x2="195"
+                y2="112"
+              />
+
+              <line
+                x1="195"
+                y1="38"
+                x2="305"
+                y2="75"
+              />
+
+              <line
+                x1="195"
+                y1="112"
+                x2="305"
+                y2="75"
+              />
+
+              <circle
+                cx="95"
+                cy="75"
+                r="16"
+              />
+
+              <circle
+                cx="195"
+                cy="38"
+                r="13"
+              />
+
+              <circle
+                cx="195"
+                cy="112"
+                r="13"
+              />
+
+              <circle
+                class="node pulse"
+                cx="305"
+                cy="75"
+                r="18"
+              />
+
+              <circle
+                cx="305"
+                cy="75"
+                r="28"
+                opacity=".18"
+              />
+
+            </svg>
+
+          </div>
+
+
+          <h3>
+            CREATORS
+          </h3>
+
 
           <p>
+
             Finding creators whose voice actually fits the brand
             and the audience.
+
           </p>
+
+
         </article>
+
+
+        <!-- EXPERIENCES -->
 
         <article class="service-card reveal delay-2">
-          <div class="card-top"><span>03</span><span>EXPERIENCE</span></div>
 
-          <div class="service-art experience-graphic" aria-hidden="true">
-            <svg viewBox="0 0 400 150">
-              <rect x="75" y="22" width="250" height="106" rx="1"/>
-              <rect class="fill" x="105" y="45" width="190" height="60" rx="1"/>
-              <rect x="135" y="62" width="130" height="26" rx="1"/>
-              <circle class="center" cx="200" cy="75" r="7"/>
-            </svg>
+
+          <div class="card-top">
+
+            <span>
+              03
+            </span>
+
+            <span>
+              EXPERIENCE
+            </span>
+
           </div>
 
-          <h3>EXPERIENCES</h3>
+
+          <div
+            class="service-art experience-graphic"
+            aria-hidden="true"
+          >
+
+            <svg viewBox="0 0 400 150">
+
+              <rect
+                x="75"
+                y="22"
+                width="250"
+                height="106"
+                rx="1"
+              />
+
+              <rect
+                class="fill"
+                x="105"
+                y="45"
+                width="190"
+                height="60"
+                rx="1"
+              />
+
+              <rect
+                x="135"
+                y="62"
+                width="130"
+                height="26"
+                rx="1"
+              />
+
+              <circle
+                class="center"
+                cx="200"
+                cy="75"
+                r="7"
+              />
+
+            </svg>
+
+          </div>
+
+
+          <h3>
+            EXPERIENCES
+          </h3>
+
 
           <p>
+
             Physical and digital experiences designed to give
             people something worth remembering.
+
           </p>
+
+
         </article>
 
+
       </div>
+
     </section>
 
-    <section class="section-dark brand-philosophy">
+
+    <!-- =========================
+         BRAND THINKING
+    ========================== -->
+
+    <section
+      class="section-dark brand-philosophy"
+    >
+
 
       <div class="section-number reveal">
+
         03 — BRAND THINKING
+
       </div>
 
+
       <div class="principles-heading reveal">
+
+
         <h2>
+
           Don't just
-          <span>get attention.</span>
+
+          <span>
+            get attention.
+          </span>
+
           Create something people remember.
+
         </h2>
 
+
         <p>
+
           The strongest brand moments aren't forced into culture.
           They understand it, participate in it and give people
           a reason to care.
+
         </p>
+
+
       </div>
+
 
       <div class="principle-list">
-        <div class="reveal">
-          <span>01</span>
-          <strong>CLARITY</strong>
-          <small>Know what the brand needs to achieve.</small>
-        </div>
+
 
         <div class="reveal">
-          <span>02</span>
-          <strong>CULTURE</strong>
-          <small>Understand where people actually are.</small>
+
+          <span>
+            01
+          </span>
+
+          <strong>
+            CLARITY
+          </strong>
+
+          <small>
+            Know what the brand needs to achieve.
+          </small>
+
         </div>
 
-        <div class="reveal">
-          <span>03</span>
-          <strong>CREATIVITY</strong>
-          <small>Turn strategy into something people feel.</small>
-        </div>
 
         <div class="reveal">
-          <span>04</span>
-          <strong>IMPACT</strong>
-          <small>Make the attention mean something.</small>
+
+          <span>
+            02
+          </span>
+
+          <strong>
+            CULTURE
+          </strong>
+
+          <small>
+            Understand where people actually are.
+          </small>
+
         </div>
+
+
+        <div class="reveal">
+
+          <span>
+            03
+          </span>
+
+          <strong>
+            CREATIVITY
+          </strong>
+
+          <small>
+            Turn strategy into something people feel.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            04
+          </span>
+
+          <strong>
+            IMPACT
+          </strong>
+
+          <small>
+            Make the attention mean something.
+          </small>
+
+        </div>
+
+
       </div>
+
+
     </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
 
     <section class="big-cta">
+
+
       <div class="cta-inner">
+
+
         <div>
-          <span class="eyebrow reveal">READY?</span>
+
+          <span class="eyebrow reveal">
+
+            READY?
+
+          </span>
+
 
           <h2 class="reveal delay-1">
+
             LET'S
+
             <br>
+
             BUILD
+
             <br>
-            <span>SOMETHING.</span>
+
+            <span>
+              SOMETHING.
+            </span>
+
           </h2>
+
         </div>
 
-        <a href="contact.html" class="cta-button reveal delay-2">
-          START A PROJECT <span>↗</span>
+
+        <a
+          href="contact.html"
+          class="cta-button reveal delay-2"
+        >
+
+          START A PROJECT
+
+          <span>
+            ↗
+          </span>
+
         </a>
+
+
       </div>
+
+
     </section>
+
 
   </main>
 
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer class="footer">
-    <img src="flare-logo.png" alt="FLARE">
+
+
+    <img
+      src="flare-logo.png"
+      alt="FLARE"
+    >
+
 
     <div class="footer-bottom">
-      <span>© 2026 FLARE</span>
-      <span>EVENTS · INFLUENCE · EXPERIENCES</span>
+
+
+      <span>
+        © 2026 FLARE
+      </span>
+
+
+      <span>
+        EVENTS · INFLUENCE · EXPERIENCES
+      </span>
+
+
     </div>
+
+
   </footer>
 
+
+  <!-- =========================
+       MOBILE MENU JS
+  ========================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        /* =========================================
+           REVEALS
+        ========================================= */
+
+        const revealItems =
+          document.querySelectorAll(
+            ".reveal"
+          );
+
+
+        if (
+          !("IntersectionObserver" in window)
+        ) {
+
+          revealItems.forEach(
+            function (item) {
+
+              item.classList.add(
+                "visible"
+              );
+
+            }
+          );
+
+        } else {
+
+          const revealObserver =
+            new IntersectionObserver(
+              function (
+                entries,
+                observer
+              ) {
+
+                entries.forEach(
+                  function (entry) {
+
+                    if (
+                      entry.isIntersecting
+                    ) {
+
+                      entry.target.classList.add(
+                        "visible"
+                      );
+
+                      observer.unobserve(
+                        entry.target
+                      );
+
+                    }
+
+                  }
+                );
+
+              },
+              {
+                threshold: .12,
+                rootMargin:
+                  "0px 0px -40px 0px"
+              }
+            );
+
+
+          revealItems.forEach(
+            function (item) {
+
+              revealObserver.observe(
+                item
+              );
+
+            }
+          );
+
+        }
+
+
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
+
+        const menuToggle =
+          document.getElementById(
+            "menuToggle"
+          );
+
+
+        const mobileMenu =
+          document.getElementById(
+            "mobileMenu"
+          );
+
+
+        if (
+          !menuToggle ||
+          !mobileMenu
+        ) {
+
+          return;
+
+        }
+
+
+        const mobileLinks =
+          mobileMenu.querySelectorAll(
+            "a"
+          );
+
+
+        /* OPEN */
+
+        function openMenu() {
+
+          mobileMenu.classList.add(
+            "active"
+          );
+
+          menuToggle.classList.add(
+            "active"
+          );
+
+          document.body.classList.add(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Close menu"
+          );
+
+        }
+
+
+        /* CLOSE */
+
+        function closeMenu() {
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+          menuToggle.classList.remove(
+            "active"
+          );
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        }
+
+
+        /* TOGGLE */
+
+        menuToggle.addEventListener(
+          "click",
+          function () {
+
+            if (
+              mobileMenu.classList.contains(
+                "active"
+              )
+            ) {
+
+              closeMenu();
+
+            } else {
+
+              openMenu();
+
+            }
+
+          }
+        );
+
+
+        /* CLOSE AFTER NAVIGATION */
+
+        mobileLinks.forEach(
+          function (link) {
+
+            link.addEventListener(
+              "click",
+              function () {
+
+                closeMenu();
+
+              }
+            );
+
+          }
+        );
+
+
+        /* ESCAPE */
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (
+              event.key === "Escape"
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        /* DESKTOP RESET */
+
+        window.addEventListener(
+          "resize",
+          function () {
+
+            if (
+              window.innerWidth > 900
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        /* PREVENT BACKGROUND TOUCH */
+
+        document.addEventListener(
+          "touchmove",
+          function (event) {
+
+            if (
+              document.body.classList.contains(
+                "menu-open"
+              )
+            ) {
+
+              if (
+                !event.target.closest(
+                  ".mobile-menu"
+                )
+              ) {
+
+                event.preventDefault();
+
+              }
+
+            }
+
+          },
+          {
+            passive: false
+          }
+        );
+
+
+      }
+    );
+
+  </script>
+
+
+  <!-- Existing site JS -->
+
   <script src="script.js"></script>
+
+
 </body>
+
 </html>
