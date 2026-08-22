@@ -4,173 +4,1242 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
   <title>FLARE — For Creators</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta
+    name="description"
+    content="FLARE for creators — creator partnerships, experiences and campaigns that turn influence into memorable brand moments."
+  >
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta
+    name="robots"
+    content="index, follow"
+  >
 
-  <link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="canonical" href="https://flareevents.in/creator.html">
+  <meta
+    name="theme-color"
+    content="#080808"
+  >
 
-<meta name="description" content="FLARE for creators — creator partnerships, experiences and campaigns that turn influence into memorable brand moments.">
+  <link
+    rel="canonical"
+    href="https://flareevents.in/creator.html"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+
+  <!-- FONTS -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+
+  <!-- =========================
+       PAGE LOADER
+  ========================== -->
+
+  <style>
+
+    .flare-page-loader {
+
+      position: fixed;
+      inset: 0;
+
+      z-index: 999999;
+
+      display: grid;
+      place-items: center;
+
+      background: #050505;
+
+      pointer-events: none;
+
+      animation:
+        flareLoaderOut
+        1s
+        1.25s
+        cubic-bezier(.77,0,.18,1)
+        forwards;
+
+    }
+
+
+    .flare-page-loader img {
+
+      width: min(430px, 58vw);
+
+      height: auto;
+
+      display: block;
+
+      opacity: 0;
+
+      transform:
+        translateY(24px)
+        scale(.96);
+
+      animation:
+        flareLogoIn
+        .8s
+        .12s
+        cubic-bezier(.2,.75,.2,1)
+        forwards;
+
+    }
+
+
+    .flare-loader-line {
+
+      position: absolute;
+
+      left: 50%;
+      bottom: 13%;
+
+      width: min(260px,42vw);
+
+      height: 1px;
+
+      background:
+        rgba(255,255,255,.12);
+
+      overflow: hidden;
+
+      transform:
+        translateX(-50%);
+
+    }
+
+
+    .flare-loader-line::after {
+
+      content: "";
+
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      background: #c79a3b;
+
+      transform:
+        translateX(-100%);
+
+      animation:
+        flareLoaderLine
+        1s
+        .2s
+        cubic-bezier(.7,0,.2,1)
+        forwards;
+
+    }
+
+
+    @keyframes flareLogoIn {
+
+      to {
+
+        opacity: 1;
+
+        transform: none;
+
+      }
+
+    }
+
+
+    @keyframes flareLoaderLine {
+
+      to {
+
+        transform:
+          translateX(0);
+
+      }
+
+    }
+
+
+    @keyframes flareLoaderOut {
+
+      to {
+
+        transform:
+          translateY(-100%);
+
+        visibility: hidden;
+
+      }
+
+    }
+
+
+    /* =========================
+       REVEAL
+    ========================== */
+
+    .reveal {
+
+      opacity: 0;
+
+      transform:
+        translateY(30px);
+
+      transition:
+        opacity .8s cubic-bezier(.2,.7,.2,1),
+        transform .8s cubic-bezier(.2,.7,.2,1);
+
+    }
+
+
+    .reveal.visible {
+
+      opacity: 1;
+
+      transform: none;
+
+    }
+
+
+    .delay-1 {
+      transition-delay: .08s;
+    }
+
+    .delay-2 {
+      transition-delay: .16s;
+    }
+
+    .delay-3 {
+      transition-delay: .24s;
+    }
+
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    .mobile-menu {
+
+      visibility: hidden;
+
+    }
+
+
+    .mobile-menu.active {
+
+      visibility: visible;
+
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .flare-page-loader,
+      .flare-page-loader img,
+      .flare-loader-line::after {
+
+        animation: none;
+
+      }
+
+
+      .flare-page-loader {
+
+        visibility: hidden;
+
+      }
+
+
+      .reveal {
+
+        opacity: 1;
+
+        transform: none;
+
+        transition: none;
+
+      }
+
+    }
+
+  </style>
+
+
+  <!-- =========================
+       OPEN GRAPH
+  ========================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://flareevents.in/creator.html"
+  >
+
+  <meta
+    property="og:title"
+    content="FLARE — For Creators"
+  >
+
+  <meta
+    property="og:description"
+    content="FLARE for creators — creator partnerships, experiences and campaigns that turn influence into memorable brand moments."
+  >
+
+  <meta
+    property="og:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+  <meta
+    property="og:site_name"
+    content="FLARE"
+  >
+
 </head>
+
 
 <body>
 
-<header class="site-header">
 
-  <a href="index.html" class="brand-logo">
-    <img src="flare-logo.png" alt="FLARE">
-  </a>
+  <!-- =========================
+       GLOBAL FLARE LOADER
+  ========================== -->
 
-  <nav class="desktop-nav">
-    <a href="index.html#idea">About</a>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#work">Work</a>
-    <a href="contact.html">Start a Project ↗</a>
-  </nav>
+  <div
+    class="flare-page-loader"
+    aria-hidden="true"
+  >
 
-  <button class="menu-button">
-    <span></span>
-    <span></span>
-  </button>
+    <img
+      src="flare-logo.png"
+      alt=""
+    >
 
-</header>
+    <div class="flare-loader-line"></div>
 
-
-<main class="inner-page">
-
-  <section class="page-hero">
-
-    <span class="eyebrow">FLARE / FOR CREATORS</span>
-
-    <h1>
-      YOUR VOICE.<br>
-      <span>YOUR SPACE.</span>
-    </h1>
-
-  </section>
-
-
-  <section class="page-copy">
-
-    <div class="page-copy-inner">
-
-      <span class="eyebrow">01 — CREATOR NETWORK</span>
-
-      <h2>
-        We don't just<br>
-        find reach.
-      </h2>
-
-      <p>
-        We look for creators with a point of view.
-        People who understand their audience,
-        know their culture and can make brands feel
-        native rather than forced.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <section class="services section-light">
-
-    <div class="section-number dark-number">
-      02 — CREATOR SERVICES
-    </div>
-
-    <div class="service-cards">
-
-      <div class="service-card">
-        <div class="card-top">
-          <span>01</span>
-        </div>
-
-        <h3>DISCOVERY</h3>
-
-        <p>
-          Matching creators with brands,
-          campaigns and communities.
-        </p>
-      </div>
-
-
-      <div class="service-card">
-        <div class="card-top">
-          <span>02</span>
-        </div>
-
-        <h3>PARTNERSHIPS</h3>
-
-        <p>
-          Building meaningful creator-brand
-          collaborations.
-        </p>
-      </div>
-
-
-      <div class="service-card">
-        <div class="card-top">
-          <span>03</span>
-        </div>
-
-        <h3>CAMPAIGNS</h3>
-
-        <p>
-          Creative campaigns that give creators
-          room to be themselves.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="big-cta">
-
-    <div class="cta-inner">
-
-      <span class="eyebrow">CREATOR?</span>
-
-      <h2>
-        LET'S<br>
-        CREATE<br>
-        <span>TOGETHER.</span>
-      </h2>
-
-      <a href="contact.html" class="cta-button">
-        GET IN TOUCH
-        <span>↗</span>
-      </a>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-<footer class="footer">
-
-  <img src="flare-logo.png" alt="FLARE">
-
-  <div class="footer-bottom">
-    <span>© 2026 FLARE</span>
-    <span>EVENTS · INFLUENCE · EXPERIENCES</span>
   </div>
 
-</footer>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="site-header">
 
 
-<script src="script.js"></script>
+    <a
+      href="index.html"
+      class="brand-logo"
+      aria-label="FLARE Home"
+    >
+
+      <img
+        src="flare-logo.png"
+        alt="FLARE"
+      >
+
+    </a>
+
+
+    <!-- DESKTOP NAVIGATION -->
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <a href="index.html#idea">
+        IDEA
+      </a>
+
+      <a href="index.html#services">
+        WHAT WE DO
+      </a>
+
+      <a href="index.html#work">
+        WORK
+      </a>
+
+      <a href="founder.html">
+        FOUNDER
+      </a>
+
+      <a href="contact.html">
+        START A PROJECT ↗
+      </a>
+
+    </nav>
+
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+      class="menu-button"
+      id="menuToggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+
+      <span></span>
+
+      <span></span>
+
+    </button>
+
+
+  </header>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================== -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+    aria-hidden="true"
+  >
+
+    <div class="mobile-menu-inner">
+
+
+      <div class="menu-label">
+        MENU / 001
+      </div>
+
+
+      <nav class="mobile-navigation">
+
+
+        <a href="index.html#idea">
+
+          <span>
+            THE IDEA
+          </span>
+
+          <small>
+            01
+          </small>
+
+        </a>
+
+
+        <a href="index.html#services">
+
+          <span>
+            WHAT WE DO
+          </span>
+
+          <small>
+            02
+          </small>
+
+        </a>
+
+
+        <a href="index.html#work">
+
+          <span>
+            SELECTED WORK
+          </span>
+
+          <small>
+            03
+          </small>
+
+        </a>
+
+
+        <a href="founder.html">
+
+          <span>
+            FOUNDER
+          </span>
+
+          <small>
+            04
+          </small>
+
+        </a>
+
+
+        <a href="contact.html">
+
+          <span>
+            START A PROJECT
+          </span>
+
+          <small>
+            05
+          </small>
+
+        </a>
+
+
+      </nav>
+
+
+      <div class="menu-socials">
+
+
+        <a
+          href="https://www.instagram.com/weareflare.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/17yEoZoNkn/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook ↗
+        </a>
+
+
+        <a
+          href="https://www.linkedin.com/company/flare-events-india/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="inner-page">
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="page-hero">
+
+
+      <span class="eyebrow reveal">
+
+        FLARE / FOR CREATORS
+
+      </span>
+
+
+      <h1 class="reveal delay-1">
+
+        YOUR VOICE.
+        <br>
+
+        <span>
+          YOUR SPACE.
+        </span>
+
+      </h1>
+
+
+    </section>
+
+
+    <!-- =========================
+         CREATOR NETWORK
+    ========================== -->
+
+    <section class="page-copy">
+
+
+      <div class="page-copy-inner">
+
+
+        <span class="eyebrow reveal">
+
+          01 — CREATOR NETWORK
+
+        </span>
+
+
+        <h2 class="reveal delay-1">
+
+          We don't just
+          <br>
+
+          find reach.
+
+        </h2>
+
+
+        <p class="reveal delay-2">
+
+          We look for creators with a point of view.
+          People who understand their audience,
+          know their culture and can make brands feel
+          native rather than forced.
+
+        </p>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         CREATOR SERVICES
+    ========================== -->
+
+    <section class="services section-light">
+
+
+      <div class="section-number dark-number reveal">
+
+        02 — CREATOR SERVICES
+
+      </div>
+
+
+      <div class="service-cards">
+
+
+        <!-- DISCOVERY -->
+
+        <article class="service-card reveal">
+
+
+          <div class="card-top">
+
+            <span>
+              01
+            </span>
+
+          </div>
+
+
+          <h3>
+            DISCOVERY
+          </h3>
+
+
+          <p>
+
+            Matching creators with brands,
+            campaigns and communities.
+
+          </p>
+
+
+        </article>
+
+
+        <!-- PARTNERSHIPS -->
+
+        <article class="service-card reveal">
+
+
+          <div class="card-top">
+
+            <span>
+              02
+            </span>
+
+          </div>
+
+
+          <h3>
+            PARTNERSHIPS
+          </h3>
+
+
+          <p>
+
+            Building meaningful creator-brand
+            collaborations.
+
+          </p>
+
+
+        </article>
+
+
+        <!-- CAMPAIGNS -->
+
+        <article class="service-card reveal">
+
+
+          <div class="card-top">
+
+            <span>
+              03
+            </span>
+
+          </div>
+
+
+          <h3>
+            CAMPAIGNS
+          </h3>
+
+
+          <p>
+
+            Creative campaigns that give creators
+            room to be themselves.
+
+          </p>
+
+
+        </article>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         CREATOR PHILOSOPHY
+    ========================== -->
+
+    <section class="section-dark">
+
+
+      <div class="section-number reveal">
+
+        03 — THE APPROACH
+
+      </div>
+
+
+      <div class="principles-heading reveal">
+
+
+        <h2>
+
+          Influence works
+          <span>
+            better
+          </span>
+
+          when it feels
+          real.
+
+        </h2>
+
+
+        <p>
+
+          We believe creators should never have
+          to lose their voice to work with a brand.
+          The strongest partnerships happen when
+          the creator, audience and idea naturally
+          belong together.
+
+        </p>
+
+
+      </div>
+
+
+      <div class="principle-list">
+
+
+        <div class="reveal">
+
+          <span>
+            01
+          </span>
+
+          <strong>
+            VOICE
+          </strong>
+
+          <small>
+            Your perspective comes first.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            02
+          </span>
+
+          <strong>
+            FIT
+          </strong>
+
+          <small>
+            The right brands for the right audience.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            03
+          </span>
+
+          <strong>
+            FREEDOM
+          </strong>
+
+          <small>
+            Space to create without sounding scripted.
+          </small>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <span>
+            04
+          </span>
+
+          <strong>
+            IMPACT
+          </strong>
+
+          <small>
+            Partnerships people actually remember.
+          </small>
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="big-cta">
+
+
+      <div class="cta-inner">
+
+
+        <div>
+
+
+          <span class="eyebrow reveal">
+
+            CREATOR?
+
+          </span>
+
+
+          <h2 class="reveal delay-1">
+
+            LET'S
+            <br>
+
+            CREATE
+            <br>
+
+            <span>
+              TOGETHER.
+            </span>
+
+          </h2>
+
+
+        </div>
+
+
+        <a
+          href="contact.html"
+          class="cta-button reveal delay-2"
+        >
+
+          GET IN TOUCH
+
+          <span>
+            ↗
+          </span>
+
+        </a>
+
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+
+    <img
+      src="flare-logo.png"
+      alt="FLARE"
+    >
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 FLARE
+      </span>
+
+      <span>
+        EVENTS · INFLUENCE · EXPERIENCES
+      </span>
+
+    </div>
+
+
+  </footer>
+
+
+  <!-- =========================
+       MENU + REVEAL JS
+  ========================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        /* =========================
+           REVEAL ANIMATIONS
+        ========================== */
+
+        const revealItems =
+          document.querySelectorAll(
+            ".reveal"
+          );
+
+
+        if (
+          "IntersectionObserver"
+          in window
+        ) {
+
+
+          const revealObserver =
+            new IntersectionObserver(
+              function (
+                entries,
+                observer
+              ) {
+
+                entries.forEach(
+                  function (entry) {
+
+                    if (
+                      entry.isIntersecting
+                    ) {
+
+                      entry.target.classList.add(
+                        "visible"
+                      );
+
+                      observer.unobserve(
+                        entry.target
+                      );
+
+                    }
+
+                  }
+                );
+
+              },
+              {
+                threshold: .12,
+
+                rootMargin:
+                  "0px 0px -40px 0px"
+
+              }
+            );
+
+
+          revealItems.forEach(
+            function (item) {
+
+              revealObserver.observe(
+                item
+              );
+
+            }
+          );
+
+
+        } else {
+
+
+          revealItems.forEach(
+            function (item) {
+
+              item.classList.add(
+                "visible"
+              );
+
+            }
+          );
+
+        }
+
+
+        /* =========================
+           UNIVERSAL MOBILE MENU
+        ========================== */
+
+        const menuToggle =
+          document.getElementById(
+            "menuToggle"
+          );
+
+
+        const mobileMenu =
+          document.getElementById(
+            "mobileMenu"
+          );
+
+
+        if (
+          !menuToggle ||
+          !mobileMenu
+        ) {
+
+          return;
+
+        }
+
+
+        const mobileLinks =
+          mobileMenu.querySelectorAll(
+            "a"
+          );
+
+
+        function openMenu() {
+
+          mobileMenu.classList.add(
+            "active"
+          );
+
+
+          menuToggle.classList.add(
+            "active"
+          );
+
+
+          document.body.classList.add(
+            "menu-open"
+          );
+
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Close menu"
+          );
+
+        }
+
+
+        function closeMenu() {
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+
+          menuToggle.classList.remove(
+            "active"
+          );
+
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        }
+
+
+        menuToggle.addEventListener(
+          "click",
+          function () {
+
+            if (
+              mobileMenu.classList.contains(
+                "active"
+              )
+            ) {
+
+              closeMenu();
+
+            } else {
+
+              openMenu();
+
+            }
+
+          }
+        );
+
+
+        /* CLOSE AFTER LINK */
+
+        mobileLinks.forEach(
+          function (link) {
+
+            link.addEventListener(
+              "click",
+              function () {
+
+                closeMenu();
+
+              }
+            );
+
+          }
+        );
+
+
+        /* ESC */
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (
+              event.key === "Escape"
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        /* RESIZE */
+
+        window.addEventListener(
+          "resize",
+          function () {
+
+            if (
+              window.innerWidth > 900
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+      }
+    );
+
+  </script>
+
+
+  <!-- GLOBAL SCRIPT -->
+
+  <script src="script.js"></script>
+
 
 </body>
+
 </html>
