@@ -1,8 +1,3 @@
-/* =========================================================
-   FLARE — FINAL SCRIPT.JS
-   Mobile menu + hero load + scroll reveal + interactions
-========================================================= */
-
 (() => {
   "use strict";
 
@@ -24,26 +19,16 @@
   ========================================================= */
 
   window.addEventListener("load", () => {
-
     requestAnimationFrame(() => {
-
       body.classList.add("flare-loaded");
       body.classList.add("hero-ready");
-
     });
-
   });
 
-
-  /* Fallback */
-
   setTimeout(() => {
-
     body.classList.add("flare-loaded");
     body.classList.add("hero-ready");
-
   }, 1200);
-
 
 
   /* =========================================================
@@ -56,31 +41,26 @@
   const flareMenu =
     $(".flare-mobile-menu");
 
-
   function setMenu(open) {
 
     if (!menuButton || !flareMenu) {
       return;
     }
 
-
     menuButton.classList.toggle(
       "is-open",
       open
     );
-
 
     menuButton.classList.toggle(
       "active",
       open
     );
 
-
     menuButton.setAttribute(
       "aria-expanded",
       String(open)
     );
-
 
     menuButton.setAttribute(
       "aria-label",
@@ -89,31 +69,24 @@
         : "Open menu"
     );
 
-
     flareMenu.classList.toggle(
       "is-open",
       open
     );
-
 
     flareMenu.setAttribute(
       "aria-hidden",
       String(!open)
     );
 
-
     body.classList.toggle(
       "menu-open",
       open
     );
-
   }
 
 
-  if (
-    menuButton &&
-    flareMenu
-  ) {
+  if (menuButton && flareMenu) {
 
     menuButton.addEventListener(
       "click",
@@ -122,15 +95,12 @@
         event.preventDefault();
         event.stopPropagation();
 
-
         const isOpen =
           flareMenu.classList.contains(
             "is-open"
           );
 
-
         setMenu(!isOpen);
-
       }
     );
 
@@ -143,9 +113,7 @@
       link.addEventListener(
         "click",
         () => {
-
           setMenu(false);
-
         }
       );
 
@@ -156,12 +124,8 @@
       "keydown",
       (event) => {
 
-        if (
-          event.key === "Escape"
-        ) {
-
+        if (event.key === "Escape") {
           setMenu(false);
-
         }
 
       }
@@ -172,12 +136,8 @@
       "resize",
       () => {
 
-        if (
-          window.innerWidth > 1100
-        ) {
-
+        if (window.innerWidth > 1100) {
           setMenu(false);
-
         }
 
       },
@@ -185,9 +145,7 @@
         passive: true
       }
     );
-
   }
-
 
 
   /* =========================================================
@@ -202,15 +160,12 @@
     const doc =
       document.documentElement;
 
-
     const maxScroll =
       doc.scrollHeight -
       window.innerHeight;
 
-
     const progress =
       maxScroll > 0
-
         ? Math.min(
             1,
             Math.max(
@@ -219,7 +174,6 @@
                 maxScroll
             )
           )
-
         : 0;
 
 
@@ -252,7 +206,6 @@
 
 
     ticking = false;
-
   }
 
 
@@ -267,7 +220,6 @@
         );
 
         ticking = true;
-
       }
 
     },
@@ -280,76 +232,81 @@
   updateProgress();
 
 
-
   /* =========================================================
      SCROLL REVEAL
+     
+     IMPORTANT:
+     Content stays visible by default.
+     JS only adds animation.
   ========================================================= */
 
-  const revealElements =
-    $$(
-      ".motion-reveal, .flare-reveal"
+  const reducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+  const revealSelector = [
+    ".idea-grid",
+    ".services-intro",
+    ".service-panel",
+    ".services-scroll-note",
+    ".principles-heading",
+    ".principle-list",
+    ".chapter-heading",
+    ".chapter-card",
+    ".chapter-note",
+    ".big-cta .cta-inner"
+  ].join(",");
+
+
+  const revealItems =
+    Array.from(
+      document.querySelectorAll(
+        revealSelector
+      )
     );
+
+
+  /*
+    Animation is progressive enhancement.
+    If JS fails, the CSS keeps everything visible.
+  */
+
+  if (!reducedMotion) {
+
+    document.documentElement.classList.add(
+      "motion-enabled"
+    );
+
+  }
+
+
+  revealItems.forEach(
+    (element, index) => {
+
+      element.classList.add(
+        "motion-reveal"
+      );
+
+      element.style.setProperty(
+        "--motion-delay",
+        `${Math.min(
+          index,
+          6
+        ) * 0.06}s`
+      );
+
+    }
+  );
 
 
   if (
-    "IntersectionObserver"
-    in window
+    reducedMotion ||
+    !("IntersectionObserver" in window)
   ) {
 
-    const observer =
-      new IntersectionObserver(
-
-        (entries) => {
-
-          entries.forEach(
-            (entry) => {
-
-              if (
-                entry.isIntersecting
-              ) {
-
-                entry.target.classList.add(
-                  "is-visible"
-                );
-
-
-                observer.unobserve(
-                  entry.target
-                );
-
-              }
-
-            }
-          );
-
-        },
-
-        {
-
-          threshold: 0.12,
-
-          rootMargin:
-            "0px 0px -7% 0px"
-
-        }
-
-      );
-
-
-    revealElements.forEach(
-      (element) => {
-
-        observer.observe(
-          element
-        );
-
-      }
-    );
-
-
-  } else {
-
-    revealElements.forEach(
+    revealItems.forEach(
       (element) => {
 
         element.classList.add(
@@ -359,8 +316,55 @@
       }
     );
 
-  }
+  } else {
 
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                !entry.isIntersecting
+              ) {
+                return;
+              }
+
+
+              entry.target.classList.add(
+                "is-visible"
+              );
+
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+          );
+
+        },
+        {
+          threshold: 0.08,
+
+          rootMargin:
+            "0px 0px -6% 0px"
+        }
+      );
+
+
+    revealItems.forEach(
+      (element) => {
+
+        revealObserver.observe(
+          element
+        );
+
+      }
+    );
+
+  }
 
 
   /* =========================================================
@@ -386,9 +390,7 @@
             !targetId ||
             targetId === "#"
           ) {
-
             return;
-
           }
 
 
@@ -399,33 +401,22 @@
 
 
           if (!target) {
-
             return;
-
           }
 
 
           event.preventDefault();
 
-
           setMenu(false);
 
 
-          const reducedMotion =
-            window.matchMedia(
-              "(prefers-reduced-motion: reduce)"
-            ).matches;
-
-
           target.scrollIntoView({
-
             behavior:
               reducedMotion
                 ? "auto"
                 : "smooth",
 
             block: "start"
-
           });
 
         }
@@ -433,7 +424,6 @@
 
     }
   );
-
 
 
   /* =========================================================
@@ -455,18 +445,14 @@
 
 
             if (!href) {
-
               return;
-
             }
 
 
             if (
               href.startsWith("#")
             ) {
-
               return;
-
             }
 
 
@@ -477,7 +463,6 @@
 
       }
     );
-
 
 
   /* =========================================================
@@ -491,9 +476,7 @@
     );
 
 
-  if (
-    finePointer.matches
-  ) {
+  if (finePointer.matches) {
 
     $$(
       ".button, .cta-button, .cta-link, .service-explore"
@@ -524,8 +507,7 @@
               );
 
 
-            const strength =
-              0.10;
+            const strength = 0.10;
 
 
             element.style.transform =
@@ -557,7 +539,6 @@
     );
 
   }
-
 
 
   /* =========================================================
@@ -620,7 +601,6 @@
         cursor.style.left =
           `${currentX}px`;
 
-
         cursor.style.top =
           `${currentY}px`;
 
@@ -669,15 +649,11 @@
   }
 
 
-
   /* =========================================================
      SERVICE PANEL POINTER DEPTH
-     DESKTOP ONLY
   ========================================================= */
 
-  if (
-    finePointer.matches
-  ) {
+  if (finePointer.matches) {
 
     $$(".service-panel")
       .forEach(
@@ -690,9 +666,7 @@
               if (
                 window.innerWidth <= 900
               ) {
-
                 return;
-
               }
 
 
@@ -761,7 +735,6 @@
   }
 
 
-
   /* =========================================================
      INTERNAL PAGE TRANSITIONS
   ========================================================= */
@@ -782,9 +755,7 @@
               "download"
             )
           ) {
-
             return;
-
           }
 
 
@@ -795,9 +766,7 @@
 
 
           if (!href) {
-
             return;
-
           }
 
 
@@ -810,7 +779,6 @@
 
     }
   );
-
 
 
   /* =========================================================
@@ -834,7 +802,6 @@
     );
 
 
-
   /* =========================================================
      HERO PARALLAX
      VERY SUBTLE
@@ -846,13 +813,10 @@
 
   if (
     hero &&
-    !window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
+    !reducedMotion
   ) {
 
-    let heroTicking =
-      false;
+    let heroTicking = false;
 
 
     function updateHeroParallax() {
@@ -874,7 +838,6 @@
         heroTicking = false;
 
         return;
-
       }
 
 
@@ -901,14 +864,11 @@
       () => {
 
         if (heroTicking) {
-
           return;
-
         }
 
 
-        heroTicking =
-          true;
+        heroTicking = true;
 
 
         requestAnimationFrame(
@@ -922,7 +882,6 @@
     );
 
   }
-
 
 
   /* =========================================================
