@@ -1,594 +1,2469 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
   <title>FLARE — Start a Project</title>
-  <meta name="description" content="Contact FLARE for events, brand experiences, creator partnerships and collaborations.">
-  <link rel="canonical" href="https://flareevents.in/contact.html">
-  <link rel="icon" type="image/png" href="favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta
+    name="description"
+    content="Contact FLARE for events, brand experiences, creator partnerships and collaborations."
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#050505"
+  >
+
+  <link
+    rel="canonical"
+    href="https://flareevents.in/contact.html"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+
+  <!-- =========================
+       FONTS
+  ========================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
 
   <style>
-    :root{
-      --black:#050505;
-      --black-2:#0b0b0b;
-      --white:#f7f7f5;
-      --muted:#a7a7a2;
-      --line:rgba(255,255,255,.14);
-      --gold:#c79a3b;
-      --gold-soft:#e0b85b;
-      --max:1380px;
+
+    :root {
+
+      --black: #050505;
+      --black-2: #0b0b0b;
+
+      --white: #f7f7f5;
+      --muted: #a7a7a2;
+
+      --line: rgba(255,255,255,.14);
+
+      --gold: #c79a3b;
+      --gold-soft: #e0b85b;
+
+      --max: 1380px;
+
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      min-width:320px;
-      background:var(--black);
-      color:var(--white);
-      font-family:"Manrope",sans-serif;
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration:none}
-    button,input,select,textarea{font:inherit}
 
-    /* HEADER */
-    .site-header{
-      width:100%;
-      height:86px;
-      position:sticky;
-      top:0;
-      z-index:100;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 clamp(22px,5vw,72px);
-      background:rgba(5,5,5,.88);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid var(--line);
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+      padding: 0;
+
     }
 
-    .brand-logo img{
-      width:112px;
-      height:auto;
-      display:block;
+
+    html {
+
+      scroll-behavior: smooth;
+
     }
 
-    .desktop-nav{
-      display:flex;
-      align-items:center;
-      gap:clamp(22px,3vw,52px);
+
+    body {
+
+      min-width: 320px;
+
+      background: var(--black);
+
+      color: var(--white);
+
+      font-family:
+        "Manrope",
+        sans-serif;
+
+      overflow-x: hidden;
+
     }
 
-    .desktop-nav a{
-      font-family:"DM Mono",monospace;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      color:#c9c9c4;
-      transition:color .25s ease;
+
+    body.menu-open {
+
+      overflow: hidden;
+
     }
 
-    .desktop-nav a:hover{color:#fff}
 
-    .menu-button{
-      display:none;
-      width:44px;
-      height:44px;
-      border:1px solid var(--line);
-      border-radius:50%;
-      background:transparent;
-      cursor:pointer;
-      position:relative;
+    a {
+
+      color: inherit;
+
+      text-decoration: none;
+
     }
 
-    .menu-button span{
-      width:17px;
-      height:1px;
-      background:#fff;
-      position:absolute;
-      left:13px;
-      transition:.25s;
+
+    button,
+    input,
+    select,
+    textarea {
+
+      font: inherit;
+
     }
-    .menu-button span:first-child{top:17px}
-    .menu-button span:last-child{top:25px}
 
-    /* MAIN */
-    .inner-page{width:100%}
 
-    .contact-section{
-      position:relative;
-      overflow:hidden;
-      border-bottom:1px solid var(--line);
+    /* =========================
+       PAGE LOADER
+    ========================== */
+
+    .flare-page-loader {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 999999;
+
+      display: grid;
+
+      place-items: center;
+
+      background: #050505;
+
+      pointer-events: none;
+
+      animation:
+        flareLoaderOut
+        1s
+        1.25s
+        cubic-bezier(.77,0,.18,1)
+        forwards;
+
+    }
+
+
+    .flare-page-loader img {
+
+      width:
+        min(430px,58vw);
+
+      height: auto;
+
+      opacity: 0;
+
+      transform:
+        translateY(24px)
+        scale(.96);
+
+      animation:
+        flareLogoIn
+        .8s
+        .12s
+        cubic-bezier(.2,.75,.2,1)
+        forwards;
+
+    }
+
+
+    .flare-loader-line {
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 13%;
+
+      width:
+        min(260px,42vw);
+
+      height: 1px;
+
       background:
-        radial-gradient(circle at 80% 25%,rgba(199,154,59,.09),transparent 25%),
-        linear-gradient(135deg,#050505 0%,#090909 55%,#030303 100%);
+        rgba(255,255,255,.12);
+
+      transform:
+        translateX(-50%);
+
+      overflow: hidden;
+
     }
 
-    .contact-section:after{
-      content:"FLARE";
-      position:absolute;
-      right:-3vw;
-      top:80px;
-      font-size:clamp(170px,24vw,390px);
-      line-height:.8;
-      font-weight:800;
-      letter-spacing:-.08em;
-      color:rgba(255,255,255,.018);
-      pointer-events:none;
-      user-select:none;
+
+    .flare-loader-line::after {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background: var(--gold);
+
+      transform:
+        translateX(-100%);
+
+      animation:
+        flareLoaderLine
+        1s
+        .2s
+        cubic-bezier(.7,0,.2,1)
+        forwards;
+
     }
 
-    .contact-grid{
-      width:min(var(--max),calc(100% - 44px));
-      min-height:calc(100vh - 86px);
-      margin:auto;
-      padding:clamp(70px,9vw,125px) 0 clamp(80px,8vw,120px);
-      display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(420px,.82fr);
-      gap:clamp(55px,9vw,150px);
-      align-items:center;
-      position:relative;
-      z-index:2;
+
+    @keyframes flareLogoIn {
+
+      to {
+
+        opacity: 1;
+
+        transform: none;
+
+      }
+
     }
 
-    .contact-heading{max-width:700px}
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      font-family:"DM Mono",monospace;
-      font-size:11px;
-      line-height:1.4;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      color:var(--gold-soft);
+    @keyframes flareLoaderLine {
+
+      to {
+
+        transform:
+          translateX(0);
+
+      }
+
     }
 
-    .eyebrow:before{
-      content:"";
-      width:32px;
-      height:1px;
-      background:var(--gold);
-      display:inline-block;
+
+    @keyframes flareLoaderOut {
+
+      to {
+
+        transform:
+          translateY(-100%);
+
+        visibility: hidden;
+
+      }
+
     }
 
-    .contact-heading h1{
-      margin-top:25px;
-      font-size:clamp(70px,10vw,145px);
-      line-height:.84;
-      letter-spacing:-.075em;
-      font-weight:700;
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .site-header {
+
+      width: 100%;
+
+      height: 86px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 500;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        0
+        clamp(22px,5vw,72px);
+
+      background:
+        rgba(5,5,5,.88);
+
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
+
+      border-bottom:
+        1px solid
+        var(--line);
+
     }
 
-    .contact-heading h1 span{color:var(--gold)}
 
-    .intro{
-      margin-top:40px;
-      max-width:570px;
-      font-size:clamp(16px,1.4vw,20px);
-      line-height:1.75;
-      color:#bcbcb7;
+    .brand-logo img {
+
+      width: 112px;
+
+      height: auto;
+
+      display: block;
+
     }
 
-    .email-link{
-      display:inline-block;
-      margin-top:25px;
-      font-family:"DM Mono",monospace;
-      font-size:13px;
-      letter-spacing:.04em;
-      color:#fff;
-      border-bottom:1px solid var(--gold);
-      padding-bottom:7px;
+
+    .desktop-nav {
+
+      display: flex;
+
+      align-items: center;
+
+      gap:
+        clamp(22px,3vw,52px);
+
     }
 
-    /* FORM */
-    .project-form{
-      width:100%;
-      padding:clamp(28px,3vw,48px);
-      background:rgba(255,255,255,.035);
-      border:1px solid rgba(255,255,255,.15);
-      box-shadow:0 25px 80px rgba(0,0,0,.3);
+
+    .desktop-nav a {
+
+      position: relative;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .18em;
+
+      color: #c9c9c4;
+
+      transition:
+        color .25s ease;
+
     }
 
-    .form-title{
-      font-size:25px;
-      font-weight:600;
-      margin-bottom:30px;
+
+    .desktop-nav a::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      bottom: -7px;
+
+      width: 100%;
+
+      height: 1px;
+
+      background: var(--gold);
+
+      transform:
+        scaleX(0);
+
+      transform-origin: right;
+
+      transition:
+        transform .3s
+        cubic-bezier(.7,0,.2,1);
+
     }
 
-    .form-title span{color:var(--gold)}
 
-    .form-field{
-      position:relative;
-      margin-bottom:24px;
+    .desktop-nav a:hover {
+
+      color: #fff;
+
     }
 
-    .form-field label{
-      display:block;
-      margin-bottom:9px;
-      font-family:"DM Mono",monospace;
-      font-size:10px;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      color:#b7b7b2;
+
+    .desktop-nav a:hover::after,
+    .desktop-nav a[aria-current="page"]::after {
+
+      transform:
+        scaleX(1);
+
+      transform-origin: left;
+
     }
+
+
+    .desktop-nav a[aria-current="page"] {
+
+      color: #fff;
+
+    }
+
+
+    /* =========================
+       HAMBURGER
+    ========================== */
+
+    .menu-button {
+
+      display: none;
+
+      width: 44px;
+
+      height: 44px;
+
+      border:
+        1px solid
+        var(--line);
+
+      border-radius: 50%;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      position: relative;
+
+      z-index: 600;
+
+    }
+
+
+    .menu-button span {
+
+      width: 17px;
+
+      height: 1px;
+
+      background: #fff;
+
+      position: absolute;
+
+      left: 13px;
+
+      transition:
+        transform .3s
+        cubic-bezier(.7,0,.2,1),
+        top .3s
+        cubic-bezier(.7,0,.2,1);
+
+    }
+
+
+    .menu-button span:first-child {
+
+      top: 17px;
+
+    }
+
+
+    .menu-button span:last-child {
+
+      top: 25px;
+
+    }
+
+
+    .menu-button.active span:first-child {
+
+      top: 21px;
+
+      transform:
+        rotate(45deg);
+
+    }
+
+
+    .menu-button.active span:last-child {
+
+      top: 21px;
+
+      transform:
+        rotate(-45deg);
+
+    }
+
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    .mobile-menu {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 450;
+
+      background: #050505;
+
+      visibility: hidden;
+
+      opacity: 0;
+
+      transform:
+        translateY(-20px);
+
+      transition:
+        opacity .4s ease,
+        transform .45s
+        cubic-bezier(.7,0,.2,1),
+        visibility .45s;
+
+      overflow-y: auto;
+
+    }
+
+
+    .mobile-menu.active {
+
+      visibility: visible;
+
+      opacity: 1;
+
+      transform: none;
+
+    }
+
+
+    .mobile-menu-inner {
+
+      min-height: 100%;
+
+      padding:
+        110px
+        24px
+        40px;
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+    .menu-label {
+
+      margin-bottom: 34px;
+
+      color: #666;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 9px;
+
+      letter-spacing: .2em;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .mobile-navigation {
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+    .mobile-navigation a {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        17px 0;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.1);
+
+      font-size:
+        clamp(27px,8vw,52px);
+
+      font-weight: 600;
+
+      letter-spacing: -.045em;
+
+      transition:
+        color .25s,
+        padding-left .3s;
+
+    }
+
+
+    .mobile-navigation a small {
+
+      color: #555;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 9px;
+
+      letter-spacing: .15em;
+
+    }
+
+
+    .mobile-navigation a:hover {
+
+      color: var(--gold-soft);
+
+      padding-left: 8px;
+
+    }
+
+
+    .menu-socials {
+
+      margin-top: auto;
+
+      padding-top: 45px;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 20px;
+
+    }
+
+
+    .menu-socials a {
+
+      color: #777;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 9px;
+
+      letter-spacing: .13em;
+
+      text-transform: uppercase;
+
+      transition: color .25s;
+
+    }
+
+
+    .menu-socials a:hover {
+
+      color: #fff;
+
+    }
+
+
+    /* =========================
+       MAIN
+    ========================== */
+
+    .inner-page {
+
+      width: 100%;
+
+    }
+
+
+    .contact-section {
+
+      position: relative;
+
+      overflow: hidden;
+
+      border-bottom:
+        1px solid
+        var(--line);
+
+      background:
+        radial-gradient(
+          circle at 80% 25%,
+          rgba(199,154,59,.09),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #050505 0%,
+          #090909 55%,
+          #030303 100%
+        );
+
+    }
+
+
+    .contact-section::after {
+
+      content: "FLARE";
+
+      position: absolute;
+
+      right: -3vw;
+
+      top: 80px;
+
+      font-size:
+        clamp(170px,24vw,390px);
+
+      line-height: .8;
+
+      font-weight: 800;
+
+      letter-spacing: -.08em;
+
+      color:
+        rgba(255,255,255,.018);
+
+      pointer-events: none;
+
+      user-select: none;
+
+      animation:
+        backgroundFloat
+        7s
+        ease-in-out
+        infinite alternate;
+
+    }
+
+
+    @keyframes backgroundFloat {
+
+      from {
+
+        transform:
+          translate3d(0,0,0);
+
+      }
+
+      to {
+
+        transform:
+          translate3d(-25px,18px,0);
+
+      }
+
+    }
+
+
+    .contact-grid {
+
+      width:
+        min(
+          var(--max),
+          calc(100% - 44px)
+        );
+
+      min-height:
+        calc(100vh - 86px);
+
+      margin: auto;
+
+      padding:
+        clamp(70px,9vw,125px)
+        0
+        clamp(80px,8vw,120px);
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0,1fr)
+        minmax(420px,.82fr);
+
+      gap:
+        clamp(55px,9vw,150px);
+
+      align-items: center;
+
+      position: relative;
+
+      z-index: 2;
+
+    }
+
+
+    .contact-heading {
+
+      max-width: 700px;
+
+    }
+
+
+    .eyebrow {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 10px;
+
+      line-height: 1.4;
+
+      letter-spacing: .2em;
+
+      text-transform: uppercase;
+
+      color: var(--gold-soft);
+
+    }
+
+
+    .eyebrow::before {
+
+      content: "";
+
+      width: 32px;
+
+      height: 1px;
+
+      background: var(--gold);
+
+      display: inline-block;
+
+    }
+
+
+    .contact-heading h1 {
+
+      margin-top: 25px;
+
+      font-size:
+        clamp(70px,10vw,145px);
+
+      line-height: .84;
+
+      letter-spacing: -.075em;
+
+      font-weight: 700;
+
+    }
+
+
+    .contact-heading h1 span {
+
+      color: var(--gold);
+
+    }
+
+
+    .intro {
+
+      margin-top: 40px;
+
+      max-width: 570px;
+
+      font-size:
+        clamp(16px,1.4vw,20px);
+
+      line-height: 1.75;
+
+      color: #bcbcb7;
+
+    }
+
+
+    .email-link {
+
+      display: inline-block;
+
+      margin-top: 25px;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 13px;
+
+      letter-spacing: .04em;
+
+      color: #fff;
+
+      border-bottom:
+        1px solid
+        var(--gold);
+
+      padding-bottom: 7px;
+
+      transition:
+        color .25s;
+
+    }
+
+
+    .email-link:hover {
+
+      color: var(--gold-soft);
+
+    }
+
+
+    /* =========================
+       FORM
+    ========================== */
+
+    .project-form {
+
+      width: 100%;
+
+      padding:
+        clamp(28px,3vw,48px);
+
+      background:
+        rgba(255,255,255,.035);
+
+      border:
+        1px solid
+        rgba(255,255,255,.15);
+
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.3);
+
+      animation:
+        formIn
+        .9s
+        .25s
+        both
+        cubic-bezier(.2,.7,.2,1);
+
+    }
+
+
+    @keyframes formIn {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(35px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: none;
+
+      }
+
+    }
+
+
+    .form-title {
+
+      font-size: 25px;
+
+      font-weight: 600;
+
+      margin-bottom: 30px;
+
+    }
+
+
+    .form-title span {
+
+      color: var(--gold);
+
+    }
+
+
+    .form-field {
+
+      position: relative;
+
+      margin-bottom: 24px;
+
+    }
+
+
+    .form-field label {
+
+      display: block;
+
+      margin-bottom: 9px;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 10px;
+
+      letter-spacing: .15em;
+
+      text-transform: uppercase;
+
+      color: #b7b7b2;
+
+    }
+
 
     .form-field input,
     .form-field select,
-    .form-field textarea{
-      width:100%;
-      color:#fff;
-      background:#080808;
-      border:1px solid rgba(255,255,255,.17);
-      border-radius:0;
-      outline:none;
-      padding:15px 16px;
-      transition:border-color .2s,box-shadow .2s;
+    .form-field textarea {
+
+      width: 100%;
+
+      color: #fff;
+
+      background: #080808;
+
+      border:
+        1px solid
+        rgba(255,255,255,.17);
+
+      border-radius: 0;
+
+      outline: none;
+
+      padding:
+        15px 16px;
+
+      transition:
+        border-color .2s,
+        box-shadow .2s,
+        transform .2s;
+
     }
+
 
     .form-field input,
-    .form-field select{height:52px}
+    .form-field select {
 
-    .form-field textarea{
-      min-height:130px;
-      resize:vertical;
-      line-height:1.5;
+      height: 52px;
+
     }
 
-    .form-field input::placeholder,
-    .form-field textarea::placeholder{color:#666660}
 
-    .form-field select{
-      appearance:none;
-      -webkit-appearance:none;
-      cursor:pointer;
-      color:#8e8e88;
+    .form-field textarea {
+
+      min-height: 130px;
+
+      resize: vertical;
+
+      line-height: 1.5;
+
+    }
+
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+
+      color: #666660;
+
+    }
+
+
+    .form-field select {
+
+      appearance: none;
+
+      -webkit-appearance: none;
+
+      cursor: pointer;
+
+      color: #8e8e88;
+
       background-image:
-        linear-gradient(45deg,transparent 50%,#aaa 50%),
-        linear-gradient(135deg,#aaa 50%,transparent 50%);
+        linear-gradient(
+          45deg,
+          transparent 50%,
+          #aaa 50%
+        ),
+        linear-gradient(
+          135deg,
+          #aaa 50%,
+          transparent 50%
+        );
+
       background-position:
         calc(100% - 19px) 22px,
         calc(100% - 14px) 22px;
-      background-size:5px 5px,5px 5px;
-      background-repeat:no-repeat;
+
+      background-size:
+        5px 5px,
+        5px 5px;
+
+      background-repeat: no-repeat;
+
     }
+
 
     .form-field input:focus,
     .form-field select:focus,
-    .form-field textarea:focus{
-      border-color:var(--gold);
-      box-shadow:0 0 0 3px rgba(199,154,59,.08);
+    .form-field textarea:focus {
+
+      border-color:
+        var(--gold);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(199,154,59,.08);
+
+      transform:
+        translateY(-1px);
+
     }
 
-    .form-submit{
-      width:100%;
-      min-height:58px;
-      margin-top:6px;
-      border:1px solid var(--gold);
-      background:var(--gold);
-      color:#080808;
-      cursor:pointer;
-      font-family:"DM Mono",monospace;
-      font-size:11px;
-      font-weight:500;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      transition:background .25s,color .25s,transform .25s;
+
+    .form-submit {
+
+      width: 100%;
+
+      min-height: 58px;
+
+      margin-top: 6px;
+
+      border:
+        1px solid
+        var(--gold);
+
+      background:
+        var(--gold);
+
+      color: #080808;
+
+      cursor: pointer;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 11px;
+
+      font-weight: 500;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+
+      transition:
+        background .25s,
+        color .25s,
+        transform .25s;
+
     }
 
-    .form-submit:hover{
-      background:transparent;
-      color:#fff;
-      transform:translateY(-2px);
+
+    .form-submit:hover {
+
+      background: transparent;
+
+      color: #fff;
+
+      transform:
+        translateY(-2px);
+
     }
 
-    /* CONNECT */
-    .big-cta{
-      background:#f4f3ef;
-      color:#090909;
-      overflow:hidden;
+
+    /* =========================
+       CTA
+    ========================== */
+
+    .big-cta {
+
+      background: #f4f3ef;
+
+      color: #090909;
+
+      overflow: hidden;
+
     }
 
-    .cta-inner{
-      width:min(var(--max),calc(100% - 44px));
-      margin:auto;
-      padding:clamp(80px,10vw,150px) 0;
-      display:grid;
-      grid-template-columns:1fr auto;
-      align-items:end;
-      gap:60px;
+
+    .cta-inner {
+
+      width:
+        min(
+          var(--max),
+          calc(100% - 44px)
+        );
+
+      margin: auto;
+
+      padding:
+        clamp(80px,10vw,150px)
+        0;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr auto;
+
+      align-items: end;
+
+      gap: 60px;
+
     }
 
-    .cta-inner .eyebrow{
-      color:#77736b;
-      margin-bottom:20px;
-    }
-    .cta-inner .eyebrow:before{background:var(--gold)}
 
-    .cta-inner h2{
-      font-size:clamp(75px,12vw,175px);
-      line-height:.8;
-      letter-spacing:-.08em;
-      font-weight:700;
+    .cta-inner .eyebrow {
+
+      color: #77736b;
+
+      margin-bottom: 20px;
+
     }
 
-    .cta-inner h2 span{color:var(--gold)}
 
-    .social-icons{
-      display:flex;
-      gap:12px;
-      align-items:center;
+    .cta-inner .eyebrow::before {
+
+      background: var(--gold);
+
     }
 
-    .social-icons a{
-      width:58px;
-      height:58px;
-      border:1px solid rgba(0,0,0,.22);
-      display:grid;
-      place-items:center;
-      transition:.25s;
+
+    .cta-inner h2 {
+
+      font-size:
+        clamp(75px,12vw,175px);
+
+      line-height: .8;
+
+      letter-spacing: -.08em;
+
+      font-weight: 700;
+
     }
 
-    .social-icons a:hover{
-      background:#090909;
-      color:#fff;
-      border-color:#090909;
-      transform:translateY(-4px);
+
+    .cta-inner h2 span {
+
+      color: var(--gold);
+
     }
 
-    .social-icons svg{
-      width:21px;
-      height:21px;
-      fill:none;
-      stroke:currentColor;
-      stroke-width:1.5;
+
+    .social-icons {
+
+      display: flex;
+
+      gap: 12px;
+
+      align-items: center;
+
     }
 
-    .social-icons a:nth-child(2) svg path{fill:currentColor;stroke:none}
 
-    /* FOOTER */
-    .footer{
-      background:#050505;
-      padding:60px clamp(22px,5vw,72px) 35px;
+    .social-icons a {
+
+      width: 58px;
+
+      height: 58px;
+
+      border:
+        1px solid
+        rgba(0,0,0,.22);
+
+      display: grid;
+
+      place-items: center;
+
+      transition:
+        .25s;
+
     }
 
-    .footer>img{
-      width:105px;
-      display:block;
-      margin-bottom:50px;
+
+    .social-icons a:hover {
+
+      background: #090909;
+
+      color: #fff;
+
+      border-color: #090909;
+
+      transform:
+        translateY(-4px);
+
     }
 
-    .footer-bottom{
-      padding-top:20px;
-      border-top:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      color:#777;
-      font-family:"DM Mono",monospace;
-      font-size:9px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
+
+    .social-icons svg {
+
+      width: 21px;
+
+      height: 21px;
+
+      fill: none;
+
+      stroke: currentColor;
+
+      stroke-width: 1.5;
+
     }
 
-    /* MOBILE NAV */
-    @media (max-width:900px){
-      .desktop-nav{display:none}
-      .menu-button{display:block}
 
-      .contact-grid{
-        min-height:auto;
-        grid-template-columns:1fr;
-        gap:60px;
-        padding-top:80px;
+    .social-icons
+    a:nth-child(2)
+    svg path {
+
+      fill: currentColor;
+
+      stroke: none;
+
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    .footer {
+
+      background: #050505;
+
+      padding:
+        60px
+        clamp(22px,5vw,72px)
+        35px;
+
+    }
+
+
+    .footer > img {
+
+      width: 105px;
+
+      display: block;
+
+      margin-bottom: 50px;
+
+    }
+
+
+    .footer-bottom {
+
+      padding-top: 20px;
+
+      border-top:
+        1px solid
+        var(--line);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      color: #777;
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 9px;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+
+    }
+
+
+    /* =========================
+       TABLET
+    ========================== */
+
+    @media (max-width: 900px) {
+
+      .desktop-nav {
+
+        display: none;
+
       }
 
-      .contact-heading h1{font-size:clamp(72px,18vw,120px)}
 
-      .contact-section:after{top:300px;right:-12vw;font-size:42vw}
+      .menu-button {
 
-      .cta-inner{
-        grid-template-columns:1fr;
-        align-items:start;
+        display: block;
+
       }
+
+
+      .contact-grid {
+
+        min-height: auto;
+
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+
+        padding-top: 80px;
+
+      }
+
+
+      .contact-heading h1 {
+
+        font-size:
+          clamp(72px,18vw,120px);
+
+      }
+
+
+      .contact-section::after {
+
+        top: 300px;
+
+        right: -12vw;
+
+        font-size: 42vw;
+
+      }
+
+
+      .cta-inner {
+
+        grid-template-columns: 1fr;
+
+        align-items: start;
+
+      }
+
     }
 
-    @media (max-width:600px){
-      .site-header{height:72px;padding:0 20px}
-      .brand-logo img{width:92px}
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 600px) {
+
+      .site-header {
+
+        height: 72px;
+
+        padding:
+          0 20px;
+
+      }
+
+
+      .brand-logo img {
+
+        width: 92px;
+
+      }
+
+
+      .mobile-menu-inner {
+
+        padding:
+          100px
+          20px
+          35px;
+
+      }
+
+
+      .mobile-navigation a {
+
+        font-size:
+          clamp(25px,8vw,40px);
+
+        padding:
+          15px 0;
+
+      }
+
 
       .contact-grid,
-      .cta-inner{
-        width:calc(100% - 36px);
+      .cta-inner {
+
+        width:
+          calc(100% - 36px);
+
       }
 
-      .contact-grid{padding:62px 0 70px;gap:48px}
 
-      .contact-heading h1{
-        margin-top:22px;
-        font-size:clamp(64px,20vw,100px);
+      .contact-grid {
+
+        padding:
+          62px 0 70px;
+
+        gap: 48px;
+
       }
 
-      .intro{margin-top:28px;font-size:15px;line-height:1.65}
 
-      .project-form{
-        padding:24px 18px;
+      .contact-heading h1 {
+
+        margin-top: 22px;
+
+        font-size:
+          clamp(64px,20vw,100px);
+
       }
 
-      .form-field{margin-bottom:19px}
+
+      .intro {
+
+        margin-top: 28px;
+
+        font-size: 15px;
+
+        line-height: 1.65;
+
+      }
+
+
+      .project-form {
+
+        padding:
+          24px 18px;
+
+      }
+
+
+      .form-field {
+
+        margin-bottom: 19px;
+
+      }
+
 
       .form-field input,
-      .form-field select{height:50px}
+      .form-field select {
 
-      .form-submit{min-height:55px}
+        height: 50px;
 
-      .cta-inner{padding:72px 0}
-      .cta-inner h2{font-size:25vw}
-
-      .social-icons a{width:52px;height:52px}
-
-      .footer{padding:48px 20px 28px}
-      .footer-bottom{
-        flex-direction:column;
-        gap:9px;
-        line-height:1.6;
       }
+
+
+      .form-submit {
+
+        min-height: 55px;
+
+      }
+
+
+      .cta-inner {
+
+        padding:
+          72px 0;
+
+      }
+
+
+      .cta-inner h2 {
+
+        font-size: 25vw;
+
+      }
+
+
+      .social-icons a {
+
+        width: 52px;
+
+        height: 52px;
+
+      }
+
+
+      .footer {
+
+        padding:
+          48px
+          20px
+          28px;
+
+      }
+
+
+      .footer-bottom {
+
+        flex-direction: column;
+
+        gap: 9px;
+
+        line-height: 1.6;
+
+      }
+
     }
 
-    @media (max-width:380px){
-      .contact-heading h1{font-size:62px}
-      .eyebrow{font-size:9px}
+
+    /* =========================
+       REDUCED MOTION
+    ========================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+
+        scroll-behavior: auto;
+
+      }
+
+
+      .flare-page-loader,
+      .flare-page-loader img,
+      .flare-loader-line::after,
+      .contact-section::after,
+      .project-form {
+
+        animation: none;
+
+      }
+
+
+      .flare-page-loader {
+
+        visibility: hidden;
+
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-<header class="site-header">
-  <a href="index.html" class="brand-logo" aria-label="FLARE home">
-    <img src="flare-logo.png" alt="FLARE — Events, Influence, Experiences">
-  </a>
 
-  <nav class="desktop-nav" aria-label="Primary navigation">
-    <a href="index.html#idea">About</a>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#work">Work</a>
-    <a href="contact.html" aria-current="page">Start a Project ↗</a>
-  </nav>
+  <!-- =========================
+       FLARE LOADER
+  ========================== -->
 
-  <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-  </button>
-</header>
+  <div
+    class="flare-page-loader"
+    aria-hidden="true"
+  >
 
-<main class="inner-page">
+    <img
+      src="flare-logo.png"
+      alt=""
+    >
 
-  <section class="contact-section">
-    <div class="contact-grid">
+    <div class="flare-loader-line"></div>
 
-      <div class="contact-heading">
-        <span class="eyebrow">FLARE / START A PROJECT</span>
-
-        <h1>LET'S<br>TALK<span>.</span></h1>
-
-        <p class="intro">
-          Tell us what you're building, what you're thinking about,
-          or simply what you want to make happen.
-        </p>
-
-        <a class="email-link" href="mailto:book.flareevents@gmail.com">
-          book.flareevents@gmail.com ↗
-        </a>
-      </div>
-
-      <form
-        class="project-form"
-        action="https://formsubmit.co/book.flareevents@gmail.com"
-        method="POST"
-      >
-        <input type="hidden" name="_subject" value="New FLARE Website Enquiry">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-
-        <div class="form-title">Tell us <span>what's next.</span></div>
-
-        <div class="form-field">
-          <label for="name">Your Name</label>
-          <input id="name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required>
-        </div>
-
-        <div class="form-field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required>
-        </div>
-
-        <div class="form-field">
-          <label for="company">Company / Brand</label>
-          <input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization">
-        </div>
-
-        <div class="form-field">
-          <label for="project">What do you need?</label>
-          <select id="project" name="project" required>
-            <option value="" selected disabled>Select an option</option>
-            <option value="Brand Campaign">Brand Campaign</option>
-            <option value="Creator Campaign">Creator Campaign</option>
-            <option value="Event / Experience">Event / Experience</option>
-            <option value="Brand Collaboration">Brand Collaboration</option>
-            <option value="Other">Something else</option>
-          </select>
-        </div>
-
-        <div class="form-field">
-          <label for="message">Tell us about it</label>
-          <textarea id="message" name="message" placeholder="A little context goes a long way..." required></textarea>
-        </div>
-
-        <button type="submit" class="form-submit">SEND ENQUIRY ↗</button>
-      </form>
-
-    </div>
-  </section>
-
-  <section class="big-cta">
-    <div class="cta-inner">
-      <div>
-        <span class="eyebrow">OTHER WAYS TO CONNECT</span>
-        <h2>FIND<br><span>FLARE.</span></h2>
-      </div>
-
-      <div class="social-icons" aria-label="Social links">
-        <a href="https://www.instagram.com/weareflare.in" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="1"></circle>
-          </svg>
-        </a>
-
-        <a href="https://www.facebook.com/share/17yEoZoNkn/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1z"></path>
-          </svg>
-        </a>
-
-        <a href="https://www.linkedin.com/company/flare-events-india/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-            <path d="M8 10v6M8 7.5v.1M12 16v-6M12 13c0-2 1-3 3-3s3 1.2 3 3v3"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <img src="flare-logo.png" alt="FLARE">
-
-  <div class="footer-bottom">
-    <span>© 2026 FLARE</span>
-    <span>EVENTS · INFLUENCE · EXPERIENCES</span>
   </div>
-</footer>
 
-<script>
-  const menuButton = document.querySelector('.menu-button');
 
-  menuButton?.addEventListener('click', () => {
-    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', String(!expanded));
-  });
-</script>
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="site-header">
+
+
+    <a
+      href="index.html"
+      class="brand-logo"
+      aria-label="FLARE Home"
+    >
+
+      <img
+        src="flare-logo.png"
+        alt="FLARE"
+      >
+
+    </a>
+
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <a href="index.html#idea">
+        IDEA
+      </a>
+
+      <a href="index.html#services">
+        WHAT WE DO
+      </a>
+
+      <a href="index.html#work">
+        WORK
+      </a>
+
+      <a href="founder.html">
+        FOUNDER
+      </a>
+
+      <a
+        href="contact.html"
+        aria-current="page"
+      >
+        START A PROJECT ↗
+      </a>
+
+    </nav>
+
+
+    <!-- HAMBURGER -->
+
+    <button
+      class="menu-button"
+      id="menuToggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+
+      <span></span>
+
+      <span></span>
+
+    </button>
+
+
+  </header>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================== -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+    aria-hidden="true"
+  >
+
+    <div class="mobile-menu-inner">
+
+
+      <div class="menu-label">
+
+        MENU / 001
+
+      </div>
+
+
+      <nav class="mobile-navigation">
+
+
+        <a href="index.html#idea">
+
+          <span>
+            THE IDEA
+          </span>
+
+          <small>
+            01
+          </small>
+
+        </a>
+
+
+        <a href="index.html#services">
+
+          <span>
+            WHAT WE DO
+          </span>
+
+          <small>
+            02
+          </small>
+
+        </a>
+
+
+        <a href="index.html#work">
+
+          <span>
+            SELECTED WORK
+          </span>
+
+          <small>
+            03
+          </small>
+
+        </a>
+
+
+        <a href="founder.html">
+
+          <span>
+            FOUNDER
+          </span>
+
+          <small>
+            04
+          </small>
+
+        </a>
+
+
+        <a
+          href="contact.html"
+          aria-current="page"
+        >
+
+          <span>
+            START A PROJECT
+          </span>
+
+          <small>
+            05
+          </small>
+
+        </a>
+
+
+      </nav>
+
+
+      <div class="menu-socials">
+
+
+        <a
+          href="https://www.instagram.com/weareflare.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/17yEoZoNkn/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook ↗
+        </a>
+
+
+        <a
+          href="https://www.linkedin.com/company/flare-events-india/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="inner-page">
+
+
+    <!-- CONTACT HERO -->
+
+    <section class="contact-section">
+
+
+      <div class="contact-grid">
+
+
+        <div class="contact-heading">
+
+
+          <span class="eyebrow">
+
+            FLARE / START A PROJECT
+
+          </span>
+
+
+          <h1>
+
+            LET'S
+            <br>
+
+            TALK<span>.</span>
+
+          </h1>
+
+
+          <p class="intro">
+
+            Tell us what you're building,
+            what you're thinking about,
+            or simply what you want to
+            make happen.
+
+          </p>
+
+
+          <a
+            class="email-link"
+            href="mailto:book.flareevents@gmail.com"
+          >
+
+            book.flareevents@gmail.com ↗
+
+          </a>
+
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+          class="project-form"
+          action="https://formsubmit.co/book.flareevents@gmail.com"
+          method="POST"
+        >
+
+
+          <input
+            type="hidden"
+            name="_subject"
+            value="New FLARE Website Enquiry"
+          >
+
+
+          <input
+            type="hidden"
+            name="_captcha"
+            value="false"
+          >
+
+
+          <input
+            type="hidden"
+            name="_template"
+            value="table"
+          >
+
+
+          <div class="form-title">
+
+            Tell us
+            <span>
+              what's next.
+            </span>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="name">
+              Your Name
+            </label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Enter your name"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="email">
+              Email
+            </label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@email.com"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="company">
+              Company / Brand
+            </label>
+
+            <input
+              id="company"
+              name="company"
+              type="text"
+              placeholder="Company name"
+              autocomplete="organization"
+            >
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="project">
+              What do you need?
+            </label>
+
+            <select
+              id="project"
+              name="project"
+              required
+            >
+
+              <option
+                value=""
+                selected
+                disabled
+              >
+                Select an option
+              </option>
+
+              <option value="Brand Campaign">
+                Brand Campaign
+              </option>
+
+              <option value="Creator Campaign">
+                Creator Campaign
+              </option>
+
+              <option value="Event / Experience">
+                Event / Experience
+              </option>
+
+              <option value="Brand Collaboration">
+                Brand Collaboration
+              </option>
+
+              <option value="Other">
+                Something else
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="message">
+              Tell us about it
+            </label>
+
+            <textarea
+              id="message"
+              name="message"
+              placeholder="A little context goes a long way..."
+              required
+            ></textarea>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="form-submit"
+          >
+
+            SEND ENQUIRY ↗
+
+          </button>
+
+
+        </form>
+
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         SOCIAL CTA
+    ========================== -->
+
+    <section class="big-cta">
+
+
+      <div class="cta-inner">
+
+
+        <div>
+
+
+          <span class="eyebrow">
+
+            OTHER WAYS TO CONNECT
+
+          </span>
+
+
+          <h2>
+
+            FIND
+            <br>
+
+            <span>
+              FLARE.
+            </span>
+
+          </h2>
+
+
+        </div>
+
+
+        <div
+          class="social-icons"
+          aria-label="Social links"
+        >
+
+
+          <a
+            href="https://www.instagram.com/weareflare.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+              ></rect>
+
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+              ></circle>
+
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+              ></circle>
+
+            </svg>
+
+          </a>
+
+
+          <a
+            href="https://www.facebook.com/share/17yEoZoNkn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+
+              <path
+                d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1z"
+              ></path>
+
+            </svg>
+
+          </a>
+
+
+          <a
+            href="https://www.linkedin.com/company/flare-events-india/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+
+              <rect
+                x="4"
+                y="4"
+                width="16"
+                height="16"
+                rx="2"
+              ></rect>
+
+              <path
+                d="M8 10v6M8 7.5v.1M12 16v-6M12 13c0-2 1-3 3-3s3 1.2 3 3v3"
+              ></path>
+
+            </svg>
+
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+
+    <img
+      src="flare-logo.png"
+      alt="FLARE"
+    >
+
+
+    <div class="footer-bottom">
+
+
+      <span>
+        © 2026 FLARE
+      </span>
+
+
+      <span>
+        EVENTS · INFLUENCE · EXPERIENCES
+      </span>
+
+
+    </div>
+
+
+  </footer>
+
+
+  <!-- =========================
+       MENU SCRIPT
+  ========================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        const menuToggle =
+          document.getElementById(
+            "menuToggle"
+          );
+
+
+        const mobileMenu =
+          document.getElementById(
+            "mobileMenu"
+          );
+
+
+        if (
+          !menuToggle ||
+          !mobileMenu
+        ) {
+
+          return;
+
+        }
+
+
+        const mobileLinks =
+          mobileMenu.querySelectorAll(
+            "a"
+          );
+
+
+        function openMenu() {
+
+          mobileMenu.classList.add(
+            "active"
+          );
+
+          menuToggle.classList.add(
+            "active"
+          );
+
+          document.body.classList.add(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Close menu"
+          );
+
+        }
+
+
+        function closeMenu() {
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+          menuToggle.classList.remove(
+            "active"
+          );
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        }
+
+
+        menuToggle.addEventListener(
+          "click",
+          function () {
+
+            if (
+              mobileMenu.classList.contains(
+                "active"
+              )
+            ) {
+
+              closeMenu();
+
+            } else {
+
+              openMenu();
+
+            }
+
+          }
+        );
+
+
+        mobileLinks.forEach(
+          function (link) {
+
+            link.addEventListener(
+              "click",
+              closeMenu
+            );
+
+          }
+        );
+
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (
+              event.key === "Escape"
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+        window.addEventListener(
+          "resize",
+          function () {
+
+            if (
+              window.innerWidth > 900
+            ) {
+
+              closeMenu();
+
+            }
+
+          }
+        );
+
+
+      }
+    );
+
+  </script>
+
 
 </body>
+
 </html>
