@@ -1,1489 +1,1190 @@
-/* =========================================================
-   FLARE HOMEPAGE — COMPLETE OVERRIDE
-   Add this at the VERY END of style.css
-========================================================= */
-
-
-/* =========================================================
-   HOMEPAGE HERO
-========================================================= */
-
-.hero{
-  position:relative;
-  min-height:calc(100vh - var(--header));
-  overflow:hidden;
-  background:
-    radial-gradient(
-      circle at 72% 42%,
-      rgba(199,154,59,.08),
-      transparent 22%
-    ),
-    #050505;
-  border-bottom:1px solid var(--line);
-  isolation:isolate;
-}
-
-.hero-grid{
-  position:absolute;
-  inset:0;
-  z-index:-3;
-  opacity:.55;
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.035) 1px,
-      transparent 1px
-    );
-  background-size:80px 80px;
-  mask-image:linear-gradient(
-    to bottom,
-    black,
-    transparent 85%
-  );
-}
-
-.hero-grid::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      90deg,
-      #050505 0%,
-      transparent 25%,
-      transparent 75%,
-      #050505 100%
-    );
-}
-
-.hero-glow{
-  position:absolute;
-  width:420px;
-  height:420px;
-  border-radius:50%;
-  pointer-events:none;
-  filter:blur(80px);
-  opacity:.12;
-  background:var(--gold);
-}
-
-.hero-glow-one{
-  top:18%;
-  right:8%;
-}
-
-.hero-glow-two{
-  bottom:-15%;
-  left:20%;
-  opacity:.05;
-}
-
-.hero-meta{
-  position:absolute;
-  top:clamp(30px,5vw,65px);
-  left:max(22px,5vw);
-
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  color:#777;
-  font-family:"DM Mono",monospace;
-  font-size:10px;
-  letter-spacing:.18em;
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FLARE — Where Moments Ignite.</title>
+
+  <meta
+    name="description"
+    content="FLARE — Events, Influence, Experiences. We create moments, brands and experiences people remember."
+  >
+
+  <link
+    rel="canonical"
+    href="https://flareevents.in/"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta
+    property="og:url"
+    content="https://flareevents.in/"
+  >
+  <meta
+    property="og:title"
+    content="FLARE — Where Moments Ignite."
+  >
+  <meta
+    property="og:description"
+    content="Events · Influence · Experiences."
+  >
+  <meta
+    property="og:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="FLARE">
+
+  <!-- Twitter -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+  <meta
+    name="twitter:title"
+    content="FLARE — Where Moments Ignite."
+  >
+  <meta
+    name="twitter:description"
+    content="Events · Influence · Experiences."
+  >
+  <meta
+    name="twitter:image"
+    content="https://flareevents.in/social-share.jpeg"
+  >
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FLARE",
+    "url": "https://flareevents.in/",
+    "logo": "https://flareevents.in/flare-logo.png",
+    "description": "Events, influence and experiences."
+  }
+  </script>
+
+</head>
 
-  width:min(var(--max),calc(100% - 80px));
-  min-height:calc(100vh - var(--header));
-
-  margin:auto;
 
-  padding:
-    clamp(150px,16vh,210px)
-    0
-    150px;
+<body>
 
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
 
-.hero-title-main{
-  margin:0;
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
-  font-size:
-    clamp(78px,11vw,175px);
+  <header class="site-header">
 
-  line-height:.79;
-  letter-spacing:-.095em;
-  font-weight:700;
-}
+    <a
+      href="index.html"
+      class="brand-logo"
+      aria-label="FLARE home"
+    >
+      <img
+        src="flare-logo.png"
+        alt="FLARE — Events, Influence, Experiences"
+      >
+    </a>
 
-.hero-line{
-  display:block;
-}
 
-.hero-muted{
-  color:#777;
-}
+    <nav
+      class="desktop-nav"
+      aria-label="Primary navigation"
+    >
 
-.hero-period{
-  color:var(--gold);
-}
+      <a href="#idea">
+        About
+      </a>
 
-.hero-description{
-  max-width:560px;
+      <a href="#services">
+        Services
+      </a>
 
-  margin-top:42px;
+      <a href="#work">
+        Work
+      </a>
 
-  color:#a5a49e;
+      <a href="founder.html">
+        Founder
+      </a>
 
-  font-size:
-    clamp(15px,1.3vw,19px);
+      <a href="contact.html">
+        Start a Project ↗
+      </a>
 
-  line-height:1.7;
-}
+    </nav>
 
-.hero-actions{
-  display:flex;
-  align-items:center;
-  gap:24px;
 
-  margin-top:38px;
-}
+    <button
+      class="menu-button"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
 
-.button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
+      <span></span>
+      <span></span>
 
-  min-height:54px;
-  padding:0 24px;
+    </button>
 
-  border:1px solid #eee;
+  </header>
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.17em;
-  text-transform:uppercase;
 
-  transition:
-    background .3s ease,
-    color .3s ease,
-    transform .3s ease;
-}
 
-.button-light{
-  background:#f4f3ef;
-  color:#080808;
-}
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
 
-.button-light:hover{
-  background:var(--gold);
-  border-color:var(--gold);
-  transform:translateY(-3px);
-}
+  <main>
 
-.hero-actions .text-link{
-  color:#aaa;
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.17em;
-}
 
-.hero-actions .text-link:hover{
-  color:#fff;
-}
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
 
-.magnetic-circle{
-  position:absolute;
+    <section class="hero">
 
-  right:8%;
-  top:52%;
+      <div class="hero-grid"></div>
 
-  width:130px;
-  height:130px;
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
 
-  gap:7px;
+      <div class="hero-meta">
 
-  border:1px solid rgba(199,154,59,.45);
-  border-radius:50%;
+        <span>
+          FLARE / 001
+        </span>
 
-  color:#999;
+        <span>
+          INDIA
+        </span>
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.18em;
+      </div>
 
-  animation:
-    heroFloat 5s ease-in-out infinite;
-}
 
-.magnetic-circle strong{
-  color:var(--gold);
-  font-size:20px;
-  font-weight:400;
-}
+      <div class="hero-content">
 
-@keyframes heroFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
+        <h1 class="hero-title-main">
 
-  50%{
-    transform:translateY(-10px);
-  }
-}
+          <span class="hero-line">
+            WHERE
+          </span>
 
-.hero-footer{
-  position:absolute;
-  left:max(22px,5vw);
-  right:max(22px,5vw);
-  bottom:32px;
+          <span class="hero-line hero-muted">
+            MOMENTS
+          </span>
 
-  display:flex;
-  align-items:center;
-  gap:18px;
+          <span class="hero-line">
+            IGNITE<span class="hero-period">.</span>
+          </span>
 
-  color:#666;
+        </h1>
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.18em;
-}
 
-.hero-footer i{
-  width:22px;
-  height:1px;
-  background:#555;
-}
+        <p class="hero-description">
 
+          We create events, influence and experiences
+          that turn ideas into moments people remember.
 
-/* =========================================================
-   HOMEPAGE TICKER
-========================================================= */
+        </p>
 
-.ticker{
-  width:100%;
-  overflow:hidden;
 
-  background:var(--gold);
-  color:#080808;
+        <div class="hero-actions">
 
-  border-bottom:1px solid #080808;
-}
+          <a
+            href="#services"
+            class="button button-light"
+          >
+            EXPLORE FLARE
+            <span>↗</span>
+          </a>
 
-.ticker-track{
-  width:max-content;
 
-  display:flex;
-  align-items:center;
+          <a
+            href="contact.html"
+            class="text-link"
+          >
+            START A PROJECT ↗
+          </a>
 
-  gap:38px;
+        </div>
 
-  padding:18px 0;
+      </div>
 
-  white-space:nowrap;
 
-  animation:
-    tickerMove
-    28s
-    linear
-    infinite;
-}
+      <div class="magnetic-circle">
 
-.ticker-track div{
-  font-size:
-    clamp(22px,3vw,42px);
+        <strong>FLARE</strong>
 
-  font-weight:700;
-  letter-spacing:-.045em;
-}
+        <span>
+          WHERE
+        </span>
 
-.ticker-track span{
-  font-size:25px;
-}
+        <span>
+          MOMENTS
+        </span>
 
-@keyframes tickerMove{
-  from{
-    transform:translateX(0);
-  }
+        <span>
+          IGNITE
+        </span>
 
-  to{
-    transform:translateX(-50%);
-  }
-}
+      </div>
 
 
-/* =========================================================
-   IDEA
-========================================================= */
+      <div class="hero-footer">
 
-.idea{
-  position:relative;
-  overflow:hidden;
+        <span>
+          SCROLL TO EXPLORE
+        </span>
 
-  padding:
-    clamp(90px,11vw,155px)
-    max(22px,5vw);
-}
+        <i></i>
 
-.section-dark{
-  background:#050505;
-  color:var(--white);
-}
+        <span>
+          ↓
+        </span>
 
-.idea::after{
-  content:"01";
+      </div>
 
-  position:absolute;
+    </section>
 
-  right:-20px;
-  top:50%;
 
-  transform:translateY(-50%);
 
-  font-size:clamp(220px,35vw,520px);
-  font-weight:800;
-  line-height:.7;
+    <!-- ===================================================
+         TICKER
+    ==================================================== -->
 
-  color:rgba(255,255,255,.018);
+    <section class="ticker" aria-label="FLARE services">
 
-  pointer-events:none;
-}
+      <div class="ticker-track">
 
-.idea-grid{
-  position:relative;
-  z-index:2;
+        <div>
+          EVENTS
+        </div>
 
-  width:min(var(--max),100%);
-  margin:auto;
+        <span>✦</span>
 
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
+        <div>
+          INFLUENCE
+        </div>
 
-  gap:clamp(50px,9vw,150px);
-}
+        <span>✦</span>
 
-.idea-heading{
-  max-width:900px;
+        <div>
+          EXPERIENCES
+        </div>
 
-  margin-top:28px;
+        <span>✦</span>
 
-  font-size:
-    clamp(58px,7.5vw,115px);
+        <div>
+          EVENTS
+        </div>
 
-  line-height:.86;
-  letter-spacing:-.08em;
-  font-weight:600;
-}
+        <span>✦</span>
 
-.idea-heading span{
-  color:var(--gold);
-}
+        <div>
+          INFLUENCE
+        </div>
 
-.idea-copy{
-  max-width:500px;
+        <span>✦</span>
 
-  align-self:end;
+        <div>
+          EXPERIENCES
+        </div>
 
-  color:#92918b;
+        <span>✦</span>
 
-  font-size:15px;
-  line-height:1.8;
-}
+      </div>
 
-.idea-copy p + p{
-  margin-top:22px;
-}
+    </section>
 
-.arrow-link{
-  display:inline-flex;
-  align-items:center;
-  gap:18px;
 
-  margin-top:32px;
 
-  color:#fff;
+    <!-- ===================================================
+         IDEA
+    ==================================================== -->
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.18em;
-}
+    <section
+      class="idea section-dark"
+      id="idea"
+    >
 
-.arrow-link span{
-  color:var(--gold);
-  font-size:15px;
-}
+      <div class="idea-grid">
 
+        <div>
 
-/* =========================================================
-   HOMEPAGE SERVICES
-========================================================= */
+          <span class="eyebrow">
+            01 / THE IDEA
+          </span>
 
-.services{
-  overflow:hidden;
-}
 
-.services-intro{
-  width:min(var(--max),100%);
-  margin:0 auto 55px;
+          <h2 class="idea-heading">
 
-  display:flex;
-  justify-content:flex-end;
-}
+            PEOPLE
+            <br>
 
-.services-intro p{
-  width:min(500px,100%);
+            DON'T
+            <br>
 
-  color:#77746d;
+            REMEMBER
+            <br>
 
-  font-size:
-    clamp(18px,2vw,27px);
+            <span>ADVERTISEMENTS.</span>
 
-  line-height:1.25;
+          </h2>
 
-  letter-spacing:-.04em;
-}
+        </div>
 
-.services .service-cards{
-  width:min(var(--max),100%);
 
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
+        <div class="idea-copy">
 
-  gap:1px;
-}
+          <p>
 
-.services .service-card{
-  min-height:430px;
+            They remember how something made them
+            feel.
 
-  padding:
-    clamp(28px,3.2vw,48px);
+          </p>
 
-  text-decoration:none;
-}
 
-.services .service-card h3{
-  margin-top:auto;
-  margin-bottom:18px;
+          <p>
 
-  font-size:
-    clamp(48px,6vw,88px);
+            FLARE exists to create those moments —
+            the kind that move beyond screens,
+            campaigns and ordinary experiences.
 
-  line-height:.82;
+          </p>
 
-  letter-spacing:-.075em;
-}
 
-.services .service-card p{
-  max-width:480px;
+          <p>
 
-  font-size:
-    clamp(14px,1.1vw,16px);
+            We bring together creativity, culture,
+            people and execution to make ideas
+            impossible to ignore.
 
-  line-height:1.7;
-}
+          </p>
 
-.services .card-bottom{
-  margin-top:30px;
 
-  padding-top:16px;
+          <a
+            href="founder.html"
+            class="arrow-link"
+          >
 
-  border-top:1px solid rgba(0,0,0,.12);
+            DISCOVER THE STORY
 
-  display:flex;
-  justify-content:space-between;
+            <span>↗</span>
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.17em;
-}
+          </a>
 
-.services .service-card:hover .card-bottom{
-  border-color:rgba(255,255,255,.2);
-}
+        </div>
 
+      </div>
 
-/* capabilities */
+    </section>
 
-.service-list{
-  width:min(var(--max),100%);
 
-  margin:110px auto 0;
 
-  display:grid;
-  grid-template-columns:240px 1fr;
+    <!-- ===================================================
+         SERVICES
+    ==================================================== -->
 
-  gap:60px;
-}
+    <section
+      class="services section-light"
+      id="services"
+    >
 
-.list-intro{
-  color:#77736c;
+      <div class="section-number">
+        02 / WHAT WE DO
+      </div>
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.2em;
-}
 
-.capability-list{
-  border-top:1px solid rgba(0,0,0,.14);
-}
+      <div class="services-intro">
 
-.capability-list > div{
-  min-height:76px;
+        <p>
 
-  display:grid;
-  grid-template-columns:45px 1fr 230px;
-  align-items:center;
+          Three ways to make your brand,
+          idea or voice matter.
 
-  gap:20px;
+        </p>
 
-  border-bottom:1px solid rgba(0,0,0,.14);
-}
+      </div>
 
-.capability-list span{
-  color:#88847c;
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-}
+      <div class="service-cards">
 
-.capability-list strong{
-  font-size:18px;
-  font-weight:600;
-  letter-spacing:-.025em;
-}
 
-.capability-list small{
-  color:#77746e;
+        <!-- BRAND -->
 
-  font-size:12px;
-}
+        <a
+          href="brand.html"
+          class="service-card"
+        >
 
+          <div class="card-top">
 
-/* =========================================================
-   PRINCIPLES / APPROACH
-========================================================= */
+            <span>
+              01
+            </span>
 
-.principles{
-  padding:
-    clamp(90px,11vw,150px)
-    max(22px,5vw);
-}
+            <span>
+              FOR BRANDS
+            </span>
 
-.principles-heading{
-  width:min(var(--max),100%);
-  margin:45px auto 0;
+          </div>
 
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
 
-  gap:100px;
-}
+          <h3>
+            BRAND
+          </h3>
 
-.principles-heading h2{
-  max-width:950px;
 
-  font-size:
-    clamp(55px,7vw,105px);
+          <p>
 
-  line-height:.86;
-  letter-spacing:-.08em;
-  font-weight:600;
-}
+            Brand strategy, campaigns,
+            activations and experiences
+            designed to connect brands
+            with people and culture.
 
-.principles-heading h2 span{
-  color:var(--gold);
-}
+          </p>
 
-.principles-heading p{
-  align-self:end;
 
-  max-width:420px;
+          <div class="card-bottom">
 
-  color:#777;
+            <span>
+              EXPLORE
+            </span>
 
-  font-size:14px;
-  line-height:1.8;
-}
+            <span>
+              ↗
+            </span>
 
-.principle-list{
-  width:min(var(--max),100%);
+          </div>
 
-  margin:110px auto 0;
+        </a>
 
-  border-top:1px solid var(--line);
-}
 
-.principle-list > div{
-  min-height:105px;
 
-  display:grid;
-  grid-template-columns:70px 1fr 280px;
-  align-items:center;
+        <!-- CREATOR -->
 
-  border-bottom:1px solid var(--line);
-}
+        <a
+          href="creator.html"
+          class="service-card"
+        >
 
-.principle-list span{
-  color:#666;
+          <div class="card-top">
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-}
+            <span>
+              02
+            </span>
 
-.principle-list strong{
-  font-size:clamp(20px,2vw,28px);
-  letter-spacing:-.04em;
-}
+            <span>
+              FOR CREATORS
+            </span>
 
-.principle-list small{
-  color:#777;
-  font-size:12px;
-}
+          </div>
 
 
-/* =========================================================
-   WORK
-========================================================= */
+          <h3>
+            CREATOR
+          </h3>
 
-.chapter{
-  padding:
-    clamp(90px,10vw,145px)
-    max(22px,5vw);
-}
 
-.chapter-heading{
-  width:min(var(--max),100%);
-  margin:45px auto 70px;
+          <p>
 
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
+            Creator partnerships,
+            campaigns and collaborations
+            built around authentic voices.
 
-  gap:50px;
-}
+          </p>
 
-.chapter-heading h2{
-  max-width:900px;
 
-  margin-top:28px;
+          <div class="card-bottom">
 
-  font-size:
-    clamp(55px,7vw,105px);
+            <span>
+              EXPLORE
+            </span>
 
-  line-height:.84;
-  letter-spacing:-.08em;
-  font-weight:600;
-}
+            <span>
+              ↗
+            </span>
 
-.chapter-heading h2 span{
-  color:var(--gold);
-}
+          </div>
 
-.chapter-date{
-  flex-shrink:0;
+        </a>
 
-  color:#777;
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  line-height:1.8;
-  letter-spacing:.16em;
-  text-align:right;
-}
 
-.chapter-date span{
-  color:var(--gold);
-}
+        <!-- FLARE -->
 
-.chapter-grid{
-  width:min(var(--max),100%);
-  margin:auto;
+        <a
+          href="brand.html"
+          class="service-card"
+        >
 
-  display:grid;
-  grid-template-columns:1.45fr 1fr;
-  gap:1px;
+          <div class="card-top">
 
-  background:var(--line);
-}
+            <span>
+              03
+            </span>
 
-.chapter-card{
-  min-width:0;
-  background:#090909;
-}
+            <span>
+              FLARE
+            </span>
 
-.chapter-card-large{
-  grid-row:span 2;
-}
+          </div>
 
-.chapter-card .visual{
-  position:relative;
 
-  min-height:430px;
+          <h3>
+            FLARE
+          </h3>
 
-  padding:30px;
 
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+          <p>
 
-  overflow:hidden;
+            Our own creative universe —
+            where events, influence and
+            experiences come together.
 
-  background:
-    radial-gradient(
-      circle at 70% 40%,
-      rgba(199,154,59,.18),
-      transparent 28%
-    ),
-    linear-gradient(
-      135deg,
-      #171717,
-      #050505
-    );
-}
+          </p>
 
-.chapter-card-large .visual{
-  min-height:620px;
-}
 
-.visual-two{
-  background:
-    linear-gradient(135deg,#171717,#0a0a0a);
-}
+          <div class="card-bottom">
 
-.visual-three{
-  background:
-    linear-gradient(135deg,#0e0e0e,#191919);
-}
+            <span>
+              EXPLORE
+            </span>
 
-.visual::after{
-  content:"";
+            <span>
+              ↗
+            </span>
 
-  position:absolute;
-  width:260px;
-  height:260px;
+          </div>
 
-  right:-80px;
-  bottom:-80px;
+        </a>
 
-  border:1px solid rgba(199,154,59,.18);
-  border-radius:50%;
-}
 
-.visual span{
-  position:relative;
-  z-index:2;
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.18em;
+        <!-- AUDIENCE -->
 
-  color:#777;
-}
+        <a
+          href="creator.html"
+          class="service-card"
+        >
 
-.visual strong{
-  position:relative;
-  z-index:2;
+          <div class="card-top">
 
-  font-size:
-    clamp(40px,5vw,75px);
+            <span>
+              04
+            </span>
 
-  line-height:.82;
-  letter-spacing:-.07em;
-}
+            <span>
+              AUDIENCE
+            </span>
 
-.chapter-card-info{
-  padding:22px 25px;
+          </div>
 
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
 
-  border-top:1px solid var(--line);
-}
+          <h3>
+            AUDIENCE
+          </h3>
 
-.chapter-card-info strong{
-  font-size:12px;
-  letter-spacing:.04em;
-}
 
-.chapter-card-info p{
-  color:#777;
+          <p>
 
-  font-family:"DM Mono",monospace;
-  font-size:8px;
-  letter-spacing:.16em;
-}
+            Communities and people are
+            at the centre of every experience
+            we build.
 
-.chapter-note{
-  width:min(600px,100%);
+          </p>
 
-  margin:70px auto 0;
 
-  color:#777;
+          <div class="card-bottom">
 
-  text-align:center;
+            <span>
+              EXPLORE
+            </span>
 
-  font-size:14px;
-  line-height:1.8;
-}
+            <span>
+              ↗
+            </span>
 
+          </div>
 
-/* =========================================================
-   HOMEPAGE CTA
-========================================================= */
+        </a>
 
-.big-cta .email-link{
-  display:block;
+      </div>
 
-  margin-top:25px;
 
-  color:#333;
+      <!-- CAPABILITIES -->
 
-  border-bottom:1px solid #aaa;
+      <div class="service-list">
 
-  width:max-content;
+        <div class="list-intro">
 
-  font-size:10px;
-}
+          CAPABILITIES
 
-.big-cta .social-icons{
-  margin-top:25px;
-}
+        </div>
 
 
-/* =========================================================
-   FOOTER HOMEPAGE
-========================================================= */
+        <div class="capability-list">
 
-.footer-logo{
-  margin-bottom:50px;
-}
 
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.5fr 1fr 1fr;
+          <div>
 
-  gap:60px;
+            <span>01</span>
 
-  padding-bottom:50px;
-}
+            <strong>
+              Brand Strategy
+            </strong>
 
-.footer-grid > div{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:10px;
-}
+            <small>
+              Strategy · Positioning · Campaign Thinking
+            </small>
 
-.footer-grid span{
-  margin-bottom:10px;
+          </div>
 
-  color:#666;
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.18em;
-}
+          <div>
 
-.footer-grid p,
-.footer-grid a{
-  color:#aaa;
+            <span>02</span>
 
-  font-size:13px;
-}
+            <strong>
+              Creator Partnerships
+            </strong>
 
-.footer-grid a:hover{
-  color:#fff;
-}
+            <small>
+              Discovery · Partnerships · Campaigns
+            </small>
 
-.facebook-social{
-  font-family:Arial,sans-serif;
-}
+          </div>
 
-.facebook-f{
-  font-size:22px;
-  font-weight:700;
-}
 
+          <div>
 
-/* =========================================================
-   MOBILE MENU — MATCH YOUR SCREENSHOT
-========================================================= */
+            <span>03</span>
 
-/* HTML uses .active, not .open */
+            <strong>
+              Events & Experiences
+            </strong>
 
-.mobile-menu.active{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transform:none;
-}
+            <small>
+              Concepts · Production · Execution
+            </small>
 
-.mobile-menu.active .mobile-navigation a{
-  opacity:1;
-  transform:none;
-}
+          </div>
 
 
-/* Override old mobile-menu structure */
+          <div>
 
-.mobile-menu-inner{
-  min-height:100dvh;
+            <span>04</span>
 
-  padding:
-    115px
-    clamp(24px,6vw,55px)
-    30px;
-}
+            <strong>
+              Cultural Activations
+            </strong>
 
-.menu-label{
-  margin-bottom:55px;
+            <small>
+              Communities · Culture · Engagement
+            </small>
 
-  color:#666;
+          </div>
 
-  font-family:"DM Mono",monospace;
-  font-size:10px;
-  letter-spacing:.2em;
-}
 
-.mobile-navigation a{
-  width:100%;
-  min-height:120px;
+        </div>
 
-  padding:0;
+      </div>
 
-  display:grid;
+    </section>
 
-  grid-template-columns:1fr 40px;
 
-  align-items:center;
 
-  gap:20px;
+    <!-- ===================================================
+         PRINCIPLES
+    ==================================================== -->
 
-  border-top:1px solid rgba(255,255,255,.12);
+    <section class="principles section-dark">
 
-  opacity:0;
-  transform:translateY(25px);
+      <span class="eyebrow">
+        03 / HOW WE THINK
+      </span>
 
-  transition:
-    opacity .45s ease,
-    transform .55s cubic-bezier(.2,.8,.2,1);
-}
 
-.mobile-navigation a:last-child{
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
+      <div class="principles-heading">
 
-.mobile-navigation a:nth-child(1){
-  transition-delay:.05s;
-}
+        <h2>
 
-.mobile-navigation a:nth-child(2){
-  transition-delay:.1s;
-}
+          MAKE IT
+          <br>
 
-.mobile-navigation a:nth-child(3){
-  transition-delay:.15s;
-}
+          <span>MATTER.</span>
 
-.mobile-navigation a:nth-child(4){
-  transition-delay:.2s;
-}
+        </h2>
 
-.mobile-navigation a:nth-child(5){
-  transition-delay:.25s;
-}
 
-.mobile-navigation a span{
-  color:#f2f2ef;
+        <p>
 
-  font-family:"Manrope",sans-serif;
+          Good work isn't just about looking
+          different. It has to mean something
+          to the people experiencing it.
 
-  font-size:
-    clamp(30px,8vw,54px);
+        </p>
 
-  font-weight:500;
+      </div>
 
-  line-height:.9;
 
-  letter-spacing:-.065em;
+      <div class="principle-list">
 
-  transition:
-    color .25s ease,
-    transform .3s ease;
-}
 
-.mobile-navigation a small{
-  color:#555;
+        <div>
 
-  font-family:"DM Mono",monospace;
-  font-size:10px;
-  letter-spacing:.12em;
+          <span>
+            01
+          </span>
 
-  text-align:right;
-}
+          <strong>
+            CULTURE OVER NOISE
+          </strong>
 
-.mobile-navigation a:hover span{
-  color:#fff;
-  transform:translateX(7px);
-}
+          <small>
+            Understand people before trying
+            to reach them.
+          </small>
 
-.mobile-navigation a:hover small{
-  color:var(--gold);
-}
+        </div>
 
-.menu-socials{
-  margin-top:auto;
 
-  padding-top:55px;
+        <div>
 
-  display:flex;
-  flex-wrap:wrap;
+          <span>
+            02
+          </span>
 
-  gap:28px;
+          <strong>
+            IDEAS OVER DECORATION
+          </strong>
 
-  color:#666;
+          <small>
+            Design should make the idea
+            stronger, not hide it.
+          </small>
 
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.15em;
-}
+        </div>
 
-.menu-socials a:hover{
-  color:#fff;
-}
 
+        <div>
 
-/* =========================================================
-   MENU BUTTON
-========================================================= */
+          <span>
+            03
+          </span>
 
-.menu-button.active{
-  border-color:rgba(255,255,255,.5);
-}
+          <strong>
+            EXPERIENCE OVER IMPRESSION
+          </strong>
 
-.menu-button.active span:first-child{
-  margin-top:0;
-  transform:
-    translate(-50%,-50%)
-    rotate(45deg);
-}
+          <small>
+            Make people feel something
+            worth remembering.
+          </small>
 
-.menu-button.active span:last-child{
-  margin-top:0;
-  transform:
-    translate(-50%,-50%)
-    rotate(-45deg);
-}
+        </div>
 
 
-/* =========================================================
-   TABLET
-========================================================= */
+        <div>
 
-@media (max-width:1100px){
+          <span>
+            04
+          </span>
 
-  .hero-content{
-    width:calc(100% - 50px);
-  }
+          <strong>
+            EXECUTION MATTERS
+          </strong>
 
-  .hero-title-main{
-    font-size:
-      clamp(75px,12vw,135px);
-  }
+          <small>
+            A great idea means nothing
+            if it can't happen.
+          </small>
 
-  .magnetic-circle{
-    width:105px;
-    height:105px;
-    right:6%;
-  }
+        </div>
 
-  .idea-grid,
-  .principles-heading{
-    grid-template-columns:1fr;
-    gap:55px;
-  }
 
-  .idea-copy{
-    align-self:start;
-  }
+      </div>
 
-  .services .service-cards{
-    grid-template-columns:1fr 1fr;
-  }
+    </section>
 
-  .service-list{
-    grid-template-columns:1fr;
-    gap:35px;
-  }
 
-  .chapter-grid{
-    grid-template-columns:1fr 1fr;
-  }
 
-  .chapter-card-large{
-    grid-row:auto;
-    grid-column:span 2;
-  }
+    <!-- ===================================================
+         SELECTED WORK
+    ==================================================== -->
 
-  .chapter-card-large .visual{
-    min-height:480px;
-  }
+    <section
+      class="chapter section-dark"
+      id="work"
+    >
 
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
+      <div class="chapter-heading">
 
+        <div>
 
-/* =========================================================
-   MOBILE
-========================================================= */
+          <span class="eyebrow">
+            04 / SELECTED WORK
+          </span>
 
-@media (max-width:600px){
 
-  .hero{
-    min-height:calc(100svh - var(--header));
-  }
+          <h2>
 
-  .hero-meta{
-    top:30px;
-    left:18px;
-    font-size:8px;
-  }
+            MOMENTS
+            <br>
 
-  .hero-content{
-    width:calc(100% - 36px);
+            <span>IN MOTION.</span>
 
-    min-height:calc(100svh - var(--header));
+          </h2>
 
-    padding:
-      125px
-      0
-      130px;
-  }
+        </div>
 
-  .hero-title-main{
-    font-size:
-      clamp(62px,18.5vw,100px);
 
-    line-height:.82;
-  }
+        <div class="chapter-date">
 
-  .hero-description{
-    margin-top:28px;
+          <span>
+            FLARE
+          </span>
 
-    max-width:340px;
+          <br>
 
-    font-size:14px;
-    line-height:1.65;
-  }
+          EVENTS · INFLUENCE · EXPERIENCES
 
-  .hero-actions{
-    flex-direction:column;
-    align-items:flex-start;
+        </div>
 
-    gap:20px;
+      </div>
 
-    margin-top:30px;
-  }
 
-  .button{
-    min-height:52px;
-  }
+      <div class="chapter-grid">
 
-  .magnetic-circle{
-    display:none;
-  }
 
-  .hero-footer{
-    left:18px;
-    right:18px;
-    bottom:24px;
+        <article
+          class="chapter-card chapter-card-large"
+        >
 
-    gap:9px;
+          <div class="visual">
 
-    font-size:7px;
-    letter-spacing:.12em;
-  }
+            <span>
+              EXPERIENCE / 001
+            </span>
 
-  .hero-footer i{
-    width:12px;
-  }
 
+            <strong>
+              THE
+              <br>
+              MOMENT.
+            </strong>
 
-  /* ticker */
+          </div>
 
-  .ticker-track{
-    gap:25px;
-    padding:14px 0;
-  }
 
-  .ticker-track div{
-    font-size:24px;
-  }
+          <div class="chapter-card-info">
 
+            <strong>
+              LIVE EXPERIENCES
+            </strong>
 
-  /* idea */
+            <p>
+              CONCEPT · PRODUCTION · EXECUTION
+            </p>
 
-  .idea{
-    padding:
-      78px 18px
-      90px;
-  }
+          </div>
 
-  .idea-heading{
-    font-size:
-      clamp(47px,13vw,70px);
+        </article>
 
-    line-height:.88;
-  }
 
-  .idea-copy{
-    font-size:14px;
-  }
 
+        <article class="chapter-card">
 
-  /* services */
+          <div class="visual visual-two">
 
-  .services{
-    padding:
-      72px 18px;
-  }
+            <span>
+              INFLUENCE / 002
+            </span>
 
-  .services-intro{
-    margin-bottom:38px;
-  }
 
-  .services-intro p{
-    font-size:20px;
-  }
+            <strong>
+              CULTURE
+              <br>
+              MOVES.
+            </strong>
 
-  .services .service-cards{
-    grid-template-columns:1fr;
-  }
+          </div>
 
-  .services .service-card{
-    min-height:300px;
-    padding:26px 22px;
-  }
 
-  .services .service-card h3{
-    font-size:
-      clamp(48px,16vw,72px);
+          <div class="chapter-card-info">
 
-    margin-top:auto;
-  }
+            <strong>
+              CREATOR CAMPAIGNS
+            </strong>
 
-  .services .service-card p{
-    font-size:13px;
-  }
+            <p>
+              CREATOR · BRAND · AUDIENCE
+            </p>
 
-  .service-list{
-    margin-top:75px;
-  }
+          </div>
 
-  .capability-list > div{
-    min-height:88px;
+        </article>
 
-    grid-template-columns:32px 1fr;
 
-    gap:10px;
-  }
 
-  .capability-list small{
-    grid-column:2;
-    margin-top:-7px;
-  }
+        <article class="chapter-card">
 
-  .capability-list strong{
-    font-size:15px;
-  }
+          <div class="visual visual-three">
 
+            <span>
+              BRAND / 003
+            </span>
 
-  /* principles */
 
-  .principles{
-    padding:
-      80px 18px
-      90px;
-  }
+            <strong>
+              MAKE
+              <br>
+              IT COUNT.
+            </strong>
 
-  .principles-heading{
-    margin-top:35px;
-  }
+          </div>
 
-  .principles-heading h2{
-    font-size:
-      clamp(46px,13vw,70px);
-  }
 
-  .principles-heading p{
-    font-size:14px;
-  }
+          <div class="chapter-card-info">
 
-  .principle-list{
-    margin-top:70px;
-  }
+            <strong>
+              BRAND ACTIVATION
+            </strong>
 
-  .principle-list > div{
-    min-height:105px;
+            <p>
+              STRATEGY · EXPERIENCE
+            </p>
 
-    grid-template-columns:35px 1fr;
-  }
+          </div>
 
-  .principle-list small{
-    grid-column:2;
-    margin-top:-18px;
-  }
+        </article>
 
 
-  /* work */
+      </div>
 
-  .chapter{
-    padding:
-      80px 18px
-      90px;
-  }
 
-  .chapter-heading{
-    margin:35px auto 50px;
+      <p class="chapter-note">
 
-    flex-direction:column;
-    align-items:flex-start;
+        More stories are coming.
+        We're building experiences worth documenting.
 
-    gap:25px;
-  }
+      </p>
 
-  .chapter-heading h2{
-    font-size:
-      clamp(46px,13vw,70px);
-  }
+    </section>
 
-  .chapter-date{
-    text-align:left;
-  }
 
-  .chapter-grid{
-    grid-template-columns:1fr;
-  }
 
-  .chapter-card-large{
-    grid-column:auto;
-  }
+    <!-- ===================================================
+         FINAL CTA
+    ==================================================== -->
 
-  .chapter-card .visual,
-  .chapter-card-large .visual{
-    min-height:330px;
-  }
+    <section class="big-cta">
 
-  .visual strong{
-    font-size:48px;
-  }
+      <div class="cta-inner">
 
-  .chapter-card-info{
-    flex-direction:column;
-    gap:8px;
-  }
+        <div>
 
-  .chapter-note{
-    margin-top:45px;
-    font-size:13px;
-  }
+          <span class="eyebrow">
+            HAVE AN IDEA?
+          </span>
 
 
-  /* CTA */
+          <h2>
 
-  .big-cta .email-link{
-    width:100%;
-    word-break:break-word;
-  }
+            LET'S
+            <br>
 
+            MAKE IT
+            <br>
 
-  /* footer */
+            <span>IGNITE.</span>
 
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:42px;
-  }
+          </h2>
 
 
-  /* menu */
+          <a
+            href="mailto:book.flareevents@gmail.com"
+            class="email-link"
+          >
+            book.flareevents@gmail.com ↗
+          </a>
 
-  .mobile-menu-inner{
-    padding:
-      112px
-      20px
-      25px;
-  }
+        </div>
 
-  .menu-label{
-    margin-bottom:38px;
-    font-size:8px;
-  }
 
-  .mobile-navigation a{
-    min-height:92px;
-    grid-template-columns:1fr 30px;
-  }
+        <a
+          href="contact.html"
+          class="cta-button"
+        >
 
-  .mobile-navigation a span{
-    font-size:
-      clamp(28px,8.7vw,43px);
-  }
+          START A PROJECT
 
-  .mobile-navigation a small{
-    font-size:9px;
-  }
+          <span>
+            ↗
+          </span>
 
-  .menu-socials{
-    padding-top:45px;
-    gap:20px;
-    font-size:8px;
-  }
-}
+        </a>
 
+      </div>
 
-/* =========================================================
-   SMALL PHONES
-========================================================= */
+    </section>
 
-@media (max-width:380px){
+  </main>
 
-  .hero-title-main{
-    font-size:61px;
-  }
 
-  .hero-description{
-    font-size:13px;
-  }
 
-  .services .service-card h3{
-    font-size:47px;
-  }
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
 
-  .mobile-navigation a{
-    min-height:82px;
-  }
+  <footer class="footer">
 
-  .mobile-navigation a span{
-    font-size:27px;
-  }
-}
+    <img
+      src="flare-logo.png"
+      alt="FLARE"
+      class="footer-logo"
+    >
+
+
+    <div class="footer-grid">
+
+
+      <div>
+
+        <span>
+          FLARE
+        </span>
+
+        <p>
+          Events · Influence · Experiences
+        </p>
+
+        <p>
+          Where Moments Ignite.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <span>
+          EXPLORE
+        </span>
+
+        <a href="#idea">
+          About
+        </a>
+
+        <a href="#services">
+          Services
+        </a>
+
+        <a href="#work">
+          Work
+        </a>
+
+        <a href="founder.html">
+          Founder
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <span>
+          CONNECT
+        </span>
+
+        <a href="contact.html">
+          Start a Project ↗
+        </a>
+
+        <a
+          href="https://www.instagram.com/weareflare.in"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+        <a
+          href="https://www.linkedin.com/company/flare-events-india/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 FLARE
+      </span>
+
+      <span>
+        EVENTS · INFLUENCE · EXPERIENCES
+      </span>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       CURSOR
+  ====================================================== -->
+
+  <div
+    class="cursor-dot"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
