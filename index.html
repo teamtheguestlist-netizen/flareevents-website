@@ -157,6 +157,57 @@
     </button>
 
   </header>
+
+  <div class="flare-mobile-menu" aria-hidden="true">
+    <div class="flare-mobile-menu-bg"></div>
+
+    <div class="flare-mobile-menu-inner">
+
+      <div class="flare-mobile-menu-top">
+        <span>FLARE / MENU</span>
+        <span>INDIA</span>
+      </div>
+
+      <nav class="flare-mobile-nav" aria-label="Mobile navigation">
+        <a href="#idea" data-menu-link>
+          <span>01</span>
+          <strong>THE IDEA</strong>
+          <em>↗</em>
+        </a>
+
+        <a href="#services" data-menu-link>
+          <span>02</span>
+          <strong>WHAT WE DO</strong>
+          <em>↗</em>
+        </a>
+
+        <a href="#work" data-menu-link>
+          <span>03</span>
+          <strong>SELECTED WORK</strong>
+          <em>↗</em>
+        </a>
+
+        <a href="founder.html" data-menu-link>
+          <span>04</span>
+          <strong>FOUNDER</strong>
+          <em>↗</em>
+        </a>
+
+        <a href="contact.html" data-menu-link>
+          <span>05</span>
+          <strong>START A PROJECT</strong>
+          <em>↗</em>
+        </a>
+      </nav>
+
+      <div class="flare-mobile-menu-bottom">
+        <span>EVENTS · INFLUENCE · EXPERIENCES</span>
+        <span>© 2026 FLARE</span>
+      </div>
+
+    </div>
+  </div>
+
   <!-- =====================================================
        MOBILE MENU
   ====================================================== -->
@@ -533,9 +584,7 @@
           Events, cultural activations and physical-digital moments
           built to turn attention into memory.
         </p>
-        <a href="#work" class="service-explore">
-          EXPLORE <span>↗</span>
-        </a>
+        <a href="#work" class="service-explore">EXPLORE <span>↗</span></a>
       </div>
 
       <div class="service-panel-line"></div>
@@ -1082,64 +1131,124 @@
     })();
   </script>
 
-
-
-
-
 <script>
 (() => {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const root = document.documentElement;
+  const body = document.body;
+  const header = document.querySelector('.site-header');
+  const menuButton = document.querySelector('.menu-button');
+  const mobileMenu = document.querySelector('.flare-mobile-menu');
+  const menuLinks = document.querySelectorAll('[data-menu-link]');
 
-  // Scroll progress — passive + CSS variable only.
-  let ticking = false;
-  const updateProgress = () => {
-    const doc = document.documentElement;
-    const max = Math.max(1, doc.scrollHeight - window.innerHeight);
+  /* ---------- Mobile menu ---------- */
+  const setMenu = (open) => {
+    if (!menuButton || !mobileMenu) return;
+
+    menuButton.classList.toggle('is-open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+
+    mobileMenu.classList.toggle('is-open', open);
+    mobileMenu.setAttribute('aria-hidden', String(!open));
+    body.classList.toggle('menu-open', open);
+  };
+
+  menuButton?.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setMenu(!menuButton.classList.contains('is-open'));
+  });
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenu(false);
+  });
+
+  /* ---------- Hero load animation ---------- */
+  window.requestAnimationFrame(() => {
+    root.classList.add('flare-loaded');
+  });
+
+  /* ---------- Scroll progress + header state ---------- */
+  let scrollTicking = false;
+
+  const updateScroll = () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     const progress = Math.min(1, Math.max(0, window.scrollY / max));
-    doc.style.setProperty('--flare-progress', progress.toFixed(4));
-    ticking = false;
+
+    root.style.setProperty('--flare-progress', progress);
+    header?.classList.toggle('is-scrolled', window.scrollY > 24);
+
+    scrollTicking = false;
   };
 
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateProgress);
-      ticking = true;
+    if (!scrollTicking) {
+      window.requestAnimationFrame(updateScroll);
+      scrollTicking = true;
     }
   }, { passive: true });
-  updateProgress();
 
-  if (reduceMotion) return;
+  updateScroll();
 
-  const panels = document.querySelectorAll('.service-panel');
-  const reveals = document.querySelectorAll(
-    '.services-intro, .service-panel, .services-scroll-note'
+  /* ---------- Scroll reveal ---------- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const revealItems = document.querySelectorAll(
+    '.services-intro, .service-panel, .services-scroll-note, ' +
+    '.idea-grid > div, .principle-list > div, .chapter-heading > div, ' +
+    '.chapter-card, .chapter-note, .big-cta .cta-inner'
   );
 
-  // IntersectionObserver is supported on modern mobile, tablet and desktop browsers.
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('motion-in');
-      obs.unobserve(entry.target);
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('motion-in');
+        obs.unobserve(entry.target);
+      });
+    }, {
+      threshold: window.matchMedia('(pointer: coarse)').matches ? 0.08 : 0.14,
+      rootMargin: '0px 0px -7% 0px'
     });
-  }, {
-    threshold: coarsePointer ? 0.12 : 0.18,
-    rootMargin: '0px 0px -8% 0px'
+
+    revealItems.forEach(item => observer.observe(item));
+  } else {
+    revealItems.forEach(item => item.classList.add('motion-in'));
+  }
+
+  /* ---------- Smooth anchor scrolling ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const id = link.getAttribute('href');
+      const target = id && id !== '#' ? document.querySelector(id) : null;
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    });
   });
 
-  reveals.forEach(el => observer.observe(el));
+  /* ---------- Desktop-only service panel depth ---------- */
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
 
-  // Desktop gets a subtle pointer tilt. Touch devices stay completely stable.
-  if (!coarsePointer) {
-    panels.forEach(panel => {
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.service-panel').forEach(panel => {
       panel.addEventListener('pointermove', event => {
         const rect = panel.getBoundingClientRect();
-        const px = (event.clientX - rect.left) / rect.width - 0.5;
-        const py = (event.clientY - rect.top) / rect.height - 0.5;
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
 
-        panel.style.setProperty('--mx', `${(px * 10).toFixed(2)}px`);
-        panel.style.setProperty('--my', `${(py * 6).toFixed(2)}px`);
+        panel.style.setProperty('--mx', `${x * 7}px`);
+        panel.style.setProperty('--my', `${y * 5}px`);
       });
 
       panel.addEventListener('pointerleave', () => {
