@@ -5,138 +5,218 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Bivek Ray — Founder of FLARE</title>
+  <meta name="description" content="Bivek Ray — Founder of FLARE. Building experiences, brands and ideas that people remember.">
+  <link rel="canonical" href="https://flareevents.in/founder.html">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <meta name="description" content="Bivek Ray — Founder of FLARE. Building experiences, brands and ideas that people remember.">
-  <link rel="canonical" href="https://flareevents.in/founder.html">
-
   <style>
-    .founder-page {
-      background:#050505;
-      color:#f5f5f2;
-      overflow:hidden;
+    :root{
+      --black:#050505;
+      --white:#f5f5f2;
+      --paper:#f2f1ed;
+      --muted:#9a9993;
+      --dark-muted:#55534d;
+      --gold:#c79a3b;
+      --line:rgba(255,255,255,.14);
     }
 
-    .founder-hero {
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--black);
+      color:var(--white);
+      font-family:"Manrope",Arial,sans-serif;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%}
+    button{font:inherit}
+
+    /* HEADER */
+    .site-header{
+      position:relative;
+      z-index:50;
+      width:100%;
+      height:110px;
+      padding:0 clamp(24px,5.5vw,90px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:#050505;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+
+    .brand-logo{display:flex;align-items:center}
+    .brand-logo img{
+      width:106px;
+      height:auto;
+      display:block;
+    }
+
+    .desktop-nav{
+      display:flex;
+      align-items:center;
+      gap:clamp(25px,3.2vw,58px);
+    }
+
+    .desktop-nav a{
+      font-family:"DM Mono",monospace;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#aaa9a4;
+      transition:color .2s ease;
+      white-space:nowrap;
+    }
+
+    .desktop-nav a:hover,
+    .desktop-nav a[aria-current="page"]{color:#fff}
+
+    .menu-button{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid rgba(255,255,255,.2);
+      background:transparent;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    /* COMMON */
+    .eyebrow{
+      display:inline-block;
+      font-family:"DM Mono",monospace;
+      font-size:10px;
+      line-height:1.3;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:#8f8d86;
+    }
+
+    .founder-page{background:var(--black);color:var(--white)}
+
+    /* HERO */
+    .founder-hero{
       width:min(1380px,calc(100% - 80px));
-      min-height:calc(100vh - 86px);
+      min-height:calc(100vh - 110px);
       margin:0 auto;
-      padding:80px 0;
+      padding:80px 0 100px;
       display:grid;
-      grid-template-columns:minmax(420px,.9fr) minmax(420px,1fr);
-      gap:clamp(60px,9vw,150px);
+      grid-template-columns:minmax(400px,.9fr) minmax(420px,1fr);
+      gap:clamp(55px,8vw,130px);
       align-items:center;
     }
 
-    .founder-image-wrap {
+    .founder-image-wrap{
       position:relative;
-      height:min(760px,78vh);
+      width:100%;
+      height:min(720px,78vh);
+      min-height:540px;
       overflow:hidden;
       background:#111;
     }
 
-    .founder-image {
+    .founder-image{
       width:100%;
       height:100%;
       display:block;
       object-fit:cover;
-      object-position:center 35%;
+      object-position:center 25%;
       filter:grayscale(100%);
       transform:scale(1.01);
       transition:transform 1s ease,filter 1s ease;
     }
 
-    .founder-image-wrap:hover .founder-image {
+    .founder-image-wrap:hover .founder-image{
       transform:scale(1.035);
       filter:grayscale(0%);
     }
 
-    .founder-image-label {
+    .founder-image-label{
       position:absolute;
-      left:24px;
-      bottom:22px;
+      left:22px;
+      bottom:20px;
+      padding:10px 13px;
+      background:rgba(0,0,0,.68);
+      border:1px solid rgba(255,255,255,.16);
+      backdrop-filter:blur(10px);
       font-family:"DM Mono",monospace;
-      font-size:10px;
+      font-size:9px;
       letter-spacing:.18em;
       color:#fff;
-      background:rgba(0,0,0,.65);
-      padding:10px 13px;
-      backdrop-filter:blur(10px);
     }
 
-    .founder-intro {
-      max-width:680px;
-    }
+    .founder-intro{max-width:680px}
 
-    .founder-intro h1 {
-      margin-top:28px;
-      font-size:clamp(80px,10vw,155px);
+    .founder-intro h1{
+      margin-top:25px;
+      font-size:clamp(78px,9.8vw,150px);
       line-height:.82;
       letter-spacing:-.075em;
       font-weight:700;
     }
 
-    .founder-intro h1 span {
-      color:#c79a3b;
-    }
+    .founder-intro h1 span{color:var(--gold)}
 
-    .founder-line {
+    .founder-line{
       width:100%;
       height:1px;
-      background:rgba(255,255,255,.14);
-      margin:42px 0 22px;
+      margin:40px 0 22px;
+      background:var(--line);
     }
 
-    .founder-role {
+    .founder-role{
+      color:var(--gold);
       font-family:"DM Mono",monospace;
       font-size:11px;
       letter-spacing:.18em;
-      color:#c79a3b;
     }
 
-    .founder-copy {
-      max-width:570px;
-      margin-top:26px;
-      color:#a9a9a4;
+    .founder-copy{
+      max-width:600px;
+      margin-top:24px;
+      color:#aaa9a4;
       font-size:16px;
       line-height:1.8;
     }
 
-    .founder-button {
+    .founder-button{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       min-height:54px;
-      margin-top:34px;
+      margin-top:32px;
       padding:0 24px;
-      border:1px solid #c79a3b;
+      border:1px solid var(--gold);
       color:#fff;
       font-family:"DM Mono",monospace;
       font-size:10px;
       letter-spacing:.16em;
-      transition:background .25s ease,color .25s ease,transform .25s ease;
+      transition:.25s ease;
     }
 
-    .founder-button:hover {
-      background:#c79a3b;
+    .founder-button:hover{
+      background:var(--gold);
       color:#050505;
       transform:translateY(-3px);
     }
 
-    .founder-about {
-      background:#f4f3ef;
+    /* ABOUT */
+    .founder-about,
+    .founder-venture{
+      background:var(--paper);
       color:#090909;
       padding:110px max(40px,6vw);
     }
 
     .founder-about .section-number,
-    .founder-venture .section-number {
+    .founder-venture .section-number{
+      max-width:1380px;
+      margin:0 auto;
       font-family:"DM Mono",monospace;
       font-size:10px;
       letter-spacing:.18em;
@@ -144,7 +224,7 @@
       color:#77736c;
     }
 
-    .founder-about-content {
+    .founder-about-content{
       max-width:1380px;
       margin:75px auto 0;
       display:grid;
@@ -152,8 +232,8 @@
       gap:100px;
     }
 
-    .founder-about-content h2 {
-      font-size:clamp(60px,8vw,125px);
+    .founder-about-content h2{
+      font-size:clamp(60px,7.8vw,125px);
       line-height:.86;
       letter-spacing:-.07em;
       font-weight:700;
@@ -162,70 +242,61 @@
     .founder-about-content h2 span,
     .venture-content h2 span,
     .founder-philosophy h2 span,
-    .founder-contact h2 span {
+    .founder-contact h2 span{
       color:#b48830;
     }
 
-    .about-text {
-      max-width:570px;
-    }
+    .about-text{max-width:570px}
 
-    .about-text p {
+    .about-text p{
       margin-bottom:27px;
       font-size:16px;
       line-height:1.8;
       color:#4f4e49;
     }
 
-    .founder-flare {
+    /* FLARE */
+    .founder-flare{
       min-height:620px;
       padding:100px max(40px,6vw);
       display:grid;
       grid-template-columns:1.1fr .9fr;
       align-items:center;
       gap:80px;
-      background:radial-gradient(circle at 70% 50%,rgba(199,154,59,.12),transparent 30%),#050505;
+      background:
+        radial-gradient(circle at 70% 50%,rgba(199,154,59,.13),transparent 31%),
+        #050505;
     }
 
-    .flare-word {
-      font-size:clamp(110px,20vw,310px);
+    .flare-word{
+      font-size:clamp(110px,19vw,300px);
       line-height:.75;
       letter-spacing:-.1em;
       font-weight:800;
       color:#fff;
+      white-space:nowrap;
     }
 
-    .flare-description {
-      max-width:480px;
-    }
-
-    .flare-description p {
-      margin-top:25px;
+    .flare-description{max-width:480px}
+    .flare-description p{
+      margin-top:24px;
       color:#a8a8a3;
       font-size:16px;
       line-height:1.75;
     }
+    .flare-description p strong{color:#fff}
 
-    .flare-description p strong {
-      color:#fff;
-    }
-
-    .flare-description .text-link {
+    .text-link{
       display:inline-block;
-      margin-top:35px;
+      margin-top:32px;
+      color:var(--gold);
       font-family:"DM Mono",monospace;
       font-size:10px;
       letter-spacing:.16em;
-      color:#c79a3b;
     }
 
-    .founder-venture {
-      background:#f4f3ef;
-      color:#090909;
-      padding:110px max(40px,6vw);
-    }
-
-    .venture-content {
+    /* VENTURE */
+    .venture-content{
       max-width:1380px;
       margin:75px auto 0;
       display:grid;
@@ -234,47 +305,40 @@
       align-items:end;
     }
 
-    .venture-content h2 {
+    .venture-content h2{
       margin-top:28px;
-      font-size:clamp(65px,9vw,135px);
+      font-size:clamp(65px,8.8vw,135px);
       line-height:.82;
       letter-spacing:-.075em;
     }
 
-    .venture-copy {
+    .venture-copy{
       max-width:500px;
       font-size:16px;
       line-height:1.8;
       color:#55534d;
     }
 
-    .venture-copy p {
-      margin-bottom:25px;
-    }
+    .venture-copy p{margin-bottom:25px}
 
-    .founder-philosophy {
-      background:#0a0a0a;
+    /* PHILOSOPHY */
+    .founder-philosophy{
+      background:#090909;
       padding:140px 30px;
       text-align:center;
     }
 
-    .philosophy-inner {
-      max-width:1100px;
-      margin:auto;
-    }
+    .philosophy-inner{max-width:1100px;margin:auto}
+    .founder-philosophy .eyebrow{color:var(--gold)}
 
-    .founder-philosophy .eyebrow {
-      color:#c79a3b;
-    }
-
-    .founder-philosophy h2 {
+    .founder-philosophy h2{
       margin-top:40px;
-      font-size:clamp(48px,7vw,105px);
+      font-size:clamp(48px,6.8vw,105px);
       line-height:.92;
       letter-spacing:-.07em;
     }
 
-    .founder-philosophy p {
+    .founder-philosophy p{
       max-width:620px;
       margin:45px auto 0;
       color:#92928d;
@@ -282,10 +346,11 @@
       line-height:1.8;
     }
 
-    .founder-contact {
+    /* CONTACT */
+    .founder-contact{
       min-height:620px;
       padding:120px 30px;
-      background:#f4f3ef;
+      background:var(--paper);
       color:#090909;
       text-align:center;
       display:flex;
@@ -294,168 +359,194 @@
       justify-content:center;
     }
 
-    .founder-contact .eyebrow {
-      color:#77736c;
-    }
+    .founder-contact .eyebrow{color:#77736c}
 
-    .founder-contact h2 {
+    .founder-contact h2{
       margin-top:35px;
-      font-size:clamp(75px,12vw,180px);
+      font-size:clamp(75px,11.5vw,175px);
       line-height:.8;
       letter-spacing:-.08em;
     }
 
-    .founder-contact p {
+    .founder-contact p{
       margin-top:35px;
       color:#64615a;
       font-size:16px;
     }
 
-    .founder-contact .founder-button {
+    .founder-contact .founder-button{
       color:#090909;
       border-color:#090909;
     }
 
-    .founder-contact .founder-button:hover {
+    .founder-contact .founder-button:hover{
       background:#090909;
       color:#fff;
     }
 
-    @media (max-width:950px) {
-      .founder-hero {
+    /* FOOTER */
+    .footer{
+      background:#050505;
+      color:#fff;
+      padding:55px max(24px,5.5vw) 30px;
+    }
+
+    .footer > img{
+      width:100px;
+      display:block;
+    }
+
+    .footer-bottom{
+      margin-top:50px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.12);
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:#777;
+      font-family:"DM Mono",monospace;
+      font-size:9px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    /* TABLET */
+    @media (max-width:950px){
+      .site-header{height:88px}
+      .desktop-nav{display:none}
+      .menu-button{display:block}
+
+      .founder-hero{
         width:calc(100% - 44px);
+        min-height:auto;
         grid-template-columns:1fr;
         gap:55px;
-        padding:65px 0 85px;
+        padding:60px 0 85px;
       }
 
-      .founder-image-wrap {
+      .founder-image-wrap{
         height:70vh;
+        min-height:520px;
         max-height:720px;
       }
 
-      .founder-intro h1 {
+      .founder-intro h1{
         font-size:clamp(75px,15vw,130px);
       }
 
       .founder-about-content,
-      .venture-content {
+      .venture-content{
         grid-template-columns:1fr;
         gap:55px;
       }
 
-      .founder-flare {
+      .founder-flare{
         grid-template-columns:1fr;
-        gap:40px;
+        gap:45px;
         min-height:auto;
       }
 
-      .flare-word {
-        font-size:25vw;
-      }
+      .flare-word{font-size:25vw}
     }
 
-    @media (max-width:600px) {
-      .founder-hero {
-        width:calc(100% - 36px);
-        padding:45px 0 65px;
-        gap:42px;
+    /* MOBILE */
+    @media (max-width:600px){
+      .site-header{
+        height:76px;
+        padding:0 18px;
       }
 
-      .founder-image-wrap {
-        height:62vh;
-        min-height:450px;
+      .brand-logo img{width:86px}
+
+      .founder-hero{
+        width:calc(100% - 32px);
+        padding:38px 0 65px;
+        gap:40px;
       }
 
-      .founder-image {
-        object-position:center 30%;
+      .founder-image-wrap{
+        height:67vh;
+        min-height:430px;
       }
 
-      .founder-image-label {
-        left:14px;
-        bottom:14px;
+      .founder-image{object-position:center 23%}
+
+      .founder-image-label{
+        left:12px;
+        bottom:12px;
         font-size:8px;
       }
 
-      .founder-intro h1 {
-        margin-top:22px;
-        font-size:24vw;
+      .founder-intro h1{
+        margin-top:20px;
+        font-size:23vw;
       }
 
-      .founder-line {
-        margin:30px 0 18px;
-      }
+      .founder-line{margin:28px 0 17px}
 
-      .founder-copy {
+      .founder-copy{
         font-size:14px;
         line-height:1.7;
       }
 
       .founder-about,
-      .founder-venture {
-        padding:75px 22px;
+      .founder-venture{
+        padding:72px 20px;
       }
 
       .founder-about-content,
-      .venture-content {
-        margin-top:50px;
+      .venture-content{
+        margin-top:48px;
       }
 
       .founder-about-content h2,
-      .venture-content h2 {
-        font-size:18vw;
+      .venture-content h2{
+        font-size:17.5vw;
       }
 
       .about-text,
-      .venture-copy {
+      .venture-copy{
         font-size:14px;
       }
 
-      .founder-flare {
-        padding:80px 22px;
-      }
-
-      .flare-word {
+      .founder-flare{padding:78px 20px}
+      .flare-word{
         font-size:25vw;
+        white-space:normal;
       }
 
-      .flare-description p {
-        font-size:14px;
+      .flare-description p{font-size:14px}
+
+      .founder-philosophy{padding:90px 20px}
+
+      .founder-philosophy h2{
+        margin-top:28px;
+        font-size:12.5vw;
       }
 
-      .founder-philosophy {
-        padding:95px 22px;
-      }
-
-      .founder-philosophy h2 {
+      .founder-philosophy p{
         margin-top:30px;
-        font-size:13vw;
-      }
-
-      .founder-philosophy p {
-        margin-top:32px;
         font-size:14px;
       }
 
-      .founder-contact {
-        min-height:520px;
-        padding:90px 22px;
+      .founder-contact{
+        min-height:500px;
+        padding:85px 20px;
       }
 
-      .founder-contact h2 {
-        font-size:22vw;
-      }
+      .founder-contact h2{font-size:21vw}
+      .founder-contact p{font-size:14px}
 
-      .founder-contact p {
-        font-size:14px;
+      .footer-bottom{
+        flex-direction:column;
+        line-height:1.6;
       }
     }
 
-    @media (prefers-reduced-motion:reduce) {
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
       .founder-image,
-      .founder-button {
-        transition:none;
-      }
+      .founder-button{transition:none}
     }
   </style>
 </head>
@@ -475,9 +566,8 @@
     <a href="contact.html">Start a Project ↗</a>
   </nav>
 
-  <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
-    <span></span>
-    <span></span>
+  <button class="menu-button" type="button" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span>
   </button>
 </header>
 
@@ -490,152 +580,95 @@
         src="bivek-ray.jpeg"
         alt="Bivek Ray — Founder of FLARE"
         class="founder-image"
+        onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"
       >
-
-      <div class="founder-image-label">
-        <span>FLARE / FOUNDER</span>
-      </div>
+      <div class="founder-image-label">FLARE / FOUNDER</div>
     </div>
 
     <div class="founder-intro">
-
       <span class="eyebrow">FLARE / FOUNDER</span>
 
-      <h1>
-        BIVEK<br>
-        <span>RAY.</span>
-      </h1>
+      <h1>BIVEK<br><span>RAY.</span></h1>
 
       <div class="founder-line"></div>
 
       <p class="founder-role">FOUNDER — FLARE</p>
 
       <p class="founder-copy">
-        I build experiences, brands and ideas that are
-        designed to be remembered.
+        I build experiences, brands and ideas that are designed to be remembered.
       </p>
 
       <p class="founder-copy">
-        FLARE started with a simple belief — that the
-        right experience can turn a moment into a memory,
-        and a brand into something people genuinely connect with.
+        FLARE started with a simple belief — that the right experience can turn
+        a moment into a memory, and a brand into something people genuinely connect with.
       </p>
 
-      <a href="contact.html" class="founder-button">
-        WORK WITH ME ↗
-      </a>
-
+      <a href="contact.html" class="founder-button">WORK WITH ME ↗</a>
     </div>
 
   </section>
 
   <section class="founder-about">
-
-    <div class="section-number">
-      01 / ABOUT
-    </div>
+    <div class="section-number">01 / ABOUT</div>
 
     <div class="founder-about-content">
-
-      <h2>
-        BUILDING<br>
-        <span>WHAT MATTERS.</span>
-      </h2>
+      <h2>BUILDING<br><span>WHAT MATTERS.</span></h2>
 
       <div class="about-text">
-
         <p>
-          I'm Bivek Ray, founder of FLARE — an experience and
-          influence company focused on creating meaningful
-          connections between brands and people.
+          I'm Bivek Ray, founder of FLARE — an experience and influence company
+          focused on creating meaningful connections between brands and people.
         </p>
-
         <p>
-          My approach sits somewhere between creativity,
-          strategy and execution. I believe good ideas are
-          only valuable when they can become real experiences.
+          My approach sits somewhere between creativity, strategy and execution.
+          I believe good ideas are only valuable when they can become real experiences.
         </p>
-
         <p>
-          From events and brand experiences to creator
-          collaborations and campaigns, FLARE exists to make
-          ideas feel bigger, sharper and more memorable.
+          From events and brand experiences to creator collaborations and campaigns,
+          FLARE exists to make ideas feel bigger, sharper and more memorable.
         </p>
-
       </div>
-
     </div>
-
   </section>
 
   <section class="founder-flare">
-
-    <div class="flare-word">
-      FLARE
-    </div>
+    <div class="flare-word">FLARE</div>
 
     <div class="flare-description">
-
       <span class="eyebrow">WHAT I'M BUILDING</span>
 
-      <p>
-        EVENTS · INFLUENCE · EXPERIENCES
-      </p>
+      <p>EVENTS · INFLUENCE · EXPERIENCES</p>
 
       <p>
         A creative company built around one idea:
         <strong>Where Moments Ignite.</strong>
       </p>
 
-      <a href="index.html" class="text-link">
-        EXPLORE FLARE ↗
-      </a>
-
+      <a href="index.html" class="text-link">EXPLORE FLARE ↗</a>
     </div>
-
   </section>
 
   <section class="founder-venture">
-
-    <div class="section-number">
-      02 / BEYOND FLARE
-    </div>
+    <div class="section-number">02 / BEYOND FLARE</div>
 
     <div class="venture-content">
-
       <div>
-
         <span class="eyebrow">ALSO BUILDING</span>
-
-        <h2>
-          SUKOON<br>
-          <span>BY NATURE.</span>
-        </h2>
-
+        <h2>SUKOON<br><span>BY NATURE.</span></h2>
       </div>
 
       <div class="venture-copy">
-
+        <p>Co-Founder — Sukoon By Nature.</p>
         <p>
-          Co-Founder — Sukoon By Nature.
+          A venture built around creating products and experiences inspired by
+          nature, wellbeing and everyday moments of calm.
         </p>
-
-        <p>
-          A venture built around creating products and
-          experiences inspired by nature, wellbeing and
-          everyday moments of calm.
-        </p>
-
       </div>
-
     </div>
-
   </section>
 
   <section class="founder-philosophy">
-
     <div class="philosophy-inner">
-
       <span class="eyebrow">03 / PHILOSOPHY</span>
 
       <h2>
@@ -645,47 +678,31 @@
 
       <p>
         I don't want to simply create things that look good.
-        I want to create things people feel, remember and
-        talk about.
+        I want to create things people feel, remember and talk about.
       </p>
-
     </div>
-
   </section>
 
   <section class="founder-contact">
-
     <span class="eyebrow">LET'S BUILD SOMETHING</span>
 
-    <h2>
-      HAVE AN<br>
-      <span>IDEA?</span>
-    </h2>
+    <h2>HAVE AN<br><span>IDEA?</span></h2>
 
-    <p>
-      Let's turn it into something worth remembering.
-    </p>
+    <p>Let's turn it into something worth remembering.</p>
 
-    <a href="contact.html" class="founder-button">
-      START A PROJECT ↗
-    </a>
-
+    <a href="contact.html" class="founder-button">START A PROJECT ↗</a>
   </section>
 
 </main>
 
 <footer class="footer">
-
   <img src="flare-logo.png" alt="FLARE">
 
   <div class="footer-bottom">
     <span>© 2026 FLARE</span>
     <span>EVENTS · INFLUENCE · EXPERIENCES</span>
   </div>
-
 </footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>
