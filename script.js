@@ -1,83 +1,266 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
+     GLOBAL FLARE PAGE LOADER
+  ========================================================= */
+
+  const flareLoader =
+    document.querySelector(".flare-page-loader");
+
+  document.body.classList.add("flare-loading");
+
+  if (flareLoader) {
+
+    const finishLoader = () => {
+
+      document.body.classList.remove("flare-loading");
+      document.body.classList.add("flare-ready");
+
+      flareLoader.classList.add("is-hidden");
+
+      window.setTimeout(() => {
+        flareLoader.remove();
+      }, 850);
+
+    };
+
+    if (document.readyState === "complete") {
+
+      window.setTimeout(
+        finishLoader,
+        950
+      );
+
+    } else {
+
+      window.addEventListener(
+        "load",
+        () => {
+
+          window.setTimeout(
+            finishLoader,
+            950
+          );
+
+        },
+        { once: true }
+      );
+
+    }
+
+  } else {
+
+    document.body.classList.add(
+      "flare-ready"
+    );
+
+  }
+
+
+  /* =========================================================
+     PAGE TO PAGE TRANSITION
+  ========================================================= */
+
+  document
+    .querySelectorAll(
+      'a[href$=".html"], a[href^="/"], a[href^="./"]'
+    )
+    .forEach(link => {
+
+      link.addEventListener(
+        "click",
+        event => {
+
+          const href =
+            link.getAttribute("href");
+
+
+          if (
+            !href ||
+            href.startsWith("#") ||
+            link.target === "_blank" ||
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey
+          ) {
+
+            return;
+
+          }
+
+
+          const url =
+            new URL(
+              href,
+              window.location.href
+            );
+
+
+          if (
+            url.origin !==
+            window.location.origin
+          ) {
+
+            return;
+
+          }
+
+
+          if (
+            url.pathname ===
+            window.location.pathname
+          ) {
+
+            return;
+
+          }
+
+
+          const loader =
+            document.querySelector(
+              ".flare-page-loader"
+            );
+
+
+          if (!loader) return;
+
+
+          event.preventDefault();
+
+
+          document.body.classList.remove(
+            "flare-ready"
+          );
+
+          document.body.classList.add(
+            "flare-loading"
+          );
+
+          loader.classList.remove(
+            "is-hidden"
+          );
+
+
+          window.setTimeout(
+            () => {
+
+              window.location.href =
+                url.href;
+
+            },
+            550
+          );
+
+        }
+      );
+
+    });
+
+
+  /* =========================================================
      MOBILE MENU
   ========================================================= */
 
   const menuButton =
-    document.querySelector(".menu-button");
+    document.querySelector(
+      ".menu-button"
+    );
 
   const mobileMenu =
-    document.querySelector(".mobile-menu");
+    document.querySelector(
+      ".mobile-menu"
+    );
 
   const mobileLinks =
-    document.querySelectorAll(".mobile-navigation a");
+    document.querySelectorAll(
+      ".mobile-navigation a"
+    );
 
 
-  if (menuButton && mobileMenu) {
+  if (
+    menuButton &&
+    mobileMenu
+  ) {
 
-    menuButton.addEventListener("click", () => {
+    menuButton.addEventListener(
+      "click",
+      () => {
 
-      const isOpen =
-        menuButton.classList.toggle("active");
+        const isOpen =
+          menuButton.classList.toggle(
+            "active"
+          );
 
-      mobileMenu.classList.toggle("open");
+        mobileMenu.classList.toggle(
+          "open"
+        );
 
-      document.body.classList.toggle(
-        "menu-open",
-        isOpen
-      );
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen
-          ? "Close menu"
-          : "Open menu"
-      );
-
-      mobileMenu.setAttribute(
-        "aria-hidden",
-        String(!isOpen)
-      );
-
-    });
-
-
-    mobileLinks.forEach(link => {
-
-      link.addEventListener("click", () => {
-
-        menuButton.classList.remove("active");
-
-        mobileMenu.classList.remove("open");
-
-        document.body.classList.remove(
-          "menu-open"
+        document.body.classList.toggle(
+          "menu-open",
+          isOpen
         );
 
         menuButton.setAttribute(
           "aria-expanded",
-          "false"
+          String(isOpen)
         );
 
         menuButton.setAttribute(
           "aria-label",
-          "Open menu"
+          isOpen
+            ? "Close menu"
+            : "Open menu"
         );
 
         mobileMenu.setAttribute(
           "aria-hidden",
-          "true"
+          String(!isOpen)
         );
 
-      });
+      }
+    );
 
-    });
+
+    mobileLinks.forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            menuButton.classList.remove(
+              "active"
+            );
+
+            mobileMenu.classList.remove(
+              "open"
+            );
+
+            document.body.classList.remove(
+              "menu-open"
+            );
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            menuButton.setAttribute(
+              "aria-label",
+              "Open menu"
+            );
+
+            mobileMenu.setAttribute(
+              "aria-hidden",
+              "true"
+            );
+
+          }
+        );
+
+      }
+    );
 
   }
 
@@ -86,31 +269,59 @@ document.addEventListener("DOMContentLoaded", () => {
      ESCAPE CLOSE MENU
   ========================================================= */
 
-  document.addEventListener("keydown", event => {
+  document.addEventListener(
+    "keydown",
+    event => {
 
-    if (event.key !== "Escape") return;
+      if (
+        event.key !==
+        "Escape"
+      ) {
 
-    if (!mobileMenu || !menuButton) return;
+        return;
 
-    menuButton.classList.remove("active");
+      }
 
-    mobileMenu.classList.remove("open");
 
-    document.body.classList.remove(
-      "menu-open"
-    );
+      if (
+        !mobileMenu ||
+        !menuButton
+      ) {
 
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
+        return;
 
-    mobileMenu.setAttribute(
-      "aria-hidden",
-      "true"
-    );
+      }
 
-  });
+
+      menuButton.classList.remove(
+        "active"
+      );
+
+      mobileMenu.classList.remove(
+        "open"
+      );
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "Open menu"
+      );
+
+      mobileMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+    }
+  );
 
 
   /* =========================================================
@@ -118,7 +329,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================================================= */
 
   const cursor =
-    document.querySelector(".cursor-dot");
+    document.querySelector(
+      ".cursor-dot"
+    );
 
   const finePointer =
     window.matchMedia(
@@ -126,7 +339,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  if (cursor && finePointer.matches) {
+  if (
+    cursor &&
+    finePointer.matches
+  ) {
 
     let mouseX = 0;
     let mouseY = 0;
@@ -139,27 +355,36 @@ document.addEventListener("DOMContentLoaded", () => {
       "mousemove",
       event => {
 
-        mouseX = event.clientX;
-        mouseY = event.clientY;
+        mouseX =
+          event.clientX;
+
+        mouseY =
+          event.clientY;
 
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
 
     const animateCursor = () => {
 
       currentX +=
-        (mouseX - currentX) * 0.18;
+        (mouseX - currentX) *
+        0.18;
 
       currentY +=
-        (mouseY - currentY) * 0.18;
+        (mouseY - currentY) *
+        0.18;
+
 
       cursor.style.left =
         `${currentX}px`;
 
       cursor.style.top =
         `${currentY}px`;
+
 
       requestAnimationFrame(
         animateCursor
@@ -177,32 +402,34 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    interactiveElements.forEach(element => {
+    interactiveElements.forEach(
+      element => {
 
-      element.addEventListener(
-        "mouseenter",
-        () => {
+        element.addEventListener(
+          "mouseenter",
+          () => {
 
-          cursor.classList.add(
-            "active"
-          );
+            cursor.classList.add(
+              "active"
+            );
 
-        }
-      );
+          }
+        );
 
 
-      element.addEventListener(
-        "mouseleave",
-        () => {
+        element.addEventListener(
+          "mouseleave",
+          () => {
 
-          cursor.classList.remove(
-            "active"
-          );
+            cursor.classList.remove(
+              "active"
+            );
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
 
   }
 
@@ -222,44 +449,51 @@ document.addEventListener("DOMContentLoaded", () => {
     finePointer.matches
   ) {
 
-    magneticElements.forEach(element => {
+    magneticElements.forEach(
+      element => {
 
-      element.addEventListener(
-        "mousemove",
-        event => {
+        element.addEventListener(
+          "mousemove",
+          event => {
 
-          const rect =
-            element.getBoundingClientRect();
-
-          const x =
-            event.clientX -
-            rect.left -
-            rect.width / 2;
-
-          const y =
-            event.clientY -
-            rect.top -
-            rect.height / 2;
+            const rect =
+              element.getBoundingClientRect();
 
 
-          element.style.transform =
-            `translate(${x * .08}px, ${y * .08}px)`;
+            const x =
+              event.clientX -
+              rect.left -
+              rect.width / 2;
 
-        }
-      );
+
+            const y =
+              event.clientY -
+              rect.top -
+              rect.height / 2;
 
 
-      element.addEventListener(
-        "mouseleave",
-        () => {
+            element.style.transform =
+              `translate(
+                ${x * 0.08}px,
+                ${y * 0.08}px
+              )`;
 
-          element.style.transform =
-            "";
+          }
+        );
 
-        }
-      );
 
-    });
+        element.addEventListener(
+          "mouseleave",
+          () => {
+
+            element.style.transform =
+              "";
+
+          }
+        );
+
+      }
+    );
 
   }
 
@@ -288,10 +522,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const rect =
           magneticCircle.getBoundingClientRect();
 
+
         const x =
           event.clientX -
           rect.left -
           rect.width / 2;
+
 
         const y =
           event.clientY -
@@ -300,7 +536,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         magneticCircle.style.transform =
-          `translate(${x * .18}px, ${y * .18}px) scale(1.05)`;
+          `translate(
+            ${x * 0.18}px,
+            ${y * 0.18}px
+          ) scale(1.05)`;
 
       }
     );
@@ -338,47 +577,60 @@ document.addEventListener("DOMContentLoaded", () => {
       new IntersectionObserver(
         entries => {
 
-          entries.forEach(entry => {
+          entries.forEach(
+            entry => {
 
-            if (
-              entry.isIntersecting
-            ) {
+              if (
+                !entry.isIntersecting
+              ) {
+
+                return;
+
+              }
+
 
               entry.target.classList.add(
                 "visible"
               );
+
 
               observer.unobserve(
                 entry.target
               );
 
             }
-
-          });
+          );
 
         },
         {
           threshold: 0.12,
-          rootMargin: "0px 0px -40px 0px"
+          rootMargin:
+            "0px 0px -40px 0px"
         }
       );
 
 
-    revealElements.forEach(element => {
+    revealElements.forEach(
+      element => {
 
-      observer.observe(element);
+        observer.observe(
+          element
+        );
 
-    });
+      }
+    );
 
   } else {
 
-    revealElements.forEach(element => {
+    revealElements.forEach(
+      element => {
 
-      element.classList.add(
-        "visible"
-      );
+        element.classList.add(
+          "visible"
+        );
 
-    });
+      }
+    );
 
   }
 
@@ -391,72 +643,74 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll(
       'a[href^="#"]'
     )
-    .forEach(link => {
+    .forEach(
+      link => {
 
-      link.addEventListener(
-        "click",
-        event => {
+        link.addEventListener(
+          "click",
+          event => {
 
-          const targetID =
-            link.getAttribute(
-              "href"
-            );
+            const targetID =
+              link.getAttribute(
+                "href"
+              );
 
 
-          if (
-            !targetID ||
-            targetID === "#"
-          ) {
+            if (
+              !targetID ||
+              targetID === "#"
+            ) {
 
-            return;
+              return;
+
+            }
+
+
+            const target =
+              document.querySelector(
+                targetID
+              );
+
+
+            if (!target) return;
+
+
+            event.preventDefault();
+
+
+            const header =
+              document.querySelector(
+                ".site-header"
+              );
+
+
+            const headerHeight =
+              header
+                ? header.offsetHeight
+                : 0;
+
+
+            const targetPosition =
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              headerHeight;
+
+
+            window.scrollTo({
+
+              top:
+                targetPosition,
+
+              behavior:
+                "smooth"
+
+            });
 
           }
+        );
 
-
-          const target =
-            document.querySelector(
-              targetID
-            );
-
-
-          if (!target) return;
-
-
-          event.preventDefault();
-
-
-          const header =
-            document.querySelector(
-              ".site-header"
-            );
-
-
-          const headerHeight =
-            header
-              ? header.offsetHeight
-              : 0;
-
-
-          const targetPosition =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            headerHeight;
-
-
-          window.scrollTo({
-
-            top:
-              targetPosition,
-
-            behavior:
-              "smooth"
-
-          });
-
-        }
-      );
-
-    });
+      }
+    );
 
 
   /* =========================================================
@@ -484,55 +738,61 @@ document.addEventListener("DOMContentLoaded", () => {
       new IntersectionObserver(
         entries => {
 
-          entries.forEach(entry => {
-
-            if (
-              !entry.isIntersecting
-            ) {
-
-              return;
-
-            }
-
-
-            navLinks.forEach(link => {
-
-              link.classList.remove(
-                "active"
-              );
-
+          entries.forEach(
+            entry => {
 
               if (
-                link.getAttribute(
-                  "href"
-                ) ===
-                `#${entry.target.id}`
+                !entry.isIntersecting
               ) {
 
-                link.classList.add(
-                  "active"
-                );
+                return;
 
               }
 
-            });
 
-          });
+              navLinks.forEach(
+                link => {
+
+                  link.classList.remove(
+                    "active"
+                  );
+
+
+                  if (
+                    link.getAttribute(
+                      "href"
+                    ) ===
+                    `#${entry.target.id}`
+                  ) {
+
+                    link.classList.add(
+                      "active"
+                    );
+
+                  }
+
+                }
+              );
+
+            }
+          );
 
         },
         {
-          threshold: 0.35
+          threshold:0.35
         }
       );
 
 
-    sections.forEach(section => {
+    sections.forEach(
+      section => {
 
-      sectionObserver.observe(
-        section
-      );
+        sectionObserver.observe(
+          section
+        );
 
-    });
+      }
+    );
 
   }
 
@@ -557,44 +817,58 @@ document.addEventListener("DOMContentLoaded", () => {
     ).matches
   ) {
 
-    let ticking = false;
+    let ticking =
+      false;
 
 
-    const updateParallax = () => {
+    const updateParallax =
+      () => {
 
-      visuals.forEach(visual => {
+        visuals.forEach(
+          visual => {
 
-        const rect =
-          visual.getBoundingClientRect();
-
-
-        if (
-          rect.top <
-            window.innerHeight &&
-          rect.bottom >
-            0
-        ) {
-
-          const progress =
-            (window.innerHeight - rect.top) /
-            (window.innerHeight + rect.height);
+            const rect =
+              visual.getBoundingClientRect();
 
 
-          const movement =
-            (progress - .5) * 12;
+            if (
+              rect.top <
+                window.innerHeight &&
+              rect.bottom >
+                0
+            ) {
+
+              const progress =
+                (
+                  window.innerHeight -
+                  rect.top
+                ) /
+                (
+                  window.innerHeight +
+                  rect.height
+                );
 
 
-          visual.style.backgroundPosition =
-            `center ${50 + movement}%`;
+              const movement =
+                (
+                  progress -
+                  0.5
+                ) * 12;
 
-        }
 
-      });
+              visual.style.backgroundPosition =
+                `center ${50 + movement}%`;
+
+            }
+
+          }
+        );
 
 
-      ticking = false;
+        ticking =
+          false;
 
-    };
+      };
 
 
     window.addEventListener(
@@ -607,12 +881,15 @@ document.addEventListener("DOMContentLoaded", () => {
             updateParallax
           );
 
-          ticking = true;
+          ticking =
+            true;
 
         }
 
       },
-      { passive: true }
+      {
+        passive:true
+      }
     );
 
   }
@@ -630,7 +907,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (header) {
 
-    let lastScroll = 0;
+    let lastScroll =
+      0;
 
 
     window.addEventListener(
@@ -642,7 +920,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (
-          currentScroll > 40
+          currentScroll >
+          40
         ) {
 
           header.classList.add(
@@ -662,7 +941,9 @@ document.addEventListener("DOMContentLoaded", () => {
           currentScroll;
 
       },
-      { passive: true }
+      {
+        passive:true
+      }
     );
 
   }
@@ -678,19 +959,49 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  images.forEach(image => {
+  images.forEach(
+    image => {
 
-    image.addEventListener(
-      "error",
-      () => {
+      image.addEventListener(
+        "error",
+        () => {
 
-        image.style.visibility =
-          "hidden";
+          image.style.visibility =
+            "hidden";
 
-      }
+        }
+      );
+
+    }
+  );
+
+
+  /* =========================================================
+     IMAGE REVEAL
+  ========================================================= */
+
+  const revealImages =
+    document.querySelectorAll(
+      ".image-reveal"
     );
 
-  });
+
+  revealImages.forEach(
+    image => {
+
+      image.addEventListener(
+        "load",
+        () => {
+
+          image.classList.add(
+            "loaded"
+          );
+
+        }
+      );
+
+    }
+  );
 
 
 });
