@@ -3138,6 +3138,9 @@ img {
 
   }
 
+}
+
+
 /* =========================================
    FACEBOOK SOCIAL ICON
 ========================================= */
@@ -3687,4 +3690,274 @@ body.flare-ready > *:not(.flare-page-loader){
 body.menu-open {
   overflow: hidden;
   height: 100vh;
+}
+
+
+/* =========================================================
+   FLARE INNER PAGES — BRAND / CREATOR / FOUNDER
+   Final layout overrides
+========================================================= */
+
+.inner-page{
+  width:100%;
+  padding-top:86px;
+}
+
+.page-hero{
+  min-height:clamp(520px,72vh,820px);
+  padding:clamp(90px,10vw,150px) var(--pad) clamp(75px,9vw,125px);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 82% 28%,rgba(255,255,255,.075),transparent 25%),
+    radial-gradient(circle at 10% 85%,rgba(255,255,255,.035),transparent 28%),
+    #070707;
+  border-bottom:1px solid var(--line-dark);
+}
+
+.page-hero::before{
+  content:"FLARE";
+  position:absolute;
+  right:-4vw;
+  bottom:-7vw;
+  font-size:clamp(170px,25vw,430px);
+  line-height:.72;
+  font-weight:800;
+  letter-spacing:-.1em;
+  color:rgba(255,255,255,.025);
+  pointer-events:none;
+}
+
+.page-hero .eyebrow,
+.page-hero h1{
+  position:relative;
+  z-index:2;
+}
+
+.page-hero h1{
+  margin-top:28px;
+  max-width:1300px;
+  font-size:clamp(70px,11vw,180px);
+  line-height:.79;
+  letter-spacing:-.095em;
+  font-weight:800;
+}
+
+.page-hero h1 span{
+  color:#666;
+}
+
+.page-copy{
+  padding:clamp(80px,11vw,150px) var(--pad);
+  background:#070707;
+  border-bottom:1px solid var(--line-dark);
+}
+
+.page-copy-inner{
+  max-width:1120px;
+}
+
+.page-copy h2{
+  margin-top:28px;
+  max-width:900px;
+  font-size:clamp(48px,7vw,105px);
+  line-height:.88;
+  letter-spacing:-.08em;
+}
+
+.page-copy p{
+  max-width:760px;
+  margin-top:32px;
+  color:#9d9d9d;
+  font-size:clamp(17px,1.7vw,23px);
+  line-height:1.6;
+}
+
+.inner-page .services{
+  padding:clamp(75px,9vw,120px) var(--pad) clamp(85px,10vw,140px);
+}
+
+.inner-page .services > .section-number{
+  margin-bottom:24px;
+}
+
+.inner-page .service-cards{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+
+.inner-page .service-card{
+  min-height:clamp(400px,48vw,610px);
+  padding:clamp(22px,2.5vw,34px);
+}
+
+.inner-page .service-card h3{
+  font-size:clamp(40px,5vw,78px);
+}
+
+.inner-page .service-card p{
+  max-width:420px;
+  font-size:clamp(14px,1.2vw,17px);
+}
+
+.inner-page .big-cta{
+  padding:clamp(85px,11vw,160px) var(--pad);
+}
+
+.inner-page .cta-inner{
+  max-width:1200px;
+}
+
+.inner-page .footer{
+  padding-top:70px;
+}
+
+
+/* =========================================================
+   CONSISTENT HEADER / MENU
+========================================================= */
+
+.site-header{
+  height:86px;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+}
+
+@media (min-width:901px){
+  .site-header .menu-button{
+    display:none;
+  }
+}
+
+@media (max-width:900px){
+  .site-header{
+    height:78px;
+    padding:0 22px;
+    position:fixed;
+  }
+
+  .brand-logo img{
+    width:118px;
+  }
+
+  .menu-button{
+    display:flex;
+    width:48px;
+    height:48px;
+  }
+
+  .inner-page{
+    padding-top:78px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE INNER PAGES — REMOVE THE HUGE EMPTY AREAS
+========================================================= */
+
+@media (max-width:768px){
+  .page-hero{
+    min-height:520px;
+    padding:75px var(--pad) 70px;
+  }
+
+  .page-hero h1{
+    margin-top:22px;
+    font-size:clamp(56px,16vw,96px);
+  }
+
+  .page-copy{
+    padding:75px var(--pad) 80px;
+  }
+
+  .page-copy h2{
+    font-size:clamp(46px,13vw,78px);
+  }
+
+  .page-copy p{
+    margin-top:26px;
+    font-size:16px;
+    line-height:1.65;
+  }
+
+  .inner-page .services{
+    padding:72px var(--pad) 85px;
+  }
+
+  .inner-page .service-cards{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .inner-page .service-card{
+    min-height:340px;
+  }
+
+  .inner-page .service-card h3{
+    font-size:clamp(42px,13vw,62px);
+  }
+
+  .inner-page .big-cta{
+    padding:80px var(--pad);
+  }
+}
+
+@media (max-width:480px){
+  .page-hero{
+    min-height:470px;
+    padding:65px var(--pad) 60px;
+  }
+
+  .page-hero h1{
+    font-size:clamp(50px,15.5vw,76px);
+  }
+
+  .page-copy{
+    padding:68px var(--pad) 72px;
+  }
+
+  .inner-page .service-card{
+    min-height:315px;
+  }
+}
+
+
+/* =========================================================
+   LOADER — KEEP CONTENT FROM FLASHING
+========================================================= */
+
+body.flare-loading{
+  overflow:hidden;
+}
+
+body.flare-loading .site-header{
+  opacity:0;
+}
+
+body.flare-ready .site-header{
+  opacity:1;
+  transition:opacity .7s ease .1s;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY / PERFORMANCE
+========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+  .flare-page-loader,
+  .flare-page-loader *,
+  .mobile-menu,
+  .service-card,
+  .page-hero,
+  .reveal{
+    animation:none !important;
+    transition:none !important;
+  }
 }
