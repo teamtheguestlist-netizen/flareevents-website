@@ -10,11 +10,11 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <title>FLARE — For Creators</title>
+  <title>FLARE — Creators & Audience</title>
 
   <meta
     name="description"
-    content="FLARE for creators — creator partnerships, experiences and campaigns that turn influence into memorable brand moments."
+    content="FLARE for creators and audiences — creator partnerships, campaigns and experiences built around real voices, communities and influence."
   >
 
   <meta
@@ -62,6 +62,51 @@
     rel="stylesheet"
     href="style.css"
   >
+
+  <style>
+    /* Creator + Audience page: card typography is intentionally
+       constrained so long words never clip. */
+    .creator-services .service-cards{
+      align-items:stretch;
+    }
+
+    .creator-services .service-card{
+      min-width:0;
+      overflow:hidden;
+    }
+
+    .creator-services .service-card h3{
+      font-size:clamp(30px,3.7vw,58px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      white-space:normal;
+      overflow-wrap:anywhere;
+      word-break:normal;
+      max-width:100%;
+    }
+
+    .creator-services .service-card p{
+      max-width:100%;
+    }
+
+    @media (max-width:900px){
+      .creator-services .service-card h3{
+        font-size:clamp(32px,8.5vw,54px);
+        line-height:.92;
+      }
+    }
+
+    @media (max-width:600px){
+      .creator-services .service-card{
+        min-height:300px;
+      }
+
+      .creator-services .service-card h3{
+        font-size:clamp(34px,11vw,52px);
+      }
+    }
+  </style>
+
 
 
   <!-- =========================
@@ -310,12 +355,12 @@
 
   <meta
     property="og:title"
-    content="FLARE — For Creators"
+    content="FLARE — Creators & Audience"
   >
 
   <meta
     property="og:description"
-    content="FLARE for creators — creator partnerships, experiences and campaigns that turn influence into memorable brand moments."
+    content="FLARE for creators and audiences — creator partnerships, campaigns and experiences built around real voices, communities and influence."
   >
 
   <meta
@@ -424,134 +469,6 @@
 
   </header>
 
-
-  <!-- =========================
-       MOBILE MENU
-  ========================== -->
-
-  <div
-    class="mobile-menu"
-    id="mobileMenu"
-    aria-hidden="true"
-  >
-
-    <div class="mobile-menu-inner">
-
-
-      <div class="menu-label">
-        MENU / 001
-      </div>
-
-
-      <nav class="mobile-navigation">
-
-
-        <a href="index.html#idea">
-
-          <span>
-            THE IDEA
-          </span>
-
-          <small>
-            01
-          </small>
-
-        </a>
-
-
-        <a href="index.html#services">
-
-          <span>
-            WHAT WE DO
-          </span>
-
-          <small>
-            02
-          </small>
-
-        </a>
-
-
-        <a href="index.html#work">
-
-          <span>
-            SELECTED WORK
-          </span>
-
-          <small>
-            03
-          </small>
-
-        </a>
-
-
-        <a href="founder.html">
-
-          <span>
-            FOUNDER
-          </span>
-
-          <small>
-            04
-          </small>
-
-        </a>
-
-
-        <a href="contact.html">
-
-          <span>
-            START A PROJECT
-          </span>
-
-          <small>
-            05
-          </small>
-
-        </a>
-
-
-      </nav>
-
-
-      <div class="menu-socials">
-
-
-        <a
-          href="https://www.instagram.com/weareflare.in/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Instagram ↗
-        </a>
-
-
-        <a
-          href="https://www.facebook.com/share/17yEoZoNkn/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Facebook ↗
-        </a>
-
-
-        <a
-          href="https://www.linkedin.com/company/flare-events-india/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn ↗
-        </a>
-
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-
   <!-- =========================
        MAIN
   ========================== -->
@@ -568,7 +485,7 @@
 
       <span class="eyebrow reveal">
 
-        FLARE / FOR CREATORS
+        FLARE / CREATORS + AUDIENCE
 
       </span>
 
@@ -579,7 +496,7 @@
         <br>
 
         <span>
-          YOUR SPACE.
+          YOUR AUDIENCE.
         </span>
 
       </h1>
@@ -635,12 +552,12 @@
          CREATOR SERVICES
     ========================== -->
 
-    <section class="services section-light">
+    <section class="services section-light creator-services">
 
 
       <div class="section-number dark-number reveal">
 
-        02 — CREATOR SERVICES
+        02 — CREATOR + AUDIENCE SERVICES
 
       </div>
 
@@ -954,292 +871,14 @@
 
   </footer>
 
-
-  <!-- =========================
-       MENU + REVEAL JS
-  ========================== -->
-
-  <script>
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      function () {
-
-
-        /* =========================
-           REVEAL ANIMATIONS
-        ========================== */
-
-        const revealItems =
-          document.querySelectorAll(
-            ".reveal"
-          );
-
-
-        if (
-          "IntersectionObserver"
-          in window
-        ) {
-
-
-          const revealObserver =
-            new IntersectionObserver(
-              function (
-                entries,
-                observer
-              ) {
-
-                entries.forEach(
-                  function (entry) {
-
-                    if (
-                      entry.isIntersecting
-                    ) {
-
-                      entry.target.classList.add(
-                        "visible"
-                      );
-
-                      observer.unobserve(
-                        entry.target
-                      );
-
-                    }
-
-                  }
-                );
-
-              },
-              {
-                threshold: .12,
-
-                rootMargin:
-                  "0px 0px -40px 0px"
-
-              }
-            );
-
-
-          revealItems.forEach(
-            function (item) {
-
-              revealObserver.observe(
-                item
-              );
-
-            }
-          );
-
-
-        } else {
-
-
-          revealItems.forEach(
-            function (item) {
-
-              item.classList.add(
-                "visible"
-              );
-
-            }
-          );
-
-        }
-
-
-        /* =========================
-           UNIVERSAL MOBILE MENU
-        ========================== */
-
-        const menuToggle =
-          document.getElementById(
-            "menuToggle"
-          );
-
-
-        const mobileMenu =
-          document.getElementById(
-            "mobileMenu"
-          );
-
-
-        if (
-          !menuToggle ||
-          !mobileMenu
-        ) {
-
-          return;
-
-        }
-
-
-        const mobileLinks =
-          mobileMenu.querySelectorAll(
-            "a"
-          );
-
-
-        function openMenu() {
-
-          mobileMenu.classList.add(
-            "active"
-          );
-
-
-          menuToggle.classList.add(
-            "active"
-          );
-
-
-          document.body.classList.add(
-            "menu-open"
-          );
-
-
-          mobileMenu.setAttribute(
-            "aria-hidden",
-            "false"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "true"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-label",
-            "Close menu"
-          );
-
-        }
-
-
-        function closeMenu() {
-
-          mobileMenu.classList.remove(
-            "active"
-          );
-
-
-          menuToggle.classList.remove(
-            "active"
-          );
-
-
-          document.body.classList.remove(
-            "menu-open"
-          );
-
-
-          mobileMenu.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-label",
-            "Open menu"
-          );
-
-        }
-
-
-        menuToggle.addEventListener(
-          "click",
-          function () {
-
-            if (
-              mobileMenu.classList.contains(
-                "active"
-              )
-            ) {
-
-              closeMenu();
-
-            } else {
-
-              openMenu();
-
-            }
-
-          }
-        );
-
-
-        /* CLOSE AFTER LINK */
-
-        mobileLinks.forEach(
-          function (link) {
-
-            link.addEventListener(
-              "click",
-              function () {
-
-                closeMenu();
-
-              }
-            );
-
-          }
-        );
-
-
-        /* ESC */
-
-        document.addEventListener(
-          "keydown",
-          function (event) {
-
-            if (
-              event.key === "Escape"
-            ) {
-
-              closeMenu();
-
-            }
-
-          }
-        );
-
-
-        /* RESIZE */
-
-        window.addEventListener(
-          "resize",
-          function () {
-
-            if (
-              window.innerWidth > 900
-            ) {
-
-              closeMenu();
-
-            }
-
-          }
-        );
-
-
-      }
-    );
-
-  </script>
-
-
   <!-- GLOBAL SCRIPT -->
-
-  <script src="script.js"></script>
 
 
 </body>
 
+</html>
+
+  <script src="script.js"></script>
+
+</body>
 </html>
