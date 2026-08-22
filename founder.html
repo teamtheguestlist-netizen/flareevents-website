@@ -15,40 +15,477 @@
 
   <meta name="description" content="Bivek Ray — Founder of FLARE. Building experiences, brands and ideas that people remember.">
   <link rel="canonical" href="https://flareevents.in/founder.html">
+
+  <style>
+    .founder-page {
+      background:#050505;
+      color:#f5f5f2;
+      overflow:hidden;
+    }
+
+    .founder-hero {
+      width:min(1380px,calc(100% - 80px));
+      min-height:calc(100vh - 86px);
+      margin:0 auto;
+      padding:80px 0;
+      display:grid;
+      grid-template-columns:minmax(420px,.9fr) minmax(420px,1fr);
+      gap:clamp(60px,9vw,150px);
+      align-items:center;
+    }
+
+    .founder-image-wrap {
+      position:relative;
+      height:min(760px,78vh);
+      overflow:hidden;
+      background:#111;
+    }
+
+    .founder-image {
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      object-position:center 35%;
+      filter:grayscale(100%);
+      transform:scale(1.01);
+      transition:transform 1s ease,filter 1s ease;
+    }
+
+    .founder-image-wrap:hover .founder-image {
+      transform:scale(1.035);
+      filter:grayscale(0%);
+    }
+
+    .founder-image-label {
+      position:absolute;
+      left:24px;
+      bottom:22px;
+      font-family:"DM Mono",monospace;
+      font-size:10px;
+      letter-spacing:.18em;
+      color:#fff;
+      background:rgba(0,0,0,.65);
+      padding:10px 13px;
+      backdrop-filter:blur(10px);
+    }
+
+    .founder-intro {
+      max-width:680px;
+    }
+
+    .founder-intro h1 {
+      margin-top:28px;
+      font-size:clamp(80px,10vw,155px);
+      line-height:.82;
+      letter-spacing:-.075em;
+      font-weight:700;
+    }
+
+    .founder-intro h1 span {
+      color:#c79a3b;
+    }
+
+    .founder-line {
+      width:100%;
+      height:1px;
+      background:rgba(255,255,255,.14);
+      margin:42px 0 22px;
+    }
+
+    .founder-role {
+      font-family:"DM Mono",monospace;
+      font-size:11px;
+      letter-spacing:.18em;
+      color:#c79a3b;
+    }
+
+    .founder-copy {
+      max-width:570px;
+      margin-top:26px;
+      color:#a9a9a4;
+      font-size:16px;
+      line-height:1.8;
+    }
+
+    .founder-button {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      margin-top:34px;
+      padding:0 24px;
+      border:1px solid #c79a3b;
+      color:#fff;
+      font-family:"DM Mono",monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      transition:background .25s ease,color .25s ease,transform .25s ease;
+    }
+
+    .founder-button:hover {
+      background:#c79a3b;
+      color:#050505;
+      transform:translateY(-3px);
+    }
+
+    .founder-about {
+      background:#f4f3ef;
+      color:#090909;
+      padding:110px max(40px,6vw);
+    }
+
+    .founder-about .section-number,
+    .founder-venture .section-number {
+      font-family:"DM Mono",monospace;
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#77736c;
+    }
+
+    .founder-about-content {
+      max-width:1380px;
+      margin:75px auto 0;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:100px;
+    }
+
+    .founder-about-content h2 {
+      font-size:clamp(60px,8vw,125px);
+      line-height:.86;
+      letter-spacing:-.07em;
+      font-weight:700;
+    }
+
+    .founder-about-content h2 span,
+    .venture-content h2 span,
+    .founder-philosophy h2 span,
+    .founder-contact h2 span {
+      color:#b48830;
+    }
+
+    .about-text {
+      max-width:570px;
+    }
+
+    .about-text p {
+      margin-bottom:27px;
+      font-size:16px;
+      line-height:1.8;
+      color:#4f4e49;
+    }
+
+    .founder-flare {
+      min-height:620px;
+      padding:100px max(40px,6vw);
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      align-items:center;
+      gap:80px;
+      background:radial-gradient(circle at 70% 50%,rgba(199,154,59,.12),transparent 30%),#050505;
+    }
+
+    .flare-word {
+      font-size:clamp(110px,20vw,310px);
+      line-height:.75;
+      letter-spacing:-.1em;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .flare-description {
+      max-width:480px;
+    }
+
+    .flare-description p {
+      margin-top:25px;
+      color:#a8a8a3;
+      font-size:16px;
+      line-height:1.75;
+    }
+
+    .flare-description p strong {
+      color:#fff;
+    }
+
+    .flare-description .text-link {
+      display:inline-block;
+      margin-top:35px;
+      font-family:"DM Mono",monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      color:#c79a3b;
+    }
+
+    .founder-venture {
+      background:#f4f3ef;
+      color:#090909;
+      padding:110px max(40px,6vw);
+    }
+
+    .venture-content {
+      max-width:1380px;
+      margin:75px auto 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:100px;
+      align-items:end;
+    }
+
+    .venture-content h2 {
+      margin-top:28px;
+      font-size:clamp(65px,9vw,135px);
+      line-height:.82;
+      letter-spacing:-.075em;
+    }
+
+    .venture-copy {
+      max-width:500px;
+      font-size:16px;
+      line-height:1.8;
+      color:#55534d;
+    }
+
+    .venture-copy p {
+      margin-bottom:25px;
+    }
+
+    .founder-philosophy {
+      background:#0a0a0a;
+      padding:140px 30px;
+      text-align:center;
+    }
+
+    .philosophy-inner {
+      max-width:1100px;
+      margin:auto;
+    }
+
+    .founder-philosophy .eyebrow {
+      color:#c79a3b;
+    }
+
+    .founder-philosophy h2 {
+      margin-top:40px;
+      font-size:clamp(48px,7vw,105px);
+      line-height:.92;
+      letter-spacing:-.07em;
+    }
+
+    .founder-philosophy p {
+      max-width:620px;
+      margin:45px auto 0;
+      color:#92928d;
+      font-size:16px;
+      line-height:1.8;
+    }
+
+    .founder-contact {
+      min-height:620px;
+      padding:120px 30px;
+      background:#f4f3ef;
+      color:#090909;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .founder-contact .eyebrow {
+      color:#77736c;
+    }
+
+    .founder-contact h2 {
+      margin-top:35px;
+      font-size:clamp(75px,12vw,180px);
+      line-height:.8;
+      letter-spacing:-.08em;
+    }
+
+    .founder-contact p {
+      margin-top:35px;
+      color:#64615a;
+      font-size:16px;
+    }
+
+    .founder-contact .founder-button {
+      color:#090909;
+      border-color:#090909;
+    }
+
+    .founder-contact .founder-button:hover {
+      background:#090909;
+      color:#fff;
+    }
+
+    @media (max-width:950px) {
+      .founder-hero {
+        width:calc(100% - 44px);
+        grid-template-columns:1fr;
+        gap:55px;
+        padding:65px 0 85px;
+      }
+
+      .founder-image-wrap {
+        height:70vh;
+        max-height:720px;
+      }
+
+      .founder-intro h1 {
+        font-size:clamp(75px,15vw,130px);
+      }
+
+      .founder-about-content,
+      .venture-content {
+        grid-template-columns:1fr;
+        gap:55px;
+      }
+
+      .founder-flare {
+        grid-template-columns:1fr;
+        gap:40px;
+        min-height:auto;
+      }
+
+      .flare-word {
+        font-size:25vw;
+      }
+    }
+
+    @media (max-width:600px) {
+      .founder-hero {
+        width:calc(100% - 36px);
+        padding:45px 0 65px;
+        gap:42px;
+      }
+
+      .founder-image-wrap {
+        height:62vh;
+        min-height:450px;
+      }
+
+      .founder-image {
+        object-position:center 30%;
+      }
+
+      .founder-image-label {
+        left:14px;
+        bottom:14px;
+        font-size:8px;
+      }
+
+      .founder-intro h1 {
+        margin-top:22px;
+        font-size:24vw;
+      }
+
+      .founder-line {
+        margin:30px 0 18px;
+      }
+
+      .founder-copy {
+        font-size:14px;
+        line-height:1.7;
+      }
+
+      .founder-about,
+      .founder-venture {
+        padding:75px 22px;
+      }
+
+      .founder-about-content,
+      .venture-content {
+        margin-top:50px;
+      }
+
+      .founder-about-content h2,
+      .venture-content h2 {
+        font-size:18vw;
+      }
+
+      .about-text,
+      .venture-copy {
+        font-size:14px;
+      }
+
+      .founder-flare {
+        padding:80px 22px;
+      }
+
+      .flare-word {
+        font-size:25vw;
+      }
+
+      .flare-description p {
+        font-size:14px;
+      }
+
+      .founder-philosophy {
+        padding:95px 22px;
+      }
+
+      .founder-philosophy h2 {
+        margin-top:30px;
+        font-size:13vw;
+      }
+
+      .founder-philosophy p {
+        margin-top:32px;
+        font-size:14px;
+      }
+
+      .founder-contact {
+        min-height:520px;
+        padding:90px 22px;
+      }
+
+      .founder-contact h2 {
+        font-size:22vw;
+      }
+
+      .founder-contact p {
+        font-size:14px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .founder-image,
+      .founder-button {
+        transition:none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header class="site-header">
-
-  <a href="index.html" class="brand-logo">
+  <a href="index.html" class="brand-logo" aria-label="FLARE Home">
     <img src="flare-logo.png" alt="FLARE">
   </a>
 
-  <nav class="desktop-nav">
+  <nav class="desktop-nav" aria-label="Main navigation">
     <a href="index.html#idea">About</a>
     <a href="index.html#services">Services</a>
     <a href="index.html#work">Work</a>
-    <a href="founder.html">Founder</a>
+    <a href="founder.html" aria-current="page">Founder</a>
     <a href="contact.html">Start a Project ↗</a>
   </nav>
 
-  <button class="menu-button">
+  <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
     <span></span>
     <span></span>
   </button>
-
 </header>
 
-
 <main class="founder-page">
-
-  <!-- HERO -->
 
   <section class="founder-hero">
 
     <div class="founder-image-wrap">
-
       <img
         src="bivek-ray.jpeg"
         alt="Bivek Ray — Founder of FLARE"
@@ -58,15 +495,11 @@
       <div class="founder-image-label">
         <span>FLARE / FOUNDER</span>
       </div>
-
     </div>
-
 
     <div class="founder-intro">
 
-      <span class="eyebrow">
-        FLARE / FOUNDER
-      </span>
+      <span class="eyebrow">FLARE / FOUNDER</span>
 
       <h1>
         BIVEK<br>
@@ -75,9 +508,7 @@
 
       <div class="founder-line"></div>
 
-      <p class="founder-role">
-        FOUNDER — FLARE
-      </p>
+      <p class="founder-role">FOUNDER — FLARE</p>
 
       <p class="founder-copy">
         I build experiences, brands and ideas that are
@@ -97,9 +528,6 @@
     </div>
 
   </section>
-
-
-  <!-- ABOUT -->
 
   <section class="founder-about">
 
@@ -140,9 +568,6 @@
 
   </section>
 
-
-  <!-- FLARE -->
-
   <section class="founder-flare">
 
     <div class="flare-word">
@@ -151,9 +576,7 @@
 
     <div class="flare-description">
 
-      <span class="eyebrow">
-        WHAT I'M BUILDING
-      </span>
+      <span class="eyebrow">WHAT I'M BUILDING</span>
 
       <p>
         EVENTS · INFLUENCE · EXPERIENCES
@@ -172,9 +595,6 @@
 
   </section>
 
-
-  <!-- OTHER VENTURE -->
-
   <section class="founder-venture">
 
     <div class="section-number">
@@ -185,9 +605,7 @@
 
       <div>
 
-        <span class="eyebrow">
-          ALSO BUILDING
-        </span>
+        <span class="eyebrow">ALSO BUILDING</span>
 
         <h2>
           SUKOON<br>
@@ -214,16 +632,11 @@
 
   </section>
 
-
-  <!-- PHILOSOPHY -->
-
   <section class="founder-philosophy">
 
     <div class="philosophy-inner">
 
-      <span class="eyebrow">
-        03 / PHILOSOPHY
-      </span>
+      <span class="eyebrow">03 / PHILOSOPHY</span>
 
       <h2>
         IDEAS THAT INSPIRE.<br>
@@ -240,14 +653,9 @@
 
   </section>
 
-
-  <!-- CONTACT -->
-
   <section class="founder-contact">
 
-    <span class="eyebrow">
-      LET'S BUILD SOMETHING
-    </span>
+    <span class="eyebrow">LET'S BUILD SOMETHING</span>
 
     <h2>
       HAVE AN<br>
@@ -266,7 +674,6 @@
 
 </main>
 
-
 <footer class="footer">
 
   <img src="flare-logo.png" alt="FLARE">
@@ -277,7 +684,6 @@
   </div>
 
 </footer>
-
 
 <script src="script.js"></script>
 
