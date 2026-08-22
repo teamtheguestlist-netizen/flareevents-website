@@ -1634,6 +1634,31 @@
 
   </script>
 
+
+<style>
+  /* FINAL FIX — BRAND PAGE CTA WAS BEING HIDDEN BY THE HOMEPAGE MOTION CSS */
+  .brand-page .big-cta .cta-inner{
+    opacity:1 !important;
+    visibility:visible !important;
+    transform:none !important;
+  }
+
+  .brand-page .big-cta .eyebrow,
+  .brand-page .big-cta h2,
+  .brand-page .big-cta .cta-button{
+    visibility:visible !important;
+  }
+
+  /* Keep the CTA elegant on small screens */
+  @media (max-width:900px){
+    .brand-page .big-cta .cta-inner{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:40px;
+    }
+  }
+</style>
+
 </head>
 
 
