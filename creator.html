@@ -196,18 +196,76 @@
       background: #e9e7e1;
     }
 
-    .creator-page .service-card h3 {
-      margin-top: auto;
-      margin-bottom: 14px;
-      font-size: clamp(2rem, 7cqw, 4.25rem);
-      line-height: .9;
-      letter-spacing: -.06em;
-      white-space: normal;
-      overflow-wrap: normal;
-      word-break: normal;
-      text-wrap: balance;
-      max-width: 100%;
-    }
+ /* =========================================================
+   SERVICE TITLE — RESPONSIVE FIX
+   DISCOVERY / PARTNERSHIPS / CAMPAIGNS
+========================================================= */
+
+.creator-page .service-card h3 {
+  margin-top: auto;
+  margin-bottom: 14px;
+
+  /* controlled responsive size */
+  font-size: clamp(2rem, 4.2vw, 4rem);
+
+  line-height: .88;
+
+  letter-spacing: -.055em;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  max-width: 100%;
+
+  overflow: visible;
+}
+
+
+/* Desktop / laptop */
+@media (min-width: 901px) {
+
+  .creator-page .service-card h3 {
+    font-size: clamp(2.15rem, 3.65vw, 3.8rem);
+  }
+
+}
+
+
+/* Tablet */
+@media (max-width: 900px) {
+
+  .creator-page .service-card h3 {
+    font-size: clamp(2rem, 8vw, 3.4rem);
+    line-height: .9;
+    letter-spacing: -.055em;
+  }
+
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  .creator-page .service-card h3 {
+    font-size: clamp(2rem, 10.5vw, 3rem);
+    line-height: .92;
+    letter-spacing: -.05em;
+  }
+
+}
+
+
+/* Small phones */
+@media (max-width: 380px) {
+
+  .creator-page .service-card h3 {
+    font-size: 1.85rem;
+    line-height: .94;
+    letter-spacing: -.045em;
+  }
+
+}
 
     .creator-page .service-card p {
       max-width: 31rem;
