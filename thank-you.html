@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <title>FLARE — Thank You</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #0d0d0d;
+      --line: rgba(255,255,255,.1);
+      --text: #f4f1eb;
+      --muted: rgba(244,241,235,.72);
+      --gold: #c9a15d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 20px;
+    }
+
+    .thanks-shell {
+      width: min(780px, 100%);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.01);
+      padding: clamp(40px, 7vw, 80px);
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      font: 500 10px 'DM Mono', monospace;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 8vw, 72px);
+      line-height: .9;
+      letter-spacing: -.06em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    p {
+      margin: 24px auto 0;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.6;
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 36px;
+      color: var(--text);
+      text-decoration: none;
+      font: 500 10px 'DM Mono', monospace;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,.7);
+      padding-bottom: 8px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+
+    .home-link span {
+      color: var(--gold);
+    }
+
+    .home-link:hover {
+      color: var(--gold);
+      border-color: rgba(201,161,93,.8);
+    }
+  </style>
+</head>
+<body>
+  <main class="thanks-shell" aria-label="Thank you message">
+    <p class="eyebrow">FLARE</p>
+    <h1>THANK YOU.<br>YOUR PROJECT ENQUIRY HAS BEEN RECEIVED.</h1>
+    <p>We’ll be in touch soon with the next steps.</p>
+    <a class="home-link" href="index.html">BACK TO HOME <span>↗</span></a>
+  </main>
+</body>
+</html>
