@@ -795,3 +795,279 @@ footer {
     max-width: 100%;
   }
 }
+/* =========================================================
+   FLARE — FINAL MOBILE FOOTER OVERRIDE
+   ========================================================= */
+
+@media screen and (max-width: 760px) {
+
+  /* FOOTER */
+  body .footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+
+  /* TOP */
+  body .footer .footer-top {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px !important;
+  }
+
+  /* FLARE + FULL TAGLINE */
+  body .footer .footer-brand {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    overflow: visible !important;
+  }
+
+  body .footer .footer-brand img {
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+    flex: 0 0 68px !important;
+  }
+
+  body .footer .footer-brand > span {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+
+    flex: 1 1 auto !important;
+
+    font-size: 9px !important;
+    line-height: 1 !important;
+    letter-spacing: .055em !important;
+
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  /* RIGHT SIDE */
+  body .footer .footer-meta-right {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 18px !important;
+    margin: 0 !important;
+  }
+
+  /* INHUB */
+  body .footer .incubated-mark {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+  }
+
+  body .footer .incubated-mark span {
+    display: block !important;
+    font-size: 7px !important;
+    letter-spacing: .11em !important;
+    white-space: nowrap !important;
+  }
+
+  body .footer .incubated-mark img {
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+  }
+
+  /* =======================================================
+     SOCIAL LINKS — FORCE ONE HORIZONTAL ROW
+     ======================================================= */
+
+  body .footer .footer-links {
+    width: 100% !important;
+    max-width: none !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+  }
+
+  body .footer .footer-links a {
+    display: inline-block !important;
+
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+
+    flex: 0 0 auto !important;
+
+    font-size: 8px !important;
+    line-height: 1 !important;
+    letter-spacing: .035em !important;
+
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+
+  /* =======================================================
+     BOTTOM — LEFT / CENTER / RIGHT
+     ======================================================= */
+
+  body .footer .footer-bottom {
+    width: 100% !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+
+    align-items: center !important;
+    gap: 6px !important;
+
+    margin-top: 22px !important;
+    padding-top: 14px !important;
+
+    overflow: visible !important;
+  }
+
+  body .footer .footer-bottom span,
+  body .footer .footer-bottom a {
+    display: block !important;
+
+    font-size: 8px !important;
+    line-height: 1 !important;
+    letter-spacing: .045em !important;
+
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  body .footer .footer-bottom span:first-child {
+    justify-self: start !important;
+    text-align: left !important;
+  }
+
+  body .footer .footer-bottom span:nth-child(2) {
+    justify-self: center !important;
+    text-align: center !important;
+    width: max-content !important;
+  }
+
+  body .footer .footer-bottom a {
+    justify-self: end !important;
+    text-align: right !important;
+  }
+}
+
+
+/* =========================================================
+   390px — USE THE AVAILABLE WIDTH PROPERLY
+   ========================================================= */
+
+@media screen and (max-width: 390px) {
+
+  body .footer {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body .footer .footer-brand {
+    gap: 11px !important;
+  }
+
+  body .footer .footer-brand img {
+    width: 62px !important;
+    min-width: 62px !important;
+    flex-basis: 62px !important;
+  }
+
+  body .footer .footer-brand > span {
+    font-size: 8.5px !important;
+    letter-spacing: .035em !important;
+  }
+
+  body .footer .incubated-mark img {
+    width: 62px !important;
+    min-width: 62px !important;
+  }
+
+  body .footer .footer-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+  }
+
+  body .footer .footer-links a {
+    font-size: 7.5px !important;
+    letter-spacing: .02em !important;
+  }
+
+  body .footer .footer-bottom {
+    grid-template-columns: minmax(0,1fr) max-content minmax(0,1fr) !important;
+    gap: 4px !important;
+  }
+
+  body .footer .footer-bottom span,
+  body .footer .footer-bottom a {
+    font-size: 8px !important;
+    letter-spacing: .025em !important;
+  }
+}
+@media screen and (max-width: 390px) {
+
+  body .footer .footer-brand > span {
+    font-size: 9.5px !important;
+    letter-spacing: .02em !important;
+  }
+
+  body .footer .footer-links a {
+    font-size: 9px !important;
+    letter-spacing: .015em !important;
+  }
+
+  body .footer .footer-bottom span,
+  body .footer .footer-bottom a {
+    font-size: 9px !important;
+    letter-spacing: .02em !important;
+  }
+}
+@media screen and (max-width: 390px) {
+
+  /* EVENTS · INFLUENCE · EXPERIENCES */
+  body .footer .footer-brand > span {
+    font-size: 10px !important;
+    letter-spacing: .02em !important;
+  }
+
+  /* INSTAGRAM · LINKEDIN · FACEBOOK · EMAIL */
+  body .footer .footer-links a {
+    font-size: 10px !important;
+    letter-spacing: .01em !important;
+  }
+
+  /* © / WHERE MOMENTS IGNITE / BACK TO TOP */
+  body .footer .footer-bottom span,
+  body .footer .footer-bottom a {
+    font-size: 9.5px !important;
+    letter-spacing: .015em !important;
+  }
+}
