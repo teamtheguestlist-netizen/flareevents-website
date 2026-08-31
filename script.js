@@ -90,7 +90,7 @@
     }
 
     const methodTrack = document.querySelector('.method-track');
-    if (methodTrack && document.querySelector('.method')) {
+    if (methodTrack && document.querySelector('.method') && window.innerWidth > 760) {
       gsap.to(methodTrack, {
         x: () => -(methodTrack.scrollWidth - window.innerWidth + window.innerWidth * 0.08),
         ease: 'none',
