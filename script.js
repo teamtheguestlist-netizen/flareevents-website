@@ -189,7 +189,20 @@
     // Allow the main homepage to appear after the cinematic opening.
     setTimeout(finishHalloweenIntro, 6500);
   }
+  // Temporary Halloween hero image
+  const heroImage = document.querySelector('.hero-media img');
+  const halloweenActive = document.body.classList.contains('halloween-active');
 
+  if (heroImage) {
+    const normalImage = heroImage.dataset.normalSrc;
+    const halloweenImage = heroImage.dataset.halloweenSrc;
+
+    if (halloweenActive && halloweenImage) {
+      heroImage.src = halloweenImage;
+    } else if (normalImage) {
+      heroImage.src = normalImage;
+    }
+  }
   });
 })();
 
