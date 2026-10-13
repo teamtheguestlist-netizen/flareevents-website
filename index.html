@@ -14,11 +14,53 @@
   <link rel="stylesheet" href="./halloween.css">
 </head>
 <body>
+  
+<script>
+(function () {
+  const now = new Date();
+  const start = new Date('2026-10-13T00:00:00+05:30');
+  const end = new Date('2026-11-01T00:00:00+05:30');
+
+  if (now >= start && now < end) {
+    document.body.classList.add('halloween-active');
+  }
+})();
+</script>
+
   <div class="loader" aria-hidden="true">
     <div class="loader-logo"><img src="assets/flare-logo.png" alt=""></div>
     <div class="loader-line"><span></span></div>
     <div class="loader-meta"><span>EVENTS</span><span>INFLUENCE</span><span>EXPERIENCES</span></div>
   </div>
+
+<div class="halloween-intro" aria-label="FLARE Halloween intro">
+  <div class="halloween-intro__backdrop"></div>
+  <div class="halloween-intro__glow"></div>
+
+  <svg class="halloween-web halloween-web--left" viewBox="0 0 300 260" aria-hidden="true">
+    <path d="M0 0 L300 260 M0 80 L300 260 M0 160 L300 260 M0 240 L300 260 M0 0 L0 260 M80 0 L0 260 M160 0 L0 260 M240 0 L0 260 M0 60 Q90 70 120 140 Q160 210 240 220 M0 130 Q80 130 140 190 Q180 230 300 250 M0 200 Q70 200 110 230"/>
+  </svg>
+
+  <svg class="halloween-web halloween-web--right" viewBox="0 0 300 260" aria-hidden="true">
+    <path d="M0 0 L300 260 M0 80 L300 260 M0 160 L300 260 M0 240 L300 260 M0 0 L0 260 M80 0 L0 260 M160 0 L0 260 M240 0 L0 260 M0 60 Q90 70 120 140 Q160 210 240 220 M0 130 Q80 130 140 190 Q180 230 300 250 M0 200 Q70 200 110 230"/>
+  </svg>
+
+  <div class="halloween-spider" aria-hidden="true"></div>
+  <div class="halloween-ghost halloween-ghost--left" aria-hidden="true"></div>
+  <div class="halloween-ghost halloween-ghost--right" aria-hidden="true"></div>
+
+  <div class="halloween-intro__logo">
+    <img src="assets/flare-logo.png" alt="FLARE">
+  </div>
+
+  <div class="halloween-intro__tagline">
+    EVENTS · INFLUENCE · EXPERIENCES
+    <strong>31 OCTOBER 2026</strong>
+  </div>
+
+  <div class="halloween-intro__grain"></div>
+  <button class="halloween-intro__skip" type="button">SKIP INTRO ↗</button>
+</div>
 
   <div class="cursor"><span></span></div>
 
