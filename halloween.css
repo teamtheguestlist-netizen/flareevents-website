@@ -1,0 +1,71 @@
+/* FLARE HALLOWEEN — temporary homepage theme */
+body.halloween-active .hero {
+  background: #090604;
+}
+
+body.halloween-active .hero-media img {
+  filter: brightness(.65) saturate(.8);
+}
+
+body.halloween-active .hero-vignette {
+  background:
+    linear-gradient(90deg, rgba(10, 5, 2, .82), transparent 85%),
+    linear-gradient(0deg, #090604 0%, transparent 45%);
+}
+
+body.halloween-active .hero-flare {
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 91, 0, .22),
+    transparent 70%
+  );
+}
+
+.halloween-banner {
+  display: none;
+}
+
+body.halloween-active .halloween-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 64px 20px;
+  text-align: center;
+  color: #fff4e8;
+  background:
+    radial-gradient(ellipse at center, #321306 0%, #100906 65%, #070606 100%);
+  border-top: 1px solid rgba(255, 111, 0, .35);
+  border-bottom: 1px solid rgba(255, 111, 0, .35);
+}
+
+.halloween-banner .eyebrow {
+  color: #ff8a35;
+  letter-spacing: .2em;
+}
+
+.halloween-banner h2 {
+  margin: 0;
+  font-size: clamp(36px, 7vw, 82px);
+  line-height: .98;
+  font-weight: 800;
+}
+
+.halloween-banner p {
+  max-width: 520px;
+  color: #c9b7aa;
+  line-height: 1.7;
+}
+
+.halloween-banner .halloween-date {
+  color: #ff9a52;
+  font-family: "DM Mono", monospace;
+  letter-spacing: .12em;
+}
+
+@media (max-width: 600px) {
+  body.halloween-active .halloween-banner {
+    padding: 48px 20px;
+  }
+}
