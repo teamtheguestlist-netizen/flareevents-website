@@ -162,6 +162,34 @@
     el.addEventListener('mouseleave', () => {
       el.style.transform = '';
     });
+    
+  // FLARE Halloween intro — temporary
+  const halloweenIntro = $('.halloween-intro');
+
+  if (halloweenIntro && document.body.classList.contains('halloween-active')) {
+    const skipButton = $('.halloween-intro__skip', halloweenIntro);
+    let introFinished = false;
+
+    const finishHalloweenIntro = () => {
+      if (introFinished) return;
+      introFinished = true;
+
+      halloweenIntro.classList.add('is-leaving');
+
+      setTimeout(() => {
+        halloweenIntro.classList.remove('is-playing');
+        halloweenIntro.classList.add('is-finished');
+      }, 900);
+    };
+
+    halloweenIntro.classList.add('is-playing');
+
+    skipButton?.addEventListener('click', finishHalloweenIntro);
+
+    // Allow the main homepage to appear after the cinematic opening.
+    setTimeout(finishHalloweenIntro, 6500);
+  }
+
   });
 })();
 
